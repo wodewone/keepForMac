@@ -1,0 +1,69 @@
+@import "variables";
+
+.app-container{
+  width: 100%;
+  height: 100%;
+  padding-top: 30vh;
+  //background: #000;
+  background: $keep-gary;
+  position: relative;
+  -webkit-app-region: drag;
+
+  &:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.3);
+    z-index: 2;
+  }
+}
+.bg-video{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.app-login{
+  width: 300px;
+  margin: auto;
+  position: relative;
+  z-index: 3;
+  -webkit-app-region: no-drag;
+}
+
+.login-title{
+  color: #fff;
+}
+
+.form-control{
+  margin-bottom: 10px;
+}
+
+.form-input{
+  width: 100%;
+  border: 1px solid $keep-gary;
+  border-radius: 5px;
+  padding: 10px;
+  background: $color-white;
+  color: $keep-gary;
+
+  &:focus{
+    border-color: $keep-green;
+  }
+}
+
+.login-btn{
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background: $keep-green;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+}

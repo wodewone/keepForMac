@@ -1,0 +1,397 @@
+@import "variables";
+
+.workout-wrap{
+  position: relative;
+}
+.workout-header{
+  background: $keep-gary no-repeat center/cover;
+  position: relative;
+  box-shadow: 0 0 10px rgba(0,0,0,.6);
+
+  &:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5);
+  }
+}
+.header-inner{
+  position: relative;
+  padding: 10px;
+  height: 180px;
+}
+.header-title{
+  font-size: $font-size-24;
+  color: $color-white;
+  margin-top: 10px;
+}
+.header-desc{
+  color: $color-desc;
+  font-size: $font-size-12;
+}
+.header-nav{
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0 10px;
+  overflow: hidden;
+  text-align: right;
+  white-space: nowrap;
+
+  li{
+    display: inline-block;
+  }
+}
+.header-link{
+  text-align: left;
+  display: block;
+  font-size: $font-size-14;
+  color: $color-white;
+  padding: 12px 0 0;
+}
+.link-val{
+  padding: 5px 0;
+  border-top: 1px solid $color-white;
+  border-bottom: 1px solid $color-white;
+}
+.header-sp{
+  color: $color-white;
+  font-size: $font-size-10;
+  display: block;
+  padding-left: 50px;
+  padding-right: 10px;
+}
+.sp-desc{
+  color: $color-desc;
+}
+
+.list-nav{
+  padding: 10px;
+  display: flex;
+  border-bottom: 1px solid $border-color;
+}
+.nav-participation{
+  text-align: center;
+  margin-right: 10px;
+}
+.complete-list{
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  align-self: center;
+  text-align: right;
+
+  li{
+    display: inline-flex;
+  }
+}
+.pioneer-item{
+  width: $user-avatar-size;
+  height: $user-avatar-size;
+  border-radius: 50%;
+  overflow: hidden;
+  display: block;
+  position: relative;
+  //background: url("../assets/images/keep-small.jpg") center/cover;
+  background: $border-color;
+  border: 1px solid $border-color;
+  margin-right: 10px;
+
+  img{
+    border: none;
+    width: 100%;
+    height: 100%;
+  }
+}
+.show-more{
+  text-align: center;
+  width: 30px;
+  position: relative;
+
+  i{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.training-content{
+  background: $color-white;
+  border-bottom: 1px solid $border-color;
+}
+.training-title{
+  padding: 10px;
+  overflow: hidden;
+}
+.training-sp{
+  float: right;
+  color: $color-gary;
+  font-size: $font-size-12;
+}
+.line-title{
+  border-left: 2px solid $keep-green;
+  padding-left: 5px;
+  line-height: 1;
+}
+.training-line{
+  display: block;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.line-item{
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  position: relative;
+}
+.line-work-item{
+  margin-right: 15px;
+}
+.work-gap{
+  width: 15px;
+  text-align: center;
+  font-size: $font-size-12;
+  position: absolute;
+  top: 26%;
+  right: 5px;
+  color: $color-gary;
+}
+.work-item-cover{
+  width: 100%;
+  padding-bottom: 64%;
+  margin-bottom: 10px;
+  background: $color-gary center/cover;
+}
+.work-item-title{
+  margin-bottom: 5px;
+}
+.work-item-desc{
+  color: $color-gary;
+}
+
+.button-start-training{
+  cursor: pointer;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  width: 60px;
+  padding: 0 10px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba($keep-green, .8);
+  border: 2px solid rgba($keep-gary, .2);
+  color: $color-white;
+  box-shadow: 0 0 5px rgba($body-color, .8);
+  transition: all .35s;
+
+  &:hover{
+    background: rgba($keep-green, 1);
+    border: 2px solid rgba($keep-gary, .6);
+  }
+}
+
+.training-dynamic{
+  background: $color-white;
+  padding: 0 10px;
+}
+.dynamic-title{
+  padding: 10px 0;
+}
+.dynamic-item{
+  display: flex;
+  border-bottom: 1px solid $border-color;
+  padding: 10px 0;
+
+  &:first-child{
+    padding-top: 0;
+  }
+}
+.item-photo{
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+  background: $color-gary no-repeat center/cover;
+}
+.dynamic-content{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.dynamic-desc{
+  flex: 1;
+
+  p{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+}
+.dynamic-user{
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.item-avatar{
+  width: $user-avatar-size;
+  height: $user-avatar-size;
+  border-radius: 50%;
+  margin-right: 10px;
+  border: 1px solid $border-color;
+}
+.dynamic-time{
+  color: $color-desc;
+}
+
+.workout-mask{
+  transition: transform .5s .2s;
+}
+.workout-blur-mask {
+  display: block;
+  filter: blur(5px);
+  position: relative;
+  transform: scale(1.01);
+}
+:global {
+  .workout-introduce {
+    opacity: 0;
+    position: fixed;
+    top: $index-header-height;
+    right: 0;
+    bottom: 0;
+    left: $index-menu-width;
+    padding: 20px 30px 80px;
+    background: rgba(#000, .8);
+    transition: opacity .5s .2s;
+  }
+  .workout-introduce.show{
+    opacity: 1;
+    transition: opacity .5s;
+  }
+  .workout-introduce.show .workout-introduce-inner {
+    opacity: 1;
+    margin-top: 0;
+    transition: all .5s .2s;
+  }
+  .workout-introduce-inner {
+    transition: all .5s;
+    opacity: 0;
+    margin-top: 10px;
+    height: 100%;
+    padding-right: 10px;
+    margin-right: -10px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    color: $color-white;
+  }
+}
+.button-introduce-desc{
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  overflow: hidden;
+  margin-left: -15px;
+  border: none;
+  background: none;
+  color: $color-white;
+  cursor: pointer;
+  transition: transform .35s;
+
+  &:hover{
+    transform: scale(1.3);
+  }
+
+  i{
+    font-size: 30px;
+    margin: 0;
+  }
+}
+
+// workout description
+.workout-desc-inner{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.workout-desc-video{
+  width: 100%;
+}
+.workout-desc-title{
+  padding: 5px;
+  margin: 10px;
+  font-size: $font-size-24;
+  color: $color-white;
+  border-bottom: 1px solid $keep-green;
+}
+.workout-desc-article{
+  padding: 10px 20px;
+  color: $color-white;
+}
+.workout-exercise-title{
+  color: $color-white;
+  margin-top: 10px;
+  margin-bottom: 0;
+  margin-left: 20px;
+}
+.workout-desc-figure{
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  padding: 10px;
+}
+.exercise-figure{
+  padding: 10px;
+  vertical-align: top;
+  display: inline-block;
+}
+.exercise-item{
+  position: relative;
+}
+.exercise-pic{
+  border-radius: 10px;
+  border: 1px solid $color-gary;
+  height: 500px;
+}
+.exercise-coordinates{
+  position: absolute;
+  color: $color-white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  max-width: 10%;
+  max-height: 10%;
+  transform: translate(-50%, -50%);
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+  font-size: $font-size-14;
+  background: rgba($keep-green,.66);
+
+  &:before{
+
+  }
+}
+.exercise-tip{
+  margin-top: 10px;
+  font-size: $font-size-14;
+  color: $color-white;
+}

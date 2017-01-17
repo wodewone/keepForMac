@@ -1,0 +1,148 @@
+@import "variables";
+
+.index-left-menu{
+  height: 100%;
+  width: $index-menu-width;
+  float: left;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid $border-color;
+  padding: 25vh 0;
+  background: $index-menu;
+  position: relative;
+
+  li{
+    display: flex;
+    flex: 1;
+  }
+
+  a{
+    outline: none;
+    display: flex;
+    width: 100%;
+    padding-left: 20px;
+    align-items: center;
+    border-left: 2px solid transparent;
+
+    &:hover,
+    &:focus{
+      border-left-color: $keep-gary;
+    }
+  }
+}
+.index-menu-bg{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: .8;
+  z-index: -1;
+  filter: blur(2px);
+  overflow: hidden;
+  background: url('../assets/images/keep-menu-bg.jpg') center/cover;
+}
+
+.main-container{
+  position: absolute;
+  top: $index-header-height;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.index-content{
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  margin-left: $index-menu-width;
+  background: $keep-background;
+}
+.index-header{
+  padding-top: 20px;
+  height: $index-header-height;
+  background: $keep-gary;
+  -webkit-app-region: drag;
+  display: flex;
+  border-bottom: 1px solid $keep-gary;
+
+  .col{
+    flex: 1;
+    align-self: center;
+  }
+
+  h2{
+    flex: 1;
+    margin: 0;
+    color: $color-white;
+    text-align: center;
+    align-self: center;
+  }
+}
+.history-col{
+  display: flex;
+  align-items: center;
+}
+.history-button{
+  width: 32px;
+  height: 32px;
+  line-height: 29px;
+  display: inline-block;
+  background: none;
+  border: none;
+  color: $color-white;
+  cursor: pointer;
+
+  i{
+    margin: 0;
+  }
+
+  &:active{
+    background: $keep-gary - #111;
+  }
+
+  &:last-child{
+    margin-right: 15px;
+  }
+
+  &[disabled]{
+    cursor: default;
+    color: $color-gary;
+  }
+}
+
+.index-logo{
+  padding-left: 10px;
+  width: $index-menu-width;
+  display: flex;
+  align-self: center;
+
+  img{
+    width: 80px;
+    height: 25px;
+  }
+}
+.header-user{
+  padding: 0 23px;
+  text-align: right;
+  position: relative;
+
+  &:after{
+    content: '';
+    position: absolute;
+    top: 45%;
+    right: 10px;
+    width: 0;
+    border: 4px solid transparent;
+    border-top-color: $color-white;
+  }
+}
+.header-avatar{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid $keep-green;
+}
+.header-nickname{
+  color: $color-white;
+  font-size: $font-size-10;
+}

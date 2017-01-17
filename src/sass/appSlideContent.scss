@@ -1,0 +1,64 @@
+@import "variables";
+
+.slide-wrap{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+}
+.slide-mask{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: background .35s;
+  background: rgba(0,0,0,.45);
+}
+.slide-content {
+  position: absolute;
+  top: 0;
+  right: -75%;
+  width: 75%;
+  height: 100%;
+  background: $body-color;
+  transition: right .35s ease-out;
+  box-shadow: -2px 0 15px rgba(0, 0, 0, .6);
+}
+.slide-content.active {
+  right: 0;
+
+  .button-slide-goback{
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+.button-slide-goback{
+  transition: opacity .5s .5s, transform .5s .5s;
+  transform: translateX(-10px);
+  opacity: 0;
+  cursor: pointer;
+  border: none;
+  background: none;
+  position: absolute;
+  top: 50%;
+  left: -18%;
+  margin-top: -12px;
+  margin-left: -12px;
+  color: $color-white;
+
+  &:hover{
+    animation: buttonFloat .5s;
+    animation-fill-mode: forwards;
+  }
+}
+@keyframes buttonFloat {
+  0%{
+    transform: translateX(0);
+  }
+  100%{
+    transform: translateX(10px);
+  }
+}

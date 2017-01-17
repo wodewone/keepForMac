@@ -1,0 +1,261 @@
+@import "variables";
+
+.training-data{
+  display: block;
+  width: 100%;
+}
+
+.training-data-title{
+  padding: 5px 10px;
+  overflow: hidden;
+}
+
+.training-data-other{
+  display: flex;
+  padding: 5px 10px 15px;
+  border-bottom: 1px solid $border-color;
+  font-size: 10px;
+  position: relative;
+
+  figure{
+    flex: 1;
+    color: $color-gary;
+
+    .data-val{
+      font-size: 16px;
+      color: $keep-gary;
+    }
+  }
+
+  &:before{
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    z-index: 1;
+    transform: translateX(-50%);
+    width: 0;
+    border: 6px solid transparent;
+    border-bottom-color: $border-color;
+  }
+  &:after{
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -1.5px;
+    z-index: 2;
+    transform: translateX(-50%);
+    width: 0;
+    border: 6px solid transparent;
+    border-bottom-color: $color-white;
+  }
+}
+
+.other-item-first{
+  text-align: left;
+}
+.other-item-second{
+  text-align: center;
+}
+.other-item-three{
+  text-align: right;
+}
+
+.training-ranking{
+  display: flex;
+  padding: 10px;
+  overflow: hidden;
+}
+.training-ranking-title{
+  flex: 1;
+  margin: 0;
+  align-self: center;
+}
+.training-ranking-num{
+  font-size: $font-size-18;
+  color: $keep-green;
+  font-weight: bold;
+}
+.ranking-user{
+  margin-top: 1px;
+  border: .5px solid #fff;
+  float: right;
+  width: $user-avatar-size;
+  height: $user-avatar-size;
+  border-radius: 50%;
+  position: relative;
+  margin-left: -10px;
+  text-align: center;
+  box-sizing: content-box;
+
+  &:nth-child(2){
+    margin-top: 0;
+    border: 2px solid $keep-green;
+  }
+
+  img{
+    border-radius: 50%;
+    width: 100%;
+  }
+}
+
+.training-lesson,
+.training-block{
+  display: block;
+  padding: 10px;
+  height: 200px;
+  background-color: $color-gary;
+  position: relative;
+
+  &:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.42);
+  }
+
+  p{
+    position: relative;
+    z-index: auto;
+  }
+}
+
+.training-lesson{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  &:before{
+    content: '';
+    background: rgba(0,0,0,.22);
+  }
+
+  &:hover{
+    .plan-progress-bar{
+      transition: background .35s;
+      background: $color-white;
+    }
+    .progress-bar-inner{
+      background: $keep-green;
+    }
+  }
+}
+
+.training-block-wrap{
+  overflow: hidden;
+  padding: 5px;
+  border-top: 1px solid $border-color;
+}
+.training-block{
+  width: 31%;
+  height: 22vh;
+  float: left;
+  background: $color-gary no-repeat center/100% auto;
+  margin: 1.16%;
+  position: relative;
+  transition: box-shadow .35s .1s, transform .35s .1s;
+
+  &:hover{
+    box-shadow: 0 0 10px rgba(0,0,0,.8);
+    transform: scale(1.01);
+  }
+}
+
+.training-block-title{
+  color: $color-white;
+  font-size: $font-size-18;
+}
+.training-block-desc{
+  color: $color-desc;
+  font-size: $font-size-12;
+}
+.training-block-info{
+  color: $color-white;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 10px;
+  width: 100%;
+  text-align: right;
+}
+.block-info-time{
+  font-size: $font-size-10;
+  margin-left: 5px;
+}
+
+.plan-progress-bar{
+  width: 100%;
+  height: 8px;
+  background: rgba(255,255,255,.5);
+}
+.progress-bar-inner{
+  display: block;
+  height: 100%;
+  max-width: 10%;
+  background: $color-white;
+  transition: background .5s .2s;
+}
+
+.guide-tips{
+  padding: 20px;
+}
+
+.button-guide-start{
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 30px;
+  color: $keep-green;
+  border: 1px solid $keep-green;
+  opacity: .6;
+  margin-bottom: 20px;
+}
+
+.scroll-wrap{
+  padding: 0 10px 10px;
+}
+.scroll-title{
+  padding-top: 10px;
+}
+.scroll-list{
+  margin: 0;
+  padding: 0;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+
+  li{
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    margin-right: 10px;
+    width: 40%;
+    min-height: 180px;
+    background: no-repeat center/cover;
+
+    &:last-child{
+      margin: 0;
+    }
+  }
+}
+.scroll-cover{
+  padding-bottom: 55%;
+  background: $color-gary no-repeat center/cover;
+}
+.scroll-hot-title,
+.scroll-hot-desc{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.scroll-hot-title{
+  font-size: $font-size-14;
+}
+.scroll-hot-desc{
+  font-size: $font-size-10;
+  margin: 0;
+  color: $color-gary;
+}
