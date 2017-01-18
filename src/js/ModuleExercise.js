@@ -6,8 +6,11 @@ import CSSModules from 'react-css-modules'
 import Utils from './Utils.js'
 import moment from 'moment'
 import styles from '../sass/moduleExercise.scss'
+import $http from './HttpRequest.js'
 
 import WorkoutCoordinates from '../components/AppTraining/workouts/WorkoutCoordinates.js'
+
+import {remote} from 'electron'
 
 const container = document.createElement('div')
 container.id = 'container'
@@ -39,9 +42,7 @@ class ModuleExercise extends Component{
             timeoutTip: Utils.storage.get('timeoutTip'),
             timeoutGap: 0,
             totalDuration: 0,
-
             statisticDuration: 0,       // 总时长（包括休息时间和报读时间以及训练时间）
-
             isEnd: ''
         }
 
@@ -74,8 +75,14 @@ class ModuleExercise extends Component{
 
     @autobind
     componentDidMount(){
-        console.warn(this)
         console.info(this.state.workout)
+        remote.getCurrentWindow().removeAllListeners();
+        remote.getCurrentWindow().on('blur', (e) => {
+            this.handleMainPause()
+        }).on('focus', (e) => {
+            this.handleMainPlay()
+        })
+
         const exercise = this.state.workout.workouts[0]
         const videos = exercise.steps
 
@@ -91,8 +98,8 @@ class ModuleExercise extends Component{
             single.type = item.type
             single.description = item.exercise.description
             single.covers = item.exercise.covers
+            single.exerciseId = item.exercise._id
 
-            console.info(this.state.user.gender)
             // 根据性别划分锻炼难度
             if(this.state.user.gender.toLowerCase() === 'm'){
                 single.group = item.mgroup
@@ -298,7 +305,10 @@ class ModuleExercise extends Component{
                 if(this.vStart)
                     this.statisticGroup.push({
                         name: this.state.exercises[this.state.currentProceed].name,
-                        duration: this.state.currentGroupDuration
+                        type: this.state.exercises[this.state.currentProceed].type,
+                        exercise: this.state.exercises[this.state.currentProceed].exerciseId,
+                        actualSec: 20,
+                        totalSec: 20,
                     })
                 return true
             }
@@ -532,27 +542,36 @@ class ModuleExercise extends Component{
         this.componentAudio().togglePlay()
     }
 
+    @autobind
+    handleMainPause(){
+        this.initTimerAuthor().stop()
+        if(this.vStart)
+            this.recordExerciseConfig().stop()
+        this.componentTimeout().show()
+        this.componentMaster().pause()
+        this.setState({
+            classToggle: 'gather'
+        })
+    }
+    @autobind
+    handleMainPlay(){
+        this.setState({
+            classToggle: ''
+        })
+        this.componentTimeout().hide()
+        this.componentMaster().play()
+        this.initTimerAuthor().play()
+        if(this.vStart)
+            this.recordExerciseConfig().play()
+    }
+
     // 总开关事件
     @autobind
     handleVideoToggle(){
         if(this.state.classToggle) {        // play
-            this.setState({
-                classToggle: ''
-            })
-            this.componentTimeout().hide()
-            this.componentMaster().play()
-            this.initTimerAuthor().play()
-            if(this.vStart)
-                this.recordExerciseConfig().play()
+            this.handleMainPlay()
         }else {                             // pause
-            this.initTimerAuthor().stop()
-            if(this.vStart)
-                this.recordExerciseConfig().stop()
-            this.componentTimeout().show()
-            this.componentMaster().pause()
-            this.setState({
-                classToggle: 'gather'
-            })
+            this.handleMainPause()
         }
     }
 
@@ -583,6 +602,7 @@ class ModuleExercise extends Component{
             this.componentVideo().stop()
             this.componentAudio().pause().setSrc(ModuleExercise.getSoundTips('countdownend.mp3')).play()
             this.toNextCallback = () => this.componentAudio().pause().setSrc(ModuleExercise.getSoundTips('g_16_well_done.mp3')).play()
+            $http.completeExercise()
             this.setState({
                 isEnd: 'active'
             })
@@ -661,7 +681,7 @@ class ModuleExercise extends Component{
                                 return (
                                     <li key={index}>
                                         <div className="text-left" styleName="col">{item.name}</div>
-                                        <div className="text-right" styleName="col">{moment(new Date(item.duration * 1000)).format('mm:ss')}</div>
+                                        <div className="text-right" styleName="col">{moment(new Date(item.totalSec * 1000)).format('mm:ss')}</div>
                                     </li>
                                 )
                             })

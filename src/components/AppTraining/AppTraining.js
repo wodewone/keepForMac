@@ -8,7 +8,7 @@ import Utils from '../../js/Utils.js'
 import TrainingBlock from './TrainingBlock.js'
 import AppScroll from './AppScroll.js'
 
-import Http from '../../js/HttpRequest.js'
+import $http from '../../js/HttpRequest.js'
 
 @CSSModules(styles)
 class AppTraining extends Component{
@@ -36,7 +36,7 @@ class AppTraining extends Component{
 
         // 判断是否登录
         if(authentication && authentication.token) {
-            Http.getDashboardStatistics().then((response) => {
+            $http.getDashboardStatistics().then((response) => {
                 if (response.ok) {
                     this.setState({trainingData: response.data})
                 }
@@ -44,7 +44,7 @@ class AppTraining extends Component{
                 console.info('getDashboardStatistics:', error)
             })
 
-            Http.getRankingData().then((response) => {
+            $http.getRankingData().then((response) => {
                 if (response.ok) {
                     this.setState({rankingData: response.data})
                 }
@@ -52,7 +52,7 @@ class AppTraining extends Component{
                 console.info('getRankingData:', error)
             })
 
-            Http.getDashboardTraining().then((response) => {
+            $http.getDashboardTraining().then((response) => {
                 if (response.ok) {
                     this.setState({
                         trainingGuidance: response.data[0],
@@ -68,7 +68,7 @@ class AppTraining extends Component{
                 console.info('getDashboardTraining:', error)
             })
 
-            //Http.getDashboardWorkouts().then((response) => {
+            //$http.getDashboardWorkouts().then((response) => {
             //    if (response.ok) {
             //        this.setState({
             //            trainingWorkouts: response.data.workouts

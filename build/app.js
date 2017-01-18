@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "1ff67a336fa797d1c0a1"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "0dc38241df11916108ca"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -10541,12 +10541,12 @@
 	        return;
 	    }
 
-	    __REACT_HOT_LOADER__.register(app, 'app', '/Users/liucong/study/electron/electron-keep/src/main.js');
+	    __REACT_HOT_LOADER__.register(app, 'app', '/Users/liucong/Documents/Github/keepForMac/src/main.js');
 	}();
 
 	;
 
-	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/study/electron/electron-keep/src/main.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/study/electron/electron-keep/src/main.js"); } } })();
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/main.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/main.js"); } } })();
 
 /***/ },
 /* 114 */
@@ -10583,7 +10583,7 @@
 
 
 	// module
-	exports.push([module.id, "* {\n  box-sizing: border-box;\n  -webkit-user-select: none; }\n\n*:before,\n*:after {\n  box-sizing: border-box;\n  -webkit-user-select: none; }\n\nhtml {\n  font-size: 20px;\n  -webkit-tap-highlight-color: transparent; }\n\nbody {\n  font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n  font-size: 14px;\n  line-height: 1.428571429;\n  color: #555;\n  background-color: transparent;\n  margin: 0; }\n\nhtml,\nbody {\n  height: 100%; }\n\np {\n  margin: 0 0 10px; }\n\nul {\n  padding-left: 10px; }\n\nul,\nli {\n  list-style: none; }\n\nfigure {\n  margin: 0; }\n\nimg {\n  vertical-align: middle; }\n\nimg[src=\"\"] {\n  opacity: 0; }\n\ninput,\nbutton,\nselect,\ntextarea {\n  font-family: inherit;\n  font-size: inherit;\n  line-height: inherit;\n  outline: none; }\n\nbutton {\n  cursor: pointer; }\n\n.container {\n  width: 100%;\n  height: 100%;\n  display: flex; }\n\na {\n  cursor: pointer;\n  color: #555;\n  text-decoration: none; }\n  a:hover, a:focus {\n    color: #3d3742; }\n\n.pull-left {\n  float: left; }\n\n.pull-right {\n  float: right; }\n\n.text-left {\n  text-align: left !important; }\n\n.text-center {\n  text-align: center; }\n\n.text-right {\n  text-align: right !important; }\n\n.margin {\n  margin: 10px; }\n\n.margin-top {\n  margin-top: 10px; }\n\n.margin-bottom {\n  margin-bottom: 10px; }\n\n.margin-left {\n  margin-left: 10px; }\n\n.margin-right {\n  margin-right: 10px; }\n\n.padding {\n  padding: 10px; }\n\n.font-bold {\n  font-weight: bold; }\n\n.fz10 {\n  font-size: 10px; }\n\n.fz12 {\n  font-size: 12px; }\n\n.fz14 {\n  font-size: 14px; }\n\n.fz18 {\n  font-size: 18px; }\n\n.fz24 {\n  font-size: 24px; }\n\n.fz36 {\n  font-size: 36px; }\n\n.keep-background {\n  background: #E5ECEF; }\n\n.white-background {\n  background: #fff; }\n\n.index-content {\n  height: 100%;\n  margin-left: 150px;\n  background: #E5ECEF;\n  overflow-x: hidden;\n  overflow-y: auto; }\n\n.scroll-content {\n  width: 100%;\n  height: 100%;\n  overflow-x: hidden;\n  overflow-y: auto; }\n\n.article-wrap h4 {\n  border-left: 2px solid #00C380;\n  padding-left: 5px;\n  line-height: 1; }\n\n.article-wrap ul {\n  padding-left: 20px; }\n\n.article-wrap li {\n  position: relative; }\n  .article-wrap li:before {\n    content: '';\n    position: absolute;\n    left: -10px;\n    top: 9px;\n    width: 3px;\n    height: 3px;\n    border-radius: 50%;\n    background: #fff; }\n\n.article-wrap img {\n  margin: 20px 0; }\n\n.iconfont {\n  margin-right: 5px; }\n\n.active {\n  position: relative; }\n  .active:after {\n    content: '';\n    position: absolute;\n    top: 50%;\n    transform: translateY(-50%);\n    right: 10px;\n    width: 5px;\n    height: 5px;\n    background: #3d3742;\n    border-radius: 50%; }\n", ""]);
+	exports.push([module.id, "* {\n  box-sizing: border-box;\n  -webkit-user-select: none; }\n\n*:before,\n*:after {\n  box-sizing: border-box;\n  -webkit-user-select: none; }\n\nhtml {\n  font-size: 20px;\n  -webkit-tap-highlight-color: transparent; }\n\nbody {\n  font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n  font-size: 14px;\n  line-height: 1.428571429;\n  color: #555;\n  background-color: transparent;\n  margin: 0; }\n\nhtml,\nbody {\n  height: 100%; }\n\np {\n  margin: 0 0 10px; }\n\nul {\n  padding-left: 10px; }\n\nul,\nli {\n  list-style: none; }\n\nfigure {\n  margin: 0; }\n\nimg {\n  vertical-align: middle; }\n\nimg[src=\"\"] {\n  opacity: 0; }\n\ninput,\nbutton,\nselect,\ntextarea {\n  font-family: inherit;\n  font-size: inherit;\n  line-height: inherit;\n  outline: none; }\n\nbutton {\n  cursor: pointer; }\n\n.container {\n  width: 100%;\n  height: 100%;\n  display: flex; }\n\na {\n  cursor: pointer;\n  color: #555;\n  text-decoration: none; }\n  a:hover, a:focus {\n    color: #584f5f; }\n\n.pull-left {\n  float: left; }\n\n.pull-right {\n  float: right; }\n\n.text-left {\n  text-align: left !important; }\n\n.text-center {\n  text-align: center; }\n\n.text-right {\n  text-align: right !important; }\n\n.margin {\n  margin: 10px; }\n\n.margin-top {\n  margin-top: 10px; }\n\n.margin-bottom {\n  margin-bottom: 10px; }\n\n.margin-left {\n  margin-left: 10px; }\n\n.margin-right {\n  margin-right: 10px; }\n\n.padding {\n  padding: 10px; }\n\n.font-bold {\n  font-weight: bold; }\n\n.fz10 {\n  font-size: 10px; }\n\n.fz12 {\n  font-size: 12px; }\n\n.fz14 {\n  font-size: 14px; }\n\n.fz18 {\n  font-size: 18px; }\n\n.fz24 {\n  font-size: 24px; }\n\n.fz36 {\n  font-size: 36px; }\n\n.keep-background {\n  background: #E5ECEF; }\n\n.white-background {\n  background: #fff; }\n\n.index-content {\n  height: 100%;\n  margin-left: 150px;\n  background: #E5ECEF;\n  overflow-x: hidden;\n  overflow-y: auto; }\n\n.scroll-content {\n  width: 100%;\n  height: 100%;\n  overflow-x: hidden;\n  overflow-y: auto; }\n\n.article-wrap h4 {\n  border-left: 2px solid #00c78c;\n  padding-left: 5px;\n  line-height: 1; }\n\n.article-wrap ul {\n  padding-left: 20px; }\n\n.article-wrap li {\n  position: relative; }\n  .article-wrap li:before {\n    content: '';\n    position: absolute;\n    left: -10px;\n    top: 9px;\n    width: 3px;\n    height: 3px;\n    border-radius: 50%;\n    background: #fff; }\n\n.article-wrap img {\n  margin: 20px 0; }\n\n.iconfont {\n  margin-right: 5px; }\n\n.active {\n  position: relative; }\n  .active:after {\n    content: '';\n    position: absolute;\n    top: 50%;\n    transform: translateY(-50%);\n    right: 10px;\n    width: 5px;\n    height: 5px;\n    background: #584f5f;\n    border-radius: 50%; }\n", ""]);
 
 	// exports
 
@@ -37071,6 +37071,7 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
+	            console.info(this.props.router.location);
 	            return _react2.default.createElement(
 	                'div',
 	                { style: { width: '100%' } },
@@ -37176,14 +37177,14 @@
 	        return;
 	    }
 
-	    __REACT_HOT_LOADER__.register(App, 'App', '/Users/liucong/study/electron/electron-keep/src/js/App.js');
+	    __REACT_HOT_LOADER__.register(App, 'App', '/Users/liucong/Documents/Github/keepForMac/src/js/App.js');
 
-	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/study/electron/electron-keep/src/js/App.js');
+	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/js/App.js');
 	}();
 
 	;
 
-	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/study/electron/electron-keep/src/js/App.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/study/electron/electron-keep/src/js/App.js"); } } })();
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/js/App.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/js/App.js"); } } })();
 
 /***/ },
 /* 350 */
@@ -42821,7 +42822,7 @@
 
 
 	// module
-	exports.push([module.id, ".Mb-bh {\n  height: 100%;\n  width: 150px;\n  float: left;\n  display: flex;\n  flex-direction: column;\n  border-right: 1px solid #eee;\n  padding: 25vh 0;\n  background: rgba(240, 240, 240, 0.7);\n  position: relative; }\n  .Mb-bh li {\n    display: flex;\n    flex: 1; }\n  .Mb-bh a {\n    outline: none;\n    display: flex;\n    width: 100%;\n    padding-left: 20px;\n    align-items: center;\n    border-left: 2px solid transparent; }\n    .Mb-bh a:hover, .Mb-bh a:focus {\n      border-left-color: #3d3742; }\n\n._1MkFd {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  opacity: .8;\n  z-index: -1;\n  filter: blur(2px);\n  overflow: hidden;\n  background: url(" + __webpack_require__(512) + ") center/cover; }\n\n._3fJ39 {\n  position: absolute;\n  top: 60px;\n  right: 0;\n  bottom: 0;\n  left: 0; }\n\n._2R7RT {\n  position: relative;\n  overflow: hidden;\n  height: 100%;\n  margin-left: 150px;\n  background: #E5ECEF; }\n\n.ZE6hx {\n  padding-top: 20px;\n  height: 60px;\n  background: #3d3742;\n  -webkit-app-region: drag;\n  display: flex;\n  border-bottom: 1px solid #3d3742; }\n  .ZE6hx ._2LnKA {\n    flex: 1;\n    align-self: center; }\n  .ZE6hx h2 {\n    flex: 1;\n    margin: 0;\n    color: #fff;\n    text-align: center;\n    align-self: center; }\n\n._3iOBj {\n  display: flex;\n  align-items: center; }\n\n.WPT6- {\n  width: 32px;\n  height: 32px;\n  line-height: 29px;\n  display: inline-block;\n  background: none;\n  border: none;\n  color: #fff;\n  cursor: pointer; }\n  .WPT6- i {\n    margin: 0; }\n  .WPT6-:active {\n    background: #2c2631; }\n  .WPT6-:last-child {\n    margin-right: 15px; }\n  .WPT6-[disabled] {\n    cursor: default;\n    color: #999; }\n\n._18Mek {\n  padding-left: 10px;\n  width: 150px;\n  display: flex;\n  align-self: center; }\n  ._18Mek img {\n    width: 80px;\n    height: 25px; }\n\n._3-6wn {\n  padding: 0 23px;\n  text-align: right;\n  position: relative; }\n  ._3-6wn:after {\n    content: '';\n    position: absolute;\n    top: 45%;\n    right: 10px;\n    width: 0;\n    border: 4px solid transparent;\n    border-top-color: #fff; }\n\n._4a-00 {\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  border: 2px solid #00C380; }\n\n._2hRSM {\n  color: #fff;\n  font-size: 10px; }\n", ""]);
+	exports.push([module.id, ".Mb-bh {\n  height: 100%;\n  width: 150px;\n  float: left;\n  display: flex;\n  flex-direction: column;\n  border-right: 1px solid #eee;\n  padding: 25vh 0;\n  background: rgba(240, 240, 240, 0.7);\n  position: relative; }\n  .Mb-bh li {\n    display: flex;\n    flex: 1; }\n  .Mb-bh a {\n    outline: none;\n    display: flex;\n    width: 100%;\n    padding-left: 20px;\n    align-items: center;\n    border-left: 2px solid transparent; }\n    .Mb-bh a:hover, .Mb-bh a:focus {\n      border-left-color: #584f5f; }\n\n._1MkFd {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  opacity: .8;\n  z-index: -1;\n  filter: blur(2px);\n  overflow: hidden;\n  background: url(" + __webpack_require__(512) + ") center/cover; }\n\n._3fJ39 {\n  position: absolute;\n  top: 60px;\n  right: 0;\n  bottom: 0;\n  left: 0; }\n\n._2R7RT {\n  position: relative;\n  overflow: hidden;\n  height: 100%;\n  margin-left: 150px;\n  background: #E5ECEF; }\n\n.ZE6hx {\n  padding-top: 20px;\n  height: 60px;\n  background: #584f5f;\n  -webkit-app-region: drag;\n  display: flex;\n  border-bottom: 1px solid #584f5f; }\n  .ZE6hx ._2LnKA {\n    flex: 1;\n    align-self: center; }\n  .ZE6hx h2 {\n    flex: 1;\n    margin: 0;\n    color: #fff;\n    text-align: center;\n    align-self: center; }\n\n._3iOBj {\n  display: flex;\n  align-items: center; }\n\n.WPT6- {\n  width: 32px;\n  height: 32px;\n  line-height: 29px;\n  display: inline-block;\n  background: none;\n  border: none;\n  color: #fff;\n  cursor: pointer; }\n  .WPT6- i {\n    margin: 0; }\n  .WPT6-:active {\n    background: #473e4e; }\n  .WPT6-:last-child {\n    margin-right: 15px; }\n  .WPT6-[disabled] {\n    cursor: default;\n    color: #999; }\n\n._18Mek {\n  padding-left: 10px;\n  width: 150px;\n  display: flex;\n  align-self: center; }\n  ._18Mek img {\n    width: 80px;\n    height: 25px; }\n\n._3-6wn {\n  padding: 0 23px;\n  text-align: right;\n  position: relative; }\n  ._3-6wn:after {\n    content: '';\n    position: absolute;\n    top: 45%;\n    right: 10px;\n    width: 0;\n    border: 4px solid transparent;\n    border-top-color: #fff; }\n\n._4a-00 {\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  border: 2px solid #00c78c; }\n\n._2hRSM {\n  color: #fff;\n  font-size: 10px; }\n", ""]);
 
 	// exports
 	exports.locals = {
@@ -42911,14 +42912,14 @@
 	        return;
 	    }
 
-	    __REACT_HOT_LOADER__.register(AppSearch, 'AppSearch', '/Users/liucong/study/electron/electron-keep/src/components/AppSearch.js');
+	    __REACT_HOT_LOADER__.register(AppSearch, 'AppSearch', '/Users/liucong/Documents/Github/keepForMac/src/components/AppSearch.js');
 
-	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/study/electron/electron-keep/src/components/AppSearch.js');
+	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/components/AppSearch.js');
 	}();
 
 	;
 
-	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/study/electron/electron-keep/src/components/AppSearch.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/study/electron/electron-keep/src/components/AppSearch.js"); } } })();
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppSearch.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppSearch.js"); } } })();
 
 /***/ },
 /* 514 */
@@ -43022,12 +43023,12 @@
 	        return;
 	    }
 
-	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/study/electron/electron-keep/src/js/Utils.js');
+	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/js/Utils.js');
 	}();
 
 	;
 
-	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/study/electron/electron-keep/src/js/Utils.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/study/electron/electron-keep/src/js/Utils.js"); } } })();
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/js/Utils.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/js/Utils.js"); } } })();
 
 /***/ },
 /* 517 */
@@ -43215,14 +43216,14 @@
 	        return;
 	    }
 
-	    __REACT_HOT_LOADER__.register(AppLogin, 'AppLogin', '/Users/liucong/study/electron/electron-keep/src/js/AppLogin.js');
+	    __REACT_HOT_LOADER__.register(AppLogin, 'AppLogin', '/Users/liucong/Documents/Github/keepForMac/src/js/AppLogin.js');
 
-	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/study/electron/electron-keep/src/js/AppLogin.js');
+	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/js/AppLogin.js');
 	}();
 
 	;
 
-	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/study/electron/electron-keep/src/js/AppLogin.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/study/electron/electron-keep/src/js/AppLogin.js"); } } })();
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/js/AppLogin.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/js/AppLogin.js"); } } })();
 
 /***/ },
 /* 518 */
@@ -43259,7 +43260,7 @@
 
 
 	// module
-	exports.push([module.id, "._3N_UK {\n  width: 100%;\n  height: 100%;\n  padding-top: 30vh;\n  background: #3d3742;\n  position: relative;\n  -webkit-app-region: drag; }\n  ._3N_UK:before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: rgba(0, 0, 0, 0.3);\n    z-index: 2; }\n\n._3GFq9 {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 1; }\n\n.W31p7 {\n  width: 300px;\n  margin: auto;\n  position: relative;\n  z-index: 3;\n  -webkit-app-region: no-drag; }\n\n._3bEfO {\n  color: #fff; }\n\n._1dle1 {\n  margin-bottom: 10px; }\n\n._2aPka {\n  width: 100%;\n  border: 1px solid #3d3742;\n  border-radius: 5px;\n  padding: 10px;\n  background: #fff;\n  color: #3d3742; }\n  ._2aPka:focus {\n    border-color: #00C380; }\n\n.wz0bl {\n  display: block;\n  width: 100%;\n  padding: 10px;\n  background: #00C380;\n  border-radius: 5px;\n  border: none;\n  color: #fff; }\n", ""]);
+	exports.push([module.id, "._3N_UK {\n  width: 100%;\n  height: 100%;\n  padding-top: 30vh;\n  background: #584f5f;\n  position: relative;\n  -webkit-app-region: drag; }\n  ._3N_UK:before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: rgba(0, 0, 0, 0.3);\n    z-index: 2; }\n\n._3GFq9 {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 1; }\n\n.W31p7 {\n  width: 300px;\n  margin: auto;\n  position: relative;\n  z-index: 3;\n  -webkit-app-region: no-drag; }\n\n._3bEfO {\n  color: #fff; }\n\n._1dle1 {\n  margin-bottom: 10px; }\n\n._2aPka {\n  width: 100%;\n  border: 1px solid #584f5f;\n  border-radius: 5px;\n  padding: 10px;\n  background: #fff;\n  color: #584f5f; }\n  ._2aPka:focus {\n    border-color: #00c78c; }\n\n.wz0bl {\n  display: block;\n  width: 100%;\n  padding: 10px;\n  background: #00c78c;\n  border-radius: 5px;\n  border: none;\n  color: #fff; }\n", ""]);
 
 	// exports
 	exports.locals = {
@@ -43460,16 +43461,16 @@
 	        return;
 	    }
 
-	    __REACT_HOT_LOADER__.register(hostname, 'hostname', '/Users/liucong/study/electron/electron-keep/src/js/HttpRequest.js');
+	    __REACT_HOT_LOADER__.register(hostname, 'hostname', '/Users/liucong/Documents/Github/keepForMac/src/js/HttpRequest.js');
 
-	    __REACT_HOT_LOADER__.register(serializeJSON, 'serializeJSON', '/Users/liucong/study/electron/electron-keep/src/js/HttpRequest.js');
+	    __REACT_HOT_LOADER__.register(serializeJSON, 'serializeJSON', '/Users/liucong/Documents/Github/keepForMac/src/js/HttpRequest.js');
 
-	    __REACT_HOT_LOADER__.register(Http, 'Http', '/Users/liucong/study/electron/electron-keep/src/js/HttpRequest.js');
+	    __REACT_HOT_LOADER__.register(Http, 'Http', '/Users/liucong/Documents/Github/keepForMac/src/js/HttpRequest.js');
 	}();
 
 	;
 
-	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/study/electron/electron-keep/src/js/HttpRequest.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/study/electron/electron-keep/src/js/HttpRequest.js"); } } })();
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/js/HttpRequest.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/js/HttpRequest.js"); } } })();
 
 /***/ },
 /* 521 */
@@ -58660,7 +58661,7 @@
 	                    { className: 'text-center' },
 	                    _react2.default.createElement(
 	                        _reactRouter.Link,
-	                        { styleName: 'guide-start-btn' },
+	                        { styleName: 'button-guide-start' },
 	                        '\u8FDB\u884C\u8FD0\u52A8\u80FD\u529B\u6D4B\u8BD5'
 	                    )
 	                )
@@ -58813,14 +58814,14 @@
 	        return;
 	    }
 
-	    __REACT_HOT_LOADER__.register(AppTraining, 'AppTraining', '/Users/liucong/study/electron/electron-keep/src/components/AppTraining/AppTraining.js');
+	    __REACT_HOT_LOADER__.register(AppTraining, 'AppTraining', '/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/AppTraining.js');
 
-	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/study/electron/electron-keep/src/components/AppTraining/AppTraining.js');
+	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/AppTraining.js');
 	}();
 
 	;
 
-	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/study/electron/electron-keep/src/components/AppTraining/AppTraining.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/study/electron/electron-keep/src/components/AppTraining/AppTraining.js"); } } })();
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/AppTraining.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/AppTraining.js"); } } })();
 
 /***/ },
 /* 632 */
@@ -58857,7 +58858,7 @@
 
 
 	// module
-	exports.push([module.id, "._2Nv_2 {\n  display: block;\n  width: 100%; }\n\n.akWWR {\n  padding: 5px 10px;\n  overflow: hidden; }\n\n._2CkpE {\n  display: flex;\n  padding: 5px 10px 15px;\n  border-bottom: 1px solid #eee;\n  font-size: 10px;\n  position: relative; }\n  ._2CkpE figure {\n    flex: 1;\n    color: #999; }\n    ._2CkpE figure ._1nZ5H {\n      font-size: 16px;\n      color: #3d3742; }\n  ._2CkpE:before {\n    content: '';\n    position: absolute;\n    left: 50%;\n    bottom: 0;\n    z-index: 1;\n    transform: translateX(-50%);\n    width: 0;\n    border: 6px solid transparent;\n    border-bottom-color: #eee; }\n  ._2CkpE:after {\n    content: '';\n    position: absolute;\n    left: 50%;\n    bottom: -1.5px;\n    z-index: 2;\n    transform: translateX(-50%);\n    width: 0;\n    border: 6px solid transparent;\n    border-bottom-color: #fff; }\n\n._2xGm9 {\n  text-align: left; }\n\n._1AekU {\n  text-align: center; }\n\n._2zrRj {\n  text-align: right; }\n\n._1SGGr {\n  display: flex;\n  padding: 10px;\n  overflow: hidden; }\n\n._2Awuf {\n  flex: 1;\n  margin: 0;\n  align-self: center; }\n\n._2vjI7 {\n  font-size: 18px;\n  color: #00C380;\n  font-weight: bold; }\n\n._22cXH {\n  margin-top: 1px;\n  border: .5px solid #fff;\n  float: right;\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  position: relative;\n  margin-left: -10px;\n  text-align: center;\n  box-sizing: content-box; }\n  ._22cXH:nth-child(2) {\n    margin-top: 0;\n    border: 2px solid #00C380; }\n  ._22cXH img {\n    border-radius: 50%;\n    width: 100%; }\n\n._3ydNS,\n._2iAnH {\n  display: block;\n  padding: 10px;\n  height: 200px;\n  background-color: #999;\n  position: relative; }\n  ._3ydNS:before,\n  ._2iAnH:before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: rgba(0, 0, 0, 0.42); }\n  ._3ydNS p,\n  ._2iAnH p {\n    position: relative;\n    z-index: auto; }\n\n._3ydNS {\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-position: center; }\n  ._3ydNS:before {\n    content: '';\n    background: rgba(0, 0, 0, 0.22); }\n  ._3ydNS:hover ._2wTwu {\n    transition: background .35s;\n    background: #fff; }\n  ._3ydNS:hover ._2LjaT {\n    background: #00C380; }\n\n.dGXEk {\n  overflow: hidden;\n  padding: 5px;\n  border-top: 1px solid #eee; }\n\n._2iAnH {\n  width: 31%;\n  height: 22vh;\n  float: left;\n  background: #999 no-repeat center/100% auto;\n  margin: 1.16%;\n  position: relative;\n  transition: box-shadow .35s .1s, transform .35s .1s; }\n  ._2iAnH:hover {\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);\n    transform: scale(1.01); }\n\n.ED31q {\n  color: #fff;\n  font-size: 18px; }\n\n._25ujx {\n  color: #ddd;\n  font-size: 12px; }\n\n._3z7y5 {\n  color: #fff;\n  position: absolute;\n  left: 0;\n  bottom: 0;\n  padding: 10px;\n  width: 100%;\n  text-align: right; }\n\n._3Ditf {\n  font-size: 10px;\n  margin-left: 5px; }\n\n._2wTwu {\n  width: 100%;\n  height: 8px;\n  background: rgba(255, 255, 255, 0.5); }\n\n._2LjaT {\n  display: block;\n  height: 100%;\n  max-width: 10%;\n  background: #fff;\n  transition: background .5s .2s; }\n\n.UhFWg {\n  padding: 20px; }\n\n.h3Ujw {\n  display: inline-block;\n  padding: 5px 10px;\n  border-radius: 30px;\n  color: #00C380;\n  border: 1px solid #00C380;\n  opacity: .6;\n  margin-bottom: 20px; }\n\n._32EG3 {\n  padding: 0 10px 10px; }\n\n._2kVBi {\n  padding-top: 10px; }\n\n._1GnNk {\n  margin: 0;\n  padding: 0;\n  overflow-x: scroll;\n  overflow-y: hidden;\n  white-space: nowrap; }\n  ._1GnNk li {\n    position: relative;\n    overflow: hidden;\n    display: inline-block;\n    margin-right: 10px;\n    width: 40%;\n    min-height: 180px;\n    background: no-repeat center/cover; }\n    ._1GnNk li:last-child {\n      margin: 0; }\n\n.XXgaN {\n  padding-bottom: 55%;\n  background: #999 no-repeat center/cover; }\n\n._25FwQ,\n._2Lzjf {\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis; }\n\n._25FwQ {\n  font-size: 14px; }\n\n._2Lzjf {\n  font-size: 10px;\n  margin: 0;\n  color: #999; }\n", ""]);
+	exports.push([module.id, "._2Nv_2 {\n  display: block;\n  width: 100%; }\n\n.akWWR {\n  padding: 5px 10px;\n  overflow: hidden; }\n\n._2CkpE {\n  display: flex;\n  padding: 5px 10px 15px;\n  border-bottom: 1px solid #eee;\n  font-size: 10px;\n  position: relative; }\n  ._2CkpE figure {\n    flex: 1;\n    color: #999; }\n    ._2CkpE figure ._1nZ5H {\n      font-size: 16px;\n      color: #584f5f; }\n  ._2CkpE:before {\n    content: '';\n    position: absolute;\n    left: 50%;\n    bottom: 0;\n    z-index: 1;\n    transform: translateX(-50%);\n    width: 0;\n    border: 6px solid transparent;\n    border-bottom-color: #eee; }\n  ._2CkpE:after {\n    content: '';\n    position: absolute;\n    left: 50%;\n    bottom: -1.5px;\n    z-index: 2;\n    transform: translateX(-50%);\n    width: 0;\n    border: 6px solid transparent;\n    border-bottom-color: #fff; }\n\n._2xGm9 {\n  text-align: left; }\n\n._1AekU {\n  text-align: center; }\n\n._2zrRj {\n  text-align: right; }\n\n._1SGGr {\n  display: flex;\n  padding: 10px;\n  overflow: hidden; }\n\n._2Awuf {\n  flex: 1;\n  margin: 0;\n  align-self: center; }\n\n._2vjI7 {\n  font-size: 18px;\n  color: #00c78c;\n  font-weight: bold; }\n\n._22cXH {\n  margin-top: 1px;\n  border: .5px solid #fff;\n  float: right;\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  position: relative;\n  margin-left: -10px;\n  text-align: center;\n  box-sizing: content-box; }\n  ._22cXH:nth-child(2) {\n    margin-top: 0;\n    border: 2px solid #00c78c; }\n  ._22cXH img {\n    border-radius: 50%;\n    width: 100%; }\n\n._3ydNS,\n._2iAnH {\n  display: block;\n  padding: 10px;\n  height: 200px;\n  background-color: #999;\n  position: relative; }\n  ._3ydNS:before,\n  ._2iAnH:before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: rgba(0, 0, 0, 0.42); }\n  ._3ydNS p,\n  ._2iAnH p {\n    position: relative;\n    z-index: auto; }\n\n._3ydNS {\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-position: center; }\n  ._3ydNS:before {\n    content: '';\n    background: rgba(0, 0, 0, 0.22); }\n  ._3ydNS:hover ._2wTwu {\n    transition: background .35s;\n    background: #fff; }\n  ._3ydNS:hover ._2LjaT {\n    background: #00c78c; }\n\n.dGXEk {\n  overflow: hidden;\n  padding: 5px;\n  border-top: 1px solid #eee; }\n\n._2iAnH {\n  width: 31%;\n  height: 22vh;\n  float: left;\n  background: #999 no-repeat center/100% auto;\n  margin: 1.16%;\n  position: relative;\n  transition: box-shadow .35s .1s, transform .35s .1s; }\n  ._2iAnH:hover {\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);\n    transform: scale(1.01); }\n\n.ED31q {\n  color: #fff;\n  font-size: 18px; }\n\n._25ujx {\n  color: #ddd;\n  font-size: 12px; }\n\n._3z7y5 {\n  color: #fff;\n  position: absolute;\n  left: 0;\n  bottom: 0;\n  padding: 10px;\n  width: 100%;\n  text-align: right; }\n\n._3Ditf {\n  font-size: 10px;\n  margin-left: 5px; }\n\n._2wTwu {\n  width: 100%;\n  height: 8px;\n  background: rgba(255, 255, 255, 0.5); }\n\n._2LjaT {\n  display: block;\n  height: 100%;\n  max-width: 10%;\n  background: #fff;\n  transition: background .5s .2s; }\n\n.UhFWg {\n  padding: 20px; }\n\n._1qDeN {\n  display: inline-block;\n  padding: 5px 10px;\n  border-radius: 30px;\n  color: #00c78c;\n  border: 1px solid #00c78c;\n  opacity: .6;\n  margin-bottom: 20px; }\n\n._32EG3 {\n  padding: 0 10px 10px; }\n\n._2kVBi {\n  padding-top: 10px; }\n\n._1GnNk {\n  margin: 0;\n  padding: 0;\n  overflow-x: scroll;\n  overflow-y: hidden;\n  white-space: nowrap; }\n  ._1GnNk li {\n    position: relative;\n    overflow: hidden;\n    display: inline-block;\n    margin-right: 10px;\n    width: 40%;\n    min-height: 180px;\n    background: no-repeat center/cover; }\n    ._1GnNk li:last-child {\n      margin: 0; }\n\n.XXgaN {\n  padding-bottom: 55%;\n  background: #999 no-repeat center/cover; }\n\n._25FwQ,\n._2Lzjf {\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis; }\n\n._25FwQ {\n  font-size: 14px; }\n\n._2Lzjf {\n  font-size: 10px;\n  margin: 0;\n  color: #999; }\n", ""]);
 
 	// exports
 	exports.locals = {
@@ -58882,7 +58883,7 @@
 		"training-block-info": "_3z7y5",
 		"block-info-time": "_3Ditf",
 		"guide-tips": "UhFWg",
-		"guide-start-btn": "h3Ujw",
+		"button-guide-start": "_1qDeN",
 		"scroll-wrap": "_32EG3",
 		"scroll-title": "_2kVBi",
 		"scroll-list": "_1GnNk",
@@ -59039,14 +59040,14 @@
 	        return;
 	    }
 
-	    __REACT_HOT_LOADER__.register(TrainingBlock, 'TrainingBlock', '/Users/liucong/study/electron/electron-keep/src/components/AppTraining/TrainingBlock.js');
+	    __REACT_HOT_LOADER__.register(TrainingBlock, 'TrainingBlock', '/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/TrainingBlock.js');
 
-	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/study/electron/electron-keep/src/components/AppTraining/TrainingBlock.js');
+	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/TrainingBlock.js');
 	}();
 
 	;
 
-	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/study/electron/electron-keep/src/components/AppTraining/TrainingBlock.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/study/electron/electron-keep/src/components/AppTraining/TrainingBlock.js"); } } })();
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/TrainingBlock.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/TrainingBlock.js"); } } })();
 
 /***/ },
 /* 635 */
@@ -59190,14 +59191,14 @@
 	        return;
 	    }
 
-	    __REACT_HOT_LOADER__.register(AppScroll, 'AppScroll', '/Users/liucong/study/electron/electron-keep/src/components/AppTraining/AppScroll.js');
+	    __REACT_HOT_LOADER__.register(AppScroll, 'AppScroll', '/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/AppScroll.js');
 
-	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/study/electron/electron-keep/src/components/AppTraining/AppScroll.js');
+	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/AppScroll.js');
 	}();
 
 	;
 
-	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/study/electron/electron-keep/src/components/AppTraining/AppScroll.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/study/electron/electron-keep/src/components/AppTraining/AppScroll.js"); } } })();
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/AppScroll.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/AppScroll.js"); } } })();
 
 /***/ },
 /* 636 */
@@ -59330,14 +59331,14 @@
 	        return;
 	    }
 
-	    __REACT_HOT_LOADER__.register(AppExplore, 'AppExplore', '/Users/liucong/study/electron/electron-keep/src/components/AppExplore/AppExplore.js');
+	    __REACT_HOT_LOADER__.register(AppExplore, 'AppExplore', '/Users/liucong/Documents/Github/keepForMac/src/components/AppExplore/AppExplore.js');
 
-	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/study/electron/electron-keep/src/components/AppExplore/AppExplore.js');
+	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/components/AppExplore/AppExplore.js');
 	}();
 
 	;
 
-	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/study/electron/electron-keep/src/components/AppExplore/AppExplore.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/study/electron/electron-keep/src/components/AppExplore/AppExplore.js"); } } })();
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppExplore/AppExplore.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppExplore/AppExplore.js"); } } })();
 
 /***/ },
 /* 637 */
@@ -59445,14 +59446,14 @@
 	        return;
 	    }
 
-	    __REACT_HOT_LOADER__.register(AppMenu, 'AppMenu', '/Users/liucong/study/electron/electron-keep/src/components/AppMenu.js');
+	    __REACT_HOT_LOADER__.register(AppMenu, 'AppMenu', '/Users/liucong/Documents/Github/keepForMac/src/components/AppMenu.js');
 
-	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/study/electron/electron-keep/src/components/AppMenu.js');
+	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/components/AppMenu.js');
 	}();
 
 	;
 
-	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/study/electron/electron-keep/src/components/AppMenu.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/study/electron/electron-keep/src/components/AppMenu.js"); } } })();
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppMenu.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppMenu.js"); } } })();
 
 /***/ },
 /* 638 */
@@ -59561,14 +59562,14 @@
 	        return;
 	    }
 
-	    __REACT_HOT_LOADER__.register(AppRecord, 'AppRecord', '/Users/liucong/study/electron/electron-keep/src/components/AppRecord/AppRecord.js');
+	    __REACT_HOT_LOADER__.register(AppRecord, 'AppRecord', '/Users/liucong/Documents/Github/keepForMac/src/components/AppRecord/AppRecord.js');
 
-	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/study/electron/electron-keep/src/components/AppRecord/AppRecord.js');
+	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/components/AppRecord/AppRecord.js');
 	}();
 
 	;
 
-	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/study/electron/electron-keep/src/components/AppRecord/AppRecord.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/study/electron/electron-keep/src/components/AppRecord/AppRecord.js"); } } })();
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppRecord/AppRecord.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppRecord/AppRecord.js"); } } })();
 
 /***/ },
 /* 641 */
@@ -59635,14 +59636,14 @@
 	        return;
 	    }
 
-	    __REACT_HOT_LOADER__.register(AppUserCenter, 'AppUserCenter', '/Users/liucong/study/electron/electron-keep/src/components/AppUserCenter/AppUserCenter.js');
+	    __REACT_HOT_LOADER__.register(AppUserCenter, 'AppUserCenter', '/Users/liucong/Documents/Github/keepForMac/src/components/AppUserCenter/AppUserCenter.js');
 
-	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/study/electron/electron-keep/src/components/AppUserCenter/AppUserCenter.js');
+	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/components/AppUserCenter/AppUserCenter.js');
 	}();
 
 	;
 
-	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/study/electron/electron-keep/src/components/AppUserCenter/AppUserCenter.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/study/electron/electron-keep/src/components/AppUserCenter/AppUserCenter.js"); } } })();
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppUserCenter/AppUserCenter.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppUserCenter/AppUserCenter.js"); } } })();
 
 /***/ },
 /* 642 */
@@ -60185,14 +60186,14 @@
 	        return;
 	    }
 
-	    __REACT_HOT_LOADER__.register(AppWorkout, 'AppWorkout', '/Users/liucong/study/electron/electron-keep/src/components/AppTraining/workouts/AppWorkout.js');
+	    __REACT_HOT_LOADER__.register(AppWorkout, 'AppWorkout', '/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/AppWorkout.js');
 
-	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/study/electron/electron-keep/src/components/AppTraining/workouts/AppWorkout.js');
+	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/AppWorkout.js');
 	}();
 
 	;
 
-	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/study/electron/electron-keep/src/components/AppTraining/workouts/AppWorkout.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/study/electron/electron-keep/src/components/AppTraining/workouts/AppWorkout.js"); } } })();
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/AppWorkout.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/AppWorkout.js"); } } })();
 
 /***/ },
 /* 643 */
@@ -60229,7 +60230,7 @@
 
 
 	// module
-	exports.push([module.id, ".gGG3G {\n  position: relative; }\n\n.T56YL {\n  background: #3d3742 no-repeat center/cover;\n  position: relative;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); }\n  .T56YL:before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: rgba(0, 0, 0, 0.5); }\n\n._1hEVu {\n  position: relative;\n  padding: 10px;\n  height: 180px; }\n\n._1kXZF {\n  font-size: 24px;\n  color: #fff;\n  margin-top: 10px; }\n\n._3n5Ak {\n  color: #ddd;\n  font-size: 12px; }\n\n.YVuU5 {\n  position: absolute;\n  bottom: 10px;\n  left: 0;\n  width: 100%;\n  margin: 0;\n  padding: 0 10px;\n  overflow: hidden;\n  text-align: right;\n  white-space: nowrap; }\n  .YVuU5 li {\n    display: inline-block; }\n\n._1wE0v {\n  text-align: left;\n  display: block;\n  font-size: 14px;\n  color: #fff;\n  padding: 12px 0 0; }\n\n._1_YaU {\n  padding: 5px 0;\n  border-top: 1px solid #fff;\n  border-bottom: 1px solid #fff; }\n\n._1vG24 {\n  color: #fff;\n  font-size: 10px;\n  display: block;\n  padding-left: 50px;\n  padding-right: 10px; }\n\n._1j7xa {\n  color: #ddd; }\n\n._2MKks {\n  padding: 10px;\n  display: flex;\n  border-bottom: 1px solid #eee; }\n\n._1qiEN {\n  text-align: center;\n  margin-right: 10px; }\n\n._32OId {\n  margin: 0;\n  padding: 0;\n  flex: 1;\n  align-self: center;\n  text-align: right; }\n  ._32OId li {\n    display: inline-flex; }\n\n._2r7mC {\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  overflow: hidden;\n  display: block;\n  position: relative;\n  background: #eee;\n  border: 1px solid #eee;\n  margin-right: 10px; }\n  ._2r7mC img {\n    border: none;\n    width: 100%;\n    height: 100%; }\n\n._3P-i6 {\n  text-align: center;\n  width: 30px;\n  position: relative; }\n  ._3P-i6 i {\n    margin: 0;\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%); }\n\n.gEjE- {\n  background: #fff;\n  border-bottom: 1px solid #eee; }\n\n._1hUN3 {\n  padding: 10px;\n  overflow: hidden; }\n\n._2fS-z {\n  float: right;\n  color: #999;\n  font-size: 12px; }\n\n._1Vgwh {\n  border-left: 2px solid #00C380;\n  padding-left: 5px;\n  line-height: 1; }\n\n._2tzoZ {\n  display: block;\n  margin: 0;\n  padding: 0;\n  overflow: hidden; }\n\n._21hmZ {\n  float: left;\n  width: 33.33%;\n  padding: 10px;\n  position: relative; }\n\n.LM-oO {\n  margin-right: 15px; }\n\n._1oREy {\n  width: 15px;\n  text-align: center;\n  font-size: 12px;\n  position: absolute;\n  top: 26%;\n  right: 5px;\n  color: #999; }\n\n.K8_bp {\n  width: 100%;\n  padding-bottom: 64%;\n  margin-bottom: 10px;\n  background: #999 center/cover; }\n\n._39a3J {\n  margin-bottom: 5px; }\n\n._3CNEr {\n  color: #999; }\n\n._3HQju {\n  cursor: pointer;\n  position: fixed;\n  bottom: 50px;\n  right: 50px;\n  width: 60px;\n  padding: 0 10px;\n  height: 60px;\n  border-radius: 50%;\n  background: rgba(0, 195, 128, 0.8);\n  border: 2px solid rgba(61, 55, 66, 0.2);\n  color: #fff;\n  box-shadow: 0 0 5px rgba(85, 85, 85, 0.8);\n  transition: all .35s; }\n  ._3HQju:hover {\n    background: #00c380;\n    border: 2px solid rgba(61, 55, 66, 0.6); }\n\n._1mcce {\n  background: #fff;\n  padding: 0 10px; }\n\n._2NGue {\n  padding: 10px 0; }\n\n._3ZI5H {\n  display: flex;\n  border-bottom: 1px solid #eee;\n  padding: 10px 0; }\n  ._3ZI5H:first-child {\n    padding-top: 0; }\n\n._3zpl4 {\n  width: 100px;\n  height: 100px;\n  margin-right: 10px;\n  background: #999 no-repeat center/cover; }\n\n._1KBy0 {\n  flex: 1;\n  display: flex;\n  flex-direction: column; }\n\n._3FTXV {\n  flex: 1; }\n  ._3FTXV p {\n    overflow: hidden;\n    display: -webkit-box;\n    -webkit-line-clamp: 3;\n    -webkit-box-orient: vertical; }\n\n._30yij {\n  overflow: hidden;\n  display: flex;\n  align-items: center; }\n\n._19wAn {\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  margin-right: 10px;\n  border: 1px solid #eee; }\n\n._2YtCi {\n  color: #ddd; }\n\n.jJH-4 {\n  transition: transform .5s .2s; }\n\n._2Sf8g {\n  display: block;\n  filter: blur(5px);\n  position: relative;\n  transform: scale(1.01); }\n\n.workout-introduce {\n  opacity: 0;\n  position: fixed;\n  top: 60px;\n  right: 0;\n  bottom: 0;\n  left: 150px;\n  padding: 20px 30px 80px;\n  background: rgba(0, 0, 0, 0.8);\n  transition: opacity .5s .2s; }\n\n.workout-introduce.show {\n  opacity: 1;\n  transition: opacity .5s; }\n\n.workout-introduce.show .workout-introduce-inner {\n  opacity: 1;\n  margin-top: 0;\n  transition: all .5s .2s; }\n\n.workout-introduce-inner {\n  transition: all .5s;\n  opacity: 0;\n  margin-top: 10px;\n  height: 100%;\n  padding-right: 10px;\n  margin-right: -10px;\n  overflow-x: hidden;\n  overflow-y: auto;\n  color: #fff; }\n\n._3HnIN {\n  position: absolute;\n  bottom: 20px;\n  left: 50%;\n  padding: 0;\n  width: 30px;\n  height: 30px;\n  line-height: 30px;\n  overflow: hidden;\n  margin-left: -15px;\n  border: none;\n  background: none;\n  color: #fff;\n  cursor: pointer;\n  transition: transform .35s; }\n  ._3HnIN:hover {\n    transform: scale(1.3); }\n  ._3HnIN i {\n    font-size: 30px;\n    margin: 0; }\n\n._3ESct {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  overflow-x: hidden;\n  overflow-y: auto; }\n\n._1Fdk2 {\n  width: 100%; }\n\n._1QVe8 {\n  padding: 5px;\n  margin: 10px;\n  font-size: 24px;\n  color: #fff;\n  border-bottom: 1px solid #00C380; }\n\n._16Fkx {\n  padding: 10px 20px;\n  color: #fff; }\n\n.c-93L {\n  color: #fff;\n  margin-top: 10px;\n  margin-bottom: 0;\n  margin-left: 20px; }\n\n._2BoKE {\n  width: 100%;\n  overflow-x: auto;\n  overflow-y: hidden;\n  white-space: nowrap;\n  padding: 10px; }\n\n._2fU4a {\n  padding: 10px;\n  vertical-align: top;\n  display: inline-block; }\n\n._24vS1 {\n  position: relative; }\n\n._1z3Ha {\n  border-radius: 10px;\n  border: 1px solid #999;\n  height: 500px; }\n\n._15A6x {\n  position: absolute;\n  color: #fff;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 30px;\n  height: 30px;\n  max-width: 10%;\n  max-height: 10%;\n  transform: translate(-50%, -50%);\n  line-height: 30px;\n  text-align: center;\n  border-radius: 50%;\n  font-size: 14px;\n  background: rgba(0, 195, 128, 0.66); }\n\n.cIiAg {\n  margin-top: 10px;\n  font-size: 14px;\n  color: #fff; }\n", ""]);
+	exports.push([module.id, ".gGG3G {\n  position: relative; }\n\n.T56YL {\n  background: #584f5f no-repeat center/cover;\n  position: relative;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); }\n  .T56YL:before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: rgba(0, 0, 0, 0.5); }\n\n._1hEVu {\n  position: relative;\n  padding: 10px;\n  height: 180px; }\n\n._1kXZF {\n  font-size: 24px;\n  color: #fff;\n  margin-top: 10px; }\n\n._3n5Ak {\n  color: #ddd;\n  font-size: 12px; }\n\n.YVuU5 {\n  position: absolute;\n  bottom: 10px;\n  left: 0;\n  width: 100%;\n  margin: 0;\n  padding: 0 10px;\n  overflow: hidden;\n  text-align: right;\n  white-space: nowrap; }\n  .YVuU5 li {\n    display: inline-block; }\n\n._1wE0v {\n  text-align: left;\n  display: block;\n  font-size: 14px;\n  color: #fff;\n  padding: 12px 0 0; }\n\n._1_YaU {\n  padding: 5px 0;\n  border-top: 1px solid #fff;\n  border-bottom: 1px solid #fff; }\n\n._1vG24 {\n  color: #fff;\n  font-size: 10px;\n  display: block;\n  padding-left: 50px;\n  padding-right: 10px; }\n\n._1j7xa {\n  color: #ddd; }\n\n._2MKks {\n  padding: 10px;\n  display: flex;\n  border-bottom: 1px solid #eee; }\n\n._1qiEN {\n  text-align: center;\n  margin-right: 10px; }\n\n._32OId {\n  margin: 0;\n  padding: 0;\n  flex: 1;\n  align-self: center;\n  text-align: right; }\n  ._32OId li {\n    display: inline-flex; }\n\n._2r7mC {\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  overflow: hidden;\n  display: block;\n  position: relative;\n  background: #eee;\n  border: 1px solid #eee;\n  margin-right: 10px; }\n  ._2r7mC img {\n    border: none;\n    width: 100%;\n    height: 100%; }\n\n._3P-i6 {\n  text-align: center;\n  width: 30px;\n  position: relative; }\n  ._3P-i6 i {\n    margin: 0;\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%); }\n\n.gEjE- {\n  background: #fff;\n  border-bottom: 1px solid #eee; }\n\n._1hUN3 {\n  padding: 10px;\n  overflow: hidden; }\n\n._2fS-z {\n  float: right;\n  color: #999;\n  font-size: 12px; }\n\n._1Vgwh {\n  border-left: 2px solid #00c78c;\n  padding-left: 5px;\n  line-height: 1; }\n\n._2tzoZ {\n  display: block;\n  margin: 0;\n  padding: 0;\n  overflow: hidden; }\n\n._21hmZ {\n  float: left;\n  width: 33.33%;\n  padding: 10px;\n  position: relative; }\n\n.LM-oO {\n  margin-right: 15px; }\n\n._1oREy {\n  width: 15px;\n  text-align: center;\n  font-size: 12px;\n  position: absolute;\n  top: 26%;\n  right: 5px;\n  color: #999; }\n\n.K8_bp {\n  width: 100%;\n  padding-bottom: 64%;\n  margin-bottom: 10px;\n  background: #999 center/cover; }\n\n._39a3J {\n  margin-bottom: 5px; }\n\n._3CNEr {\n  color: #999; }\n\n._3HQju {\n  cursor: pointer;\n  position: fixed;\n  bottom: 50px;\n  right: 50px;\n  width: 60px;\n  padding: 0 10px;\n  height: 60px;\n  border-radius: 50%;\n  background: rgba(0, 199, 140, 0.8);\n  border: 2px solid rgba(88, 79, 95, 0.2);\n  color: #fff;\n  box-shadow: 0 0 5px rgba(85, 85, 85, 0.8);\n  transition: all .35s; }\n  ._3HQju:hover {\n    background: #00c78c;\n    border: 2px solid rgba(88, 79, 95, 0.6); }\n\n._1mcce {\n  background: #fff;\n  padding: 0 10px; }\n\n._2NGue {\n  padding: 10px 0; }\n\n._3ZI5H {\n  display: flex;\n  border-bottom: 1px solid #eee;\n  padding: 10px 0; }\n  ._3ZI5H:first-child {\n    padding-top: 0; }\n\n._3zpl4 {\n  width: 100px;\n  height: 100px;\n  margin-right: 10px;\n  background: #999 no-repeat center/cover; }\n\n._1KBy0 {\n  flex: 1;\n  display: flex;\n  flex-direction: column; }\n\n._3FTXV {\n  flex: 1; }\n  ._3FTXV p {\n    overflow: hidden;\n    display: -webkit-box;\n    -webkit-line-clamp: 3;\n    -webkit-box-orient: vertical; }\n\n._30yij {\n  overflow: hidden;\n  display: flex;\n  align-items: center; }\n\n._19wAn {\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  margin-right: 10px;\n  border: 1px solid #eee; }\n\n._2YtCi {\n  color: #ddd; }\n\n.jJH-4 {\n  transition: transform .5s .2s; }\n\n._2Sf8g {\n  display: block;\n  filter: blur(5px);\n  position: relative;\n  transform: scale(1.01); }\n\n.workout-introduce {\n  opacity: 0;\n  position: fixed;\n  top: 60px;\n  right: 0;\n  bottom: 0;\n  left: 150px;\n  padding: 20px 30px 80px;\n  background: rgba(0, 0, 0, 0.8);\n  transition: opacity .5s .2s; }\n\n.workout-introduce.show {\n  opacity: 1;\n  transition: opacity .5s; }\n\n.workout-introduce.show .workout-introduce-inner {\n  opacity: 1;\n  margin-top: 0;\n  transition: all .5s .2s; }\n\n.workout-introduce-inner {\n  transition: all .5s;\n  opacity: 0;\n  margin-top: 10px;\n  height: 100%;\n  padding-right: 10px;\n  margin-right: -10px;\n  overflow-x: hidden;\n  overflow-y: auto;\n  color: #fff; }\n\n._3HnIN {\n  position: absolute;\n  bottom: 20px;\n  left: 50%;\n  padding: 0;\n  width: 30px;\n  height: 30px;\n  line-height: 30px;\n  overflow: hidden;\n  margin-left: -15px;\n  border: none;\n  background: none;\n  color: #fff;\n  cursor: pointer;\n  transition: transform .35s; }\n  ._3HnIN:hover {\n    transform: scale(1.3); }\n  ._3HnIN i {\n    font-size: 30px;\n    margin: 0; }\n\n._3ESct {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  overflow-x: hidden;\n  overflow-y: auto; }\n\n._1Fdk2 {\n  width: 100%; }\n\n._1QVe8 {\n  padding: 5px;\n  margin: 10px;\n  font-size: 24px;\n  color: #fff;\n  border-bottom: 1px solid #00c78c; }\n\n._16Fkx {\n  padding: 10px 20px;\n  color: #fff; }\n\n.c-93L {\n  color: #fff;\n  margin-top: 10px;\n  margin-bottom: 0;\n  margin-left: 20px; }\n\n._2BoKE {\n  width: 100%;\n  overflow-x: auto;\n  overflow-y: hidden;\n  white-space: nowrap;\n  padding: 10px; }\n\n._2fU4a {\n  padding: 10px;\n  vertical-align: top;\n  display: inline-block; }\n\n._24vS1 {\n  position: relative; }\n\n._1z3Ha {\n  border-radius: 10px;\n  border: 1px solid #999;\n  height: 500px; }\n\n._15A6x {\n  position: absolute;\n  color: #fff;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 30px;\n  height: 30px;\n  max-width: 10%;\n  max-height: 10%;\n  transform: translate(-50%, -50%);\n  line-height: 30px;\n  text-align: center;\n  border-radius: 50%;\n  font-size: 14px;\n  background: rgba(0, 199, 140, 0.66); }\n\n.cIiAg {\n  margin-top: 10px;\n  font-size: 14px;\n  color: #fff; }\n", ""]);
 
 	// exports
 	exports.locals = {
@@ -60454,14 +60455,14 @@
 	        return;
 	    }
 
-	    __REACT_HOT_LOADER__.register(WorkoutDescription, 'WorkoutDescription', '/Users/liucong/study/electron/electron-keep/src/components/AppTraining/workouts/WorkoutDescription.js');
+	    __REACT_HOT_LOADER__.register(WorkoutDescription, 'WorkoutDescription', '/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/WorkoutDescription.js');
 
-	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/study/electron/electron-keep/src/components/AppTraining/workouts/WorkoutDescription.js');
+	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/WorkoutDescription.js');
 	}();
 
 	;
 
-	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/study/electron/electron-keep/src/components/AppTraining/workouts/WorkoutDescription.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/study/electron/electron-keep/src/components/AppTraining/workouts/WorkoutDescription.js"); } } })();
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/WorkoutDescription.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/WorkoutDescription.js"); } } })();
 
 /***/ },
 /* 648 */
@@ -60616,14 +60617,14 @@
 	        return;
 	    }
 
-	    __REACT_HOT_LOADER__.register(AppSlideContent, 'AppSlideContent', '/Users/liucong/study/electron/electron-keep/src/components/AppSlideContent.js');
+	    __REACT_HOT_LOADER__.register(AppSlideContent, 'AppSlideContent', '/Users/liucong/Documents/Github/keepForMac/src/components/AppSlideContent.js');
 
-	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/study/electron/electron-keep/src/components/AppSlideContent.js');
+	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/components/AppSlideContent.js');
 	}();
 
 	;
 
-	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/study/electron/electron-keep/src/components/AppSlideContent.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/study/electron/electron-keep/src/components/AppSlideContent.js"); } } })();
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppSlideContent.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppSlideContent.js"); } } })();
 
 /***/ },
 /* 649 */
@@ -60764,14 +60765,14 @@
 	        return;
 	    }
 
-	    __REACT_HOT_LOADER__.register(WorkoutCoordinates, 'WorkoutCoordinates', '/Users/liucong/study/electron/electron-keep/src/components/AppTraining/workouts/WorkoutCoordinates.js');
+	    __REACT_HOT_LOADER__.register(WorkoutCoordinates, 'WorkoutCoordinates', '/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/WorkoutCoordinates.js');
 
-	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/study/electron/electron-keep/src/components/AppTraining/workouts/WorkoutCoordinates.js');
+	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/WorkoutCoordinates.js');
 	}();
 
 	;
 
-	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/study/electron/electron-keep/src/components/AppTraining/workouts/WorkoutCoordinates.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/study/electron/electron-keep/src/components/AppTraining/workouts/WorkoutCoordinates.js"); } } })();
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/WorkoutCoordinates.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/WorkoutCoordinates.js"); } } })();
 
 /***/ },
 /* 652 */
@@ -60805,12 +60806,12 @@
 	        return;
 	    }
 
-	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/study/electron/electron-keep/src/js/RequireAuth.js');
+	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/js/RequireAuth.js');
 	}();
 
 	;
 
-	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/study/electron/electron-keep/src/js/RequireAuth.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/study/electron/electron-keep/src/js/RequireAuth.js"); } } })();
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/js/RequireAuth.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/js/RequireAuth.js"); } } })();
 
 /***/ }
 /******/ ]);

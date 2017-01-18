@@ -4,7 +4,7 @@ import autobind from 'autobind-decorator'
 import AppMenu from '../AppMenu.js'
 import styles from '../../sass/appExplore.scss'
 
-import http from '../../js/HttpRequest.js'
+import $http from '../../js/HttpRequest.js'
 
 @CSSModules(styles)
 class AppExplore extends Component{
@@ -17,7 +17,7 @@ class AppExplore extends Component{
 
     //@autobind
     //componentWillMount(){
-    //    http.getExploreContent().then((res) => {
+    //    $http.getExploreContent().then((res) => {
     //        if(res.status == 200)
     //            return res.text()
     //        else
@@ -32,7 +32,7 @@ class AppExplore extends Component{
 
     @autobind
     getExploreHtml(){
-        return <iframe styleName="explore-frame" src="http://show.gotokeep.com/explore/" />
+        return <webview styleName="explore-frame" src="http://show.gotokeep.com/explore/" ></webview>
     }
 
     render(){

@@ -44,6 +44,7 @@ class App extends Component{
 
     @autobind
     componentWillMount(){
+        window.coco = this
         console.warn(this.props.router.routes)
     }
 
@@ -79,8 +80,8 @@ class App extends Component{
                         <img src="http://staticssl.gotokeep.com/show/images/homepage/logo-ec5cad8f05.png" alt=""/>
                     </div>
                     <div styleName="history-col">
-                        <button disabled={this.state.actionBack} styleName="history-button" onClick={this.historyActionBack}><i className={`iconfont icon-forward`}></i></button>
-                        <button disabled={this.state.actionForward} styleName="history-button" onClick={this.historyActionForward}><i className={`iconfont icon-goback`}></i></button>
+                        <button disabled={1} styleName="history-button" onClick={this.historyActionBack}><i className={`iconfont icon-forward`}></i></button>
+                        <button disabled={1} styleName="history-button" onClick={this.historyActionForward}><i className={`iconfont icon-goback`}></i></button>
                     </div>
                     <div styleName="col">
                         <AppSearch></AppSearch>

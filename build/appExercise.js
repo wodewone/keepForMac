@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "1ff67a336fa797d1c0a1"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "0dc38241df11916108ca"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -623,6 +623,8 @@
 
 	var _WorkoutCoordinates2 = _interopRequireDefault(_WorkoutCoordinates);
 
+	var _electron = __webpack_require__(645);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -692,10 +694,12 @@
 	            totalDuration: 0,
 
 	            statisticDuration: 0, // 总时长（包括休息时间和报读时间以及训练时间）
-	            totalStart: false,
-	            vStart: false
+
+	            isEnd: ''
 	        };
 
+	        _this.totalStart = false;
+	        _this.vStart = false;
 	        _this.statisticGroup = [];
 	        _this.groupAudio = [];
 	        _this.toNextCallback = null, // 主音频播放回调
@@ -713,8 +717,13 @@
 	        value: function componentDidMount() {
 	            var _this2 = this;
 
-	            console.warn(this);
-	            console.info(this.state.workout);
+	            _electron.remote.getCurrentWindow().removeAllListeners();
+	            _electron.remote.getCurrentWindow().on('blur', function (e) {
+	                _this2.handleMainPause();
+	            }).on('focus', function (e) {
+	                _this2.handleMainPlay();
+	            });
+
 	            var exercise = this.state.workout.workouts[0];
 	            var videos = exercise.steps;
 
@@ -731,7 +740,6 @@
 	                single.description = item.exercise.description;
 	                single.covers = item.exercise.covers;
 
-	                console.info(_this2.state.user.gender);
 	                // 根据性别划分锻炼难度
 	                if (_this2.state.user.gender.toLowerCase() === 'm') {
 	                    single.group = item.mgroup;
@@ -802,12 +810,9 @@
 	                this.groupAudio.push(ModuleExercise.getSoundTips('seconds.mp3'));
 	            }
 
-	            this.setState({
-	                totalStart: true
-	            }, function () {
-	                //this.initTimerAuthor().play()
-	                //this.componentAudio().setSrc(this.groupAudio.shift()).play()
-	            });
+	            this.totalStart = true;
+	            this.initTimerAuthor().play();
+	            this.componentAudio().setSrc(this.groupAudio.shift()).play();
 	        }
 
 	        // 项目开始倒计时
@@ -819,30 +824,32 @@
 
 	            return {
 	                play: function play() {
-	                    if (_this3.state.countdown > 0) {
-	                        _this3.timeoutCountdownId = setTimeout(function () {
-	                            _this3.setState({
-	                                countdown: _this3.state.countdown - 1
-	                            }, function () {
-	                                _this3.componentAudio().setSrc(ModuleExercise.getSoundNumber('00' + _this3.state.countdown)).play();
-	                                _this3.beginCountdown().stop().play();
-	                            });
-	                        }, 1000);
+	                    if (_this3.totalStart) {
+	                        if (_this3.state.countdown > 0) {
+	                            _this3.timeoutCountdownId = setTimeout(function () {
+	                                _this3.setState({
+	                                    countdown: _this3.state.countdown - 1
+	                                }, function () {
+	                                    _this3.componentAudio().setSrc(ModuleExercise.getSoundNumber('00' + _this3.state.countdown)).play();
+	                                    _this3.beginCountdown().stop().play();
+	                                });
+	                            }, 1000);
+	                        } else {
+	                            _this3.timeoutCountdownId && clearTimeout(_this3.timeoutCountdownId);
+	                            _this3.timeoutCountdownId = 0;
+	                            _this3.componentAudio().pause().setSrc(ModuleExercise.getSoundTips('g_9_go.mp3')).play();
+	                            _this3.timeoutCountdownId = setTimeout(function () {
+	                                _this3.vStart = true;
+	                                _this3.recordExerciseConfig().play();
+	                                _this3.componentVideo().reset();
+
+	                                clearTimeout(_this3.timeoutCountdownId);
+	                                _this3.timeoutCountdownId = 0;
+	                            }, 1000);
+	                        }
 	                    } else {
 	                        _this3.timeoutCountdownId && clearTimeout(_this3.timeoutCountdownId);
 	                        _this3.timeoutCountdownId = 0;
-	                        _this3.componentAudio().pause().setSrc(ModuleExercise.getSoundTips('g_9_go.mp3')).play();
-	                        _this3.timeoutCountdownId = setTimeout(function () {
-	                            _this3.setState({
-	                                vStart: true
-	                            }, function () {
-	                                _this3.recordExerciseConfig().play();
-	                                _this3.componentVideo().reset();
-	                            });
-
-	                            clearTimeout(_this3.timeoutCountdownId);
-	                            _this3.timeoutCountdownId = 0;
-	                        }, 1000);
 	                    }
 	                },
 	                stop: function stop() {
@@ -861,11 +868,11 @@
 	            return {
 	                play: function play() {
 	                    _this4.timerId = setTimeout(function () {
-	                        if (_this4.state.totalStart) {
+	                        if (_this4.totalStart) {
 	                            _this4.setState({
 	                                totalDuration: _this4.state.totalDuration + 1
 	                            });
-	                            if (_this4.state.vStart) {
+	                            if (_this4.vStart) {
 	                                // 统计单项运动时间
 	                                _this4.setState({
 	                                    currentGroupDuration: _this4.state.currentGroupDuration + 1
@@ -930,8 +937,8 @@
 	                over: function over() {
 	                    _this5.recordExerciseConfig().stop();
 
-	                    if (_this5.state.vStart) _this5.statisticGroup.push({
-	                        title: _this5.state.exercises[_this5.state.currentProceed].name,
+	                    if (_this5.vStart) _this5.statisticGroup.push({
+	                        name: _this5.state.exercises[_this5.state.currentProceed].name,
 	                        duration: _this5.state.currentGroupDuration
 	                    });
 	                    return true;
@@ -970,7 +977,7 @@
 	                },
 	                goPlay: function goPlay() {
 	                    // 项目开始
-	                    if (_this6.state.vStart) {
+	                    if (_this6.vStart) {
 	                        // 循环播放
 	                        masterVideo.play();
 	                    }
@@ -1023,15 +1030,14 @@
 	                },
 	                toNext: function toNext() {
 	                    if (_this7.toNextCallback && typeof _this7.toNextCallback === 'function') {
-	                        console.info('tonext');
 	                        _this7.toNextCallback();
 	                        _this7.toNextCallback = null;
 	                        return true;
 	                    }
-	                    if (_this7.state.totalStart) {
+	                    if (_this7.totalStart) {
 	                        if (_this7.groupAudio.length) {
 	                            // 开始读秒
-	                            //if(this.groupAudio.length <= 4 && !this.state.vStart){
+	                            //if(this.groupAudio.length <= 4 && !this.vStart){
 	                            //    // 延迟读秒时间
 	                            //    this.timeoutCountdownId = setTimeout(() => {
 	                            //        masterAudio.src = this.groupAudio.shift()
@@ -1090,14 +1096,22 @@
 
 	            return {
 	                pause: function pause() {
-	                    if (!_this9.groupAudio.length && _this9.state.countdown > 0) _this9.beginCountdown().stop();
-	                    _this9.componentVideo().pause();
-	                    _this9.componentAudio().pause();
+	                    _this9.setState({
+	                        totalStart: false
+	                    }, function () {
+	                        if (_this9.state.countdown > 0) _this9.beginCountdown().stop();
+	                        _this9.componentVideo().pause();
+	                        _this9.componentAudio().pause();
+	                    });
 	                },
 	                play: function play() {
-	                    _this9.componentVideo().play();
-	                    _this9.componentAudio().play();
-	                    if (!_this9.groupAudio.length && _this9.state.countdown > 0) _this9.beginCountdown().play();
+	                    _this9.setState({
+	                        totalStart: true
+	                    }, function () {
+	                        _this9.componentVideo().play();
+	                        _this9.componentAudio().play();
+	                        if (!_this9.groupAudio.length && _this9.state.countdown > 0) _this9.beginCountdown().play();
+	                    });
 	                }
 	            };
 	        }
@@ -1155,24 +1169,41 @@
 	    }, {
 	        key: 'resetAllState',
 	        value: function resetAllState() {
-	            var _this11 = this;
-
 	            this.recordExerciseConfig().over(); // 保存当前项目值并重置
-	            this.setState({
-	                totalStart: false,
-	                vStart: false
-	            }, function () {
-	                _this11.groupAudio = []; // 声音重置
+	            this.totalStart = false;
+	            this.vStart = false;
+	            this.groupAudio = []; // 声音重置
 
-	                _this11.initTimerAuthor().stop(); // 停止时间统计
-	                _this11.componentMaster().pause(); // 终止所有视频、音频播放
-	                _this11.componentTimeout().stop(); // 销毁休息状态
-	            });
+	            this.initTimerAuthor().stop(); // 停止时间统计
+	            this.componentMaster().pause(); // 终止所有视频、音频播放
+	            this.componentTimeout().stop(); // 销毁休息状态
 	        }
 	    }, {
 	        key: 'handleSounds',
 	        value: function handleSounds() {
 	            this.componentAudio().togglePlay();
+	        }
+	    }, {
+	        key: 'handleMainPause',
+	        value: function handleMainPause() {
+	            this.initTimerAuthor().stop();
+	            if (this.vStart) this.recordExerciseConfig().stop();
+	            this.componentTimeout().show();
+	            this.componentMaster().pause();
+	            this.setState({
+	                classToggle: 'gather'
+	            });
+	        }
+	    }, {
+	        key: 'handleMainPlay',
+	        value: function handleMainPlay() {
+	            this.setState({
+	                classToggle: ''
+	            });
+	            this.componentTimeout().hide();
+	            this.componentMaster().play();
+	            this.initTimerAuthor().play();
+	            if (this.vStart) this.recordExerciseConfig().play();
 	        }
 
 	        // 总开关事件
@@ -1182,22 +1213,10 @@
 	        value: function handleVideoToggle() {
 	            if (this.state.classToggle) {
 	                // play
-	                this.setState({
-	                    classToggle: ''
-	                });
-	                this.componentTimeout().hide();
-	                this.componentMaster().play();
-	                this.initTimerAuthor().play();
-	                if (this.state.vStart) this.recordExerciseConfig().play();
+	                this.handleMainPlay();
 	            } else {
 	                // pause
-	                this.initTimerAuthor().stop();
-	                if (this.state.vStart) this.recordExerciseConfig().stop();
-	                this.componentTimeout().show();
-	                this.componentMaster().pause();
-	                this.setState({
-	                    classToggle: 'gather'
-	                });
+	                this.handleMainPause();
 	            }
 	        }
 
@@ -1220,7 +1239,7 @@
 	    }, {
 	        key: 'handleJumpNext',
 	        value: function handleJumpNext() {
-	            var _this12 = this;
+	            var _this11 = this;
 
 	            this.resetAllState();
 	            if (this.state.currentProceed < this.state.exercises.length - 1) {
@@ -1234,9 +1253,11 @@
 	                this.componentVideo().stop();
 	                this.componentAudio().pause().setSrc(ModuleExercise.getSoundTips('countdownend.mp3')).play();
 	                this.toNextCallback = function () {
-	                    return _this12.componentAudio().pause().setSrc(ModuleExercise.getSoundTips('g_16_well_done.mp3')).play();
+	                    return _this11.componentAudio().pause().setSrc(ModuleExercise.getSoundTips('g_16_well_done.mp3')).play();
 	                };
-	                console.info(this.state.statisticGroup);
+	                this.setState({
+	                    isEnd: 'active'
+	                });
 	            }
 	        }
 	    }, {
@@ -1338,16 +1359,106 @@
 	            );
 	        }
 	    }, {
+	        key: 'getFinishContent',
+	        value: function getFinishContent() {
+	            return _react2.default.createElement(
+	                'div',
+	                { styleName: 'finish-page ' + this.state.isEnd },
+	                _react2.default.createElement(
+	                    'div',
+	                    { styleName: 'finish-inner' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { styleName: 'finish-title' },
+	                        _react2.default.createElement('img', { src: __webpack_require__(655), alt: '' }),
+	                        _react2.default.createElement(
+	                            'p',
+	                            { className: 'padding' },
+	                            '\u606D\u559C\u4F60\u5B8C\u6210\u8BAD\u7EC3'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { styleName: 'finish-detail' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'text-left', styleName: 'col' },
+	                            '\u65F6\u957F ',
+	                            _react2.default.createElement('br', null),
+	                            ' ',
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'fz24' },
+	                                this.state.totalDuration > 60 ? Math.floor(this.state.totalDuration / 60) : '<1'
+	                            ),
+	                            '\u5206'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'text-center', styleName: 'col' },
+	                            '\u52A8\u4F5C ',
+	                            _react2.default.createElement('br', null),
+	                            ' ',
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'fz24' },
+	                                this.statisticGroup.length
+	                            ),
+	                            '\u7EC4'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'text-right', styleName: 'col' },
+	                            '\u6D88\u8017 ',
+	                            _react2.default.createElement('br', null),
+	                            ' ',
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'fz24' },
+	                                this.state.totalDuration
+	                            ),
+	                            '\u5343\u5361'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'ul',
+	                        { styleName: 'finish-actions' },
+	                        this.statisticGroup.length && this.statisticGroup.map(function (item, index) {
+	                            return _react2.default.createElement(
+	                                'li',
+	                                { key: index },
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'text-left', styleName: 'col' },
+	                                    item.name
+	                                ),
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'text-right', styleName: 'col' },
+	                                    (0, _moment2.default)(new Date(item.duration * 1000)).format('mm:ss')
+	                                )
+	                            );
+	                        })
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { styleName: 'finish-feel' },
+	                        _react2.default.createElement('textarea', { styleName: 'feel-content', placeholder: '\u8BB0\u4E0B\u672C\u6B21\u8BAD\u7EC3\u7684\u611F\u53D7\u548C\u5FC3\u5F97' })
+	                    )
+	                )
+	            );
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var _this13 = this;
+	            var _this12 = this;
 
 	            return _react2.default.createElement(
 	                'div',
 	                { styleName: 'exercise-container' },
 	                _react2.default.createElement(
 	                    'div',
-	                    { styleName: 'exercise-page' },
+	                    { styleName: 'exercise-page ' + this.state.isEnd },
 	                    _react2.default.createElement(
 	                        'div',
 	                        { styleName: 'exercise-header' },
@@ -1364,7 +1475,7 @@
 	                            'div',
 	                            { styleName: 'title-progress-wrap' },
 	                            this.state.exercises.length && this.state.exercises.map(function (item, index) {
-	                                return _react2.default.createElement('div', { key: index, styleName: 'progress-item', style: { width: item.groupDuration * item.group / _this13.state.statisticDuration * 100 + '%' } });
+	                                return _react2.default.createElement('div', { key: index, styleName: 'progress-item', style: { width: item.groupDuration * item.group / _this12.state.statisticDuration * 100 + '%' } });
 	                            })
 	                        ),
 	                        _react2.default.createElement(
@@ -1423,29 +1534,7 @@
 	                        _react2.default.createElement('audio', { ref: 'branchAudio', src: '' })
 	                    )
 	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { styleName: 'finish-page' },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { styleName: 'finish-title' },
-	                        _react2.default.createElement('img', { src: __webpack_require__(655), alt: '' })
-	                    ),
-	                    _react2.default.createElement(
-	                        'ul',
-	                        null,
-	                        _react2.default.createElement(
-	                            'li',
-	                            null,
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'text-left' },
-	                                '\u963F\u5A07\u5386\u53F2\u7EAA\u5F55\u5230\u5BB6\u5566'
-	                            ),
-	                            _react2.default.createElement('div', { className: 'text-right' })
-	                        )
-	                    )
-	                )
+	                this.state.isEnd && this.getFinishContent()
 	            );
 	        }
 	    }], [{
@@ -1466,7 +1555,7 @@
 	    }]);
 
 	    return ModuleExercise;
-	}(_react.Component), (_applyDecoratedDescriptor(_class2.prototype, 'componentDidMount', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentDidMount'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'componentWillUnmount', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentWillUnmount'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'startExercise', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'startExercise'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'beginCountdown', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'beginCountdown'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'initTimerAuthor', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'initTimerAuthor'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'recordExerciseConfig', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'recordExerciseConfig'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'componentVideo', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentVideo'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'componentAudio', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentAudio'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'commentaryTrainingAudio', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'commentaryTrainingAudio'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'componentMaster', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentMaster'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'componentTimeout', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentTimeout'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'resetAllState', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'resetAllState'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleSounds', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleSounds'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleVideoToggle', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleVideoToggle'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleJumpPrev', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleJumpPrev'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleJumpNext', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleJumpNext'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getVideoContent', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getVideoContent'), _class2.prototype)), _class2)) || _class);
+	}(_react.Component), (_applyDecoratedDescriptor(_class2.prototype, 'componentDidMount', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentDidMount'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'componentWillUnmount', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentWillUnmount'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'startExercise', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'startExercise'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'beginCountdown', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'beginCountdown'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'initTimerAuthor', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'initTimerAuthor'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'recordExerciseConfig', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'recordExerciseConfig'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'componentVideo', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentVideo'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'componentAudio', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentAudio'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'commentaryTrainingAudio', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'commentaryTrainingAudio'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'componentMaster', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentMaster'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'componentTimeout', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentTimeout'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'resetAllState', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'resetAllState'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleSounds', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleSounds'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleMainPause', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleMainPause'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleMainPlay', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleMainPlay'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleVideoToggle', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleVideoToggle'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleJumpPrev', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleJumpPrev'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleJumpNext', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleJumpNext'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getVideoContent', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getVideoContent'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getFinishContent', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getFinishContent'), _class2.prototype)), _class2)) || _class);
 
 
 	_reactDom2.default.render(_react2.default.createElement(ModuleExercise, null), document.getElementById('container'));
@@ -1477,14 +1566,14 @@
 	        return;
 	    }
 
-	    __REACT_HOT_LOADER__.register(container, 'container', '/Users/liucong/study/electron/electron-keep/src/js/ModuleExercise.js');
+	    __REACT_HOT_LOADER__.register(container, 'container', '/Users/liucong/Documents/Github/keepForMac/src/js/ModuleExercise.js');
 
-	    __REACT_HOT_LOADER__.register(ModuleExercise, 'ModuleExercise', '/Users/liucong/study/electron/electron-keep/src/js/ModuleExercise.js');
+	    __REACT_HOT_LOADER__.register(ModuleExercise, 'ModuleExercise', '/Users/liucong/Documents/Github/keepForMac/src/js/ModuleExercise.js');
 	}();
 
 	;
 
-	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/study/electron/electron-keep/src/js/ModuleExercise.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/study/electron/electron-keep/src/js/ModuleExercise.js"); } } })();
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/js/ModuleExercise.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/js/ModuleExercise.js"); } } })();
 
 /***/ },
 /* 1 */,
@@ -1649,7 +1738,7 @@
 
 
 	// module
-	exports.push([module.id, "* {\n  box-sizing: border-box;\n  -webkit-user-select: none; }\n\n*:before,\n*:after {\n  box-sizing: border-box;\n  -webkit-user-select: none; }\n\nhtml {\n  font-size: 20px;\n  -webkit-tap-highlight-color: transparent; }\n\nbody {\n  font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n  font-size: 14px;\n  line-height: 1.428571429;\n  color: #555;\n  background-color: transparent;\n  margin: 0; }\n\nhtml,\nbody {\n  height: 100%; }\n\np {\n  margin: 0 0 10px; }\n\nul {\n  padding-left: 10px; }\n\nul,\nli {\n  list-style: none; }\n\nfigure {\n  margin: 0; }\n\nimg {\n  vertical-align: middle; }\n\nimg[src=\"\"] {\n  opacity: 0; }\n\ninput,\nbutton,\nselect,\ntextarea {\n  font-family: inherit;\n  font-size: inherit;\n  line-height: inherit;\n  outline: none; }\n\nbutton {\n  cursor: pointer; }\n\n.container {\n  width: 100%;\n  height: 100%;\n  display: flex; }\n\na {\n  cursor: pointer;\n  color: #555;\n  text-decoration: none; }\n  a:hover, a:focus {\n    color: #3d3742; }\n\n.pull-left {\n  float: left; }\n\n.pull-right {\n  float: right; }\n\n.text-left {\n  text-align: left !important; }\n\n.text-center {\n  text-align: center; }\n\n.text-right {\n  text-align: right !important; }\n\n.margin {\n  margin: 10px; }\n\n.margin-top {\n  margin-top: 10px; }\n\n.margin-bottom {\n  margin-bottom: 10px; }\n\n.margin-left {\n  margin-left: 10px; }\n\n.margin-right {\n  margin-right: 10px; }\n\n.padding {\n  padding: 10px; }\n\n.font-bold {\n  font-weight: bold; }\n\n.fz10 {\n  font-size: 10px; }\n\n.fz12 {\n  font-size: 12px; }\n\n.fz14 {\n  font-size: 14px; }\n\n.fz18 {\n  font-size: 18px; }\n\n.fz24 {\n  font-size: 24px; }\n\n.fz36 {\n  font-size: 36px; }\n\n.keep-background {\n  background: #E5ECEF; }\n\n.white-background {\n  background: #fff; }\n\n.index-content {\n  height: 100%;\n  margin-left: 150px;\n  background: #E5ECEF;\n  overflow-x: hidden;\n  overflow-y: auto; }\n\n.scroll-content {\n  width: 100%;\n  height: 100%;\n  overflow-x: hidden;\n  overflow-y: auto; }\n\n.article-wrap h4 {\n  border-left: 2px solid #00C380;\n  padding-left: 5px;\n  line-height: 1; }\n\n.article-wrap ul {\n  padding-left: 20px; }\n\n.article-wrap li {\n  position: relative; }\n  .article-wrap li:before {\n    content: '';\n    position: absolute;\n    left: -10px;\n    top: 9px;\n    width: 3px;\n    height: 3px;\n    border-radius: 50%;\n    background: #fff; }\n\n.article-wrap img {\n  margin: 20px 0; }\n\n.iconfont {\n  margin-right: 5px; }\n\n.active {\n  position: relative; }\n  .active:after {\n    content: '';\n    position: absolute;\n    top: 50%;\n    transform: translateY(-50%);\n    right: 10px;\n    width: 5px;\n    height: 5px;\n    background: #3d3742;\n    border-radius: 50%; }\n", ""]);
+	exports.push([module.id, "* {\n  box-sizing: border-box;\n  -webkit-user-select: none; }\n\n*:before,\n*:after {\n  box-sizing: border-box;\n  -webkit-user-select: none; }\n\nhtml {\n  font-size: 20px;\n  -webkit-tap-highlight-color: transparent; }\n\nbody {\n  font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n  font-size: 14px;\n  line-height: 1.428571429;\n  color: #555;\n  background-color: transparent;\n  margin: 0; }\n\nhtml,\nbody {\n  height: 100%; }\n\np {\n  margin: 0 0 10px; }\n\nul {\n  padding-left: 10px; }\n\nul,\nli {\n  list-style: none; }\n\nfigure {\n  margin: 0; }\n\nimg {\n  vertical-align: middle; }\n\nimg[src=\"\"] {\n  opacity: 0; }\n\ninput,\nbutton,\nselect,\ntextarea {\n  font-family: inherit;\n  font-size: inherit;\n  line-height: inherit;\n  outline: none; }\n\nbutton {\n  cursor: pointer; }\n\n.container {\n  width: 100%;\n  height: 100%;\n  display: flex; }\n\na {\n  cursor: pointer;\n  color: #555;\n  text-decoration: none; }\n  a:hover, a:focus {\n    color: #584f5f; }\n\n.pull-left {\n  float: left; }\n\n.pull-right {\n  float: right; }\n\n.text-left {\n  text-align: left !important; }\n\n.text-center {\n  text-align: center; }\n\n.text-right {\n  text-align: right !important; }\n\n.margin {\n  margin: 10px; }\n\n.margin-top {\n  margin-top: 10px; }\n\n.margin-bottom {\n  margin-bottom: 10px; }\n\n.margin-left {\n  margin-left: 10px; }\n\n.margin-right {\n  margin-right: 10px; }\n\n.padding {\n  padding: 10px; }\n\n.font-bold {\n  font-weight: bold; }\n\n.fz10 {\n  font-size: 10px; }\n\n.fz12 {\n  font-size: 12px; }\n\n.fz14 {\n  font-size: 14px; }\n\n.fz18 {\n  font-size: 18px; }\n\n.fz24 {\n  font-size: 24px; }\n\n.fz36 {\n  font-size: 36px; }\n\n.keep-background {\n  background: #E5ECEF; }\n\n.white-background {\n  background: #fff; }\n\n.index-content {\n  height: 100%;\n  margin-left: 150px;\n  background: #E5ECEF;\n  overflow-x: hidden;\n  overflow-y: auto; }\n\n.scroll-content {\n  width: 100%;\n  height: 100%;\n  overflow-x: hidden;\n  overflow-y: auto; }\n\n.article-wrap h4 {\n  border-left: 2px solid #00c78c;\n  padding-left: 5px;\n  line-height: 1; }\n\n.article-wrap ul {\n  padding-left: 20px; }\n\n.article-wrap li {\n  position: relative; }\n  .article-wrap li:before {\n    content: '';\n    position: absolute;\n    left: -10px;\n    top: 9px;\n    width: 3px;\n    height: 3px;\n    border-radius: 50%;\n    background: #fff; }\n\n.article-wrap img {\n  margin: 20px 0; }\n\n.iconfont {\n  margin-right: 5px; }\n\n.active {\n  position: relative; }\n  .active:after {\n    content: '';\n    position: absolute;\n    top: 50%;\n    transform: translateY(-50%);\n    right: 10px;\n    width: 5px;\n    height: 5px;\n    background: #584f5f;\n    border-radius: 50%; }\n", ""]);
 
 	// exports
 
@@ -28882,12 +28971,12 @@
 	        return;
 	    }
 
-	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/study/electron/electron-keep/src/js/Utils.js');
+	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/js/Utils.js');
 	}();
 
 	;
 
-	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/study/electron/electron-keep/src/js/Utils.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/study/electron/electron-keep/src/js/Utils.js"); } } })();
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/js/Utils.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/js/Utils.js"); } } })();
 
 /***/ },
 /* 517 */,
@@ -43824,7 +43913,7 @@
 
 
 	// module
-	exports.push([module.id, ".gGG3G {\n  position: relative; }\n\n.T56YL {\n  background: #3d3742 no-repeat center/cover;\n  position: relative;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); }\n  .T56YL:before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: rgba(0, 0, 0, 0.5); }\n\n._1hEVu {\n  position: relative;\n  padding: 10px;\n  height: 180px; }\n\n._1kXZF {\n  font-size: 24px;\n  color: #fff;\n  margin-top: 10px; }\n\n._3n5Ak {\n  color: #ddd;\n  font-size: 12px; }\n\n.YVuU5 {\n  position: absolute;\n  bottom: 10px;\n  left: 0;\n  width: 100%;\n  margin: 0;\n  padding: 0 10px;\n  overflow: hidden;\n  text-align: right;\n  white-space: nowrap; }\n  .YVuU5 li {\n    display: inline-block; }\n\n._1wE0v {\n  text-align: left;\n  display: block;\n  font-size: 14px;\n  color: #fff;\n  padding: 12px 0 0; }\n\n._1_YaU {\n  padding: 5px 0;\n  border-top: 1px solid #fff;\n  border-bottom: 1px solid #fff; }\n\n._1vG24 {\n  color: #fff;\n  font-size: 10px;\n  display: block;\n  padding-left: 50px;\n  padding-right: 10px; }\n\n._1j7xa {\n  color: #ddd; }\n\n._2MKks {\n  padding: 10px;\n  display: flex;\n  border-bottom: 1px solid #eee; }\n\n._1qiEN {\n  text-align: center;\n  margin-right: 10px; }\n\n._32OId {\n  margin: 0;\n  padding: 0;\n  flex: 1;\n  align-self: center;\n  text-align: right; }\n  ._32OId li {\n    display: inline-flex; }\n\n._2r7mC {\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  overflow: hidden;\n  display: block;\n  position: relative;\n  background: #eee;\n  border: 1px solid #eee;\n  margin-right: 10px; }\n  ._2r7mC img {\n    border: none;\n    width: 100%;\n    height: 100%; }\n\n._3P-i6 {\n  text-align: center;\n  width: 30px;\n  position: relative; }\n  ._3P-i6 i {\n    margin: 0;\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%); }\n\n.gEjE- {\n  background: #fff;\n  border-bottom: 1px solid #eee; }\n\n._1hUN3 {\n  padding: 10px;\n  overflow: hidden; }\n\n._2fS-z {\n  float: right;\n  color: #999;\n  font-size: 12px; }\n\n._1Vgwh {\n  border-left: 2px solid #00C380;\n  padding-left: 5px;\n  line-height: 1; }\n\n._2tzoZ {\n  display: block;\n  margin: 0;\n  padding: 0;\n  overflow: hidden; }\n\n._21hmZ {\n  float: left;\n  width: 33.33%;\n  padding: 10px;\n  position: relative; }\n\n.LM-oO {\n  margin-right: 15px; }\n\n._1oREy {\n  width: 15px;\n  text-align: center;\n  font-size: 12px;\n  position: absolute;\n  top: 26%;\n  right: 5px;\n  color: #999; }\n\n.K8_bp {\n  width: 100%;\n  padding-bottom: 64%;\n  margin-bottom: 10px;\n  background: #999 center/cover; }\n\n._39a3J {\n  margin-bottom: 5px; }\n\n._3CNEr {\n  color: #999; }\n\n._3HQju {\n  cursor: pointer;\n  position: fixed;\n  bottom: 50px;\n  right: 50px;\n  width: 60px;\n  padding: 0 10px;\n  height: 60px;\n  border-radius: 50%;\n  background: rgba(0, 195, 128, 0.8);\n  border: 2px solid rgba(61, 55, 66, 0.2);\n  color: #fff;\n  box-shadow: 0 0 5px rgba(85, 85, 85, 0.8);\n  transition: all .35s; }\n  ._3HQju:hover {\n    background: #00c380;\n    border: 2px solid rgba(61, 55, 66, 0.6); }\n\n._1mcce {\n  background: #fff;\n  padding: 0 10px; }\n\n._2NGue {\n  padding: 10px 0; }\n\n._3ZI5H {\n  display: flex;\n  border-bottom: 1px solid #eee;\n  padding: 10px 0; }\n  ._3ZI5H:first-child {\n    padding-top: 0; }\n\n._3zpl4 {\n  width: 100px;\n  height: 100px;\n  margin-right: 10px;\n  background: #999 no-repeat center/cover; }\n\n._1KBy0 {\n  flex: 1;\n  display: flex;\n  flex-direction: column; }\n\n._3FTXV {\n  flex: 1; }\n  ._3FTXV p {\n    overflow: hidden;\n    display: -webkit-box;\n    -webkit-line-clamp: 3;\n    -webkit-box-orient: vertical; }\n\n._30yij {\n  overflow: hidden;\n  display: flex;\n  align-items: center; }\n\n._19wAn {\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  margin-right: 10px;\n  border: 1px solid #eee; }\n\n._2YtCi {\n  color: #ddd; }\n\n.jJH-4 {\n  transition: transform .5s .2s; }\n\n._2Sf8g {\n  display: block;\n  filter: blur(5px);\n  position: relative;\n  transform: scale(1.01); }\n\n.workout-introduce {\n  opacity: 0;\n  position: fixed;\n  top: 60px;\n  right: 0;\n  bottom: 0;\n  left: 150px;\n  padding: 20px 30px 80px;\n  background: rgba(0, 0, 0, 0.8);\n  transition: opacity .5s .2s; }\n\n.workout-introduce.show {\n  opacity: 1;\n  transition: opacity .5s; }\n\n.workout-introduce.show .workout-introduce-inner {\n  opacity: 1;\n  margin-top: 0;\n  transition: all .5s .2s; }\n\n.workout-introduce-inner {\n  transition: all .5s;\n  opacity: 0;\n  margin-top: 10px;\n  height: 100%;\n  padding-right: 10px;\n  margin-right: -10px;\n  overflow-x: hidden;\n  overflow-y: auto;\n  color: #fff; }\n\n._3HnIN {\n  position: absolute;\n  bottom: 20px;\n  left: 50%;\n  padding: 0;\n  width: 30px;\n  height: 30px;\n  line-height: 30px;\n  overflow: hidden;\n  margin-left: -15px;\n  border: none;\n  background: none;\n  color: #fff;\n  cursor: pointer;\n  transition: transform .35s; }\n  ._3HnIN:hover {\n    transform: scale(1.3); }\n  ._3HnIN i {\n    font-size: 30px;\n    margin: 0; }\n\n._3ESct {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  overflow-x: hidden;\n  overflow-y: auto; }\n\n._1Fdk2 {\n  width: 100%; }\n\n._1QVe8 {\n  padding: 5px;\n  margin: 10px;\n  font-size: 24px;\n  color: #fff;\n  border-bottom: 1px solid #00C380; }\n\n._16Fkx {\n  padding: 10px 20px;\n  color: #fff; }\n\n.c-93L {\n  color: #fff;\n  margin-top: 10px;\n  margin-bottom: 0;\n  margin-left: 20px; }\n\n._2BoKE {\n  width: 100%;\n  overflow-x: auto;\n  overflow-y: hidden;\n  white-space: nowrap;\n  padding: 10px; }\n\n._2fU4a {\n  padding: 10px;\n  vertical-align: top;\n  display: inline-block; }\n\n._24vS1 {\n  position: relative; }\n\n._1z3Ha {\n  border-radius: 10px;\n  border: 1px solid #999;\n  height: 500px; }\n\n._15A6x {\n  position: absolute;\n  color: #fff;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 30px;\n  height: 30px;\n  max-width: 10%;\n  max-height: 10%;\n  transform: translate(-50%, -50%);\n  line-height: 30px;\n  text-align: center;\n  border-radius: 50%;\n  font-size: 14px;\n  background: rgba(0, 195, 128, 0.66); }\n\n.cIiAg {\n  margin-top: 10px;\n  font-size: 14px;\n  color: #fff; }\n", ""]);
+	exports.push([module.id, ".gGG3G {\n  position: relative; }\n\n.T56YL {\n  background: #584f5f no-repeat center/cover;\n  position: relative;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); }\n  .T56YL:before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: rgba(0, 0, 0, 0.5); }\n\n._1hEVu {\n  position: relative;\n  padding: 10px;\n  height: 180px; }\n\n._1kXZF {\n  font-size: 24px;\n  color: #fff;\n  margin-top: 10px; }\n\n._3n5Ak {\n  color: #ddd;\n  font-size: 12px; }\n\n.YVuU5 {\n  position: absolute;\n  bottom: 10px;\n  left: 0;\n  width: 100%;\n  margin: 0;\n  padding: 0 10px;\n  overflow: hidden;\n  text-align: right;\n  white-space: nowrap; }\n  .YVuU5 li {\n    display: inline-block; }\n\n._1wE0v {\n  text-align: left;\n  display: block;\n  font-size: 14px;\n  color: #fff;\n  padding: 12px 0 0; }\n\n._1_YaU {\n  padding: 5px 0;\n  border-top: 1px solid #fff;\n  border-bottom: 1px solid #fff; }\n\n._1vG24 {\n  color: #fff;\n  font-size: 10px;\n  display: block;\n  padding-left: 50px;\n  padding-right: 10px; }\n\n._1j7xa {\n  color: #ddd; }\n\n._2MKks {\n  padding: 10px;\n  display: flex;\n  border-bottom: 1px solid #eee; }\n\n._1qiEN {\n  text-align: center;\n  margin-right: 10px; }\n\n._32OId {\n  margin: 0;\n  padding: 0;\n  flex: 1;\n  align-self: center;\n  text-align: right; }\n  ._32OId li {\n    display: inline-flex; }\n\n._2r7mC {\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  overflow: hidden;\n  display: block;\n  position: relative;\n  background: #eee;\n  border: 1px solid #eee;\n  margin-right: 10px; }\n  ._2r7mC img {\n    border: none;\n    width: 100%;\n    height: 100%; }\n\n._3P-i6 {\n  text-align: center;\n  width: 30px;\n  position: relative; }\n  ._3P-i6 i {\n    margin: 0;\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%); }\n\n.gEjE- {\n  background: #fff;\n  border-bottom: 1px solid #eee; }\n\n._1hUN3 {\n  padding: 10px;\n  overflow: hidden; }\n\n._2fS-z {\n  float: right;\n  color: #999;\n  font-size: 12px; }\n\n._1Vgwh {\n  border-left: 2px solid #00c78c;\n  padding-left: 5px;\n  line-height: 1; }\n\n._2tzoZ {\n  display: block;\n  margin: 0;\n  padding: 0;\n  overflow: hidden; }\n\n._21hmZ {\n  float: left;\n  width: 33.33%;\n  padding: 10px;\n  position: relative; }\n\n.LM-oO {\n  margin-right: 15px; }\n\n._1oREy {\n  width: 15px;\n  text-align: center;\n  font-size: 12px;\n  position: absolute;\n  top: 26%;\n  right: 5px;\n  color: #999; }\n\n.K8_bp {\n  width: 100%;\n  padding-bottom: 64%;\n  margin-bottom: 10px;\n  background: #999 center/cover; }\n\n._39a3J {\n  margin-bottom: 5px; }\n\n._3CNEr {\n  color: #999; }\n\n._3HQju {\n  cursor: pointer;\n  position: fixed;\n  bottom: 50px;\n  right: 50px;\n  width: 60px;\n  padding: 0 10px;\n  height: 60px;\n  border-radius: 50%;\n  background: rgba(0, 199, 140, 0.8);\n  border: 2px solid rgba(88, 79, 95, 0.2);\n  color: #fff;\n  box-shadow: 0 0 5px rgba(85, 85, 85, 0.8);\n  transition: all .35s; }\n  ._3HQju:hover {\n    background: #00c78c;\n    border: 2px solid rgba(88, 79, 95, 0.6); }\n\n._1mcce {\n  background: #fff;\n  padding: 0 10px; }\n\n._2NGue {\n  padding: 10px 0; }\n\n._3ZI5H {\n  display: flex;\n  border-bottom: 1px solid #eee;\n  padding: 10px 0; }\n  ._3ZI5H:first-child {\n    padding-top: 0; }\n\n._3zpl4 {\n  width: 100px;\n  height: 100px;\n  margin-right: 10px;\n  background: #999 no-repeat center/cover; }\n\n._1KBy0 {\n  flex: 1;\n  display: flex;\n  flex-direction: column; }\n\n._3FTXV {\n  flex: 1; }\n  ._3FTXV p {\n    overflow: hidden;\n    display: -webkit-box;\n    -webkit-line-clamp: 3;\n    -webkit-box-orient: vertical; }\n\n._30yij {\n  overflow: hidden;\n  display: flex;\n  align-items: center; }\n\n._19wAn {\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  margin-right: 10px;\n  border: 1px solid #eee; }\n\n._2YtCi {\n  color: #ddd; }\n\n.jJH-4 {\n  transition: transform .5s .2s; }\n\n._2Sf8g {\n  display: block;\n  filter: blur(5px);\n  position: relative;\n  transform: scale(1.01); }\n\n.workout-introduce {\n  opacity: 0;\n  position: fixed;\n  top: 60px;\n  right: 0;\n  bottom: 0;\n  left: 150px;\n  padding: 20px 30px 80px;\n  background: rgba(0, 0, 0, 0.8);\n  transition: opacity .5s .2s; }\n\n.workout-introduce.show {\n  opacity: 1;\n  transition: opacity .5s; }\n\n.workout-introduce.show .workout-introduce-inner {\n  opacity: 1;\n  margin-top: 0;\n  transition: all .5s .2s; }\n\n.workout-introduce-inner {\n  transition: all .5s;\n  opacity: 0;\n  margin-top: 10px;\n  height: 100%;\n  padding-right: 10px;\n  margin-right: -10px;\n  overflow-x: hidden;\n  overflow-y: auto;\n  color: #fff; }\n\n._3HnIN {\n  position: absolute;\n  bottom: 20px;\n  left: 50%;\n  padding: 0;\n  width: 30px;\n  height: 30px;\n  line-height: 30px;\n  overflow: hidden;\n  margin-left: -15px;\n  border: none;\n  background: none;\n  color: #fff;\n  cursor: pointer;\n  transition: transform .35s; }\n  ._3HnIN:hover {\n    transform: scale(1.3); }\n  ._3HnIN i {\n    font-size: 30px;\n    margin: 0; }\n\n._3ESct {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  overflow-x: hidden;\n  overflow-y: auto; }\n\n._1Fdk2 {\n  width: 100%; }\n\n._1QVe8 {\n  padding: 5px;\n  margin: 10px;\n  font-size: 24px;\n  color: #fff;\n  border-bottom: 1px solid #00c78c; }\n\n._16Fkx {\n  padding: 10px 20px;\n  color: #fff; }\n\n.c-93L {\n  color: #fff;\n  margin-top: 10px;\n  margin-bottom: 0;\n  margin-left: 20px; }\n\n._2BoKE {\n  width: 100%;\n  overflow-x: auto;\n  overflow-y: hidden;\n  white-space: nowrap;\n  padding: 10px; }\n\n._2fU4a {\n  padding: 10px;\n  vertical-align: top;\n  display: inline-block; }\n\n._24vS1 {\n  position: relative; }\n\n._1z3Ha {\n  border-radius: 10px;\n  border: 1px solid #999;\n  height: 500px; }\n\n._15A6x {\n  position: absolute;\n  color: #fff;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 30px;\n  height: 30px;\n  max-width: 10%;\n  max-height: 10%;\n  transform: translate(-50%, -50%);\n  line-height: 30px;\n  text-align: center;\n  border-radius: 50%;\n  font-size: 14px;\n  background: rgba(0, 199, 140, 0.66); }\n\n.cIiAg {\n  margin-top: 10px;\n  font-size: 14px;\n  color: #fff; }\n", ""]);
 
 	// exports
 	exports.locals = {
@@ -43881,7 +43970,12 @@
 	};
 
 /***/ },
-/* 645 */,
+/* 645 */
+/***/ function(module, exports) {
+
+	module.exports = require("electron");
+
+/***/ },
 /* 646 */
 /***/ function(module, exports) {
 
@@ -43983,14 +44077,14 @@
 	        return;
 	    }
 
-	    __REACT_HOT_LOADER__.register(WorkoutCoordinates, 'WorkoutCoordinates', '/Users/liucong/study/electron/electron-keep/src/components/AppTraining/workouts/WorkoutCoordinates.js');
+	    __REACT_HOT_LOADER__.register(WorkoutCoordinates, 'WorkoutCoordinates', '/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/WorkoutCoordinates.js');
 
-	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/study/electron/electron-keep/src/components/AppTraining/workouts/WorkoutCoordinates.js');
+	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/WorkoutCoordinates.js');
 	}();
 
 	;
 
-	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/study/electron/electron-keep/src/components/AppTraining/workouts/WorkoutCoordinates.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/study/electron/electron-keep/src/components/AppTraining/workouts/WorkoutCoordinates.js"); } } })();
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/WorkoutCoordinates.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/WorkoutCoordinates.js"); } } })();
 
 /***/ },
 /* 652 */,
@@ -44028,7 +44122,7 @@
 
 
 	// module
-	exports.push([module.id, "._3n1-C {\n  position: relative;\n  overflow: hidden;\n  width: 100%;\n  height: 100%;\n  background: #555;\n  color: #fff; }\n\n.Jy8Ax {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 55px;\n  overflow: hidden; }\n\n.UxslB {\n  font-size: 24px;\n  text-shadow: 0 0 10px black;\n  margin: 0;\n  height: 55px;\n  line-height: 55px;\n  text-align: center;\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  z-index: 10; }\n\n.FUSDk {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 3px;\n  overflow: hidden; }\n\n._17JXW {\n  display: block;\n  float: left;\n  height: 100%;\n  border-right: 1px solid #fff;\n  opacity: .5; }\n  ._17JXW:last-child {\n    border: none; }\n\n._3FwO6 {\n  position: absolute;\n  top: 50%;\n  background: none;\n  border: none;\n  color: #fff;\n  transform: translateY(-50%);\n  z-index: 11; }\n  ._3FwO6[disabled] {\n    cursor: default;\n    color: #999; }\n\n._3RBKe {\n  left: 10px; }\n\n._7TcRO {\n  right: 10px; }\n\n._1VSHW {\n  height: 100%;\n  overflow-y: auto; }\n\n.tIKUE {\n  padding: 10px;\n  padding-top: 55px;\n  height: 100%;\n  margin-right: 520px; }\n\n._6qWUq {\n  padding: 10px;\n  padding-top: 55px;\n  height: 100%;\n  width: 520px;\n  position: absolute;\n  top: 0;\n  right: 0; }\n\n.EMqBv, .mYDob, ._38BmA, ._1MEMb, ._3L2WM {\n  position: absolute;\n  z-index: 10;\n  width: 20px;\n  height: 20px;\n  transform: rotate(-45deg);\n  border: 1px solid transparent;\n  transition: all 1s; }\n\n.mYDob {\n  top: -3px;\n  left: -2px;\n  border-top-color: #00C380; }\n\n._38BmA {\n  top: -3px;\n  right: -2px;\n  border-right-color: #00C380; }\n\n._1MEMb {\n  bottom: -3px;\n  right: -2px;\n  border-bottom-color: #00C380; }\n\n._3L2WM {\n  bottom: -3px;\n  left: -2px;\n  border-left-color: #00C380; }\n\n.mYDob._30hRM,\n._38BmA._30hRM,\n._1MEMb._30hRM,\n._3L2WM._30hRM {\n  width: 100px;\n  height: 100px;\n  border-radius: 50%;\n  border-width: 2px;\n  pointer-events: none;\n  position: absolute;\n  z-index: 12; }\n\n.mYDob._30hRM {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%) rotate(45deg); }\n\n._38BmA._30hRM {\n  top: 50%;\n  right: 50%;\n  transform: translate(50%, -50%) rotate(45deg); }\n\n._1MEMb._30hRM {\n  bottom: 50%;\n  right: 50%;\n  transform: translate(50%, 50%) rotate(45deg); }\n\n._3L2WM._30hRM {\n  bottom: 50%;\n  left: 50%;\n  transform: translate(-50%, 50%) rotate(45deg); }\n\n._37QEa {\n  transform: translate(-50%, -50%);\n  visibility: visible;\n  position: absolute;\n  border-radius: 50%;\n  width: 100px;\n  height: 100px;\n  top: 50%;\n  left: 50%;\n  opacity: 0;\n  border: none;\n  background: rgba(61, 55, 66, 0.9);\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);\n  transition: opacity .5s; }\n  ._37QEa i {\n    margin-left: 5px;\n    margin-right: 0;\n    color: #00C380;\n    font-size: 30px; }\n  ._37QEa._30hRM {\n    visibility: visible;\n    opacity: 1; }\n\n._2ExBK {\n  padding-top: 56%;\n  width: 100%;\n  position: relative; }\n  ._2ExBK:hover ._37QEa {\n    visibility: visible;\n    opacity: 1; }\n\n._2dgxk {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0; }\n  ._2dgxk aside {\n    position: absolute;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    padding: 10px; }\n\n._1GnKZ {\n  width: 100%;\n  height: 100%;\n  overflow: hidden; }\n  ._1GnKZ video {\n    max-width: 100%;\n    max-height: 100%;\n    width: 100%;\n    height: 100%;\n    transition: filter 1s, transform 1s; }\n  ._1GnKZ._2i5wf video {\n    filter: blur(5px);\n    transform: scale(1.2); }\n\n._1eiIf {\n  display: block; }\n\n.Q47CE {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  transition: visibility .35s; }\n\n._3HGkX {\n  position: absolute;\n  right: 10px;\n  bottom: 10px;\n  font-size: 12px;\n  color: #fff; }\n\n.jRP47 {\n  position: absolute;\n  bottom: 5%;\n  left: 3%;\n  width: 60px;\n  height: 60px;\n  line-height: 60px;\n  overflow: hidden;\n  text-align: center;\n  border-radius: 50%;\n  background: rgba(61, 55, 66, 0.8);\n  box-shadow: 0 0 10px rgba(61, 55, 66, 0.8); }\n  .jRP47[disabled] {\n    color: #999; }\n\n._2Av6f {\n  margin-top: 5%;\n  margin-left: 5%;\n  width: 90%;\n  height: 90%;\n  visibility: hidden;\n  opacity: 0;\n  transition: opacity .35s;\n  background: rgba(61, 55, 66, 0.85);\n  padding: 20px;\n  position: relative; }\n  ._2Av6f._2i5wf {\n    margin: 0;\n    width: 100%;\n    height: 100%;\n    visibility: visible;\n    opacity: 1; }\n\n._2T_w2 {\n  width: 320px;\n  display: block;\n  margin: auto; }\n\n._2AJAG {\n  font-size: 18px; }\n\n._2ax7i {\n  text-align: right;\n  font-size: 12px; }\n\n.BNdkY {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  border: none;\n  border-radius: 50%;\n  width: 100px;\n  height: 100px;\n  display: block;\n  margin: auto;\n  color: #3d3742;\n  font-size: 24px;\n  background: rgba(255, 255, 255, 0.9);\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8); }\n\n._1nK_J {\n  display: flex;\n  height: 100%;\n  flex-direction: column; }\n\n._1V8mG {\n  display: flex;\n  align-items: center;\n  flex: 1; }\n\n.-Kejv {\n  overflow-x: auto;\n  overflow-y: hidden;\n  white-space: nowrap; }\n  .-Kejv figure {\n    max-width: 30vh;\n    height: 100%;\n    position: relative;\n    margin-right: 200px; }\n    .-Kejv figure div {\n      height: 70%; }\n  .-Kejv article {\n    position: absolute;\n    top: 5px;\n    right: -180px;\n    width: 180px; }\n  .-Kejv ._3MtSS {\n    height: 100%; }\n  .-Kejv img {\n    width: 100%;\n    height: auto;\n    max-width: 100%; }\n\n._1aNqI {\n  display: none; }\n\n._3oWTp {\n  position: absolute;\n  bottom: 30px;\n  right: 20px;\n  width: 50px;\n  height: 50px;\n  border-radius: 50%;\n  background: #00C380;\n  color: #fff;\n  border: 2px solid #999;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.85); }\n\n._2XsM2 {\n  width: 100%;\n  height: 100%;\n  filter: blur(8px); }\n\n.kzcUT {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(61, 55, 66, 0.8); }\n\n._3XS2U {\n  text-align: center; }\n", ""]);
+	exports.push([module.id, "._3n1-C {\n  position: relative;\n  overflow: hidden;\n  width: 100%;\n  height: 100%;\n  background: #555;\n  color: #fff; }\n\n.Jy8Ax {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 55px;\n  overflow: hidden; }\n\n.UxslB {\n  font-size: 24px;\n  text-shadow: 0 0 10px black;\n  margin: 0;\n  height: 55px;\n  line-height: 55px;\n  text-align: center;\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  z-index: 10; }\n\n.FUSDk {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 3px;\n  overflow: hidden; }\n\n._17JXW {\n  display: block;\n  float: left;\n  height: 100%;\n  border-right: 1px solid #fff;\n  opacity: .5; }\n  ._17JXW:last-child {\n    border: none; }\n\n._3FwO6 {\n  position: absolute;\n  top: 50%;\n  background: none;\n  border: none;\n  color: #fff;\n  transform: translateY(-50%);\n  z-index: 11; }\n  ._3FwO6[disabled] {\n    cursor: default;\n    color: #999; }\n\n._3RBKe {\n  left: 10px; }\n\n._7TcRO {\n  right: 10px; }\n\n._1VSHW {\n  height: 100%;\n  overflow-y: auto; }\n\n.tIKUE {\n  padding: 10px;\n  padding-top: 55px;\n  height: 100%;\n  margin-right: 520px; }\n\n._6qWUq {\n  padding: 10px;\n  padding-top: 55px;\n  height: 100%;\n  width: 520px;\n  position: absolute;\n  top: 0;\n  right: 0; }\n\n.EMqBv, .mYDob, ._38BmA, ._1MEMb, ._3L2WM {\n  position: absolute;\n  z-index: 10;\n  width: 20px;\n  height: 20px;\n  transform: rotate(-45deg);\n  border: 1px solid transparent;\n  transition: all 1s; }\n\n.mYDob {\n  top: -3px;\n  left: -2px;\n  border-top-color: #00c78c; }\n\n._38BmA {\n  top: -3px;\n  right: -2px;\n  border-right-color: #00c78c; }\n\n._1MEMb {\n  bottom: -3px;\n  right: -2px;\n  border-bottom-color: #00c78c; }\n\n._3L2WM {\n  bottom: -3px;\n  left: -2px;\n  border-left-color: #00c78c; }\n\n.mYDob._30hRM,\n._38BmA._30hRM,\n._1MEMb._30hRM,\n._3L2WM._30hRM {\n  width: 100px;\n  height: 100px;\n  border-radius: 50%;\n  border-width: 2px;\n  pointer-events: none;\n  position: absolute;\n  z-index: 12; }\n\n.mYDob._30hRM {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%) rotate(45deg); }\n\n._38BmA._30hRM {\n  top: 50%;\n  right: 50%;\n  transform: translate(50%, -50%) rotate(45deg); }\n\n._1MEMb._30hRM {\n  bottom: 50%;\n  right: 50%;\n  transform: translate(50%, 50%) rotate(45deg); }\n\n._3L2WM._30hRM {\n  bottom: 50%;\n  left: 50%;\n  transform: translate(-50%, 50%) rotate(45deg); }\n\n._37QEa {\n  transform: translate(-50%, -50%);\n  visibility: visible;\n  position: absolute;\n  border-radius: 50%;\n  width: 100px;\n  height: 100px;\n  top: 50%;\n  left: 50%;\n  opacity: 0;\n  border: none;\n  background: rgba(88, 79, 95, 0.9);\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);\n  transition: opacity .5s; }\n  ._37QEa i {\n    margin-left: 5px;\n    margin-right: 0;\n    color: #00c78c;\n    font-size: 30px; }\n  ._37QEa._30hRM {\n    visibility: visible;\n    opacity: 1; }\n\n._2ExBK {\n  padding-top: 56%;\n  width: 100%;\n  position: relative; }\n  ._2ExBK:hover ._37QEa {\n    visibility: visible;\n    opacity: 1; }\n\n._2dgxk {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0; }\n  ._2dgxk aside {\n    position: absolute;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    padding: 10px; }\n\n._1GnKZ {\n  width: 100%;\n  height: 100%;\n  overflow: hidden; }\n  ._1GnKZ video {\n    max-width: 100%;\n    max-height: 100%;\n    width: 100%;\n    height: 100%;\n    transition: filter 1s, transform 1s; }\n  ._1GnKZ._2i5wf video {\n    filter: blur(5px);\n    transform: scale(1.2); }\n\n._1eiIf {\n  display: block; }\n\n.Q47CE {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  transition: visibility .35s; }\n\n._3HGkX {\n  position: absolute;\n  right: 10px;\n  bottom: 10px;\n  font-size: 12px;\n  color: #fff; }\n\n.jRP47 {\n  position: absolute;\n  bottom: 5%;\n  left: 3%;\n  width: 60px;\n  height: 60px;\n  line-height: 60px;\n  overflow: hidden;\n  text-align: center;\n  border-radius: 50%;\n  background: rgba(88, 79, 95, 0.8);\n  box-shadow: 0 0 10px rgba(88, 79, 95, 0.8); }\n  .jRP47[disabled] {\n    color: #999; }\n\n._2Av6f {\n  margin-top: 5%;\n  margin-left: 5%;\n  width: 90%;\n  height: 90%;\n  visibility: hidden;\n  opacity: 0;\n  transition: opacity .35s;\n  background: rgba(88, 79, 95, 0.85);\n  padding: 20px;\n  position: relative; }\n  ._2Av6f._2i5wf {\n    margin: 0;\n    width: 100%;\n    height: 100%;\n    visibility: visible;\n    opacity: 1; }\n\n._2T_w2 {\n  width: 320px;\n  display: block;\n  margin: auto; }\n\n._2AJAG {\n  font-size: 18px; }\n\n._2ax7i {\n  text-align: right;\n  font-size: 12px; }\n\n.BNdkY {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  border: none;\n  border-radius: 50%;\n  width: 100px;\n  height: 100px;\n  display: block;\n  margin: auto;\n  color: #584f5f;\n  font-size: 24px;\n  background: rgba(255, 255, 255, 0.9);\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8); }\n\n._1nK_J {\n  display: flex;\n  height: 100%;\n  flex-direction: column; }\n\n._1V8mG {\n  display: flex;\n  align-items: center;\n  flex: 1; }\n\n.-Kejv {\n  overflow-x: auto;\n  overflow-y: hidden;\n  white-space: nowrap; }\n  .-Kejv figure {\n    max-width: 30vh;\n    height: 100%;\n    position: relative;\n    margin-right: 200px; }\n    .-Kejv figure div {\n      height: 70%; }\n  .-Kejv article {\n    position: absolute;\n    top: 5px;\n    right: -180px;\n    width: 180px; }\n  .-Kejv ._3MtSS {\n    height: 100%; }\n  .-Kejv img {\n    width: 100%;\n    height: auto;\n    max-width: 100%; }\n\n._1aNqI {\n  display: none; }\n\n._3oWTp {\n  position: absolute;\n  bottom: 30px;\n  right: 20px;\n  width: 50px;\n  height: 50px;\n  border-radius: 50%;\n  background: #00c78c;\n  color: #fff;\n  border: 2px solid #999;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.85); }\n\n._2XsM2 {\n  width: 100%;\n  height: 100%; }\n  ._2XsM2._2rR5P {\n    filter: blur(8px); }\n\n.kzcUT {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(88, 79, 95, 0.8);\n  visibility: hidden;\n  opacity: 0; }\n  .kzcUT._2rR5P {\n    visibility: visible;\n    opacity: 1; }\n\n._3sC-F {\n  width: 600px;\n  height: 100%;\n  margin: auto;\n  padding: 50px 0; }\n\n._3XS2U {\n  text-align: center;\n  font-size: 18px;\n  color: #fff;\n  border-bottom: 1px solid rgba(238, 238, 238, 0.2);\n  margin-bottom: 20px; }\n\n._3D-cJ {\n  margin-bottom: 15px;\n  display: flex;\n  font-size: 12px; }\n  ._3D-cJ .ljpHo {\n    flex: 1; }\n\n._3CGer {\n  height: 35vh;\n  overflow: auto;\n  margin: 0 0 15px;\n  padding: 0 10px; }\n  ._3CGer li {\n    display: flex;\n    margin-bottom: 10px; }\n  ._3CGer .ljpHo {\n    flex: 1; }\n\n._3E8D9 {\n  width: 100%; }\n\n.C8pgC {\n  width: 100%;\n  color: #fff;\n  min-height: 100px;\n  padding: 5px;\n  border: 1px solid rgba(238, 238, 238, 0.2);\n  border-radius: 5px;\n  background: none; }\n", ""]);
 
 	// exports
 	exports.locals = {
@@ -44070,15 +44164,22 @@
 		"other-res": "_1aNqI",
 		"button-toggle-sound": "_3oWTp",
 		"exercise-page": "_2XsM2",
+		"active": "_2rR5P",
 		"finish-page": "kzcUT",
-		"finish-title": "_3XS2U"
+		"finish-inner": "_3sC-F",
+		"finish-title": "_3XS2U",
+		"finish-detail": "_3D-cJ",
+		"col": "ljpHo",
+		"finish-actions": "_3CGer",
+		"finish-feel": "_3E8D9",
+		"feel-content": "C8pgC"
 	};
 
 /***/ },
 /* 655 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	module.exports = __webpack_require__.p + "/images/6f65013d.great.png";
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFsAAACGCAQAAAAYnz7jAAAE9klEQVR4Ae3ZA5TkWBxG8a8x5tq2bdu2bXNs27Ztr23bNtpG3UVtb/KKrUrenJPf/7iQGxeUCrzgjNYfuATZqRFkB9lBdpDNidxvczb3c6JMHMRjQBk72JrNDpQBj3GQwtiV+YQIm2lt9kzCQsxnV0lMxlHJvjZmsy+VOCZJYltKcKy0MnsljhK21T8YjNvRtmVzNG6DFcbG5OF4wbrsF3DksbGq0Bm3s23K5mzcOstBc37D8R7ptmSTzns4fqO53LgXt6utyb4at3tloiHf4PiKhjZk05CvcHwTo4prcbtHdcBDzqgOuAe3axWNdD7A8QvN5DOa8SuOD0hXLJyLWyf5jE64nat4eAlHLhvJR2xELo6XFB/H4jZIPmIQbscqEVbjKGYb+YRtKMaxWomxHyEck+QTJuEIsZ+SYTZVPuYC+YQL+Jgqs5QcO1EGfM9NZMhHZHAT3wNl7KTqoBcP0VgWoDEP0VO1FAgEAoFAIBAIBAIcSgce5wsKKeZnXmc6l9NcHuAQevIM35BPNt/yImO4hOZKjst4i1hy6EcLpRCn8Sqx5DKYTRQf2/IkiXzFsUoJmjGWRLK4QbGxM9+STCWDOb/e5yo+J7lOisbu/Ijt+srEdvyK/aC33FjG+qGCA1SFc4ilgFd4hyy8V8qrPMEPxPIyaQrjEyK9x5mkSxJpHMezeOd77qS1/sVOTKeSSBfpHxxMpJU0lIEcvPEYG8rAFZRjWqh/MBDTuzRUBLLxxp2Kwt2YimgW6xA5QbIqO533MZ0tMijD7UvJjmwHD2K6X2yPaayF2ftgGiqOxvSghdmNCeE2XxyC6W4Ls9MwTRd7YOpgYXZrTKPEFpiWWph9EqZekvgNtywaWZfdB9MlkliB6Sq7ssngR0zbSqItpndJtyr7Wkzf6x9sTwjTTfZk05hvMfVXGE9jymIra7IHEWkv59t6pCfJlAs/4o3rZOA0QpieUxXSeIdIk+TC+3jjTLmwP3lEOlYOziJaH/2PZ/HGoca//z8RabVMLCTa5KpDhcV4Ywf9hyP4jUgF7CQTG/Mr0Z4NP5GeeKGYBvoX11BMtDsUjVOpIFohD5LOhXjhRUliExYQy0LFxl3E9gpn44VBZHATvxHL6zRVPAwhtjK8MJEPiO0btlAiDMY+n7OtkqEHdvmAzVUdnMMf2GIxLVVdbM2z+K+ctqSpJsigKxX46S0OVG1wOE/hjz94hEzVHsfzHN76hUdorrrjFF7CG99xN41Vf9ibXnxB6hSwgMtpqFTgEAbxE/Uri6mcR2OlFi1YSP3pQqa8wiNUUHch7pe3OIFfqZsszpP32IoZVFBbz7Cd/MJuzKKSmvqOy+U39mA2pVTX+9xAI9mB1tzACnJI5AsGcJjsQzr7cxP9WMILvM/XfMq7PMs0unEBW+gfgQCncR+nsj0t9B9asR/n0UA2YyVVysmlmBBhR8teZJJHbJ1kL44gnqdlL4YQTymbyE40IYv42shOXE8iX5Im+5DGWyR2luzDxSTzBmmyCxl8THIXyy7cTHV8QqbswUb8TiT7rydMprqK2EF24ARqYp1sQCu+pWbukf+YRU0Vs5f8xY3Uxoc0l3/YjyJqZ578wsZ8Te11lD+4kP51mL5sIksEAmzMC1QSqvfJ5UGlDm1JlXKaKlUYQOpsEWQH2UF2kB1kB9nr9V1yY14kRP3L4yHVyF9QVS1HNsGowgAAAABJRU5ErkJggg=="
 
 /***/ }
 /******/ ]);

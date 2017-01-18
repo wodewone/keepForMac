@@ -4,7 +4,7 @@ import CSSModules from 'react-css-modules'
 import autobind from 'autobind-decorator'
 import moment from 'moment'
 import Utils from '../../../js/Utils.js'
-import http from '../../../js/HttpRequest.js'
+import $http from '../../../js/HttpRequest.js'
 
 import styles from '../../../sass/appWorkouts.scss'
 
@@ -30,7 +30,7 @@ class AppWorkout extends Component{
         console.info(this.state.workout)
         if(!this.state.workout._id) {
             // 获取锻炼项目详情
-            http.getPlansContent(this.props.params.plan_id, this.state.user.gender).then((response) => {
+            $http.getPlansContent(this.props.params.plan_id, this.state.user.gender).then((response) => {
                 if (response.ok) {
                     Utils.storage.set('workouts', [...new Set(this.state.workouts).add([this.props.params.plan_id, response.data])])
 
@@ -42,7 +42,7 @@ class AppWorkout extends Component{
         }
 
         // 获取 总打卡数量/训练评论/完成用户/座右铭
-        http.getWorkoutsContent(this.props.params.plan_id).then((response) => {
+        $http.getWorkoutsContent(this.props.params.plan_id).then((response) => {
             if(response.ok){
                 Utils.storage.set('timeoutTip', response.data.motto)
                 this.setState({
@@ -60,7 +60,7 @@ class AppWorkout extends Component{
             return false
 
         return list.map((item, index) => {
-            return <li key={item._id + index}><Link styleName="pioneer-item" onClick={() => http.getUserData(item._id).then((data) => console.info(data))} ><img src={item.avatar} alt=""/></Link></li>
+            return <li key={item._id + index}><Link styleName="pioneer-item" onClick={() => $http.getUserData(item._id).then((data) => console.info(data))} ><img src={item.avatar} alt=""/></Link></li>
         })
     }
 

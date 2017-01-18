@@ -19,36 +19,31 @@ export default class Http {
         return 'Bearer '+ authentication.token
     }
 
-    static httpGet(url, options){
+    static httpGet(url, options = {}){
         if(!url){
             return false
         }
 
-        if(!options){
-            options = {
-                method: 'GET',
-                headers: {
-                    'Authorization': this.getToken()
-                }
+        options = Object.assign({
+            method: 'GET',
+            headers: {
+                'Authorization': this.getToken()
             }
-        }
+        }, options)
 
         return fetch(hostname + url, options).then((res) => res.json())
     }
 
-    static httpPost(url, options){
+    static httpPost(url, options = {}){
         if(!url){
             return false
         }
-        if(!options){
-            options = {
-                method: 'GET',
-                headers: {
-                    'Authorization': this.getToken()
-                }
+        options = Object.assign({
+            method: 'GET',
+            headers: {
+                'Authorization': this.getToken()
             }
-        }
-        console.info(url)
+        }, options)
 
         return fetch(hostname + url, options).then((res) => res.json())
     }
@@ -114,6 +109,22 @@ export default class Http {
     }
     static getWorkoutsContent(workoutsId){
         return this.httpGet('/v1.1/workouts/'+ workoutsId +'/dynamic?tLimit=3')
+    }
+
+    // 完成训练
+    static completeExercise(){
+        return this.httpGet('/now')
+    }
+
+    static commitTrainingLog(json){
+        return this.httpPost('/v1.1/home/saveTrainingLog', Object.assign({
+            'serverEndTime': new Date().toISOString(),
+            'doneDate': new Date().toISOString(),
+        }))
+    }
+
+    static commitTrainingLog(json){
+        return this.httpPost('/v1.1/home/achievements/new')
     }
 }
 

@@ -3,7 +3,7 @@ import CSSModules from 'react-css-modules'
 import Utils from './Utils.js'
 import styles from '../sass/appLogin.scss'
 import autobind from 'autobind-decorator'
-import http from './HttpRequest.js'
+import $http from './HttpRequest.js'
 
 @CSSModules(styles)
 class AppLogin extends Component{
@@ -42,7 +42,7 @@ class AppLogin extends Component{
             return false;
         }
 
-        http.login({
+        $http.login({
             mobile: this.state.mobile,
             password: this.state.password
         }).then((response) =>{

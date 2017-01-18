@@ -1,16 +1,16 @@
 {
-  "name": "keep for mac",
+  "name": "keep-for-mac",
   "version": "0.1.0",
   "description": "An keep app for mac",
   "main": "./main.js",
   "scripts": {
     "start": "webpack",
-    "build": "webpack-dev-server --port 3000 --hot --inline",
+    "build": "webpack && webpack-dev-server --port 3000 --hot --inline",
     "test": "electron ."
   },
   "repository": {
     "type": "git",
-    "url": "null"
+    "url": "git+https://github.com/wodewone/keepForMac.git"
   },
   "keywords": [
     "Electron",
@@ -18,9 +18,9 @@
     "keep for mac"
   ],
   "author": "wodewone",
-  "license": "ISC",
   "dependencies": {
     "electron": "^1.4.12",
+    "location-history": "^1.1.0",
     "moment": "^2.17.1",
     "react": "^15.4.1",
     "react-css-modules": "^4.1.0",
@@ -55,8 +55,8 @@
   },
   "license": "GPL",
   "productName": "keepForMac",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/wodewone/keepForMac.git"
+  "bugs": {
+    "url": "https://github.com/wodewone/keepForMac/issues"
   },
+  "homepage": "https://github.com/wodewone/keepForMac#readme"
 }
