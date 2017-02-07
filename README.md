@@ -1,24 +1,39 @@
 ## KEEP FOR MAC
 
+<div style="background:#3d3744;padding:50px;text-align:center;"><img src="http://staticssl.gotokeep.com/show/images/homepage/slogan-cfd33df7dd.png"></div>
+
 ### 介绍
+
+Mac版keep应用（开发未结束，咱不提供下载体验，可 download 源码运行体验，如发现问题或有任何建议，可随时联系作者，欢迎大家反馈，谢谢！~）
 
 使用 Electron + React 构建的桌面版 keep
 > **注：**keep - 专注移动体育领域的应用开发，倡导开放共享的精神，不模仿，不跟风，只做酷的产品 荣获 App Store 2015年度精选（节选自 [keep 官网](http://www.gotokeep.com)）
 
 ### Preview
-
+![preview-1](http://wodewone.github.io/app/keep/preview/preview-1.jpg)
+![preview-2](http://wodewone.github.io/app/keep/preview/preview-2.jpg)
+![preview-3](http://wodewone.github.io/app/keep/preview/preview-3.jpg)
+![preview-4](http://wodewone.github.io/app/keep/preview/preview-4.jpg)
+![preview-5](http://wodewone.github.io/app/keep/preview/preview-5.jpg)
+![preview-6](http://wodewone.github.io/app/keep/preview/preview-6.jpg)
+![preview-7](http://wodewone.github.io/app/keep/preview/preview-7.jpg)
+![preview-8](http://wodewone.github.io/app/keep/preview/preview-8.jpg)
+![preview-9](http://wodewone.github.io/app/keep/preview/preview-9.jpg)
 
 ### Development
 
-日记：[开发中问题以及进程](http://wodewone.github.io/2016/12/03/使用js创建macOS应用/)
+开发笔记：[开发中问题以及进程](http://wodewone.github.io/2016/12/03/使用js创建macOS应用/)
 
 技术栈：electron + webpack + babel + react + es6 + sass + cssModules
 
-开发工具：IntelliJ IDEA
+开发工具：IntelliJ IDEA 2016.2.5
 
 其他工具：Charles（抓包工具）、Postman（接口测试工具）
 
-参考文献：
+开发平台：Mac
+
+### 参考文献
+
 * [开源electron App](https://github.com/sindresorhus/awesome-electron)
 * [[译文] 通过 Electron 开发一个简单地桌面应用](https://gold.xitu.io/entry/56aae5e4a633bd0257ae4ab8)
 * [Electron 快速入门](https://github.com/electron/electron/blob/master/docs-translations/zh-CN/tutorial/quick-start.md)
