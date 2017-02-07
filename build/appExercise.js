@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "0dc38241df11916108ca"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "3f98021d57242db08012"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -619,6 +619,10 @@
 
 	var _moduleExercise2 = _interopRequireDefault(_moduleExercise);
 
+	var _HttpRequest = __webpack_require__(520);
+
+	var _HttpRequest2 = _interopRequireDefault(_HttpRequest);
+
 	var _WorkoutCoordinates = __webpack_require__(651);
 
 	var _WorkoutCoordinates2 = _interopRequireDefault(_WorkoutCoordinates);
@@ -692,9 +696,7 @@
 	            timeoutTip: _Utils2.default.storage.get('timeoutTip'),
 	            timeoutGap: 0,
 	            totalDuration: 0,
-
 	            statisticDuration: 0, // 总时长（包括休息时间和报读时间以及训练时间）
-
 	            isEnd: ''
 	        };
 
@@ -717,6 +719,7 @@
 	        value: function componentDidMount() {
 	            var _this2 = this;
 
+	            console.info(this.state.workout);
 	            _electron.remote.getCurrentWindow().removeAllListeners();
 	            _electron.remote.getCurrentWindow().on('blur', function (e) {
 	                _this2.handleMainPause();
@@ -739,6 +742,7 @@
 	                single.type = item.type;
 	                single.description = item.exercise.description;
 	                single.covers = item.exercise.covers;
+	                single.exerciseId = item.exercise._id;
 
 	                // 根据性别划分锻炼难度
 	                if (_this2.state.user.gender.toLowerCase() === 'm') {
@@ -939,7 +943,10 @@
 
 	                    if (_this5.vStart) _this5.statisticGroup.push({
 	                        name: _this5.state.exercises[_this5.state.currentProceed].name,
-	                        duration: _this5.state.currentGroupDuration
+	                        type: _this5.state.exercises[_this5.state.currentProceed].type,
+	                        exercise: _this5.state.exercises[_this5.state.currentProceed].exerciseId,
+	                        actualSec: 20,
+	                        totalSec: 20
 	                    });
 	                    return true;
 	                }
@@ -1255,6 +1262,7 @@
 	                this.toNextCallback = function () {
 	                    return _this11.componentAudio().pause().setSrc(ModuleExercise.getSoundTips('g_16_well_done.mp3')).play();
 	                };
+	                _HttpRequest2.default.completeExercise();
 	                this.setState({
 	                    isEnd: 'active'
 	                });
@@ -1435,7 +1443,7 @@
 	                                _react2.default.createElement(
 	                                    'div',
 	                                    { className: 'text-right', styleName: 'col' },
-	                                    (0, _moment2.default)(new Date(item.duration * 1000)).format('mm:ss')
+	                                    (0, _moment2.default)(new Date(item.totalSec * 1000)).format('mm:ss')
 	                                )
 	                            );
 	                        })
@@ -28982,7 +28990,225 @@
 /* 517 */,
 /* 518 */,
 /* 519 */,
-/* 520 */,
+/* 520 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = undefined;
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _Utils = __webpack_require__(516);
+
+	var _Utils2 = _interopRequireDefault(_Utils);
+
+	var _moment = __webpack_require__(521);
+
+	var _moment2 = _interopRequireDefault(_moment);
+
+	var _autobindDecorator = __webpack_require__(509);
+
+	var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var hostname = 'https://api.gotokeep.com';
+
+	var serializeJSON = function serializeJSON(data) {
+	    return Object.keys(data).map(function (keyName) {
+	        return encodeURIComponent(keyName) + '=' + encodeURIComponent(data[keyName]);
+	    }).join('&');
+	};
+
+	var Http = function () {
+	    function Http() {
+	        _classCallCheck(this, Http);
+	    }
+
+	    _createClass(Http, null, [{
+	        key: 'getToken',
+	        value: function getToken() {
+	            var authentication = _Utils2.default.storage.get('authentication') || {};
+	            return 'Bearer ' + authentication.token;
+	        }
+	    }, {
+	        key: 'httpGet',
+	        value: function httpGet(url) {
+	            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+	            if (!url) {
+	                return false;
+	            }
+
+	            options = Object.assign({
+	                method: 'GET',
+	                headers: {
+	                    'Authorization': this.getToken()
+	                }
+	            }, options);
+
+	            return fetch(hostname + url, options).then(function (res) {
+	                return res.json();
+	            });
+	        }
+	    }, {
+	        key: 'httpPost',
+	        value: function httpPost(url) {
+	            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+	            if (!url) {
+	                return false;
+	            }
+	            options = Object.assign({
+	                method: 'GET',
+	                headers: {
+	                    'Authorization': this.getToken()
+	                }
+	            }, options);
+
+	            return fetch(hostname + url, options).then(function (res) {
+	                return res.json();
+	            });
+	        }
+
+	        /**
+	         * Dashboard
+	         */
+	        // Plans
+
+	    }, {
+	        key: 'getDashboardTraining',
+	        value: function getDashboardTraining() {
+	            return this.httpGet('/training/v2/home');
+	        }
+	    }, {
+	        key: 'getDashboardWorkouts',
+	        value: function getDashboardWorkouts() {
+	            return this.httpGet('/v2/home/dashboard/pwData');
+	        }
+
+	        // Statistics
+
+	    }, {
+	        key: 'getDashboardStatistics',
+	        value: function getDashboardStatistics() {
+	            return this.httpGet('/v1.1/home/dashboard/statistics');
+	        }
+	        // User
+
+	    }, {
+	        key: 'getDashboardUser',
+	        value: function getDashboardUser() {
+	            return this.httpGet('/v1.1/home/dashboard/user');
+	        }
+	    }, {
+	        key: 'getRankingData',
+	        value: function getRankingData() {
+	            var para = serializeJSON({
+	                date: (0, _moment2.default)().format('YYYYMMDD')
+	            });
+	            return this.httpGet('/social/v2/rankinglist/brief?' + para);
+	        }
+
+	        // user login
+
+	    }, {
+	        key: 'login',
+	        value: function login(data) {
+	            return this.httpPost('/v1.1/users/login', {
+	                method: "POST",
+	                headers: {
+	                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+	                },
+	                body: serializeJSON(data)
+	            });
+	        }
+
+	        // 用户个人信息
+
+	    }, {
+	        key: 'getUserData',
+	        value: function getUserData(userID) {
+	            return this.httpGet('/v2/people/' + userID);
+	        }
+
+	        // workouts content
+	        //getExploreContent() {
+	        //    return fetch('https://show.gotokeep.com/explore/', {
+	        //        method: 'GET',
+	        //        headers: {
+	        //            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+	        //            'Authorization': this.getToken()
+	        //        }
+	        //    })
+	        //}
+
+	        // workout plan
+
+	    }, {
+	        key: 'getPlansContent',
+	        value: function getPlansContent(workoutsId) {
+	            var gender = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'm';
+
+	            return this.httpGet('/v2/plans/' + workoutsId + '?trainer_gender=' + gender);
+	        }
+	    }, {
+	        key: 'getWorkoutsContent',
+	        value: function getWorkoutsContent(workoutsId) {
+	            return this.httpGet('/v1.1/workouts/' + workoutsId + '/dynamic?tLimit=3');
+	        }
+
+	        // 完成训练
+
+	    }, {
+	        key: 'completeExercise',
+	        value: function completeExercise() {
+	            return this.httpGet('/now');
+	        }
+	    }, {
+	        key: 'commitTrainingLog',
+	        value: function commitTrainingLog(json) {
+	            return this.httpPost('/v1.1/home/saveTrainingLog', Object.assign({
+	                'serverEndTime': new Date().toISOString(),
+	                'doneDate': new Date().toISOString()
+	            }));
+	        }
+	    }, {
+	        key: 'commitTrainingLog',
+	        value: function commitTrainingLog(json) {
+	            return this.httpPost('/v1.1/home/achievements/new');
+	        }
+	    }]);
+
+	    return Http;
+	}();
+
+	exports.default = Http;
+	;
+
+	var _temp = function () {
+	    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+	        return;
+	    }
+
+	    __REACT_HOT_LOADER__.register(hostname, 'hostname', '/Users/liucong/Documents/Github/keepForMac/src/js/HttpRequest.js');
+
+	    __REACT_HOT_LOADER__.register(serializeJSON, 'serializeJSON', '/Users/liucong/Documents/Github/keepForMac/src/js/HttpRequest.js');
+
+	    __REACT_HOT_LOADER__.register(Http, 'Http', '/Users/liucong/Documents/Github/keepForMac/src/js/HttpRequest.js');
+	}();
+
+	;
+
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/js/HttpRequest.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/js/HttpRequest.js"); } } })();
+
+/***/ },
 /* 521 */
 /***/ function(module, exports, __webpack_require__) {
 

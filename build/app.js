@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "0dc38241df11916108ca"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "3f98021d57242db08012"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -37045,6 +37045,7 @@
 	    }, {
 	        key: 'componentWillMount',
 	        value: function componentWillMount() {
+	            window.coco = this;
 	            console.warn(this.props.router.routes);
 	        }
 	    }, {
@@ -37071,7 +37072,6 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            console.info(this.props.router.location);
 	            return _react2.default.createElement(
 	                'div',
 	                { style: { width: '100%' } },
@@ -37088,12 +37088,12 @@
 	                        { styleName: 'history-col' },
 	                        _react2.default.createElement(
 	                            'button',
-	                            { disabled: this.state.actionBack, styleName: 'history-button', onClick: this.historyActionBack },
+	                            { disabled: 1, styleName: 'history-button', onClick: this.historyActionBack },
 	                            _react2.default.createElement('i', { className: 'iconfont icon-forward' })
 	                        ),
 	                        _react2.default.createElement(
 	                            'button',
-	                            { disabled: this.state.actionForward, styleName: 'history-button', onClick: this.historyActionForward },
+	                            { disabled: 1, styleName: 'history-button', onClick: this.historyActionForward },
 	                            _react2.default.createElement('i', { className: 'iconfont icon-goback' })
 	                        )
 	                    ),
@@ -43323,19 +43323,19 @@
 	        }
 	    }, {
 	        key: 'httpGet',
-	        value: function httpGet(url, options) {
+	        value: function httpGet(url) {
+	            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
 	            if (!url) {
 	                return false;
 	            }
 
-	            if (!options) {
-	                options = {
-	                    method: 'GET',
-	                    headers: {
-	                        'Authorization': this.getToken()
-	                    }
-	                };
-	            }
+	            options = Object.assign({
+	                method: 'GET',
+	                headers: {
+	                    'Authorization': this.getToken()
+	                }
+	            }, options);
 
 	            return fetch(hostname + url, options).then(function (res) {
 	                return res.json();
@@ -43343,19 +43343,18 @@
 	        }
 	    }, {
 	        key: 'httpPost',
-	        value: function httpPost(url, options) {
+	        value: function httpPost(url) {
+	            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
 	            if (!url) {
 	                return false;
 	            }
-	            if (!options) {
-	                options = {
-	                    method: 'GET',
-	                    headers: {
-	                        'Authorization': this.getToken()
-	                    }
-	                };
-	            }
-	            console.info(url);
+	            options = Object.assign({
+	                method: 'GET',
+	                headers: {
+	                    'Authorization': this.getToken()
+	                }
+	            }, options);
 
 	            return fetch(hostname + url, options).then(function (res) {
 	                return res.json();
@@ -43447,6 +43446,27 @@
 	        key: 'getWorkoutsContent',
 	        value: function getWorkoutsContent(workoutsId) {
 	            return this.httpGet('/v1.1/workouts/' + workoutsId + '/dynamic?tLimit=3');
+	        }
+
+	        // 完成训练
+
+	    }, {
+	        key: 'completeExercise',
+	        value: function completeExercise() {
+	            return this.httpGet('/now');
+	        }
+	    }, {
+	        key: 'commitTrainingLog',
+	        value: function commitTrainingLog(json) {
+	            return this.httpPost('/v1.1/home/saveTrainingLog', Object.assign({
+	                'serverEndTime': new Date().toISOString(),
+	                'doneDate': new Date().toISOString()
+	            }));
+	        }
+	    }, {
+	        key: 'commitTrainingLog',
+	        value: function commitTrainingLog(json) {
+	            return this.httpPost('/v1.1/home/achievements/new');
 	        }
 	    }]);
 
@@ -58512,7 +58532,7 @@
 	                    console.info('getDashboardTraining:', error);
 	                });
 
-	                //Http.getDashboardWorkouts().then((response) => {
+	                //$http.getDashboardWorkouts().then((response) => {
 	                //    if (response.ok) {
 	                //        this.setState({
 	                //            trainingWorkouts: response.data.workouts
@@ -59291,7 +59311,7 @@
 
 	    //@autobind
 	    //componentWillMount(){
-	    //    http.getExploreContent().then((res) => {
+	    //    $http.getExploreContent().then((res) => {
 	    //        if(res.status == 200)
 	    //            return res.text()
 	    //        else
@@ -59307,7 +59327,7 @@
 	    _createClass(AppExplore, [{
 	        key: 'getExploreHtml',
 	        value: function getExploreHtml() {
-	            return _react2.default.createElement('iframe', { styleName: 'explore-frame', src: 'http://show.gotokeep.com/explore/' });
+	            return _react2.default.createElement('webview', { styleName: 'explore-frame', src: 'http://show.gotokeep.com/explore/' });
 	        }
 	    }, {
 	        key: 'render',

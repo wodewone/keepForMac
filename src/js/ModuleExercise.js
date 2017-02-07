@@ -76,6 +76,7 @@ class ModuleExercise extends Component{
     @autobind
     componentDidMount(){
         console.info(this.state.workout)
+
         remote.getCurrentWindow().removeAllListeners();
         remote.getCurrentWindow().on('blur', (e) => {
             this.handleMainPause()

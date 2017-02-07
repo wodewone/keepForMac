@@ -1,0 +1,320 @@
+{
+	"ok": true,
+	"data": [{
+		"subclassType": "com.keep.snooker.model.webapp.homepage.section.PhysicalLaunchSection",
+		"type": "physicalGuide",
+		"index": 0,
+		"sectionName": "体测引导",
+		"more": "keep://fitness_test/",
+		"data": [],
+		"physicalGuide": {
+			"launch": true,
+			"tips": "这一阶段的训练感觉怎么样？汗水见证了你的努力。推荐你进行运动能力测试，看看自己的进步，Keep 会根据你的运动能力推荐适合的训练。",
+			"schema": "keep://fitness_test/"
+		}
+	}, {
+		"subclassType": "com.keep.snooker.model.webapp.homepage.section.UserScheduleSection",
+		"type": "joinedSchedule",
+		"index": 1,
+		"sectionName": "我的课程表",
+		"more": "keep://all_schedules/",
+		"data": [],
+		"schedule": {
+			"id": "585a92b1c7014a08f4d58925",
+			"user": "56a39f4abc3f032805db1088",
+			"startDate": "2016-12-21T14:33:21.000Z",
+			"offDays": {
+				"available": 0,
+				"days": []
+			},
+			"completedWorkouts": [{
+				"id": "585a99df979652192fa27a90",
+				"workout": "54afa52d35fb7f5912e3c6f9",
+				"day": 0,
+				"traininglogs": ["56a39f4abc3f032805db1088_9223370554522150807_tr"]
+			}, {
+				"id": "585aa814d21e839a54aaaad9",
+				"workout": "54bb9f5b73b0306c4364672c",
+				"day": 0,
+				"traininglogs": ["56a39f4abc3f032805db1088_9223370554518501807_tr"]
+			}],
+			"schedule": {
+				"id": "582c413f3343638b140a4ab3",
+				"name": "减脂课程表K2 · HIIT",
+				"difficulty": 2,
+				"goals": 1,
+				"totalDaysCount": 14,
+				"trainingDaysCount": 10,
+				"averageDuration": 27,
+				"picture": "http://static1.keepcdn.com/2016/11/15/13/1479188650408_640x658.jpg",
+				"trainingType": "training",
+				"days": [{
+					"workouts": ["54afa52d35fb7f5912e3c6f9", "573d9c4cb12cdda130257d66", "54bb9f5b73b0306c4364672c", "5721b7fcac4dbc5586c0ba8c"],
+					"workoutsType": ["training", "training", "training", "training"],
+					"duration": 29,
+					"day": 0,
+					"trainingDayType": "training"
+				}, {
+					"workouts": ["54afa35c35fb7f5912e3c6de"],
+					"workoutsType": ["training"],
+					"duration": 10,
+					"day": 1,
+					"trainingDayType": "training"
+				}, {
+					"workouts": ["54afa52d35fb7f5912e3c6f9", "573d9c4cb12cdda130257d66", "54bb9f5b73b0306c4364672d", "5721b7fcac4dbc5586c0ba8c"],
+					"workoutsType": ["training", "training", "training", "training"],
+					"duration": 29,
+					"day": 2,
+					"trainingDayType": "training"
+				}, {
+					"workouts": [],
+					"workoutsType": [],
+					"duration": 0,
+					"day": 3,
+					"trainingDayType": "training"
+				}, {
+					"workouts": ["54afa52d35fb7f5912e3c6f9", "55e2ba1303037f4ef8085aa8"],
+					"workoutsType": ["training", "training"],
+					"duration": 28,
+					"day": 4,
+					"trainingDayType": "training"
+				}, {
+					"workouts": ["560ba9f61421f681019395f5"],
+					"workoutsType": ["training"],
+					"duration": 17,
+					"day": 5,
+					"trainingDayType": "training"
+				}, {
+					"workouts": ["54afa52d35fb7f5912e3c6f9", "55e2ba1303037f4ef8085aa9"],
+					"workoutsType": ["training", "training"],
+					"duration": 28,
+					"day": 6,
+					"trainingDayType": "training"
+				}, {
+					"workouts": [],
+					"workoutsType": [],
+					"duration": 0,
+					"day": 7,
+					"trainingDayType": "training"
+				}, {
+					"workouts": ["54afa52d35fb7f5912e3c6f9", "55e2ba1303037f4ef8085aab", "55d2dec8c78101227e9ff944"],
+					"workoutsType": ["training", "training", "training"],
+					"duration": 36,
+					"day": 8,
+					"trainingDayType": "training"
+				}, {
+					"workouts": [],
+					"workoutsType": [],
+					"duration": 0,
+					"day": 9,
+					"trainingDayType": "training"
+				}, {
+					"workouts": ["54afa52d35fb7f5912e3c6f9", "55e2ba1303037f4ef8085aaa", "55d2e472cb23bbdb81bafbf6"],
+					"workoutsType": ["training", "training", "training"],
+					"duration": 37,
+					"day": 10,
+					"trainingDayType": "training"
+				}, {
+					"workouts": [],
+					"workoutsType": [],
+					"duration": 0,
+					"day": 11,
+					"trainingDayType": "training"
+				}, {
+					"workouts": ["561dfd0ecb8121aec097176a"],
+					"workoutsType": ["training"],
+					"duration": 17,
+					"day": 12,
+					"trainingDayType": "training"
+				}, {
+					"workouts": ["54afa52d35fb7f5912e3c6f9", "54af894d5c5f72d2058c5d85", "5721b7fcac4dbc5586c0ba8c"],
+					"workoutsType": ["training", "training", "training"],
+					"duration": 42,
+					"day": 13,
+					"trainingDayType": "training"
+				}],
+				"isOfficial": true
+			}
+		}
+	}, {
+		"subclassType": "com.keep.snooker.model.webapp.homepage.section.UserCourseSection",
+		"type": "joinedCourse",
+		"index": 2,
+		"sectionName": "我的训练",
+		"more": "keep://all_courses/",
+		"data": [],
+		"plans": [{
+			"id": "565bfb0f2f5f272b8a7880eb",
+			"name": "俯卧撑入门",
+			"days": 1,
+			"difficulty": 1,
+			"averageDuration": 14,
+			"lastTrainingDate": "2016-12-04T15:11:03.943Z",
+			"currentWorkout": "565bfb0f2f5f272b8a7880eb",
+			"curWorkoutFinishTimes": 10,
+			"workouts": ["565bfb0f2f5f272b8a7880eb"],
+			"picture": "http://static1.keepcdn.com/2016/11/08/15/1478591166781_750x700.jpg"
+		}, {
+			"id": "54afbef416a510a82194e257",
+			"name": "缓解腰背疼痛",
+			"days": 1,
+			"difficulty": 1,
+			"averageDuration": 7,
+			"lastTrainingDate": "1970-01-01T00:00:00.000Z",
+			"currentWorkout": "54afbef416a510a82194e257",
+			"curWorkoutFinishTimes": 3,
+			"workouts": ["54afbef416a510a82194e257"],
+			"picture": "http://static1.keepcdn.com/2016/11/08/16/1478592161656_750x700.jpg"
+		}, {
+			"id": "54af894d5c5f72d2058c5d85",
+			"name": "HIIT全身燃动",
+			"days": 1,
+			"difficulty": 3,
+			"averageDuration": 27,
+			"lastTrainingDate": "2016-11-30T13:04:37.052Z",
+			"currentWorkout": "54af894d5c5f72d2058c5d85",
+			"curWorkoutFinishTimes": 6,
+			"workouts": ["54af894d5c5f72d2058c5d85"],
+			"picture": "http://static1.keepcdn.com/2016/11/08/16/1478592060604_750x700.jpg"
+		}, {
+			"id": "55e2ba1303037f4ef8085aa7",
+			"name": "HIIT燃脂初级",
+			"days": 4,
+			"difficulty": 2,
+			"averageDuration": 20,
+			"lastTrainingDate": "1970-01-01T00:00:00.000Z",
+			"currentWorkout": "55e2ba1303037f4ef8085aa8",
+			"curWorkoutFinishTimes": 3,
+			"workouts": ["55e2ba1303037f4ef8085aa8", "55e2ba1303037f4ef8085aa9", "55e2ba1303037f4ef8085aaa", "55e2ba1303037f4ef8085aab"],
+			"picture": "http://static1.keepcdn.com/misc/2015/10/20/17/54212a0b69400000.jpg"
+		}, {
+			"id": "55e5739c88d3525942226cfe",
+			"name": "HIIT燃脂强化",
+			"days": 4,
+			"difficulty": 4,
+			"averageDuration": 20,
+			"lastTrainingDate": null,
+			"currentWorkout": "55e5739c88d3525942226cff",
+			"curWorkoutFinishTimes": 0,
+			"workouts": ["55e5739c88d3525942226cff", "55e5739c88d3525942226d00", "55e5739c88d3525942226d01", "55e5739c88d3525942226d02"],
+			"picture": "http://static1.keepcdn.com/misc/2015/10/20/17/54212a3678000000.jpg"
+		}, {
+			"id": "54b370c70988a2cc08755ebe",
+			"name": "家庭哑铃塑形",
+			"days": 16,
+			"difficulty": 2,
+			"averageDuration": 34,
+			"lastTrainingDate": "1970-01-01T00:00:00.000Z",
+			"currentWorkout": "54bcfe3ec49906a233acaf75",
+			"curWorkoutFinishTimes": 1,
+			"workouts": ["54bcfe3ec49906a233acaf75", "54bcfe3ec49906a233acaf76", "54bcfe3ec49906a233acaf77", "54bcfe3ec49906a233acaf78", "54bcfe3ec49906a233acaf79", "54bcfe3ec49906a233acaf7a", "54bcfe3ec49906a233acaf7b", "54bcfe3ec49906a233acaf7c", "54bcfe3ec49906a233acaf7d", "54bcfe3ec49906a233acaf7e", "54bcfe3ec49906a233acaf7f", "54bcfe3ec49906a233acaf80", "54bcfe3ec49906a233acaf81", "54bcfe3ec49906a233acaf82", "54bcfe3ec49906a233acaf83", "54bcfe3ec49906a233acaf84"],
+			"picture": "http://static1.keepcdn.com/misc/2015/10/20/17/54212a540bc00000.jpg"
+		}, {
+			"id": "55dabcdaf27cfd351f773d6e",
+			"name": "膝关节自我康复阶段1",
+			"days": 1,
+			"difficulty": 1,
+			"averageDuration": 22,
+			"lastTrainingDate": "1970-01-01T00:00:00.000Z",
+			"currentWorkout": "55dabcdaf27cfd351f773d6e",
+			"curWorkoutFinishTimes": 0,
+			"workouts": ["55dabcdaf27cfd351f773d6e"],
+			"picture": "http://static1.keepcdn.com/2016/11/08/16/1478592177089_750x700.jpg"
+		}, {
+			"id": "563b33a9bab30bf333565dc5",
+			"name": "瘦腿训练",
+			"days": 1,
+			"difficulty": 2,
+			"averageDuration": 11,
+			"lastTrainingDate": "1970-01-01T00:00:00.000Z",
+			"currentWorkout": "563b33a9bab30bf333565dc5",
+			"curWorkoutFinishTimes": 1,
+			"workouts": ["563b33a9bab30bf333565dc5"],
+			"picture": "http://static1.keepcdn.com/2016/11/08/15/1478591073270_750x700.jpg"
+		}, {
+			"id": "55dac08625900b3e1f53fe46",
+			"name": "膝关节自我康复阶段2",
+			"days": 1,
+			"difficulty": 1,
+			"averageDuration": 24,
+			"lastTrainingDate": "1970-01-01T00:00:00.000Z",
+			"currentWorkout": "55dac08625900b3e1f53fe46",
+			"curWorkoutFinishTimes": 1,
+			"workouts": ["55dac08625900b3e1f53fe46"],
+			"picture": "http://static1.keepcdn.com/2016/11/08/16/1478592192379_750x700.jpg"
+		}]
+	}, {
+		"subclassType": "com.keep.snooker.model.webapp.homepage.section.HomeBaseSection",
+		"type": "course",
+		"index": 3,
+		"sectionName": "推荐课程",
+		"more": "keep://recommend_courses/",
+		"data": [{
+			"id": "54afac39e06249cb13904c1e",
+			"title": "HIIT适应性训练",
+			"pioneer": 9153138,
+			"picture": "http://static1.keepcdn.com/misc/2015/10/20/17/542129df26400000.jpg",
+			"reason": "physical",
+			"rating": 1,
+			"itemValue": 23,
+			"itemSchema": "keep://plans/54afac39e06249cb13904c1e"
+		}, {
+			"id": "54f429113419916320da0330",
+			"title": "五维腹肌训练计划",
+			"pioneer": 6436817,
+			"picture": "http://static1.keepcdn.com/misc/2015/10/20/17/54212a70a5400000.jpg",
+			"reason": "physical",
+			"rating": 1,
+			"itemValue": 18,
+			"itemSchema": "keep://plans/54f429113419916320da0330"
+		}, {
+			"id": "56cc121bb3c8ffb12986f5e0",
+			"title": "腹肌训练入门",
+			"pioneer": 4174106,
+			"picture": "http://static1.keepcdn.com/2016/11/08/15/1478590731733_750x700.jpg",
+			"reason": "physical",
+			"rating": 1,
+			"itemValue": 15,
+			"itemSchema": "keep://plans/56cc121bb3c8ffb12986f5e0"
+		}]
+	}, {
+		"subclassType": "com.keep.snooker.model.webapp.homepage.section.HomeBaseSection",
+		"type": "article",
+		"index": 4,
+		"sectionName": "推荐阅读",
+		"more": "keep://selections/",
+		"data": [{
+			"id": "580db67253c2e5646fc74b8b",
+			"title": "肌肉拉伤的恢复与预防",
+			"description": "「肌肉拉伤」是指肌肉在运动中由于被牵拉而引起的「肌肉局部不适」，包括紧绷、被牵拉感以及如同被拉伸的疼痛",
+			"pioneer": 0,
+			"picture": "http://static1.keepcdn.com/2016/10/24/15/1477293532665_600x600.jpeg",
+			"reason": "cms",
+			"rating": 0,
+			"itemValue": 0,
+			"itemSchema": "keep://articles/580db67253c2e5646fc74b8b"
+		}, {
+			"id": "580f30d32363ee2a437a79b8",
+			"title": "健身答疑第九期",
+			"description": "肌肉酸痛、腰疼、生理期、静态牵拉",
+			"pioneer": 0,
+			"picture": "http://static1.keepcdn.com/2016/10/27/10/1477534037376_750x400.jpeg",
+			"reason": "cms",
+			"rating": 0,
+			"itemValue": 0,
+			"itemSchema": "keep://articles/580f30d32363ee2a437a79b8"
+		}, {
+			"id": "580f8b56a73692205fbcd80d",
+			"title": "瑜伽新课上线：柔软的力量",
+			"description": "希望很老很老的时候，也可以毫不费力地给自己穿袜子。",
+			"pioneer": 0,
+			"picture": "http://static1.keepcdn.com/2016/10/26/00/1477413192470_750x400.jpeg",
+			"reason": "cms",
+			"rating": 0,
+			"itemValue": 0,
+			"itemSchema": "keep://articles/580f8b56a73692205fbcd80d"
+		}]
+	}],
+	"errorCode": 0,
+	"text": null
+}

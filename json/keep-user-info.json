@@ -1,0 +1,41 @@
+{
+  "ok": true,
+  "data": {
+    "user": {
+      "_id": "56a39f4abc3f032805db1088",
+      "avatar": "http://static1.keepcdn.com/avatar/2016/03/02/22/34b2210d69aedb1f7962e64d7813aa91fbc21309.jpg",
+      "username": "wodewone",
+      "gender": "M",
+      "state": "normal",
+      "stateValue": 10,
+      "blocked": false,
+      "bio": "",
+      "Verified": "normal",
+      "citycode": "0317",
+      "birthday": "1992-02-01T00:00:00.000Z",
+      "backgroundAvatar": "",
+      "relation": 0
+    },
+    "trainings": {
+      "totalTrainingDay": 33,
+      "totalTraining": 75,
+      "totalCalorie": 6352,
+      "totalDuration": 1179,
+      "currentCombo": 2,
+      "maxCombo": 6,
+      "achievements": 7,
+      "totalDistance": 123
+    },
+    "statistics": {
+      "totalEntries": 41,
+      "totalHotEntry": 0,
+      "follow": 7,
+      "followed": 2,
+      "like": 27,
+      "liked": 57
+    }
+  },
+  "errorCode": 0,
+  "now": "2016-12-20T13:17:57.075Z",
+  "version": "1.0.0"
+}
