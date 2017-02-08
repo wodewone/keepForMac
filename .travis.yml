@@ -2,4 +2,4 @@ language: node_js
 node_js:
   - stable
 before_script: npm install
-script: npm run test
+script: npm run start
