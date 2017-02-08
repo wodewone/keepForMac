@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack",
     "build": "webpack-dev-server --port 3000 --hot --inline",
-    "test": "electron ."
+    "electron": "electron .",
+    "test": "webpack-dev-server --port 3000 --hot --inline && electron ."
   },
   "repository": {
     "type": "git",
