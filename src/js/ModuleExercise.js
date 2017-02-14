@@ -696,7 +696,6 @@ class ModuleExercise extends Component{
         )
     }
 
-
     render(){
         return (
             <div styleName="exercise-container">
