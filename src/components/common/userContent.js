@@ -10,7 +10,7 @@ class userContent extends Component{
     }
 
     render(){
-        return()
+        return('')
     }
 }
 
