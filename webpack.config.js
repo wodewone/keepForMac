@@ -24,8 +24,9 @@ module.exports = {
 
     },
 	output: {
-        path: path.join(__dirname, './build'),
-        publicPath: 'http://localhost:3000',
+        path: path.join(__dirname, './app'),
+        //publicPath: 'http://localhost:3000',
+        publicPath: '',
         filename: '[name].js',
         chunkFilename: '[name].js'
         //hotUpdateChunkFilename: '/hot/hot-update.js',
@@ -41,12 +42,12 @@ module.exports = {
             },
             {
 				test: /\.(scss|css)$/,
-				//loader: ExtractTextPlugin.extract('style', 'css!sass?modules&importLoaders=1&localIdentName=[hash:base64:5]&-url')
-                loaders: [
-                    'style',
-                    'css?modules&importLoaders=1&localIdentName=[hash:base64:5]&resolve-url',  // resolve-url-loader 这个必须引入不然出错
-                    'sass'
-                    ]
+				loader: ExtractTextPlugin.extract('style', 'css!sass?modules&importLoaders=1&localIdentName=[hash:base64:5]&resolve-url')
+                //loaders: [
+                //    'style',
+                //    'css?modules&importLoaders=1&localIdentName=[hash:base64:5]&resolve-url',  // resolve-url-loader 这个必须引入不然出错
+                //    'sass'
+                //    ]
             },
             {
                 test: /\.(png|jpg)$/,
@@ -56,11 +57,15 @@ module.exports = {
                 // 专供iconfont方案使用的，后面会带一串时间戳，需要特别匹配到
                 test: /\.(woff|woff2|svg|eot|ttf)\??.*$/,
                 loader: 'file?name=/fonts/[name].[ext]',
+            },
+            {
+                test: /\.mp3$/,
+                loader: 'file?name=/sounds/[name].[ext]',
             }
 		]
     },
     devServer: {
-        contentBase: "./build",	    //本地服务器所加载的页面所在的目录
+        contentBase: "./app",	    //本地服务器所加载的页面所在的目录
         colors: true,				//终端中输出结果为彩色
         historyApiFallback: true,	//不跳转
         inline: true,				//实时刷新
@@ -72,9 +77,9 @@ module.exports = {
     //},
     plugins: [
         // 开启独立 css 到单独文件
-        //new ExtractTextPlugin('app.css', {
-        //    allChunks: true
-        //}),
+        new ExtractTextPlugin('app.css', {
+            allChunks: true
+        }),
 
         // 自动生成 html 并引入相应文件
         new HtmlWebpackPlugin({

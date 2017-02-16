@@ -18,7 +18,7 @@ const createWindow = () =>{
         //'show': false
     })
 
-    keep.loadURL('file://'+ __dirname +'/build/index.html')
+    keep.loadURL('file://'+ __dirname +'/app/index.html')
 
     keep.webContents.openDevTools()
     //keep.webContents.on( 'did-finish-load', function () {
