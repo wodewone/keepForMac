@@ -17,9 +17,9 @@ module.exports = {
             //'webpack/hot/dev-server',
             './src/main.js'
         ],
-        //lib: [
-        //    'react', 'react-dom', 'react-router', 'react-css-modules'
-        //],
+        lib: [
+            'react', 'react-dom', 'react-router', 'react-css-modules'
+        ],
         appExercise: './src/js/ModuleExercise.js'
 
     },
@@ -42,12 +42,12 @@ module.exports = {
             },
             {
 				test: /\.(scss|css)$/,
-				loader: ExtractTextPlugin.extract('style', 'css!sass?modules&importLoaders=1&localIdentName=[hash:base64:5]&resolve-url')
-                //loaders: [
-                //    'style',
-                //    'css?modules&importLoaders=1&localIdentName=[hash:base64:5]&resolve-url',  // resolve-url-loader 这个必须引入不然出错
-                //    'sass'
-                //    ]
+				//loader: ExtractTextPlugin.extract('style', 'css!sass?modules&importLoaders=1&localIdentName=[hash:base64:5]&resolve-url')
+                loaders: [
+                    'style',
+                    'css?modules&importLoaders=1&localIdentName=[hash:base64:5]&resolve-url',  // resolve-url-loader 这个必须引入不然出错
+                    'sass'
+                    ]
             },
             {
                 test: /\.(png|jpg)$/,
@@ -87,7 +87,7 @@ module.exports = {
             filename: 'index.html',
             chunks: [
                 'app',
-                //'lib'
+                'lib'
             ],
         }),
         new HtmlWebpackPlugin({
@@ -95,12 +95,12 @@ module.exports = {
             filename: 'startExercise.html',
             chunks: [
                 'appExercise',
-                //'lib'
+                'lib'
             ],
         }),
 
         // 使用 Code Splitting 将应用依赖文件单独打包
-        //new webpack.optimize.CommonsChunkPlugin('lib', 'js/lib.js'),
+        new webpack.optimize.CommonsChunkPlugin('lib', 'js/lib.js'),
 
         // 压缩并打包文件
         //new webpack.optimize.UglifyJsPlugin({
