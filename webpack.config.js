@@ -51,16 +51,16 @@ module.exports = {
             },
             {
                 test: /\.(png|jpg)$/,
-                loader: 'url?limit=2048&name=/images/[hash:8].[name].[ext]'
+                loader: 'url?limit=2048&name=images/[hash:8].[name].[ext]'
             },
             {
                 // 专供iconfont方案使用的，后面会带一串时间戳，需要特别匹配到
                 test: /\.(woff|woff2|svg|eot|ttf)\??.*$/,
-                loader: 'file?name=/fonts/[name].[ext]',
+                loader: 'file?name=fonts/[name].[ext]',
             },
             {
                 test: /\.mp3$/,
-                loader: 'file?name=/sounds/[name].[ext]',
+                loader: 'file?name=sounds/[name].[ext]',
             }
 		]
     },

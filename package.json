@@ -18,7 +18,11 @@
   "keywords": [
     "Electron",
     "keep",
-    "keep for mac"
+    "keep for mac",
+    "React",
+    "es6",
+    "webapck",
+    "css modules"
   ],
   "build": {
     "appId": "wodewone",
@@ -68,7 +72,7 @@
     "webpack-dev-server": "^1.16.2"
   },
   "license": "GPL",
-  "productName": "keepForMac",
+  "productName": "keep for mac",
   "bugs": {
     "url": "https://github.com/wodewone/keepForMac/issues"
   },

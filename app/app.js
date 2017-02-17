@@ -10385,7 +10385,7 @@ webpackJsonp([0],{
 /***/ 516:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__.p + "/images/ebd4082d.keep-menu-bg.jpg";
+	module.exports = __webpack_require__.p + "images/ebd4082d.keep-menu-bg.jpg";
 
 /***/ },
 

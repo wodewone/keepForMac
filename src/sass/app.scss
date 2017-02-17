@@ -1,4 +1,12 @@
 @import "variables";
+@font-face {
+  font-family: "iconfont";
+  src: url('../assets/iconfont/iconfont.eot?t=1487236972892');
+  src: url('../assets/iconfont/iconfont.eot?t=1487236972892#iefix') format('embedded-opentype'),
+  url('../assets/iconfont/iconfont.woff?t=1487236972892') format('woff'),
+  url('../assets/iconfont/iconfont.ttf?t=1487236972892') format('truetype'),
+  url('../assets/iconfont/iconfont.svg?t=1487236972892#iconfont') format('svg');
+}
 :global {
   * {
     box-sizing: border-box;
@@ -80,14 +88,6 @@
     &:focus {
       color: $link-hover-color;
     }
-  }
-
-  @font-face {font-family: "iconfont";
-    src: url('../assets/iconfont/iconfont.eot?t=1487236972892'); /* IE9*/
-    src: url('../assets/iconfont/iconfont.eot?t=1487236972892#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('../assets/iconfont/iconfont.woff?t=1487236972892') format('woff'), /* chrome, firefox */
-    url('../assets/iconfont/iconfont.ttf?t=1487236972892') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-    url('../assets/iconfont/iconfont.svg?t=1487236972892#iconfont') format('svg'); /* iOS 4.1- */
   }
 
   .iconfont {
