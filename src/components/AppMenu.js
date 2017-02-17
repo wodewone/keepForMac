@@ -22,8 +22,8 @@ class AppMenu extends Component{
                 <li><Link to="/explore" activeClassName="active"><i className={'iconfont icon-discovery fz22'}></i>发现</Link></li>
                 {/*<li><Link to="/record" activeClassName="active"><i className={'iconfont icon-record fz22'}></i>动态</Link></li>*/}
                 {/*<li><Link to="/user-center" activeClassName="active"><i className={'iconfont icon-usercenter fz22'}></i>我</Link></li>*/}
-                <li><Link activeClassName="active" onClick="handleClick()"><i className={'iconfont icon-record fz22'}></i>动态</Link></li>
-                <li><Link activeClassName="active" onClick="handleClick()"><i className={'iconfont icon-usercenter fz22'}></i>我</Link></li>
+                <li onClick="handleClick()"><Link activeClassName="active"><i className={'iconfont icon-record fz22'}></i>动态</Link></li>
+                <li onClick="handleClick()"><Link activeClassName="active"><i className={'iconfont icon-usercenter fz22'}></i>我</Link></li>
             </nav>
         );
     }

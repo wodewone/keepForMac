@@ -72,6 +72,11 @@ class App extends Component{
         }
     }
 
+    @autobind
+    handleBuild(){
+        alert('此模块功能暂未完成，敬请期待！')
+    }
+
     render(){
         return (
             <div style={{width:'100%'}}>
@@ -95,8 +100,10 @@ class App extends Component{
                         <div styleName="index-menu-bg"></div>
                         <li><Link to="/training" activeClassName="active"><i className={'iconfont icon-training fz18'}></i>训练</Link></li>
                         <li><Link to="/explore" activeClassName="active"><i className={'iconfont icon-discovery fz18'}></i>发现</Link></li>
-                        <li><Link to="/record" activeClassName="active"><i className={'iconfont icon-record fz18'}></i>动态</Link></li>
-                        <li><Link to="/user-center" activeClassName="active"><i className={'iconfont icon-usercenter fz18'}></i>我</Link></li>
+                        {/* <li><Link to="/record" activeClassName="active"><i className={'iconfont icon-record fz18'}></i>动态</Link></li> */}
+                        {/* <li><Link to="/user-center" activeClassName="active"><i className={'iconfont icon-usercenter fz18'}></i>我</Link></li> */}
+                        <li onClick={this.handleBuild}><Link activeClassName="active"><i className={'iconfont icon-record fz18'}></i>动态</Link></li>
+                        <li onClick={this.handleBuild}><Link activeClassName="active"><i className={'iconfont icon-usercenter fz18'}></i>我</Link></li>
                     </nav>
                     <div styleName="index-content">
                         {this.props.children}

@@ -10209,6 +10209,11 @@ webpackJsonp([0],{
 	            }
 	        }
 	    }, {
+	        key: 'handleBuild',
+	        value: function handleBuild() {
+	            alert('此模块功能暂未完成，敬请期待！');
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
@@ -10276,20 +10281,20 @@ webpackJsonp([0],{
 	                        ),
 	                        _react2.default.createElement(
 	                            'li',
-	                            null,
+	                            { onClick: this.handleBuild },
 	                            _react2.default.createElement(
 	                                _reactRouter.Link,
-	                                { to: '/record', activeClassName: 'active' },
+	                                { activeClassName: 'active' },
 	                                _react2.default.createElement('i', { className: 'iconfont icon-record fz18' }),
 	                                '\u52A8\u6001'
 	                            )
 	                        ),
 	                        _react2.default.createElement(
 	                            'li',
-	                            null,
+	                            { onClick: this.handleBuild },
 	                            _react2.default.createElement(
 	                                _reactRouter.Link,
-	                                { to: '/user-center', activeClassName: 'active' },
+	                                { activeClassName: 'active' },
 	                                _react2.default.createElement('i', { className: 'iconfont icon-usercenter fz18' }),
 	                                '\u6211'
 	                            )
@@ -10306,7 +10311,7 @@ webpackJsonp([0],{
 	    }]);
 
 	    return App;
-	}(_react.Component), (_applyDecoratedDescriptor(_class2.prototype, 'componentDidMount', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentDidMount'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getUser', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getUser'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'componentWillMount', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentWillMount'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'historyActionBack', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'historyActionBack'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'historyActionForward', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'historyActionForward'), _class2.prototype)), _class2)) || _class);
+	}(_react.Component), (_applyDecoratedDescriptor(_class2.prototype, 'componentDidMount', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentDidMount'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getUser', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getUser'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'componentWillMount', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentWillMount'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'historyActionBack', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'historyActionBack'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'historyActionForward', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'historyActionForward'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleBuild', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleBuild'), _class2.prototype)), _class2)) || _class);
 	var _default = App;
 	exports.default = _default;
 	;
@@ -11758,7 +11763,7 @@ webpackJsonp([0],{
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _dec, _class;
+	var _dec, _class, _desc, _value, _class2;
 
 	var _react = __webpack_require__(122);
 
@@ -11767,6 +11772,10 @@ webpackJsonp([0],{
 	var _reactCssModules = __webpack_require__(354);
 
 	var _reactCssModules2 = _interopRequireDefault(_reactCssModules);
+
+	var _autobindDecorator = __webpack_require__(513);
+
+	var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
 
 	var _reactRouter = __webpack_require__(298);
 
@@ -11782,7 +11791,36 @@ webpackJsonp([0],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var AppMenu = (_dec = (0, _reactCssModules2.default)(_index2.default), _dec(_class = function (_Component) {
+	function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+	    var desc = {};
+	    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+	        desc[key] = descriptor[key];
+	    });
+	    desc.enumerable = !!desc.enumerable;
+	    desc.configurable = !!desc.configurable;
+
+	    if ('value' in desc || desc.initializer) {
+	        desc.writable = true;
+	    }
+
+	    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+	        return decorator(target, property, desc) || desc;
+	    }, desc);
+
+	    if (context && desc.initializer !== void 0) {
+	        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+	        desc.initializer = undefined;
+	    }
+
+	    if (desc.initializer === void 0) {
+	        Object['define' + 'Property'](target, property, desc);
+	        desc = null;
+	    }
+
+	    return desc;
+	}
+
+	var AppMenu = (_dec = (0, _reactCssModules2.default)(_index2.default), _dec(_class = (_class2 = function (_Component) {
 	    _inherits(AppMenu, _Component);
 
 	    function AppMenu(props) {
@@ -11792,6 +11830,11 @@ webpackJsonp([0],{
 	    }
 
 	    _createClass(AppMenu, [{
+	        key: 'handleClick',
+	        value: function handleClick() {
+	            alert('此模块功能暂未完成，敬请期待！');
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
@@ -11819,20 +11862,20 @@ webpackJsonp([0],{
 	                ),
 	                _react2.default.createElement(
 	                    'li',
-	                    null,
+	                    { onClick: 'handleClick()' },
 	                    _react2.default.createElement(
 	                        _reactRouter.Link,
-	                        { to: '/record', activeClassName: 'active' },
+	                        { activeClassName: 'active' },
 	                        _react2.default.createElement('i', { className: 'iconfont icon-record fz22' }),
 	                        '\u52A8\u6001'
 	                    )
 	                ),
 	                _react2.default.createElement(
 	                    'li',
-	                    null,
+	                    { onClick: 'handleClick()' },
 	                    _react2.default.createElement(
 	                        _reactRouter.Link,
-	                        { to: '/user-center', activeClassName: 'active' },
+	                        { activeClassName: 'active' },
 	                        _react2.default.createElement('i', { className: 'iconfont icon-usercenter fz22' }),
 	                        '\u6211'
 	                    )
@@ -11842,7 +11885,7 @@ webpackJsonp([0],{
 	    }]);
 
 	    return AppMenu;
-	}(_react.Component)) || _class);
+	}(_react.Component), (_applyDecoratedDescriptor(_class2.prototype, 'handleClick', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleClick'), _class2.prototype)), _class2)) || _class);
 	var _default = AppMenu;
 	exports.default = _default;
 	;
