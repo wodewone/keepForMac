@@ -3,10 +3,11 @@ import CSSModules from 'react-css-modules'
 import autobind from 'autobind-decorator'
 import moment from 'moment'
 import { Link } from 'react-router'
-import styles from '../../sass/appTraining.scss'
 import Utils from '../../js/Utils.js'
 import TrainingBlock from './TrainingBlock.js'
 import AppScroll from './AppScroll.js'
+
+import styles from '../../sass/appTraining.scss'
 
 import $http from '../../js/HttpRequest.js'
 

@@ -1,7 +1,7 @@
 export default {
     storage: {
         prefix: 'keep.',
-        set: function(key, val = null) {
+        set(key, val = null) {
             if(typeof val !== 'string')
                 val = JSON.stringify(val)
 
@@ -9,23 +9,40 @@ export default {
 
             return true
         },
-        get: function(key = null) {
+        get(key = null) {
             return JSON.parse(localStorage.getItem(this.prefix+key))
         },
-        has: (key = null) => {
+        has(key = null){
+            return !!this.get(key)
+        }
+    },
+    session: {
+        prefix: 'keep.',
+        set(key, val = null) {
+            if(typeof val !== 'string')
+                val = JSON.stringify(val)
+
+            sessionStorage.setItem(this.prefix+key, val)
+
+            return true
+        },
+        get(key = null) {
+            return JSON.parse(sessionStorage.getItem(this.prefix+key))
+        },
+        has(key = null){
             return !!this.get(key)
         }
     },
     string: {
-        b64encode: (str) => {
+        b64encode(str){
             return btoa(encodeURIComponent(str))
         },
-        b64decode: (str) => {
+        b64decode(str){
             return decodeURIComponent(atob(str))
         }
     },
     cookie: {
-        set: (key, val = null) => {
+        set(key, val = null){
             if(!key)
                 return false
             document.cookie.set()

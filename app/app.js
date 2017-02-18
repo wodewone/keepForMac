@@ -10001,11 +10001,11 @@ webpackJsonp([0],{
 
 	var _AppWorkout2 = _interopRequireDefault(_AppWorkout);
 
-	var _WorkoutDescription = __webpack_require__(651);
+	var _WorkoutDescription = __webpack_require__(652);
 
 	var _WorkoutDescription2 = _interopRequireDefault(_WorkoutDescription);
 
-	var _RequireAuth = __webpack_require__(656);
+	var _RequireAuth = __webpack_require__(657);
 
 	var _RequireAuth2 = _interopRequireDefault(_RequireAuth);
 
@@ -10762,6 +10762,192 @@ webpackJsonp([0],{
 
 /***/ },
 
+/***/ 524:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _Utils = __webpack_require__(520);
+
+	var _Utils2 = _interopRequireDefault(_Utils);
+
+	var _moment = __webpack_require__(525);
+
+	var _moment2 = _interopRequireDefault(_moment);
+
+	var _autobindDecorator = __webpack_require__(513);
+
+	var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	var hostname = 'https://api.gotokeep.com';
+
+	var serializeJSON = function serializeJSON(data) {
+	    return Object.keys(data).map(function (keyName) {
+	        return encodeURIComponent(keyName) + '=' + encodeURIComponent(data[keyName]);
+	    }).join('&');
+	};
+
+	var _default = _defineProperty({
+	    getToken: function getToken() {
+	        var authentication = _Utils2.default.storage.get('authentication') || {};
+	        return 'Bearer ' + authentication.token;
+	    },
+	    httpGet: function httpGet(url) {
+	        var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+	        if (!url) {
+	            return false;
+	        }
+
+	        options = Object.assign({
+	            method: 'GET',
+	            headers: {
+	                'Authorization': this.getToken()
+	            }
+	        }, options);
+
+	        return fetch(hostname + url, options).then(function (res) {
+	            return res.json();
+	        });
+	    },
+	    httpPost: function httpPost(url) {
+	        var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+	        if (!url) {
+	            return false;
+	        }
+	        options = Object.assign({
+	            method: 'GET',
+	            headers: {
+	                'Authorization': this.getToken()
+	            }
+	        }, options);
+
+	        return fetch(hostname + url, options).then(function (res) {
+	            return res.json();
+	        });
+	    }
+
+	    /**
+	     * Dashboard
+	     */
+	    // Plans
+	    ,
+	    getDashboardTraining: function getDashboardTraining() {
+	        return this.httpGet('/training/v2/home');
+	    },
+	    getDashboardWorkouts: function getDashboardWorkouts() {
+	        return this.httpGet('/v2/home/dashboard/pwData');
+	    }
+
+	    // Statistics
+	    ,
+	    getDashboardStatistics: function getDashboardStatistics() {
+	        return this.httpGet('/v1.1/home/dashboard/statistics');
+	    }
+	    // User
+	    ,
+	    getDashboardUser: function getDashboardUser() {
+	        return this.httpGet('/v1.1/home/dashboard/user');
+	    },
+	    getRankingData: function getRankingData() {
+	        var para = serializeJSON({
+	            date: (0, _moment2.default)().format('YYYYMMDD')
+	        });
+	        return this.httpGet('/social/v2/rankinglist/brief?' + para);
+	    }
+
+	    // user login
+	    ,
+	    login: function login(data) {
+	        return this.httpPost('/v1.1/users/login', {
+	            method: "POST",
+	            headers: {
+	                'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+	            },
+	            body: serializeJSON(data)
+	        });
+	    }
+
+	    // 用户个人信息
+	    ,
+	    getUserData: function getUserData(userID) {
+	        return this.httpGet('/v2/people/' + userID);
+	    }
+
+	    // workouts content
+	    //getExploreContent() {
+	    //    return fetch('https://show.gotokeep.com/explore/', {
+	    //        method: 'GET',
+	    //        headers: {
+	    //            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+	    //            'Authorization': this.getToken()
+	    //        }
+	    //    })
+	    //}
+
+	    // workout plan
+	    ,
+	    getPlansContent: function getPlansContent(workoutsId) {
+	        var gender = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'm';
+
+	        return this.httpGet('/v2/plans/' + workoutsId + '?trainer_gender=' + gender);
+	    }
+	    // 获取训练内容计划[以及同类推荐]
+	    ,
+	    getWorkoutsPlans: function getWorkoutsPlans(planId) {
+	        return this.httpGet('/training/v2/plans/' + planId + '/dynamic?tLimit=3&tSlimWorkout=true');
+	    }
+	    // 获取 总打卡数量/训练评论/完成用户/座右铭
+	    ,
+	    getWorkoutsWorks: function getWorkoutsWorks(workoutId) {
+	        return this.httpGet('/training/v2/workouts/' + workoutId + '/dynamic?tLimit=3');
+	    }
+
+	    // 完成训练
+	    ,
+	    completeExercise: function completeExercise() {
+	        return this.httpGet('/now');
+	    },
+	    commitTrainingLog: function commitTrainingLog(json) {
+	        return this.httpPost('/v1.1/home/saveTrainingLog', Object.assign({
+	            'serverEndTime': new Date().toISOString(),
+	            'doneDate': new Date().toISOString()
+	        }));
+	    }
+	}, 'commitTrainingLog', function commitTrainingLog(json) {
+	    return this.httpPost('/v1.1/home/achievements/new');
+	});
+
+	exports.default = _default;
+	;
+
+	var _temp = function () {
+	    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+	        return;
+	    }
+
+	    __REACT_HOT_LOADER__.register(hostname, 'hostname', '/Users/liucong/Documents/Github/keepForMac/src/js/HttpRequest.js');
+
+	    __REACT_HOT_LOADER__.register(serializeJSON, 'serializeJSON', '/Users/liucong/Documents/Github/keepForMac/src/js/HttpRequest.js');
+
+	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/js/HttpRequest.js');
+	}();
+
+	;
+
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/js/HttpRequest.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/js/HttpRequest.js"); } } })();
+
+/***/ },
+
 /***/ 635:
 /***/ function(module, exports, __webpack_require__) {
 
@@ -10793,21 +10979,21 @@ webpackJsonp([0],{
 
 	var _reactRouter = __webpack_require__(298);
 
-	var _appTraining = __webpack_require__(636);
-
-	var _appTraining2 = _interopRequireDefault(_appTraining);
-
 	var _Utils = __webpack_require__(520);
 
 	var _Utils2 = _interopRequireDefault(_Utils);
 
-	var _TrainingBlock = __webpack_require__(638);
+	var _TrainingBlock = __webpack_require__(636);
 
 	var _TrainingBlock2 = _interopRequireDefault(_TrainingBlock);
 
 	var _AppScroll = __webpack_require__(639);
 
 	var _AppScroll2 = _interopRequireDefault(_AppScroll);
+
+	var _appTraining = __webpack_require__(637);
+
+	var _appTraining2 = _interopRequireDefault(_appTraining);
 
 	var _HttpRequest = __webpack_require__(524);
 
@@ -11233,77 +11419,6 @@ webpackJsonp([0],{
 /***/ 636:
 /***/ function(module, exports, __webpack_require__) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(637);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(121)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(true) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept(637, function() {
-				var newContent = __webpack_require__(637);
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-
-/***/ 637:
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(116)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "._2Nv_2 {\n  display: block;\n  width: 100%; }\n\n.akWWR {\n  padding: 5px 10px;\n  overflow: hidden; }\n\n._2CkpE {\n  display: flex;\n  padding: 5px 10px 15px;\n  border-bottom: 1px solid #eee;\n  font-size: 10px;\n  position: relative; }\n  ._2CkpE figure {\n    flex: 1;\n    color: #999; }\n    ._2CkpE figure ._1nZ5H {\n      font-size: 16px;\n      color: #584f5f; }\n  ._2CkpE:before {\n    content: '';\n    position: absolute;\n    left: 50%;\n    bottom: 0;\n    z-index: 1;\n    transform: translateX(-50%);\n    width: 0;\n    border: 6px solid transparent;\n    border-bottom-color: #eee; }\n  ._2CkpE:after {\n    content: '';\n    position: absolute;\n    left: 50%;\n    bottom: -1.5px;\n    z-index: 2;\n    transform: translateX(-50%);\n    width: 0;\n    border: 6px solid transparent;\n    border-bottom-color: #fff; }\n\n._2xGm9 {\n  text-align: left; }\n\n._1AekU {\n  text-align: center; }\n\n._2zrRj {\n  text-align: right; }\n\n._1SGGr {\n  display: flex;\n  padding: 10px;\n  overflow: hidden; }\n\n._2Awuf {\n  flex: 1;\n  margin: 0;\n  align-self: center; }\n\n._2vjI7 {\n  font-size: 18px;\n  color: #00c78c;\n  font-weight: bold; }\n\n._22cXH {\n  margin-top: 1px;\n  border: .5px solid #fff;\n  float: right;\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  position: relative;\n  margin-left: -10px;\n  text-align: center;\n  box-sizing: content-box; }\n  ._22cXH:nth-child(2) {\n    margin-top: 0;\n    border: 2px solid #00c78c; }\n  ._22cXH img {\n    border-radius: 50%;\n    width: 100%; }\n\n._3ydNS,\n._2iAnH {\n  display: block;\n  padding: 10px;\n  height: 200px;\n  background-color: #999;\n  position: relative; }\n  ._3ydNS:before,\n  ._2iAnH:before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: rgba(0, 0, 0, 0.42); }\n  ._3ydNS p,\n  ._2iAnH p {\n    position: relative;\n    z-index: auto; }\n\n._3ydNS {\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-position: center; }\n  ._3ydNS:before {\n    content: '';\n    background: rgba(0, 0, 0, 0.22); }\n  ._3ydNS:hover ._2wTwu {\n    transition: background .35s;\n    background: #fff; }\n  ._3ydNS:hover ._2LjaT {\n    background: #00c78c; }\n\n.dGXEk {\n  overflow: hidden;\n  padding: 5px;\n  border-top: 1px solid #eee; }\n\n._2iAnH {\n  width: 31%;\n  height: 22vh;\n  float: left;\n  background: #999 no-repeat center/100% auto;\n  margin: 1.16%;\n  position: relative;\n  transition: box-shadow .35s .1s, transform .35s .1s; }\n  ._2iAnH:hover {\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);\n    transform: scale(1.01); }\n\n.ED31q {\n  color: #fff;\n  font-size: 18px; }\n\n._25ujx {\n  color: #ddd;\n  font-size: 12px; }\n\n._3z7y5 {\n  color: #fff;\n  position: absolute;\n  left: 0;\n  bottom: 0;\n  padding: 10px;\n  width: 100%;\n  text-align: right; }\n\n._3Ditf {\n  font-size: 10px;\n  margin-left: 5px; }\n\n._2wTwu {\n  width: 100%;\n  height: 8px;\n  background: rgba(255, 255, 255, 0.5); }\n\n._2LjaT {\n  display: block;\n  height: 100%;\n  max-width: 10%;\n  background: #fff;\n  transition: background .5s .2s; }\n\n.UhFWg {\n  padding: 20px; }\n\n._1qDeN {\n  display: inline-block;\n  padding: 5px 10px;\n  border-radius: 30px;\n  color: #00c78c;\n  border: 1px solid #00c78c;\n  opacity: .6;\n  margin-bottom: 20px; }\n\n._32EG3 {\n  padding: 0 10px 10px; }\n\n._2kVBi {\n  padding-top: 10px; }\n\n._1GnNk {\n  margin: 0;\n  padding: 0;\n  overflow-x: scroll;\n  overflow-y: hidden;\n  white-space: nowrap; }\n  ._1GnNk li {\n    position: relative;\n    overflow: hidden;\n    display: inline-block;\n    margin-right: 10px;\n    width: 40%;\n    min-height: 180px;\n    background: no-repeat center/cover; }\n    ._1GnNk li:last-child {\n      margin: 0; }\n\n.XXgaN {\n  padding-bottom: 55%;\n  background: #999 no-repeat center/cover; }\n\n._25FwQ,\n._2Lzjf {\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis; }\n\n._25FwQ {\n  font-size: 14px; }\n\n._2Lzjf {\n  font-size: 10px;\n  margin: 0;\n  color: #999; }\n", ""]);
-
-	// exports
-	exports.locals = {
-		"training-data": "_2Nv_2",
-		"training-data-title": "akWWR",
-		"training-data-other": "_2CkpE",
-		"data-val": "_1nZ5H",
-		"other-item-first": "_2xGm9",
-		"other-item-second": "_1AekU",
-		"other-item-three": "_2zrRj",
-		"training-ranking": "_1SGGr",
-		"training-ranking-title": "_2Awuf",
-		"training-ranking-num": "_2vjI7",
-		"ranking-user": "_22cXH",
-		"training-lesson": "_3ydNS",
-		"training-block": "_2iAnH",
-		"plan-progress-bar": "_2wTwu",
-		"progress-bar-inner": "_2LjaT",
-		"training-block-wrap": "dGXEk",
-		"training-block-title": "ED31q",
-		"training-block-desc": "_25ujx",
-		"training-block-info": "_3z7y5",
-		"block-info-time": "_3Ditf",
-		"guide-tips": "UhFWg",
-		"button-guide-start": "_1qDeN",
-		"scroll-wrap": "_32EG3",
-		"scroll-title": "_2kVBi",
-		"scroll-list": "_1GnNk",
-		"scroll-cover": "XXgaN",
-		"scroll-hot-title": "_25FwQ",
-		"scroll-hot-desc": "_2Lzjf"
-	};
-
-/***/ },
-
-/***/ 638:
-/***/ function(module, exports, __webpack_require__) {
-
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
@@ -11332,7 +11447,7 @@ webpackJsonp([0],{
 
 	var _reactRouter = __webpack_require__(298);
 
-	var _appTraining = __webpack_require__(636);
+	var _appTraining = __webpack_require__(637);
 
 	var _appTraining2 = _interopRequireDefault(_appTraining);
 
@@ -11459,6 +11574,77 @@ webpackJsonp([0],{
 
 /***/ },
 
+/***/ 637:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(638);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(121)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(true) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept(638, function() {
+				var newContent = __webpack_require__(638);
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 638:
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(116)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "._2Nv_2 {\n  display: block;\n  width: 100%; }\n\n.akWWR {\n  padding: 5px 10px;\n  overflow: hidden; }\n\n._2CkpE {\n  display: flex;\n  padding: 5px 10px 15px;\n  border-bottom: 1px solid #eee;\n  font-size: 10px;\n  position: relative; }\n  ._2CkpE figure {\n    flex: 1;\n    color: #999; }\n    ._2CkpE figure ._1nZ5H {\n      font-size: 16px;\n      color: #584f5f; }\n  ._2CkpE:before {\n    content: '';\n    position: absolute;\n    left: 50%;\n    bottom: 0;\n    z-index: 1;\n    transform: translateX(-50%);\n    width: 0;\n    border: 6px solid transparent;\n    border-bottom-color: #eee; }\n  ._2CkpE:after {\n    content: '';\n    position: absolute;\n    left: 50%;\n    bottom: -1.5px;\n    z-index: 2;\n    transform: translateX(-50%);\n    width: 0;\n    border: 6px solid transparent;\n    border-bottom-color: #fff; }\n\n._2xGm9 {\n  text-align: left; }\n\n._1AekU {\n  text-align: center; }\n\n._2zrRj {\n  text-align: right; }\n\n._1SGGr {\n  display: flex;\n  padding: 10px;\n  overflow: hidden; }\n\n._2Awuf {\n  flex: 1;\n  margin: 0;\n  align-self: center; }\n\n._2vjI7 {\n  font-size: 18px;\n  color: #00c78c;\n  font-weight: bold; }\n\n._22cXH {\n  margin-top: 1px;\n  border: .5px solid #fff;\n  float: right;\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  position: relative;\n  margin-left: -10px;\n  text-align: center;\n  box-sizing: content-box; }\n  ._22cXH:nth-child(2) {\n    margin-top: 0;\n    border: 2px solid #00c78c; }\n  ._22cXH img {\n    border-radius: 50%;\n    width: 100%; }\n\n._3ydNS,\n._2iAnH {\n  display: block;\n  padding: 10px;\n  height: 200px;\n  background-color: #999;\n  position: relative; }\n  ._3ydNS:before,\n  ._2iAnH:before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: rgba(0, 0, 0, 0.42); }\n  ._3ydNS p,\n  ._2iAnH p {\n    position: relative;\n    z-index: auto; }\n\n._3ydNS {\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-position: center; }\n  ._3ydNS:before {\n    content: '';\n    background: rgba(0, 0, 0, 0.22); }\n  ._3ydNS:hover ._2wTwu {\n    transition: background .35s;\n    background: #fff; }\n  ._3ydNS:hover ._2LjaT {\n    background: #00c78c; }\n\n.dGXEk {\n  overflow: hidden;\n  padding: 5px;\n  border-top: 1px solid #eee; }\n\n._2iAnH {\n  width: 31%;\n  height: 22vh;\n  float: left;\n  background: #999 no-repeat center/100% auto;\n  margin: 1.16%;\n  position: relative;\n  transition: box-shadow .35s .1s, transform .35s .1s; }\n  ._2iAnH:hover {\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);\n    transform: scale(1.01); }\n\n.ED31q {\n  color: #fff;\n  font-size: 18px; }\n\n._25ujx {\n  color: #ddd;\n  font-size: 12px; }\n\n._3z7y5 {\n  color: #fff;\n  position: absolute;\n  left: 0;\n  bottom: 0;\n  padding: 10px;\n  width: 100%;\n  text-align: right; }\n\n._3Ditf {\n  font-size: 10px;\n  margin-left: 5px; }\n\n._2wTwu {\n  width: 100%;\n  height: 8px;\n  background: rgba(255, 255, 255, 0.5); }\n\n._2LjaT {\n  display: block;\n  height: 100%;\n  max-width: 10%;\n  background: #fff;\n  transition: background .5s .2s; }\n\n.UhFWg {\n  padding: 20px; }\n\n._1qDeN {\n  display: inline-block;\n  padding: 5px 10px;\n  border-radius: 30px;\n  color: #00c78c;\n  border: 1px solid #00c78c;\n  opacity: .6;\n  margin-bottom: 20px; }\n\n._32EG3 {\n  padding: 0 10px 10px; }\n\n._2kVBi {\n  padding-top: 10px; }\n\n._1GnNk {\n  margin: 0;\n  padding: 0;\n  overflow-x: scroll;\n  overflow-y: hidden;\n  white-space: nowrap; }\n  ._1GnNk li {\n    position: relative;\n    overflow: hidden;\n    display: inline-block;\n    margin-right: 10px;\n    width: 40%;\n    min-height: 180px;\n    background: no-repeat center/cover; }\n    ._1GnNk li:last-child {\n      margin: 0; }\n\n.XXgaN {\n  padding-bottom: 55%;\n  background: #999 no-repeat center/cover; }\n\n._25FwQ,\n._2Lzjf {\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis; }\n\n._25FwQ {\n  font-size: 14px; }\n\n._2Lzjf {\n  font-size: 10px;\n  margin: 0;\n  color: #999; }\n", ""]);
+
+	// exports
+	exports.locals = {
+		"training-data": "_2Nv_2",
+		"training-data-title": "akWWR",
+		"training-data-other": "_2CkpE",
+		"data-val": "_1nZ5H",
+		"other-item-first": "_2xGm9",
+		"other-item-second": "_1AekU",
+		"other-item-three": "_2zrRj",
+		"training-ranking": "_1SGGr",
+		"training-ranking-title": "_2Awuf",
+		"training-ranking-num": "_2vjI7",
+		"ranking-user": "_22cXH",
+		"training-lesson": "_3ydNS",
+		"training-block": "_2iAnH",
+		"plan-progress-bar": "_2wTwu",
+		"progress-bar-inner": "_2LjaT",
+		"training-block-wrap": "dGXEk",
+		"training-block-title": "ED31q",
+		"training-block-desc": "_25ujx",
+		"training-block-info": "_3z7y5",
+		"block-info-time": "_3Ditf",
+		"guide-tips": "UhFWg",
+		"button-guide-start": "_1qDeN",
+		"scroll-wrap": "_32EG3",
+		"scroll-title": "_2kVBi",
+		"scroll-list": "_1GnNk",
+		"scroll-cover": "XXgaN",
+		"scroll-hot-title": "_25FwQ",
+		"scroll-hot-desc": "_2Lzjf"
+	};
+
+/***/ },
+
 /***/ 639:
 /***/ function(module, exports, __webpack_require__) {
 
@@ -11480,7 +11666,7 @@ webpackJsonp([0],{
 
 	var _reactCssModules2 = _interopRequireDefault(_reactCssModules);
 
-	var _appTraining = __webpack_require__(636);
+	var _appTraining = __webpack_require__(637);
 
 	var _appTraining2 = _interopRequireDefault(_appTraining);
 
@@ -12139,11 +12325,15 @@ webpackJsonp([0],{
 
 	var _HttpRequest2 = _interopRequireDefault(_HttpRequest);
 
-	var _appWorkouts = __webpack_require__(647);
+	var _UserWindow = __webpack_require__(647);
+
+	var _UserWindow2 = _interopRequireDefault(_UserWindow);
+
+	var _appWorkouts = __webpack_require__(650);
 
 	var _appWorkouts2 = _interopRequireDefault(_appWorkouts);
 
-	var _electron = __webpack_require__(649);
+	var _electron = __webpack_require__(648);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12199,6 +12389,7 @@ webpackJsonp([0],{
 	            workouts: !workouts.length ? workouts : [],
 	            workout: !workouts.length ? {} : new Map(workouts).has(_this.props.params.plan_id) ? new Map(workouts).get(_this.props.params.plan_id) : {},
 	            content: {},
+	            recommends: [],
 	            classBlur: 'workout-mask' // 显示弹出层时内容层 *blurry*
 	        };
 	        return _this;
@@ -12223,33 +12414,54 @@ webpackJsonp([0],{
 	                });
 	            }
 
-	            // 获取 总打卡数量/训练评论/完成用户/座右铭
-	            _HttpRequest2.default.getWorkoutsContent(this.props.params.plan_id).then(function (response) {
+	            // 获取训练计划[以及同类推荐]
+	            _HttpRequest2.default.getWorkoutsPlans(this.props.params.plan_id).then(function (response) {
 	                if (response.ok) {
-	                    _Utils2.default.storage.set('timeoutTip', response.data.motto);
+	                    console.table(response.data);
 	                    _this2.setState({
-	                        content: response.data
+	                        recommends: response.data.recommends
 	                    });
+	                    return response.data.workoutId;
+	                }
+	            }).then(function (workoutId) {
+	                // 获取 总打卡数量/训练评论/完成用户/座右铭
+	                _HttpRequest2.default.getWorkoutsWorks(workoutId).then(function (response) {
+	                    if (response.ok) {
+	                        _Utils2.default.storage.set('timeoutTip', response.data.motto);
+	                        _this2.setState({
+	                            content: response.data
+	                        });
+	                    }
+	                });
+	            });
+	        }
+	    }, {
+	        key: 'handleUserInfo',
+	        value: function handleUserInfo(userId) {
+	            _HttpRequest2.default.getUserData(userId).then(function (response) {
+	                if (response.ok) {
+	                    console.info(response);
+	                    _Utils2.default.session.set('userInfo', response.data);
+	                    if (_UserWindow2.default.has()) _UserWindow2.default.show();else _UserWindow2.default.create();
 	                }
 	            });
 	        }
 	    }, {
 	        key: 'getPioneerContent',
 	        value: function getPioneerContent() {
-	            var list = this.state.content.pioneer;
-	            // const userImg = require('url-loader?mimetype=image/png!../../../assets/images/keep-small.jpg')
-	            if (!list) return false;
+	            var _this3 = this;
 
-	            return list.map(function (item, index) {
+	            var list = this.state.content.pioneer;
+	            console.info(this.state.content);
+	            // const userImg = require('url-loader?mimetype=image/png!../../../assets/images/keep-small.jpg')
+	            if (list && list.length > 0) return list.map(function (item, index) {
 	                return _react2.default.createElement(
 	                    'li',
 	                    { key: item._id + index },
 	                    _react2.default.createElement(
 	                        _reactRouter.Link,
 	                        { styleName: 'pioneer-item', onClick: function onClick() {
-	                                return _HttpRequest2.default.getUserData(item._id).then(function (data) {
-	                                    return console.info(data);
-	                                });
+	                                return _this3.handleUserInfo(item._id);
 	                            } },
 	                        _react2.default.createElement('img', { src: item.avatar, alt: '' })
 	                    )
@@ -12305,14 +12517,14 @@ webpackJsonp([0],{
 	    }, {
 	        key: 'getTrainingWorkoutItem',
 	        value: function getTrainingWorkoutItem(workoutStep) {
-	            var _this3 = this;
+	            var _this4 = this;
 
 	            var steps = this.state.workout.workouts[0].steps;
 	            var stepList = new Map(steps.map(function (step) {
 	                return [step._id, step];
 	            }));
 	            return workoutStep.map(function (stepItem, index) {
-	                var Gender = _this3.state.user.gender.toLowerCase();
+	                var Gender = _this4.state.user.gender.toLowerCase();
 	                var item = stepList.has(stepItem) ? stepList.get(stepItem) : {};
 	                var detail = item.exercise.videos[0] || {};
 	                return _react2.default.createElement(
@@ -12320,7 +12532,7 @@ webpackJsonp([0],{
 	                    { key: item._id + index, styleName: 'line-item' },
 	                    _react2.default.createElement(
 	                        _reactRouter.Link,
-	                        { to: _this3.props.router.getCurrentLocation().pathname + '/' + item._id },
+	                        { to: _this4.props.router.getCurrentLocation().pathname + '/' + item._id },
 	                        _react2.default.createElement(
 	                            'div',
 	                            { styleName: 'line-work-item' },
@@ -12357,7 +12569,7 @@ webpackJsonp([0],{
 	    }, {
 	        key: 'getTrainingDetail',
 	        value: function getTrainingDetail() {
-	            var _this4 = this;
+	            var _this5 = this;
 
 	            var workContent = this.state.workout.workouts[0];
 
@@ -12373,7 +12585,7 @@ webpackJsonp([0],{
 	                    _react2.default.createElement(
 	                        'ul',
 	                        { styleName: 'training-line' },
-	                        _this4.getTrainingWorkoutItem(item.subSteps)
+	                        _this5.getTrainingWorkoutItem(item.subSteps)
 	                    )
 	                );
 	            });
@@ -12403,14 +12615,13 @@ webpackJsonp([0],{
 	    }, {
 	        key: 'handleStartExercise',
 	        value: function handleStartExercise() {
-	            console.info(this.state.workout.name);
 	            var winWorkout = new _electron.remote.BrowserWindow({
 	                'width': 1199,
 	                'height': 777,
 	                'title': this.state.workout.name,
 	                'center': true
 	            });
-	            winWorkout.loadURL('file://' + __webpack_require__(650).resolve() + '/build/startExercise.html?planid=' + this.props.params.plan_id);
+	            winWorkout.loadURL('file://' + __webpack_require__(649).resolve() + '/app/startExercise.html?planid=' + this.props.params.plan_id);
 	            winWorkout.on('close', function () {
 	                winWorkout = null;
 	            });
@@ -12599,6 +12810,57 @@ webpackJsonp([0],{
 	                            )
 	                        ),
 	                        _react2.default.createElement(
+	                            'section',
+	                            { hidden: !this.state.recommends.length, className: 'white-background margin-top', styleName: 'scroll-wrap' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { styleName: 'dynamic-title' },
+	                                '\u76F8\u5173\u8BAD\u7EC3'
+	                            ),
+	                            _react2.default.createElement(
+	                                'ul',
+	                                { styleName: 'scroll-list' },
+	                                this.state.recommends.map(function (item) {
+	                                    return _react2.default.createElement(
+	                                        'li',
+	                                        { key: item.id, className: 'padding', styleName: 'training-block', style: { backgroundImage: 'url(' + item.picture + ')' } },
+	                                        _react2.default.createElement(
+	                                            'p',
+	                                            { styleName: 'training-block-title' },
+	                                            item.title
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'p',
+	                                            { styleName: 'training-block-desc' },
+	                                            item.pioneer,
+	                                            '\u5DF2\u53C2\u52A0'
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'div',
+	                                            { className: 'text-left', styleName: 'training-block-info' },
+	                                            _react2.default.createElement(
+	                                                'span',
+	                                                { className: 'fz18 font-bold' },
+	                                                'K',
+	                                                item.difficulty
+	                                            ),
+	                                            _react2.default.createElement(
+	                                                'span',
+	                                                { styleName: 'block-info-time' },
+	                                                item.averageDuration,
+	                                                '\u5206\u949F'
+	                                            ),
+	                                            _react2.default.createElement(
+	                                                'span',
+	                                                { styleName: 'block-info-tag' },
+	                                                item.source
+	                                            )
+	                                        )
+	                                    );
+	                                })
+	                            )
+	                        ),
+	                        _react2.default.createElement(
 	                            'button',
 	                            { styleName: 'button-start-training', onClick: this.handleStartExercise },
 	                            '\u5F00\u59CB\u8BAD\u7EC3'
@@ -12630,7 +12892,7 @@ webpackJsonp([0],{
 	    }]);
 
 	    return AppWorkout;
-	}(_react.Component), (_applyDecoratedDescriptor(_class2.prototype, 'componentWillMount', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentWillMount'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getPioneerContent', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getPioneerContent'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getWorkoutDynamic', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getWorkoutDynamic'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getTrainingWorkoutItem', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getTrainingWorkoutItem'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getTrainingDetail', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getTrainingDetail'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleToggleDetail', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleToggleDetail'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleStartExercise', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleStartExercise'), _class2.prototype)), _class2)) || _class);
+	}(_react.Component), (_applyDecoratedDescriptor(_class2.prototype, 'componentWillMount', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentWillMount'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleUserInfo', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleUserInfo'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getPioneerContent', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getPioneerContent'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getWorkoutDynamic', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getWorkoutDynamic'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getTrainingWorkoutItem', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getTrainingWorkoutItem'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getTrainingDetail', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getTrainingDetail'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleToggleDetail', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleToggleDetail'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleStartExercise', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleStartExercise'), _class2.prototype)), _class2)) || _class);
 	var _default = AppWorkout;
 	exports.default = _default;
 	;
@@ -12651,7 +12913,180 @@ webpackJsonp([0],{
 
 /***/ },
 
+/***/ 647:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _autobindDecorator = __webpack_require__(513);
+
+	var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
+
+	var _Utils = __webpack_require__(520);
+
+	var _Utils2 = _interopRequireDefault(_Utils);
+
+	var _electron = __webpack_require__(648);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var _default = {
+	    winUser: null,
+	    has: function has() {
+	        return !!this.winUser;
+	    },
+	    create: function create() {
+	        var _this = this;
+
+	        this.winUser = new _electron.remote.BrowserWindow({
+	            'width': 333,
+	            'height': 444,
+	            'title': this.state.workout.name,
+	            'center': true,
+	            'alwaysOnTop': true,
+	            'resizable': false
+	        });
+	        this.winUser.loadURL('file://' + __webpack_require__(649).resolve() + '/app/userContent.html');
+	        this.winUser.on('close', function () {
+	            _this.winUser = null;
+	        });
+	        this.winUser.show();
+	    },
+	    show: function show() {
+	        typeof this.winUser.focus === 'function' && this.winUser.focus();
+	    }
+	};
+	exports.default = _default;
+	;
+
+	var _temp = function () {
+	    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+	        return;
+	    }
+
+	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/components/common/UserWindow.js');
+	}();
+
+	;
+
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/common/UserWindow.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/common/UserWindow.js"); } } })();
+
+/***/ },
+
+/***/ 649:
+/***/ function(module, exports) {
+
+	module.exports = require("path");
+
+/***/ },
+
+/***/ 650:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(651);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(121)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(true) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept(651, function() {
+				var newContent = __webpack_require__(651);
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
 /***/ 651:
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(116)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".gGG3G {\n  position: relative; }\n\n.T56YL {\n  background: #584f5f no-repeat center/cover;\n  position: relative;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); }\n  .T56YL:before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: rgba(0, 0, 0, 0.5); }\n\n._1hEVu {\n  position: relative;\n  padding: 10px;\n  height: 180px; }\n\n._1kXZF {\n  font-size: 24px;\n  color: #fff;\n  margin-top: 10px; }\n\n._3n5Ak {\n  color: #ddd;\n  font-size: 12px; }\n\n.YVuU5 {\n  position: absolute;\n  bottom: 10px;\n  left: 0;\n  width: 100%;\n  margin: 0;\n  padding: 0 10px;\n  overflow: hidden;\n  text-align: right;\n  white-space: nowrap; }\n  .YVuU5 li {\n    display: inline-block; }\n\n._1wE0v {\n  text-align: left;\n  display: block;\n  font-size: 14px;\n  color: #fff;\n  padding: 12px 0 0; }\n\n._1_YaU {\n  padding: 5px 0;\n  border-top: 1px solid #fff;\n  border-bottom: 1px solid #fff; }\n\n._1vG24 {\n  color: #fff;\n  font-size: 10px;\n  display: block;\n  padding-left: 50px;\n  padding-right: 10px; }\n\n._1j7xa {\n  color: #ddd; }\n\n._2MKks {\n  padding: 10px;\n  display: flex;\n  border-bottom: 1px solid #eee; }\n\n._1qiEN {\n  text-align: center;\n  margin-right: 10px; }\n\n._32OId {\n  margin: 0;\n  padding: 0;\n  flex: 1;\n  align-self: center;\n  text-align: right; }\n  ._32OId li {\n    display: inline-flex; }\n\n._2r7mC {\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  overflow: hidden;\n  display: block;\n  position: relative;\n  background: #eee;\n  border: 1px solid #eee;\n  margin-right: 10px; }\n  ._2r7mC img {\n    border: none;\n    width: 100%;\n    height: 100%; }\n\n._3P-i6 {\n  text-align: center;\n  width: 30px;\n  position: relative; }\n  ._3P-i6 i {\n    margin: 0;\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%); }\n\n.gEjE- {\n  background: #fff;\n  border-bottom: 1px solid #eee; }\n\n._1hUN3 {\n  padding: 10px;\n  overflow: hidden; }\n\n._2fS-z {\n  float: right;\n  color: #999;\n  font-size: 12px; }\n\n._1Vgwh {\n  border-left: 2px solid #00c78c;\n  padding-left: 5px;\n  line-height: 1; }\n\n._2tzoZ {\n  display: block;\n  margin: 0;\n  padding: 0;\n  overflow: hidden; }\n\n._21hmZ {\n  float: left;\n  width: 33.33%;\n  padding: 10px;\n  position: relative; }\n\n.LM-oO {\n  margin-right: 15px; }\n\n._1oREy {\n  width: 15px;\n  text-align: center;\n  font-size: 12px;\n  position: absolute;\n  top: 26%;\n  right: 5px;\n  color: #999; }\n\n.K8_bp {\n  width: 100%;\n  padding-bottom: 64%;\n  margin-bottom: 10px;\n  background: #999 center/cover; }\n\n._39a3J {\n  margin-bottom: 5px; }\n\n._3CNEr {\n  color: #999; }\n\n._3HQju {\n  cursor: pointer;\n  position: fixed;\n  bottom: 50px;\n  right: 50px;\n  width: 60px;\n  padding: 0 10px;\n  height: 60px;\n  border-radius: 50%;\n  background: rgba(0, 199, 140, 0.8);\n  border: 2px solid rgba(88, 79, 95, 0.2);\n  color: #fff;\n  box-shadow: 0 0 5px rgba(85, 85, 85, 0.8);\n  transition: all .35s; }\n  ._3HQju:hover {\n    background: #00c78c;\n    border: 2px solid rgba(88, 79, 95, 0.6); }\n\n._1mcce {\n  background: #fff;\n  padding: 0 10px; }\n\n._2NGue {\n  padding: 10px 0; }\n\n._3ZI5H {\n  display: flex;\n  border-bottom: 1px solid #eee;\n  padding: 10px 0; }\n  ._3ZI5H:first-child {\n    padding-top: 0; }\n\n._3zpl4 {\n  width: 100px;\n  height: 100px;\n  margin-right: 10px;\n  background: #999 no-repeat center/cover; }\n\n._1KBy0 {\n  flex: 1;\n  display: flex;\n  flex-direction: column; }\n\n._3FTXV {\n  flex: 1; }\n  ._3FTXV p {\n    overflow: hidden;\n    display: -webkit-box;\n    -webkit-line-clamp: 3;\n    -webkit-box-orient: vertical; }\n\n._30yij {\n  overflow: hidden;\n  display: flex;\n  align-items: center; }\n\n._19wAn {\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  margin-right: 10px;\n  border: 1px solid #eee; }\n\n._2YtCi {\n  color: #ddd; }\n\n.jJH-4 {\n  transition: transform .5s .2s; }\n\n._2Sf8g {\n  display: block;\n  filter: blur(5px);\n  position: relative;\n  transform: scale(1.01); }\n\n.workout-introduce {\n  opacity: 0;\n  position: fixed;\n  top: 60px;\n  right: 0;\n  bottom: 0;\n  left: 150px;\n  padding: 20px 30px 80px;\n  background: rgba(0, 0, 0, 0.8);\n  transition: opacity .5s .2s; }\n\n.workout-introduce.show {\n  opacity: 1;\n  transition: opacity .5s; }\n\n.workout-introduce.show .workout-introduce-inner {\n  opacity: 1;\n  margin-top: 0;\n  transition: all .5s .2s; }\n\n.workout-introduce-inner {\n  transition: all .5s;\n  opacity: 0;\n  margin-top: 10px;\n  height: 100%;\n  padding-right: 10px;\n  margin-right: -10px;\n  overflow-x: hidden;\n  overflow-y: auto;\n  color: #fff; }\n\n._3HnIN {\n  position: absolute;\n  bottom: 20px;\n  left: 50%;\n  padding: 0;\n  width: 30px;\n  height: 30px;\n  line-height: 30px;\n  overflow: hidden;\n  margin-left: -15px;\n  border: none;\n  background: none;\n  color: #fff;\n  cursor: pointer;\n  transition: transform .35s; }\n  ._3HnIN:hover {\n    transform: scale(1.3); }\n  ._3HnIN i {\n    font-size: 30px;\n    margin: 0; }\n\n._3ESct {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  overflow-x: hidden;\n  overflow-y: auto; }\n\n._1Fdk2 {\n  width: 100%; }\n\n._1QVe8 {\n  padding: 5px;\n  margin: 10px;\n  font-size: 24px;\n  color: #fff;\n  border-bottom: 1px solid #00c78c; }\n\n._16Fkx {\n  padding: 10px 20px;\n  color: #fff; }\n\n.c-93L {\n  color: #fff;\n  margin-top: 10px;\n  margin-bottom: 0;\n  margin-left: 20px; }\n\n._2BoKE {\n  width: 100%;\n  overflow-x: auto;\n  overflow-y: hidden;\n  white-space: nowrap;\n  padding: 10px; }\n\n._2fU4a {\n  padding: 10px;\n  vertical-align: top;\n  display: inline-block; }\n\n._24vS1 {\n  position: relative; }\n\n._1z3Ha {\n  border-radius: 10px;\n  border: 1px solid #999;\n  height: 500px; }\n\n._15A6x {\n  position: absolute;\n  color: #fff;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 30px;\n  height: 30px;\n  max-width: 10%;\n  max-height: 10%;\n  transform: translate(-50%, -50%);\n  line-height: 30px;\n  text-align: center;\n  border-radius: 50%;\n  font-size: 14px;\n  background: rgba(0, 199, 140, 0.66); }\n\n.cIiAg {\n  margin-top: 10px;\n  font-size: 14px;\n  color: #fff; }\n\n._3aZ9T {\n  padding: 0 10px 10px; }\n\n._30KDK {\n  padding-top: 10px; }\n\n._2lV3o {\n  margin: 0;\n  padding: 0;\n  overflow-x: scroll;\n  overflow-y: hidden;\n  white-space: nowrap; }\n  ._2lV3o li {\n    position: relative;\n    overflow: hidden;\n    display: inline-block;\n    margin-right: 10px;\n    width: 40%;\n    height: 140px;\n    background: no-repeat center/cover; }\n    ._2lV3o li:last-child {\n      margin: 0; }\n\n._2k-At {\n  position: relative; }\n  ._2k-At:before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: rgba(0, 0, 0, 0.45); }\n  ._2k-At p {\n    position: relative; }\n\n.OHn7N {\n  color: #fff;\n  font-size: 18px; }\n\n._2Kfmk {\n  color: #ddd;\n  font-size: 12px; }\n\n._2jqeS {\n  color: #fff;\n  position: absolute;\n  left: 0;\n  bottom: 0;\n  padding: 10px;\n  width: 100%;\n  text-align: right; }\n\n._3p9y6 {\n  font-size: 10px;\n  margin-left: 5px; }\n\n._ylsI {\n  float: right;\n  padding: 5px;\n  font-size: 10px;\n  background: rgba(0, 0, 0, 0.3);\n  border-radius: 3px; }\n", ""]);
+
+	// exports
+	exports.locals = {
+		"workout-wrap": "gGG3G",
+		"workout-header": "T56YL",
+		"header-inner": "_1hEVu",
+		"header-title": "_1kXZF",
+		"header-desc": "_3n5Ak",
+		"header-nav": "YVuU5",
+		"header-link": "_1wE0v",
+		"link-val": "_1_YaU",
+		"header-sp": "_1vG24",
+		"sp-desc": "_1j7xa",
+		"list-nav": "_2MKks",
+		"nav-participation": "_1qiEN",
+		"complete-list": "_32OId",
+		"pioneer-item": "_2r7mC",
+		"show-more": "_3P-i6",
+		"training-content": "gEjE-",
+		"training-title": "_1hUN3",
+		"training-sp": "_2fS-z",
+		"line-title": "_1Vgwh",
+		"training-line": "_2tzoZ",
+		"line-item": "_21hmZ",
+		"line-work-item": "LM-oO",
+		"work-gap": "_1oREy",
+		"work-item-cover": "K8_bp",
+		"work-item-title": "_39a3J",
+		"work-item-desc": "_3CNEr",
+		"button-start-training": "_3HQju",
+		"training-dynamic": "_1mcce",
+		"dynamic-title": "_2NGue",
+		"dynamic-item": "_3ZI5H",
+		"item-photo": "_3zpl4",
+		"dynamic-content": "_1KBy0",
+		"dynamic-desc": "_3FTXV",
+		"dynamic-user": "_30yij",
+		"item-avatar": "_19wAn",
+		"dynamic-time": "_2YtCi",
+		"workout-mask": "jJH-4",
+		"workout-blur-mask": "_2Sf8g",
+		"button-introduce-desc": "_3HnIN",
+		"workout-desc-inner": "_3ESct",
+		"workout-desc-video": "_1Fdk2",
+		"workout-desc-title": "_1QVe8",
+		"workout-desc-article": "_16Fkx",
+		"workout-exercise-title": "c-93L",
+		"workout-desc-figure": "_2BoKE",
+		"exercise-figure": "_2fU4a",
+		"exercise-item": "_24vS1",
+		"exercise-pic": "_1z3Ha",
+		"exercise-coordinates": "_15A6x",
+		"exercise-tip": "cIiAg",
+		"scroll-wrap": "_3aZ9T",
+		"scroll-title": "_30KDK",
+		"scroll-list": "_2lV3o",
+		"training-block": "_2k-At",
+		"training-block-title": "OHn7N",
+		"training-block-desc": "_2Kfmk",
+		"training-block-info": "_2jqeS",
+		"block-info-time": "_3p9y6",
+		"block-info-tag": "_ylsI"
+	};
+
+/***/ },
+
+/***/ 652:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12684,15 +13119,15 @@ webpackJsonp([0],{
 
 	var _Utils2 = _interopRequireDefault(_Utils);
 
-	var _appWorkouts = __webpack_require__(647);
+	var _appWorkouts = __webpack_require__(650);
 
 	var _appWorkouts2 = _interopRequireDefault(_appWorkouts);
 
-	var _AppSlideContent = __webpack_require__(652);
+	var _AppSlideContent = __webpack_require__(653);
 
 	var _AppSlideContent2 = _interopRequireDefault(_AppSlideContent);
 
-	var _WorkoutCoordinates = __webpack_require__(655);
+	var _WorkoutCoordinates = __webpack_require__(656);
 
 	var _WorkoutCoordinates2 = _interopRequireDefault(_WorkoutCoordinates);
 
@@ -12818,7 +13253,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 652:
+/***/ 653:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12853,7 +13288,7 @@ webpackJsonp([0],{
 
 	var _Utils2 = _interopRequireDefault(_Utils);
 
-	var _appSlideContent = __webpack_require__(653);
+	var _appSlideContent = __webpack_require__(654);
 
 	var _appSlideContent2 = _interopRequireDefault(_appSlideContent);
 
@@ -12981,13 +13416,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 653:
+/***/ 654:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(654);
+	var content = __webpack_require__(655);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(121)(content, {});
@@ -12996,8 +13431,8 @@ webpackJsonp([0],{
 	if(true) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept(654, function() {
-				var newContent = __webpack_require__(654);
+			module.hot.accept(655, function() {
+				var newContent = __webpack_require__(655);
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -13008,7 +13443,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 654:
+/***/ 655:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(116)();
@@ -13031,6 +13466,108 @@ webpackJsonp([0],{
 /***/ },
 
 /***/ 656:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _dec, _class;
+
+	var _react = __webpack_require__(122);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactCssModules = __webpack_require__(354);
+
+	var _reactCssModules2 = _interopRequireDefault(_reactCssModules);
+
+	var _appWorkouts = __webpack_require__(650);
+
+	var _appWorkouts2 = _interopRequireDefault(_appWorkouts);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var WorkoutCoordinates = (_dec = (0, _reactCssModules2.default)(_appWorkouts2.default), _dec(_class = function (_Component) {
+	    _inherits(WorkoutCoordinates, _Component);
+
+	    function WorkoutCoordinates(props) {
+	        _classCallCheck(this, WorkoutCoordinates);
+
+	        return _possibleConstructorReturn(this, (WorkoutCoordinates.__proto__ || Object.getPrototypeOf(WorkoutCoordinates)).call(this, props));
+	    }
+
+	    _createClass(WorkoutCoordinates, [{
+	        key: 'render',
+	        value: function render() {
+	            var cover = this.props.data;
+	            return _react2.default.createElement(
+	                'figure',
+	                { styleName: 'exercise-figure' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { styleName: 'exercise-item' },
+	                    _react2.default.createElement('img', { styleName: 'exercise-pic', width: '500', src: cover.url, alt: '' }),
+	                    /* 动作细节位置标识 */
+	                    cover.coordinates.map(function (item, index) {
+	                        return _react2.default.createElement(
+	                            'span',
+	                            { key: item._id, style: { top: item.y * 100 + '%', left: item.x * 100 + '%' }, styleName: 'exercise-coordinates' },
+	                            index + 1
+	                        );
+	                    })
+	                ),
+	                _react2.default.createElement(
+	                    'article',
+	                    null,
+	                    /* 动作细节描述 */
+	                    cover.coordinates.map(function (item, index) {
+	                        return _react2.default.createElement(
+	                            'p',
+	                            { key: item._id, styleName: 'exercise-tip' },
+	                            index + 1,
+	                            '. ',
+	                            item.tip
+	                        );
+	                    })
+	                )
+	            );
+	        }
+	    }]);
+
+	    return WorkoutCoordinates;
+	}(_react.Component)) || _class);
+	var _default = WorkoutCoordinates;
+	exports.default = _default;
+	;
+
+	var _temp = function () {
+	    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+	        return;
+	    }
+
+	    __REACT_HOT_LOADER__.register(WorkoutCoordinates, 'WorkoutCoordinates', '/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/WorkoutCoordinates.js');
+
+	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/WorkoutCoordinates.js');
+	}();
+
+	;
+
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/WorkoutCoordinates.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/WorkoutCoordinates.js"); } } })();
+
+/***/ },
+
+/***/ 657:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

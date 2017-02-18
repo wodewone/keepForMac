@@ -10,16 +10,14 @@ const serializeJSON = (data) => {
     }).join('&');
 }
 
-export default class Http {
-    constructor(){
-    }
+export default {
 
-    static getToken() {
+    getToken() {
         const authentication = Utils.storage.get('authentication') || {}
         return 'Bearer '+ authentication.token
-    }
+    },
 
-    static httpGet(url, options = {}){
+    httpGet(url, options = {}){
         if(!url){
             return false
         }
@@ -32,9 +30,9 @@ export default class Http {
         }, options)
 
         return fetch(hostname + url, options).then((res) => res.json())
-    }
+    },
 
-    static httpPost(url, options = {}){
+    httpPost(url, options = {}){
         if(!url){
             return false
         }
@@ -52,23 +50,23 @@ export default class Http {
      * Dashboard
      */
     // Plans
-    static getDashboardTraining() {
+    ,getDashboardTraining() {
         return this.httpGet('/training/v2/home')
     }
 
-    static getDashboardWorkouts() {
+    ,getDashboardWorkouts() {
         return this.httpGet('/v2/home/dashboard/pwData')
     }
 
     // Statistics
-    static getDashboardStatistics() {
+    ,getDashboardStatistics() {
         return this.httpGet('/v1.1/home/dashboard/statistics')
     }
     // User
-    static getDashboardUser() {
+    ,getDashboardUser() {
         return this.httpGet('/v1.1/home/dashboard/user')
     }
-    static getRankingData() {
+    ,getRankingData() {
         const para = serializeJSON({
             date: moment().format('YYYYMMDD')
         })
@@ -76,7 +74,7 @@ export default class Http {
     }
 
     // user login
-    static login(data) {
+    ,login(data) {
         return this.httpPost('/v1.1/users/login', {
             method: "POST",
             headers: {
@@ -87,7 +85,7 @@ export default class Http {
     }
 
     // 用户个人信息
-    static getUserData(userID) {
+    ,getUserData(userID) {
         return this.httpGet('/v2/people/'+ userID)
     }
 
@@ -104,26 +102,31 @@ export default class Http {
     //}
 
     // workout plan
-    static getPlansContent(workoutsId, gender = 'm'){
+    ,getPlansContent(workoutsId, gender = 'm'){
         return this.httpGet('/v2/plans/'+ workoutsId +'?trainer_gender='+ gender)
     }
-    static getWorkoutsContent(workoutsId){
-        return this.httpGet('/v1.1/workouts/'+ workoutsId +'/dynamic?tLimit=3')
+    // 获取训练内容计划[以及同类推荐]
+    ,getWorkoutsPlans(planId){
+        return this.httpGet('/training/v2/plans/'+ planId +'/dynamic?tLimit=3&tSlimWorkout=true')
+    }
+    // 获取 总打卡数量/训练评论/完成用户/座右铭
+    ,getWorkoutsWorks(workoutId){
+        return this.httpGet('/training/v2/workouts/'+ workoutId +'/dynamic?tLimit=3')
     }
 
     // 完成训练
-    static completeExercise(){
+    ,completeExercise(){
         return this.httpGet('/now')
     }
 
-    static commitTrainingLog(json){
+    ,commitTrainingLog(json){
         return this.httpPost('/v1.1/home/saveTrainingLog', Object.assign({
             'serverEndTime': new Date().toISOString(),
             'doneDate': new Date().toISOString(),
         }))
     }
 
-    static commitTrainingLog(json){
+    ,commitTrainingLog(json){
         return this.httpPost('/v1.1/home/achievements/new')
     }
 }

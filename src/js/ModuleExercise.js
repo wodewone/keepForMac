@@ -12,11 +12,6 @@ import WorkoutCoordinates from '../components/AppTraining/workouts/WorkoutCoordi
 
 import {remote} from 'electron'
 
-const container = document.createElement('div')
-container.id = 'container'
-container.className = 'container'
-document.querySelector('body').appendChild(container)
-
 @CSSModules(styles, {allowMultiple: true})
 class ModuleExercise extends Component{
     constructor(props){
@@ -77,7 +72,7 @@ class ModuleExercise extends Component{
     componentDidMount(){
         console.info(this.state.workout)
 
-        remote.getCurrentWindow().removeAllListeners();
+        remote.getCurrentWindow().removeAllListeners()
         remote.getCurrentWindow().on('blur', (e) => {
             this.handleMainPause()
         }).on('focus', (e) => {
@@ -746,6 +741,11 @@ class ModuleExercise extends Component{
         )
     }
 }
+
+const container = document.createElement('div')
+container.id = 'container'
+container.className = 'container'
+document.querySelector('body').appendChild(container)
 
 ReactDOM.render(
     <ModuleExercise />,

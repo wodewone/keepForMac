@@ -1,0 +1,62 @@
+@import "variables";
+
+.user-container{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.user-back{
+  width: 100%;
+  height: 260px;
+  background: #000;
+  padding: 15px;
+  text-align: center;
+  position: relative;
+  -webkit-app-region: drag;
+}
+.back-cover,
+.back-avatar{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: center/cover no-repeat;
+  transform: scale(1.01);
+  overflow: hidden;
+}
+.back-cover{
+  filter: blur(30px);
+}
+.back-avatar{
+  opacity: .45;
+}
+.user-avatar{
+  position: relative;
+  width: 78px;
+  height: 78px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 5px 15px rgba(0,0,0,.8);
+}
+.user-info-content{
+  padding: 15px 0;
+  text-align: center;
+  position: relative;
+  color: $color-white;
+
+  p{
+    -webkit-app-region: no-drag;
+    -webkit-user-select: auto;
+  }
+}
+.user-info-name{
+  font-size: $font-size-18;
+  margin-bottom: 10px;
+}
+.user-info-desc{
+  font-size: $font-size-12;
+  margin-bottom: 10px;
+}

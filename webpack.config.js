@@ -20,13 +20,14 @@ module.exports = {
         lib: [
             'react', 'react-dom', 'react-router', 'react-css-modules'
         ],
-        appExercise: './src/js/ModuleExercise.js'
+        appExercise: './src/js/ModuleExercise.js',
+        userContent: './src/components/common/UserContent.js'
 
     },
 	output: {
         path: path.join(__dirname, './app'),
-        //publicPath: 'http://localhost:3000',
-        publicPath: '',
+        publicPath: 'http://localhost:3000/',
+        //publicPath: '',
         filename: '[name].js',
         chunkFilename: '[name].js'
         //hotUpdateChunkFilename: '/hot/hot-update.js',
@@ -95,6 +96,14 @@ module.exports = {
             filename: 'startExercise.html',
             chunks: [
                 'appExercise',
+                'lib'
+            ],
+        }),
+        new HtmlWebpackPlugin({
+            title: '',
+            filename: 'userContent.html',
+            chunks: [
+                'userContent',
                 'lib'
             ],
         }),

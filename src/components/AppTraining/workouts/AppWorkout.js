@@ -5,6 +5,7 @@ import autobind from 'autobind-decorator'
 import moment from 'moment'
 import Utils from '../../../js/Utils.js'
 import $http from '../../../js/HttpRequest.js'
+import UserWindow from '../../common/UserWindow.js'
 
 import styles from '../../../sass/appWorkouts.scss'
 
@@ -21,6 +22,7 @@ class AppWorkout extends Component{
             workouts: !workouts.length ? workouts : [],
             workout: !workouts.length ? {} : new Map(workouts).has(this.props.params.plan_id) ? new Map(workouts).get(this.props.params.plan_id) : {},
             content: {},
+            recommends: [],
             classBlur: 'workout-mask'   // 显示弹出层时内容层 *blurry*
         }
     }
@@ -41,13 +43,39 @@ class AppWorkout extends Component{
             })
         }
 
-        // 获取 总打卡数量/训练评论/完成用户/座右铭
-        $http.getWorkoutsContent(this.props.params.plan_id).then((response) => {
+        // 获取训练计划[以及同类推荐]
+        $http.getWorkoutsPlans(this.props.params.plan_id).then((response) => {
             if(response.ok){
-                Utils.storage.set('timeoutTip', response.data.motto)
+                console.table(response.data)
                 this.setState({
-                    content: response.data
+                    recommends: response.data.recommends
                 })
+                return response.data.workoutId
+            }
+        }).then((workoutId) => {
+            // 获取 总打卡数量/训练评论/完成用户/座右铭
+            $http.getWorkoutsWorks(workoutId).then((response) => {
+                if(response.ok) {
+                    Utils.storage.set('timeoutTip', response.data.motto)
+                    this.setState({
+                        content: response.data
+                    })
+                }
+            })
+        })
+    }
+
+    @autobind
+    handleUserInfo(userId){
+        $http.getUserData(userId).then((response) => {
+            if(response.ok) {
+                console.info(response)
+                Utils.storage.set('userInfo', response.data)
+                console.info(UserWindow.check())
+                if(UserWindow.has())
+                    UserWindow.show()
+                else
+                    UserWindow.create()
             }
         })
     }
@@ -55,13 +83,12 @@ class AppWorkout extends Component{
     @autobind
     getPioneerContent(){
         const list = this.state.content.pioneer
+        console.info(this.state.content)
         // const userImg = require('url-loader?mimetype=image/png!../../../assets/images/keep-small.jpg')
-        if(!list)
-            return false
-
-        return list.map((item, index) => {
-            return <li key={item._id + index}><Link styleName="pioneer-item" onClick={() => $http.getUserData(item._id).then((data) => console.info(data))} ><img src={item.avatar} alt=""/></Link></li>
-        })
+        if(list && list.length>0)
+            return list.map((item, index) => {
+                return <li key={item._id + index}><Link styleName="pioneer-item" onClick={() => this.handleUserInfo(item._id)} ><img src={item.avatar} alt=""/></Link></li>
+            })
     }
 
     @autobind
@@ -156,7 +183,6 @@ class AppWorkout extends Component{
 
     @autobind
     handleStartExercise(){
-        console.info(this.state.workout.name)
         let winWorkout = new remote.BrowserWindow({
             'width': 1199,
             'height': 777,
@@ -164,7 +190,7 @@ class AppWorkout extends Component{
             'center': true,
             //'alwaysOnTop': true,
         })
-        winWorkout.loadURL('file://'+ require('path').resolve() +'/build/startExercise.html?planid='+ this.props.params.plan_id)
+        winWorkout.loadURL('file://'+ require('path').resolve() +'/app/startExercise.html?planid='+ this.props.params.plan_id)
         winWorkout.on('close', () =>{
             winWorkout = null
         })
@@ -222,6 +248,23 @@ class AppWorkout extends Component{
                             <div>
                                 {this.getWorkoutDynamic()}
                             </div>
+                        </section>
+                        {/* 训练同类推荐 */}
+                        <section hidden={!this.state.recommends.length} className="white-background margin-top" styleName="scroll-wrap">
+                            <div styleName="dynamic-title">相关训练</div>
+                            <ul styleName="scroll-list">
+                                {
+                                    this.state.recommends.map((item) => {
+                                        return (
+                                            <li key={item.id} className="padding" styleName="training-block" style={{backgroundImage: `url(${item.picture})`}}>
+                                                <p styleName="training-block-title">{item.title}</p>
+                                                <p styleName="training-block-desc">{item.pioneer}已参加</p>
+                                                <div className="text-left" styleName="training-block-info"><span className="fz18 font-bold">K{item.difficulty}</span><span styleName="block-info-time">{item.averageDuration}分钟</span><span styleName="block-info-tag">{item.source}</span></div>
+                                            </li>
+                                        )
+                                    })
+                                }
+                            </ul>
                         </section>
                         <button styleName="button-start-training" onClick={this.handleStartExercise}>开始训练</button>
                     </div>
