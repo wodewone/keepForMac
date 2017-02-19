@@ -10,6 +10,11 @@ Mac版keep应用（开发未结束，暂时不提供安装包，敬请期待！d
 > **注：**keep - 专注移动体育领域的应用开发，倡导开放共享的精神，不模仿，不跟风，只做酷的产品 荣获 App Store 2015年度精选（节选自 [keep 官网](http://www.gotokeep.com)）
 
 ## Preview
+
+### new 
+
+![preview-10](http://wodewone.github.io/app/keep/preview/preview-10.jpg)
+
 ![preview-1](http://wodewone.github.io/app/keep/preview/preview-1.jpg)
 ![preview-2](http://wodewone.github.io/app/keep/preview/preview-2.jpg)
 ![preview-3](http://wodewone.github.io/app/keep/preview/preview-3.jpg)

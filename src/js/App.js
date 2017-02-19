@@ -4,6 +4,7 @@ import autobind from 'autobind-decorator'
 import { Link, hashHistory } from 'react-router'
 import styles from '../sass/index.scss'
 import AppSearch from '../components/AppSearch.js'
+import UserWindow from '../components/common/UserWindow.js'
 import Utils from '../js/Utils.js'
 import $http from './HttpRequest.js'
 
@@ -32,15 +33,12 @@ class App extends Component{
 
     @autobind
     getUser(){
-        if(!this.state.user._id){
-            return false
-        }
-
-        return(
-            <div styleName="header-user">
-                <img styleName="header-avatar" src={this.state.user.avatar} alt=""/>
-            </div>
-        )
+        if(this.state.user._id)
+            return(
+                <div styleName="header-user" onClick={() => {Utils.storage.set('userInfo', Utils.storage.get('mineInfo'));UserWindow.create('我的资料')}}>
+                    <img styleName="header-avatar" src={this.state.user.avatar} alt=""/>
+                </div>
+            )
     }
 
     @autobind

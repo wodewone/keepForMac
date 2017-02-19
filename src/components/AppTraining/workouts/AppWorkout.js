@@ -65,17 +65,16 @@ class AppWorkout extends Component{
         })
     }
 
+    // 查看用户个人信息
     @autobind
     handleUserInfo(userId){
         $http.getUserData(userId).then((response) => {
             if(response.ok) {
-                console.info(response)
                 Utils.storage.set('userInfo', response.data)
-                console.info(UserWindow.check())
                 if(UserWindow.has())
-                    UserWindow.show()
+                    UserWindow.show('keeper - '+ response.data.user.username)
                 else
-                    UserWindow.create(response.data.user.username)
+                    UserWindow.create('keeper - '+ response.data.user.username)
             }
         })
     }
@@ -190,7 +189,7 @@ class AppWorkout extends Component{
             'center': true,
             //'alwaysOnTop': true,
         })
-        winWorkout.loadURL('file://'+ require('path').resolve() +'/app/startExercise.html?planid='+ this.props.params.plan_id)
+        winWorkout.loadURL(`file://${$dirname}/startExercise.html?planid=${this.props.params.plan_id}`)
         winWorkout.on('close', () =>{
             winWorkout = null
         })

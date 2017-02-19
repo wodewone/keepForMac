@@ -55,10 +55,10 @@ class ModuleExercise extends Component{
     }
 
     static getSoundTips(name){
-        return 'file://'+ require('path').resolve() + '/build/sounds/' + name
+        return `file://${$dirname}/sounds/${name}`
     }
     static getSoundNumber(name){
-        return 'file://'+ require('path').resolve() + '/build/number/N' + name +'.mp3'
+        return `file://${$dirname}/number/N${name}.mp3`
     }
     static makeNumOrder(index){
         return index < 1000 ?

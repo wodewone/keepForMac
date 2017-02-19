@@ -15,7 +15,7 @@ export default {
         this.winUser = new remote.BrowserWindow({
             'width': 333,
             'height': 520,
-            'title': 'keeper - '+ title,
+            'title': title,
             'titleBarStyle': 'hidden',
             'center': true,
             'minimizable': false,
@@ -27,16 +27,22 @@ export default {
             //'show': false,
             'resizable': false,
         })
-        this.winUser.loadURL(`file://${__dirname}/app/userContent.html`)
+        this.winUser.loadURL(`file://${$dirname}/userContent.html`)
         this.winUser.on('close', () =>{
             this.winUser = null
-            console.info('user-window:',this.winUser)
         })
         //this.winUser.once('ready-to-show', () => {
         //    this.winUser.show()
         //})
     },
-    show(){
-        typeof this.winUser.focus === 'function' && this.winUser.focus()
+    show(title){
+        try {
+            if (this.winUser) {
+                this.winUser.setTitle(title)
+                this.winUser.focus()
+            }
+        }catch(e){
+            console.info(e)
+        }
     }
 }

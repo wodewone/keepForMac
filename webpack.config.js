@@ -12,8 +12,8 @@ require('url-loader')
 module.exports = {
     entry: {
         app: [
-            'webpack-dev-server/client?http://localhost:3000',
-            'webpack/hot/only-dev-server',
+            //'webpack-dev-server/client?http://localhost:3000',
+            //'webpack/hot/only-dev-server',
             //'webpack/hot/dev-server',
             './src/main.js'
         ],
@@ -38,8 +38,8 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                loader: 'react-hot-loader/webpack!babel',   // react-hot-loader v3.0
-                //loader: 'babel',
+                //loader: 'react-hot-loader/webpack!babel',   // react-hot-loader v3.0
+                loader: 'babel',
             },
             {
 				test: /\.(scss|css)$/,
@@ -77,6 +77,9 @@ module.exports = {
     //    return [precss, autoprefixer];
     //},
     plugins: [
+        // react 热部署
+        //new webpack.HotModuleReplacementPlugin(),
+
         // 开启独立 css 到单独文件
         new ExtractTextPlugin('app.css', {
             allChunks: true
@@ -112,21 +115,19 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin('lib', 'js/lib.js'),
 
         // 压缩并打包文件
-        //new webpack.optimize.UglifyJsPlugin({
-        //    compress: {
-        //        warnings: false
-        //    }
-        //}),
-
-        // react 热部署
-        new webpack.HotModuleReplacementPlugin(),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        }),
 
         // 解决开发时提示React没有切换到产品版本
         // [React doesn't switch to production mode](http://stackoverflow.com/questions/37311972/react-doesnt-switch-to-production-mode)
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-            }
+            },
+            '$dirname': '__dirname',    // 解决webpack编译时将 __dirname 转为本地局部变量
         })
     ],
     target: 'electron-renderer'

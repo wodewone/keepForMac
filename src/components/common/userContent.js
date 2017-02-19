@@ -41,7 +41,7 @@ class UserContent extends Component{
                     trainings: userInfo.trainings,
                     user: userInfo.user
                 })
-                remote.getCurrentWindow().setTitle('keeper - '+ userInfo.user.username)
+                //remote.getCurrentWindow().setTitle('keeper - '+ userInfo.user.username)
             }
         })
 
@@ -83,8 +83,8 @@ class UserContent extends Component{
                     <div styleName="user-training-line">连续训练 <div styleName="user-training-data">{this.state.trainings.currentCombo} 天</div></div>
                     <div styleName="user-training-line">累计消耗 <div styleName="user-training-data">{this.state.trainings.totalCalorie} 千卡</div></div>
                     <div styleName="both-line">
-                        <Link to='' styleName="line-btn">去Ta主页</Link>
-                        <Link to='' styleName="line-btn">关注Ta</Link>
+                        <Link to='' styleName="line-btn">去Ta主页(暂未开发)</Link>
+                        <Link to='' styleName="line-btn">关注Ta(暂未开发)</Link>
                     </div>
                 </section>
             </div>

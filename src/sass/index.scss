@@ -122,8 +122,9 @@
   }
 }
 .header-user{
-  padding: 0 23px;
-  text-align: right;
+  padding: 0 23px 0 0;
+  float: right;
+  cursor: pointer;
   position: relative;
 
   &:after{
