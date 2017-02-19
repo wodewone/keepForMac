@@ -12,6 +12,13 @@ export default {
         get(key = null) {
             return JSON.parse(localStorage.getItem(this.prefix+key))
         },
+        remove(key = null){
+            if(this.has(key)) {
+                localStorage.removeItem(this.prefix + key)
+                return true
+            }
+            return false
+        },
         has(key = null){
             return !!this.get(key)
         }

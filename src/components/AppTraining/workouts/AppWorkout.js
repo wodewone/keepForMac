@@ -75,7 +75,7 @@ class AppWorkout extends Component{
                 if(UserWindow.has())
                     UserWindow.show()
                 else
-                    UserWindow.create()
+                    UserWindow.create(response.data.user.username)
             }
         })
     }

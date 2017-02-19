@@ -6,15 +6,18 @@
   left: 0;
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .user-back{
   width: 100%;
   height: 260px;
   background: #000;
-  padding: 15px;
+  padding: 20px 10px 0;
   text-align: center;
   position: relative;
   -webkit-app-region: drag;
+  overflow: hidden;
 }
 .back-cover,
 .back-avatar{
@@ -35,11 +38,25 @@
 }
 .user-avatar{
   position: relative;
+  margin: auto;
   width: 78px;
   height: 78px;
   border: 1px solid #fff;
   border-radius: 50%;
+  background: $keep-gary;
   box-shadow: 0 5px 15px rgba(0,0,0,.8);
+  transition: all .35s;
+  overflow: hidden;
+
+  &:hover{
+    transform: scale(1.2);
+    border-color: $keep-green;
+  }
+
+  img{
+    width: 100%;
+    height: 100%;
+  }
 }
 .user-info-content{
   padding: 15px 0;
@@ -47,16 +64,76 @@
   position: relative;
   color: $color-white;
 
-  p{
+  p span{
     -webkit-app-region: no-drag;
     -webkit-user-select: auto;
   }
 }
 .user-info-name{
   font-size: $font-size-18;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  text-shadow: 0 0 2px rgba(0,0,0,.6), 0 0 2px rgba(0,0,0,.6);
 }
 .user-info-desc{
   font-size: $font-size-12;
   margin-bottom: 10px;
+  max-height: 60px;
+  overflow: hidden;
+  text-shadow: 0 0 2px rgba(0,0,0,.6), 0 0 2px rgba(0,0,0,.6);
+}
+.user-info-other{
+  font-size: $font-size-12;
+  margin-bottom: 10px;
+  color: $color-white;
+}
+.user-info-config{
+  font-size: $font-size-12;
+  color: $keep-green;
+  opacity: .6;
+  transition: opacity .35s;
+
+  &:hover{
+    opacity: 1;
+  }
+}
+
+.user-training{
+  background: $color-white;
+  padding: 15px;
+}
+.user-training-line{
+  font-size: $font-size-14;
+  color: $keep-gary;
+  display: flex;
+  margin-bottom: 12px;
+}
+.user-training-data{
+  flex: 1;
+  text-align: right;
+}
+.both-line{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  box-shadow: 0 -1px 5px rgba(0,0,0,0.8);
+}
+.line-btn{
+  flex: 1;
+  background: $keep-gary;
+  color: $color-white;
+  font-size: $font-size-14;
+  text-align: center;
+  padding: 10px 0;
+
+  &:hover{
+    color: $color-white;
+    transition: background .35s;
+    background: $keep-green;
+  }
+
+  &:first-child{
+    border-right: 1px solid $border-color;
+  }
 }

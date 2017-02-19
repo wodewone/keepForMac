@@ -129,5 +129,9 @@ export default {
     ,commitTrainingLog(json){
         return this.httpPost('/v1.1/home/achievements/new')
     }
+
+    ,getCityJson(){
+        return this.httpGet('/v1.1/home/cities')
+    }
 }
 

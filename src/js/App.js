@@ -5,6 +5,7 @@ import { Link, hashHistory } from 'react-router'
 import styles from '../sass/index.scss'
 import AppSearch from '../components/AppSearch.js'
 import Utils from '../js/Utils.js'
+import $http from './HttpRequest.js'
 
 @CSSModules(styles)
 class App extends Component{
@@ -46,6 +47,35 @@ class App extends Component{
     componentWillMount(){
         window.coco = this
         console.warn(this.props.router.routes)
+        const userData = Utils.storage.get('userData') || {}
+
+        if(Utils.storage.get('userData')._id) {
+            // 获取登录用户信息缓存
+            $http.getUserData(Utils.storage.get('userData')._id).then((response) => {
+                if (response.ok) {
+                    Utils.storage.set('mineInfo', response.data)
+                }
+            })
+        }
+
+        if(!Utils.storage.has('cityData')) {
+            // 获取地区信息缓存
+            $http.getCityJson().then((response) => {
+                if (response.ok) {
+                    Utils.storage.set('cityData', response.data)
+                    let cityArr = []
+                    response.data.forEach((city) => {
+                        cityArr = [...cityArr, ...city.children.map((item) => {
+                            return {
+                                'cityCode': item.code,
+                                'cityName': city.name + ',' +item.name
+                            }
+                        })]
+                    })
+                    Utils.storage.set('cityJson', cityArr)
+                }
+            })
+        }
     }
 
     @autobind
