@@ -13,6 +13,10 @@ webpackJsonp([3],{
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactDom = __webpack_require__(152);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
 	var _reactRouter = __webpack_require__(298);
 
 	var _reactCssModules = __webpack_require__(354);
@@ -23,7 +27,7 @@ webpackJsonp([3],{
 
 	var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
 
-	var _moment = __webpack_require__(525);
+	var _moment = __webpack_require__(522);
 
 	var _moment2 = _interopRequireDefault(_moment);
 
@@ -84,13 +88,14 @@ webpackJsonp([3],{
 
 	        var _this = _possibleConstructorReturn(this, (UserContent.__proto__ || Object.getPrototypeOf(UserContent)).call(this, props));
 
-	        var userInfo = _Utils2.default.session.has('userInfo') ? _Utils2.default.session.get('userInfo') : {};
+	        var userInfo = _Utils2.default.storage.has('userInfo') ? _Utils2.default.storage.get('userInfo') : {};
 
 	        _this.state = {
 	            statistics: userInfo.statistics || {},
 	            trainings: userInfo.trainings || {},
 	            user: userInfo.user || {}
 	        };
+
 	        return _this;
 	    }
 
@@ -99,17 +104,36 @@ webpackJsonp([3],{
 	        value: function componentWillMount() {
 	            var _this2 = this;
 
+	            console.info(this.state);
+
+	            //remote.getCurrentWindow().removeAllListeners()
+	            console.info(_electron.remote.getCurrentWindow());
 	            // 每次获得焦点时判断数据是否有更新
 	            _electron.remote.getCurrentWindow().on('focus', function (e) {
-	                var userInfo = _Utils2.default.session.get('userInfo') || {};
+	                var userInfo = _Utils2.default.storage.get('userInfo') || {};
 	                if (userInfo.user && userInfo.user._id !== _this2.state.user._id) {
 	                    _this2.setState({
 	                        statistics: userInfo.statistics,
 	                        trainings: userInfo.trainings,
 	                        user: userInfo.user
 	                    });
+	                    _electron.remote.getCurrentWindow().setTitle('keeper - ' + userInfo.user.username);
 	                }
 	            });
+	        }
+	    }, {
+	        key: 'componentWillUnmount',
+	        value: function componentWillUnmount() {
+	            this.state = null;
+	            _Utils2.default.storage.remove('userInfo');
+	        }
+	    }, {
+	        key: 'getCityAddress',
+	        value: function getCityAddress(cityCode) {
+	            var city = _Utils2.default.storage.get('cityJson').filter(function (item) {
+	                return cityCode == item.cityCode;
+	            })[0];
+	            return city ? city : { cityName: '银河,地球' };
 	        }
 	    }, {
 	        key: 'render',
@@ -120,15 +144,152 @@ webpackJsonp([3],{
 	                _react2.default.createElement(
 	                    'section',
 	                    { styleName: 'user-back' },
-	                    _react2.default.createElement('div', { styleName: 'back-cover', style: { backgroundImage: 'url(' + this.state.user.avatar + ')' } }),
-	                    _react2.default.createElement('img', { styleName: 'user-avatar', src: this.state.user.avatar, alt: '' })
+	                    _react2.default.createElement('div', { hidden: this.state.user.backgroundAvatar, styleName: 'back-cover', style: { backgroundImage: 'url(' + this.state.user.avatar + ')' } }),
+	                    _react2.default.createElement('div', { hidden: !this.state.user.backgroundAvatar, styleName: 'back-avatar', style: { backgroundImage: 'url(' + this.state.user.backgroundAvatar + ')' } }),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { styleName: 'user-avatar' },
+	                        _react2.default.createElement('img', { src: this.state.user.avatar, alt: '' })
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { styleName: 'user-info-content' },
+	                        _react2.default.createElement(
+	                            'p',
+	                            { styleName: 'user-info-name' },
+	                            _react2.default.createElement(
+	                                'span',
+	                                null,
+	                                this.state.user.username
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'p',
+	                            { styleName: 'user-info-desc' },
+	                            _react2.default.createElement(
+	                                'span',
+	                                null,
+	                                this.state.user.bio || '这个人很懒，啥都没写~'
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'p',
+	                            { styleName: 'user-info-other' },
+	                            _react2.default.createElement(
+	                                'span',
+	                                null,
+	                                (0, _moment2.default)(new Date(this.state.user.birthday)).format('YYYY-MM-DD')
+	                            ),
+	                            ' | ',
+	                            _react2.default.createElement(
+	                                'span',
+	                                null,
+	                                this.getCityAddress(this.state.user.citycode || '').cityName
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'p',
+	                            { styleName: 'user-info-config' },
+	                            this.state.statistics.follow + '\u5173\u6CE8',
+	                            ' - ',
+	                            this.state.statistics.followed + '\u7C89\u4E1D',
+	                            ' - ',
+	                            this.state.statistics.totalEntries + '\u4E2A\u52A8\u6001',
+	                            ' - ',
+	                            this.state.statistics.liked + '\u4EBA\u52A0\u6CB9'
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'section',
+	                    { styleName: 'user-training' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { styleName: 'user-training-line' },
+	                        '\u7D2F\u8BA1\u8BAD\u7EC3 ',
+	                        _react2.default.createElement(
+	                            'div',
+	                            { styleName: 'user-training-data' },
+	                            this.state.trainings.totalDuration,
+	                            ' \u5206\u949F'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { styleName: 'user-training-line' },
+	                        '\u8BAD\u7EC3\u6B21\u6570 ',
+	                        _react2.default.createElement(
+	                            'div',
+	                            { styleName: 'user-training-data' },
+	                            this.state.trainings.totalTraining,
+	                            ' \u6B21'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { styleName: 'user-training-line' },
+	                        '\u8BAD\u7EC3\u5929\u6570 ',
+	                        _react2.default.createElement(
+	                            'div',
+	                            { styleName: 'user-training-data' },
+	                            this.state.trainings.totalTrainingDay,
+	                            ' \u5929'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { styleName: 'user-training-line' },
+	                        '\u6700\u957F\u5929\u6570 ',
+	                        _react2.default.createElement(
+	                            'div',
+	                            { styleName: 'user-training-data' },
+	                            this.state.trainings.maxCombo,
+	                            ' \u5929'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { styleName: 'user-training-line' },
+	                        '\u8FDE\u7EED\u8BAD\u7EC3 ',
+	                        _react2.default.createElement(
+	                            'div',
+	                            { styleName: 'user-training-data' },
+	                            this.state.trainings.currentCombo,
+	                            ' \u5929'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { styleName: 'user-training-line' },
+	                        '\u7D2F\u8BA1\u6D88\u8017 ',
+	                        _react2.default.createElement(
+	                            'div',
+	                            { styleName: 'user-training-data' },
+	                            this.state.trainings.totalCalorie,
+	                            ' \u5343\u5361'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { styleName: 'both-line' },
+	                        _react2.default.createElement(
+	                            _reactRouter.Link,
+	                            { to: '', styleName: 'line-btn' },
+	                            '\u53BBTa\u4E3B\u9875'
+	                        ),
+	                        _react2.default.createElement(
+	                            _reactRouter.Link,
+	                            { to: '', styleName: 'line-btn' },
+	                            '\u5173\u6CE8Ta'
+	                        )
+	                    )
 	                )
 	            );
 	        }
 	    }]);
 
 	    return UserContent;
-	}(_react.Component), (_applyDecoratedDescriptor(_class2.prototype, 'componentWillMount', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentWillMount'), _class2.prototype)), _class2)) || _class);
+	}(_react.Component), (_applyDecoratedDescriptor(_class2.prototype, 'componentWillMount', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentWillMount'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'componentWillUnmount', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentWillUnmount'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getCityAddress', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getCityAddress'), _class2.prototype)), _class2)) || _class);
 
 
 	var container = document.createElement('div');
@@ -136,7 +297,7 @@ webpackJsonp([3],{
 	container.className = 'container';
 	document.querySelector('body').appendChild(container);
 
-	ReactDOM.render(_react2.default.createElement(UserContent, null), document.getElementById('container'));
+	_reactDom2.default.render(_react2.default.createElement(UserContent, null), document.getElementById('container'));
 	;
 
 	var _temp = function () {
@@ -190,14 +351,25 @@ webpackJsonp([3],{
 
 
 	// module
-	exports.push([module.id, "._2iSfP {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%; }\n\n._2fJro {\n  width: 100%;\n  height: 120px;\n  background: #584f5f; }\n\n._25K5c {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: center/cover no-repeat;\n  transform: scale(1.01);\n  overflow: hidden;\n  filter: blur(5px); }\n\n.a0fr5 {\n  position: absolute;\n  top: -10px;\n  left: 50%;\n  width: 78px;\n  height: 78px;\n  margin-left: -39px;\n  border: 1px solid #fff;\n  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.8); }\n", ""]);
+	exports.push([module.id, "._2iSfP {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column; }\n\n._2fJro {\n  width: 100%;\n  height: 260px;\n  background: #000;\n  padding: 20px 10px 0;\n  text-align: center;\n  position: relative;\n  -webkit-app-region: drag;\n  overflow: hidden; }\n\n._25K5c,\n.xR6HH {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: center/cover no-repeat;\n  transform: scale(1.01);\n  overflow: hidden; }\n\n._25K5c {\n  filter: blur(30px); }\n\n.xR6HH {\n  opacity: .45; }\n\n.a0fr5 {\n  position: relative;\n  margin: auto;\n  width: 78px;\n  height: 78px;\n  border: 1px solid #fff;\n  border-radius: 50%;\n  background: #584f5f;\n  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);\n  transition: all .35s;\n  overflow: hidden; }\n  .a0fr5:hover {\n    transform: scale(1.2);\n    border-color: #00c78c; }\n  .a0fr5 img {\n    width: 100%;\n    height: 100%; }\n\n.Fpgzu {\n  padding: 15px 0;\n  text-align: center;\n  position: relative;\n  color: #fff; }\n  .Fpgzu p span {\n    -webkit-app-region: no-drag;\n    -webkit-user-select: auto; }\n\n._3seF1 {\n  font-size: 18px;\n  margin-bottom: 5px;\n  text-shadow: 0 0 2px rgba(0, 0, 0, 0.6), 0 0 2px rgba(0, 0, 0, 0.6); }\n\n._2iUvc {\n  font-size: 12px;\n  margin-bottom: 10px;\n  max-height: 60px;\n  overflow: hidden;\n  text-shadow: 0 0 2px rgba(0, 0, 0, 0.6), 0 0 2px rgba(0, 0, 0, 0.6); }\n\n._2ES3L {\n  font-size: 12px;\n  margin-bottom: 10px;\n  color: #fff; }\n\n._3QjzQ {\n  font-size: 12px;\n  color: #00c78c;\n  opacity: .6;\n  transition: opacity .35s; }\n  ._3QjzQ:hover {\n    opacity: 1; }\n\n._1oAqh {\n  background: #fff;\n  padding: 15px; }\n\n._1gvj1 {\n  font-size: 14px;\n  color: #584f5f;\n  display: flex;\n  margin-bottom: 12px; }\n\n._10GQ5 {\n  flex: 1;\n  text-align: right; }\n\n._3nixU {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  display: flex;\n  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.8); }\n\n._2ylNR {\n  flex: 1;\n  background: #584f5f;\n  color: #fff;\n  font-size: 14px;\n  text-align: center;\n  padding: 10px 0; }\n  ._2ylNR:hover {\n    color: #fff;\n    transition: background .35s;\n    background: #00c78c; }\n  ._2ylNR:first-child {\n    border-right: 1px solid #eee; }\n", ""]);
 
 	// exports
 	exports.locals = {
 		"user-container": "_2iSfP",
 		"user-back": "_2fJro",
 		"back-cover": "_25K5c",
-		"user-avatar": "a0fr5"
+		"back-avatar": "xR6HH",
+		"user-avatar": "a0fr5",
+		"user-info-content": "Fpgzu",
+		"user-info-name": "_3seF1",
+		"user-info-desc": "_2iUvc",
+		"user-info-other": "_2ES3L",
+		"user-info-config": "_3QjzQ",
+		"user-training": "_1oAqh",
+		"user-training-line": "_1gvj1",
+		"user-training-data": "_10GQ5",
+		"both-line": "_3nixU",
+		"line-btn": "_2ylNR"
 	};
 
 /***/ }

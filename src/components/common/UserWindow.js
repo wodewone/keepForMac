@@ -27,7 +27,7 @@ export default {
             //'show': false,
             'resizable': false,
         })
-        this.winUser.loadURL(`file://${require('path').resolve()}/app/userContent.html`)
+        this.winUser.loadURL(`file://${__dirname}/app/userContent.html`)
         this.winUser.on('close', () =>{
             this.winUser = null
             console.info('user-window:',this.winUser)

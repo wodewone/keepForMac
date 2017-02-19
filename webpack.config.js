@@ -26,8 +26,8 @@ module.exports = {
     },
 	output: {
         path: path.join(__dirname, './app'),
-        publicPath: 'http://localhost:3000/',
-        //publicPath: '',
+        //publicPath: 'http://localhost:3000/',
+        publicPath: '',
         filename: '[name].js',
         chunkFilename: '[name].js'
         //hotUpdateChunkFilename: '/hot/hot-update.js',

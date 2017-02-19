@@ -31,7 +31,7 @@ webpackJsonp([1],{
 
 	var _Utils2 = _interopRequireDefault(_Utils);
 
-	var _moment = __webpack_require__(525);
+	var _moment = __webpack_require__(522);
 
 	var _moment2 = _interopRequireDefault(_moment);
 
@@ -39,7 +39,7 @@ webpackJsonp([1],{
 
 	var _moduleExercise2 = _interopRequireDefault(_moduleExercise);
 
-	var _HttpRequest = __webpack_require__(524);
+	var _HttpRequest = __webpack_require__(521);
 
 	var _HttpRequest2 = _interopRequireDefault(_HttpRequest);
 
@@ -1006,7 +1006,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 524:
+/***/ 521:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1015,11 +1015,13 @@ webpackJsonp([1],{
 	    value: true
 	});
 
+	var _default2;
+
 	var _Utils = __webpack_require__(520);
 
 	var _Utils2 = _interopRequireDefault(_Utils);
 
-	var _moment = __webpack_require__(525);
+	var _moment = __webpack_require__(522);
 
 	var _moment2 = _interopRequireDefault(_moment);
 
@@ -1039,7 +1041,7 @@ webpackJsonp([1],{
 	    }).join('&');
 	};
 
-	var _default = _defineProperty({
+	var _default = (_default2 = {
 	    getToken: function getToken() {
 	        var authentication = _Utils2.default.storage.get('authentication') || {};
 	        return 'Bearer ' + authentication.token;
@@ -1167,9 +1169,11 @@ webpackJsonp([1],{
 	            'doneDate': new Date().toISOString()
 	        }));
 	    }
-	}, 'commitTrainingLog', function commitTrainingLog(json) {
+	}, _defineProperty(_default2, 'commitTrainingLog', function commitTrainingLog(json) {
 	    return this.httpPost('/v1.1/home/achievements/new');
-	});
+	}), _defineProperty(_default2, 'getCityJson', function getCityJson() {
+	    return this.httpGet('/v1.1/home/cities');
+	}), _default2);
 
 	exports.default = _default;
 	;
