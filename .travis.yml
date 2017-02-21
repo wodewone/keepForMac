@@ -5,16 +5,23 @@ addons:
   apt:
     packages:
       - xvfb
-
 before_install:
   - export DISPLAY=:99.0
   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
-
 install:
   - npm install --no-progress
-
 script:
   - npm test
-
 notifications:
   email: false
+
+sudo: false
+
+deploy:              # 部署
+  provider: releases # 部署到GitHub Release，除此之外，Travis CI还支持发布到fir.im、AWS、Google App Engine等
+  api_key:           # 填写GitHub的token （Settings -> Personal access tokens -> Generate new token）
+    secure: 7f4dc45a19f742dce39cbe4d1e5852xxxxxxxxx 
+  file: app/build/outputs/apk/buff.apk   # 部署文件路径
+  skip_cleanup: true     # 设置为true以跳过清理,不然apk文件就会被清理
+  on:     # 发布时机           
+    tags: true

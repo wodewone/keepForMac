@@ -43,7 +43,6 @@ class App extends Component{
 
     @autobind
     componentWillMount(){
-        window.coco = this
         console.warn(this.props.router.routes)
         const userData = Utils.storage.get('userData') || {}
 

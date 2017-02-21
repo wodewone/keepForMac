@@ -1,4 +1,4 @@
-## KEEP FOR MAC
+## KEEP FOR MAC [![Build Status](https://travis-ci.org/wodewone/keepForMac.svg?branch=master)](https://travis-ci.org/wodewone/keepForMac)
 
 ![keep](keep-zilv.jpg)
 
@@ -11,9 +11,11 @@ Mac版keep应用（开发未结束，暂时不提供安装包，敬请期待！d
 
 ## Preview
 
-### new 
+### NEW
 
 ![preview-10](http://wodewone.github.io/app/keep/preview/preview-10.jpg)
+
+### BASE
 
 ![preview-1](http://wodewone.github.io/app/keep/preview/preview-1.jpg)
 ![preview-2](http://wodewone.github.io/app/keep/preview/preview-2.jpg)
@@ -27,7 +29,7 @@ Mac版keep应用（开发未结束，暂时不提供安装包，敬请期待！d
 
 ## Development
 
-开发笔记：[开发中问题以及进程](http://wodewone.github.io/2016/12/03/使用js创建macOS应用/)
+开发笔记：[开发进程以及过程中的问题](http://wodewone.github.io/2016/12/03/使用js创建macOS应用/)
 
 技术栈：electron + webpack + babel + react + es6 + sass + cssModules
 
