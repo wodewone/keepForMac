@@ -1,4 +1,4 @@
-## KEEP FOR MAC [![Build Status](https://travis-ci.org/wodewone/keepForMac.svg?branch=master)](https://travis-ci.org/wodewone/keepForMac)
+## KEEP FOR MAC [![Build Status](https://travis-ci.org/wodewone/keepForMac.svg?branch=v0.1.2)](https://travis-ci.org/wodewone/keepForMac)
 
 ![keep](keep-zilv.jpg)
 
