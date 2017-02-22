@@ -5,11 +5,17 @@
   "author": "wodewone",
   "main": "./main.js",
   "scripts": {
+    "hot-server": "node -r babel-register dev-server",
+    "hot-start": "electron -r babel-register ./main",
+
     "start": "webpack",
-    "build": "webpack-dev-server --port 3000 --hot --inline",
+    "start2": "webpack-dev-server --port 3000 --hot --inline",
     "electron": "electron .",
+
     "pack": "build --dir",
-    "dist": "build"
+    "dist": "build",
+
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",

@@ -15,15 +15,15 @@ const createWindow = () =>{
         'titleBarStyle': 'hidden',
         'zoomToPageWidth': true,
         'frame': false,
-        //'show': false
+        'show': false
     })
 
     keep.loadURL(`file://${__dirname}/app/index.html`)
 
     //keep.webContents.openDevTools()
-    //keep.webContents.on( 'did-finish-load', function () {
-    //    keep.show();
-    //})
+    keep.webContents.on( 'did-finish-load', function () {
+        keep.show();
+    })
 
     keep.on('close', (e) => {
         keep = null
