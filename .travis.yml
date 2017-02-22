@@ -13,7 +13,7 @@ before_install:
   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
 
 install:
-  - npm install --no-progress
+  - npm install
 
 script:
   - npm test
@@ -21,14 +21,12 @@ script:
 notifications:
   email: false
 
-sudo: false
 
 deploy:
   provider: releases
   api_key:
     secure: 93c6263c6c0ca5fcc7b6a2a7f5848a5b7e248acc
-  file: 
-  	- dist/mac/keep for mac-0.1.2.dmg
+  file: ./dist/mac/keep for mac-0.1.2.dmg
   skip_cleanup: true
   on:         
     tags: true
