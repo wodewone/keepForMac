@@ -12,8 +12,8 @@ require('url-loader')
 module.exports = {
     entry: {
         app: [
-            //'webpack-dev-server/client?http://localhost:3000',
-            //'webpack/hot/only-dev-server',
+            'webpack-dev-server/client?http://localhost:3000',
+            'webpack/hot/only-dev-server',
             './src/main.js'
         ],
         lib: [
@@ -25,8 +25,8 @@ module.exports = {
     },
 	output: {
         path: path.join(__dirname, './app'),
-        //publicPath: 'http://localhost:3000/',
-        publicPath: '',
+        publicPath: 'http://localhost:3000/',
+        //publicPath: '',
         filename: '[name].js',
         chunkFilename: '[name].js'
         //hotUpdateChunkFilename: '/hot/hot-update.js',
@@ -37,8 +37,8 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                //loader: 'react-hot-loader/webpack!babel',   // react-hot-loader v3.0
-                loader: 'babel',
+                loader: 'react-hot-loader/webpack!babel',   // react-hot-loader v3.0
+                //loader: 'babel',
             },
             {
 				test: /\.(scss|css)$/,
@@ -77,7 +77,7 @@ module.exports = {
     //},
     plugins: [
         // react 热部署
-        //new webpack.HotModuleReplacementPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
 
         // 开启独立 css 到单独文件
         new ExtractTextPlugin('app.css', {
