@@ -13,9 +13,7 @@
     "electron": "electron .",
 
     "pack": "build --dir",
-    "dist": "build",
-
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dist": "build"
   },
   "repository": {
     "type": "git",
