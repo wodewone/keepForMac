@@ -54,6 +54,10 @@ module.exports = {
                 loader: 'url?limit=2048&name=images/[hash:8].[name].[ext]'
             },
             {
+                test: /\.(png|jpg)$/,
+                loader: 'file?limit=2048&name=images/[hash:8].[name].[ext]'
+            },
+            {
                 // 专供iconfont方案使用的，后面会带一串时间戳，需要特别匹配到
                 test: /\.(woff|woff2|svg|eot|ttf)\??.*$/,
                 loader: 'file?name=fonts/[name].[ext]',
@@ -114,11 +118,11 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin('lib', 'js/lib.js'),
 
         // 压缩并打包文件
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        }),
+        //new webpack.optimize.UglifyJsPlugin({
+        //    compress: {
+        //        warnings: false
+        //    }
+        //}),
 
         // 解决开发时提示React没有切换到产品版本
         // [React doesn't switch to production mode](http://stackoverflow.com/questions/37311972/react-doesnt-switch-to-production-mode)

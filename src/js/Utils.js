@@ -21,6 +21,9 @@ export default {
         },
         has(key = null){
             return !!this.get(key)
+        },
+        clear(){
+            localStorage.clear()
         }
     },
     session: {

@@ -3,6 +3,7 @@ import CSSModules from 'react-css-modules'
 import Utils from './Utils.js'
 import styles from '../sass/appLogin.scss'
 import autobind from 'autobind-decorator'
+import {Base64} from 'js-base64'
 import $http from './HttpRequest.js'
 
 @CSSModules(styles)
@@ -48,7 +49,7 @@ class AppLogin extends Component{
         }).then((response) =>{
             if(response.ok){
                 Utils.storage.set('authentication', response.data)
-                Utils.storage.set('userData', Utils.string.b64decode(response.data.token.split('.')[1]))
+                Utils.storage.set('userData', Base64.decode(response.data.token.split('.')[1]))
                 this.props.router.replace('/training')
             }else{
                 alert(response.text || '登录失败')

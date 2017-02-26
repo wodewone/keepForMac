@@ -22,7 +22,7 @@ class App extends Component{
 
     @autobind
     componentDidMount(){
-        const userData = Utils.storage.get('userData')
+        const userData = Utils.storage.get('userData') || {}
         if(userData._id){
             this.setState({
                 user : userData
@@ -35,8 +35,22 @@ class App extends Component{
     getUser(){
         if(this.state.user._id)
             return(
-                <div styleName="header-user" onClick={() => {Utils.storage.set('userInfo', Utils.storage.get('mineInfo'));UserWindow.create('我的资料')}}>
-                    <img styleName="header-avatar" src={this.state.user.avatar} alt=""/>
+                <div styleName="header-user">
+                    <img  onClick={() => {Utils.storage.set('userInfo', Utils.storage.get('mineInfo'));UserWindow.create('我的资料')}} styleName="header-avatar" src={this.state.user.avatar} alt=""/>
+                    <ul styleName="header-menu">
+                        <li>
+                            <div styleName="header-mine">
+                                <div styleName="header-mine-back" style={{backgroundImage: `url(${this.state.user.avatar})`}}></div>
+                                <div styleName="header-mine-inner">
+                                    <img styleName="mine-avatar" src={this.state.user.avatar} alt=""/>
+                                    {this.state.user.username}
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="javascript:;"><i className="iconfont icon-keep fz14"></i>个人中心</a></li>
+                        <li><a href="javascript:;"><i className="iconfont icon-collect fz14"></i>我的收藏</a></li>
+                        <li onClick={this.handleLogout}><a styleName="exit-btn" href="javascript:;"><i className="iconfont icon-logout fz14"></i>退出登录</a></li>
+                    </ul>
                 </div>
             )
     }
@@ -46,7 +60,7 @@ class App extends Component{
         console.warn(this.props.router.routes)
         const userData = Utils.storage.get('userData') || {}
 
-        if(Utils.storage.get('userData')._id) {
+        if(userData._id) {
             // 获取登录用户信息缓存
             $http.getUserData(Utils.storage.get('userData')._id).then((response) => {
                 if (response.ok) {
@@ -104,12 +118,18 @@ class App extends Component{
         alert('此模块功能暂未完成，敬请期待！')
     }
 
+    @autobind
+    handleLogout(){
+        if(confirm('确定退出？'))
+            Utils.storage.clear();
+    }
+
     render(){
         return (
             <div style={{width:'100%'}}>
                 <header styleName="index-header">
                     <div styleName="index-logo">
-                        <img src="http://staticssl.gotokeep.com/show/images/homepage/logo-ec5cad8f05.png" alt=""/>
+                        <img src={require('../assets/images/keep-logo.png')} alt=""/>
                     </div>
                     <div styleName="history-col">
                         <button disabled={0} styleName="history-button" onClick={this.historyActionBack}><i className={`iconfont icon-forward`}></i></button>

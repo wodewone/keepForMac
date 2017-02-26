@@ -97,15 +97,21 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
   .icon-discovery:before { content: "\e600"; }
+  .icon-girl:before { content: "\e612"; }
   .icon-prev:before { content: "\e601"; }
+  .icon-logout:before { content: "\e6b5"; }
   .icon-exit:before { content: "\e640"; }
   .icon-close:before { content: "\e608"; }
   .icon-tianjia:before { content: "\e633"; }
+  .icon-boy:before { content: "\e605"; }
   .icon-more:before { content: "\e634"; }
+  .icon-collect:before { content: "\e68c"; }
   .icon-goback:before { content: "\e61e"; }
   .icon-usercenter:before { content: "\e60b"; }
   .icon-play:before { content: "\e6c5"; }
+  .icon-keep:before { content: "\e616"; }
   .icon-symbol:before { content: "\e696"; }
   .icon-pause:before { content: "\e62a"; }
   .icon-description:before { content: "\e853"; }

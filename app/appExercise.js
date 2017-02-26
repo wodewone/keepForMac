@@ -1,2 +1,1500 @@
-webpackJsonp([1],{0:function(t,e,o){"use strict";function i(t){return t&&t.__esModule?t:{default:t}}function r(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function n(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}function a(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}function s(t,e,o,i,r){var n={};return Object.keys(i).forEach(function(t){n[t]=i[t]}),n.enumerable=!!n.enumerable,n.configurable=!!n.configurable,("value"in n||n.initializer)&&(n.writable=!0),n=o.slice().reverse().reduce(function(o,i){return i(t,e,o)||o},n),r&&void 0!==n.initializer&&(n.value=n.initializer?n.initializer.call(r):void 0,n.initializer=void 0),void 0===n.initializer&&(Object.defineProperty(t,e,n),n=null),n}var l,u,c,p=function(){function t(t,e){for(var o=0;o<e.length;o++){var i=e[o];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(t,i.key,i)}}return function(e,o,i){return o&&t(e.prototype,o),i&&t(e,i),e}}();o(2);var d=o(10),m=i(d),f=o(40),h=i(f),g=o(402),x=i(g),y=o(242),b=i(y),_=o(410),v=i(_),w=o(413),k=i(w),E=o(546),T=i(E),A=o(412),N=i(A),S=o(544),P=i(S),O=o(411),C=(l=(0,b.default)(T.default,{allowMultiple:!0}),l((c=function(t){function e(t){r(this,e);var o=n(this,(e.__proto__||Object.getPrototypeOf(e)).call(this,t)),i=v.default.storage.get("workouts")||[],a=location.search.substring(location.search.indexOf("=")+1);return o.state={classTimeout:"",classToggle:"",user:v.default.storage.get("userData")||{},workout:i.length&&new Map(i).has(a)?new Map(i).get(a):{},exercises:[],currentProceed:0,countdown:0,currentGroupTime:0,currentGroupDuration:0,timeoutTip:v.default.storage.get("timeoutTip"),timeoutGap:0,totalDuration:0,statisticDuration:0,isEnd:""},o.totalStart=!1,o.vStart=!1,o.statisticGroup=[],o.groupAudio=[],o.toNextCallback=null,o.timeoutGapId=0,o.timeoutCountdownId=0,o.recordId=0,o.commentaryId=0,o}return a(e,t),p(e,[{key:"componentDidMount",value:function(){var t=this;console.info(this.state.workout),O.remote.getCurrentWindow().removeAllListeners(),O.remote.getCurrentWindow().on("blur",function(e){t.handleMainPause()}).on("focus",function(e){t.handleMainPlay()});var e=this.state.workout.workouts[0],o=e.steps,i=0,r=o.map(function(e){var o={};return o.name=e.exercise.name,o.gap=e.gap,o.video=e.exercise.videos[0],o.videoName=o.video.url.substring(o.video.url.lastIndexOf("/")+1,o.video.url.indexOf(".mp4")),o.audio=e.exercise.audio,o.audioName=o.audio.substring(o.audio.lastIndexOf("/")+1,o.audio.indexOf(".mp3")),o.type=e.type,o.description=e.exercise.description,o.covers=e.exercise.covers,o.exerciseId=e.exercise._id,"m"===t.state.user.gender.toLowerCase()?(o.group=e.mgroup,o.groupTime=e.mpergroup,o.groupDuration=e.mduration):(o.group=e.fgroup,o.groupTime=e.fpergroup,o.groupDuration=e.fduration),e.commentaryTraining.length?e.commentaryTraining[0].gender===t.state.user.gender?o.commentary=e.commentaryTraining[0].sets:o.commentary=e.commentaryTraining[1].sets:o.commentary=null,i+=o.groupDuration,o});this.setState({statisticDuration:i}),this.setState({exercises:r},this.startExercise)}},{key:"componentWillUnmount",value:function(){clearTimeout(this.timeId)}},{key:"startExercise",value:function(){var t=this.state.exercises[this.state.currentProceed];console.info(t),this.setState({countdown:4}),0===this.state.currentProceed?this.groupAudio.push(e.getSoundTips("g_2_first_motion.mp3")):this.state.currentProceed===this.state.exercises.length-1?this.groupAudio.push(e.getSoundTips("g_14_last_motion.mp3")):this.groupAudio.push(e.getSoundTips("g_13_next_motion.mp3")),this.groupAudio.push(t.audio),this.groupAudio.push(e.getSoundTips("one_group.mp3")),this.state.exercises.group>1&&this.groupAudio.push(e.getSoundTips("g_4_group.mp3")),"times"===t.type?(this.groupAudio.push(e.getSoundNumber(e.makeNumOrder(t.groupTime))),this.groupAudio.push(e.getSoundTips("g_6_time.mp3"))):(this.groupAudio.push(e.getSoundNumber(e.makeNumOrder(t.groupDuration))),this.groupAudio.push(e.getSoundTips("seconds.mp3"))),this.totalStart=!0,this.initTimerAuthor().play(),this.componentAudio().setSrc(this.groupAudio.shift()).play()}},{key:"beginCountdown",value:function(){var t=this;return{play:function(){t.totalStart?t.state.countdown>0?t.timeoutCountdownId=setTimeout(function(){t.setState({countdown:t.state.countdown-1},function(){t.componentAudio().setSrc(e.getSoundNumber("00"+t.state.countdown)).play(),t.beginCountdown().stop().play()})},1e3):(t.timeoutCountdownId&&clearTimeout(t.timeoutCountdownId),t.timeoutCountdownId=0,t.componentAudio().pause().setSrc(e.getSoundTips("g_9_go.mp3")).play(),t.timeoutCountdownId=setTimeout(function(){t.vStart=!0,t.recordExerciseConfig().play(),t.componentVideo().reset(),clearTimeout(t.timeoutCountdownId),t.timeoutCountdownId=0},1e3)):(t.timeoutCountdownId&&clearTimeout(t.timeoutCountdownId),t.timeoutCountdownId=0)},stop:function(){return t.timeoutCountdownId&&clearTimeout(t.timeoutCountdownId),t.timeoutCountdownId=0,t.beginCountdown()}}}},{key:"initTimerAuthor",value:function(){var t=this;return{play:function(){t.timerId=setTimeout(function(){t.totalStart?(t.setState({totalDuration:t.state.totalDuration+1}),t.vStart&&(t.setState({currentGroupDuration:t.state.currentGroupDuration+1}),"times"!==t.state.exercises[t.state.currentProceed].type&&t.componentAudio().setSrc(e.getSoundTips("timer.mp3")).play()),t.initTimerAuthor().play()):t.initTimerAuthor().stop()},1e3)},stop:function(){t.timerId&&clearTimeout(t.timerId),t.timerId=0}}}},{key:"recordExerciseConfig",value:function(){var t=this;return{play:function(){var o=1e3;t.state.exercises[t.state.currentProceed].groupTime>0&&(o=t.state.exercises[t.state.currentProceed].groupDuration/t.state.exercises[t.state.currentProceed].groupTime*1e3),t.setState({currentGroupTime:t.state.currentGroupTime+1},function(){"times"===t.state.exercises[t.state.currentProceed].type&&t.componentAudio().setSrc(e.getSoundNumber(e.makeNumOrder(t.state.currentGroupTime))).play(),t.recordId=setTimeout(function(){"times"===t.state.exercises[t.state.currentProceed].type?t.state.currentGroupTime<t.state.exercises[t.state.currentProceed].groupTime?t.recordExerciseConfig().play():t.state.exercises[t.state.currentProceed].gap?(t.resetAllState(),t.componentTimeout().rest(t.state.exercises[t.state.currentProceed].gap)):t.handleJumpNext():t.state.currentGroupDuration<t.state.exercises[t.state.currentProceed].groupDuration?t.recordExerciseConfig().play():t.state.exercises[t.state.currentProceed].gap?(t.resetAllState(),t.componentTimeout().rest(t.state.exercises[t.state.currentProceed].gap)):t.handleJumpNext()},o)})},stop:function(){t.recordId&&clearTimeout(t.recordId),t.recordId=0},over:function(){return t.recordExerciseConfig().stop(),t.vStart&&t.statisticGroup.push({name:t.state.exercises[t.state.currentProceed].name,type:t.state.exercises[t.state.currentProceed].type,exercise:t.state.exercises[t.state.currentProceed].exerciseId,actualSec:20,totalSec:20}),!0}}}},{key:"componentVideo",value:function(){var t=this,e=this.refs.masterVideo;return{pause:function(){return e.pause(),t.componentVideo()},play:function(){return e.play(),t.componentVideo()},reset:function(){return e.load(),t.componentVideo()},setSrc:function(o){return e.src=o,t.componentVideo()},stop:function(){e.loop=!1},goPlay:function(){return t.vStart&&e.play(),!0}}}},{key:"componentAudio",value:function(){var t=this,e=this.refs.masterAudio;return{togglePlay:function(){e.volume?e.volume=0:e.volume=1},pause:function(){return e.pause(),t.componentAudio()},play:function(){return e.src?e.play():t.componentAudio().toNext(),t.componentAudio()},replay:function(){return e.load(),t.componentAudio()},stop:function(){return e.src="",t.timeoutCountdownId&&clearTimeout(t.timeoutCountdownId),t.componentAudio()},setSrc:function(o){return e.src=o,t.componentAudio()},toNext:function(){if(t.toNextCallback&&"function"==typeof t.toNextCallback)return t.toNextCallback(),t.toNextCallback=null,!0;if(t.totalStart){if(t.groupAudio.length)return e.src=t.groupAudio.shift(),e.play(),!0;t.state.countdown>3&&t.beginCountdown().play()}}}}},{key:"commentaryTrainingAudio",value:function(){var t=this,e=this.refs.branchAudio;return{start:function(){var e=t.state.exercises[t.state.currentProceed].commentary;e&&e.forEach(function(e){t.commentaryId=setTimeout(function(){t.commentaryTrainingAudio().play(e.id)},1e3*e.time)})},play:function(o){return e.src=o,t.commentaryTrainingAudio()},pause:function(){return e.pause(),t.commentaryTrainingAudio()}}}},{key:"componentMaster",value:function(){var t=this;return{pause:function(){t.setState({totalStart:!1},function(){t.state.countdown>0&&t.beginCountdown().stop(),t.componentVideo().pause(),t.componentAudio().pause()})},play:function(){t.setState({totalStart:!0},function(){t.componentVideo().play(),t.componentAudio().play(),!t.groupAudio.length&&t.state.countdown>0&&t.beginCountdown().play()})}}}},{key:"componentTimeout",value:function(){var t=this;return{show:function(){return t.setState({classTimeout:"show"}),!0},hide:function(){return t.setState({classTimeout:""}),!0},rest:function(o){return t.setState({timeoutGap:o,classTimeout:"show"},function(){console.info(t.timeoutGapId),t.timeoutGapId||(t.componentAudio().pause().setSrc(e.getSoundTips("g_10_take_a_rest.mp3")).play(),t.timeoutGapId=setInterval(function(){t.state.timeoutGap>0?t.setState({timeoutGap:t.state.timeoutGap-1}):(clearInterval(t.timeoutGapId),t.timeoutGapId=0,t.componentAudio().pause().setSrc(e.getSoundTips("g_11_rest_end.mp3")).play(),t.toNextCallback=t.handleJumpNext)},1e3))}),!0},stop:function(){return t.timeoutGapId&&clearInterval(t.timeoutGapId),t.componentTimeout().hide(),!0}}}},{key:"resetAllState",value:function(){this.recordExerciseConfig().over(),this.totalStart=!1,this.vStart=!1,this.groupAudio=[],this.initTimerAuthor().stop(),this.componentMaster().pause(),this.componentTimeout().stop()}},{key:"handleSounds",value:function(){this.componentAudio().togglePlay()}},{key:"handleMainPause",value:function(){this.initTimerAuthor().stop(),this.vStart&&this.recordExerciseConfig().stop(),this.componentTimeout().show(),this.componentMaster().pause(),this.setState({classToggle:"gather"})}},{key:"handleMainPlay",value:function(){this.setState({classToggle:""}),this.componentTimeout().hide(),this.componentMaster().play(),this.initTimerAuthor().play(),this.vStart&&this.recordExerciseConfig().play()}},{key:"handleVideoToggle",value:function(){this.state.classToggle?this.handleMainPlay():this.handleMainPause()}},{key:"handleJumpPrev",value:function(){this.resetAllState(),this.setState({currentProceed:this.state.currentProceed>1?this.state.currentProceed-1:0,currentGroupTime:0,currentGroupDuration:0,timeoutGap:0},this.startExercise)}},{key:"handleJumpNext",value:function(){var t=this;this.resetAllState(),this.state.currentProceed<this.state.exercises.length-1?this.setState({currentProceed:this.state.currentProceed+1,currentGroupTime:0,currentGroupDuration:0,timeoutGap:0},this.startExercise):(this.componentVideo().stop(),this.componentAudio().pause().setSrc(e.getSoundTips("countdownend.mp3")).play(),this.toNextCallback=function(){return t.componentAudio().pause().setSrc(e.getSoundTips("g_16_well_done.mp3")).play()},N.default.completeExercise(),this.setState({isEnd:"active"}))}},{key:"getVideoContent",value:function(){if(this.state.exercises.length)return m.default.createElement("section",{styleName:"exercise-video"},m.default.createElement("div",{styleName:"exercise-inner"},m.default.createElement("div",{styleName:"video-wrap "+this.state.classTimeout},m.default.createElement("video",{ref:"masterVideo",onEnded:this.componentVideo().goPlay,muted:!0,autoPlay:!0,loop:!0,src:this.state.exercises[this.state.currentProceed].video.url})),m.default.createElement("aside",{styleName:"command-layer"}),m.default.createElement("aside",{styleName:"info-layer"},m.default.createElement("div",{styleName:"countdown-times",disabled:this.state.countdown>3},m.default.createElement("div",{className:"fz18",hidden:this.state.countdown<=0},this.state.countdown>3?3:this.state.countdown),m.default.createElement("div",{className:"fz18",hidden:this.state.countdown>0||this.state.currentGroupTime},"GO!"),m.default.createElement("div",{className:"fz14",hidden:"times"!==this.state.exercises[this.state.currentProceed].type&&this.state.currentGroupTime},this.state.currentGroupTime,"/",this.state.exercises[this.state.currentProceed].groupTime),m.default.createElement("div",{className:"fz14",hidden:"times"===this.state.exercises[this.state.currentProceed].type&&this.state.currentGroupDuration},this.state.currentGroupDuration,"/",this.state.exercises[this.state.currentProceed].groupDuration,'"')),m.default.createElement("span",{styleName:"timeout-total-time"},(0,k.default)(new Date(1e3*this.state.totalDuration)).format("mm:ss"))),m.default.createElement("aside",{styleName:"timeout-layer "+this.state.classTimeout},m.default.createElement("div",{styleName:"timeout-tips"},m.default.createElement("div",null,m.default.createElement("i",{className:"iconfont icon-symbol fz24"})),m.default.createElement("p",{styleName:"timeout-title"},this.state.timeoutTip.content),m.default.createElement("p",{styleName:"timeout-author"},"——",this.state.timeoutTip.author)),m.default.createElement("button",{hidden:!this.state.timeoutGap,onClick:this.handleJumpNext,styleName:"button-timeout"},this.state.timeoutGap)),m.default.createElement("button",{hidden:this.state.timeoutGap,styleName:"button-toggle "+this.state.classToggle,onClick:this.handleVideoToggle},m.default.createElement("i",{className:"iconfont "+(this.state.classToggle?"icon-play":"icon-pause")})),m.default.createElement("div",null,m.default.createElement("span",{styleName:"arrow-top "+this.state.classToggle}),m.default.createElement("span",{styleName:"arrow-right "+this.state.classToggle}),m.default.createElement("span",{styleName:"arrow-bottom "+this.state.classToggle}),m.default.createElement("span",{styleName:"arrow-left "+this.state.classToggle}))))}},{key:"getFinishContent",value:function(){return m.default.createElement("div",{styleName:"finish-page "+this.state.isEnd},m.default.createElement("div",{styleName:"finish-inner"},m.default.createElement("div",{styleName:"finish-title"},m.default.createElement("img",{src:o(548),alt:""}),m.default.createElement("p",{className:"padding"},"恭喜你完成训练")),m.default.createElement("div",{styleName:"finish-detail"},m.default.createElement("div",{className:"text-left",styleName:"col"},"时长 ",m.default.createElement("br",null)," ",m.default.createElement("span",{className:"fz24"},this.state.totalDuration>60?Math.floor(this.state.totalDuration/60):"<1"),"分"),m.default.createElement("div",{className:"text-center",styleName:"col"},"动作 ",m.default.createElement("br",null)," ",m.default.createElement("span",{className:"fz24"},this.statisticGroup.length),"组"),m.default.createElement("div",{className:"text-right",styleName:"col"},"消耗 ",m.default.createElement("br",null)," ",m.default.createElement("span",{className:"fz24"},this.state.totalDuration),"千卡")),m.default.createElement("ul",{styleName:"finish-actions"},this.statisticGroup.length&&this.statisticGroup.map(function(t,e){return m.default.createElement("li",{key:e},m.default.createElement("div",{className:"text-left",styleName:"col"},t.name),m.default.createElement("div",{className:"text-right",styleName:"col"},(0,k.default)(new Date(1e3*t.totalSec)).format("mm:ss")))})),m.default.createElement("div",{styleName:"finish-feel"},m.default.createElement("textarea",{styleName:"feel-content",placeholder:"记下本次训练的感受和心得"}))))}},{key:"render",value:function(){var t=this;return m.default.createElement("div",{styleName:"exercise-container"},m.default.createElement("div",{styleName:"exercise-page "+this.state.isEnd},m.default.createElement("div",{styleName:"exercise-header"},m.default.createElement("p",{styleName:"exercise-title"},this.state.currentProceed+1,"/",this.state.exercises.length," ",this.state.exercises.length&&this.state.exercises[this.state.currentProceed].name),m.default.createElement("div",{styleName:"title-progress-wrap"},this.state.exercises.length&&this.state.exercises.map(function(e,o){return m.default.createElement("div",{key:o,styleName:"progress-item",style:{width:e.groupDuration*e.group/t.state.statisticDuration*100+"%"}})})),m.default.createElement("button",{disabled:this.state.currentProceed<=0,onClick:this.handleJumpPrev,styleName:"button-header button-header-prev"},m.default.createElement("i",{className:"iconfont fz24 icon-forward"})),m.default.createElement("button",{disabled:this.state.currentProceed>=this.state.exercises.length-1,onClick:this.handleJumpNext,styleName:"button-header button-header-next"},m.default.createElement("i",{className:"iconfont fz24 icon-goback"}))),m.default.createElement("section",{styleName:"content-left",ref:"contentLeft"},m.default.createElement("div",{styleName:"content-inner-flex"},m.default.createElement("div",{className:"padding"},this.getVideoContent()),m.default.createElement("div",{styleName:"coordinates-flex"},m.default.createElement("div",{styleName:"content-coordinates"},this.state.exercises.length&&this.state.exercises[this.state.currentProceed].covers.map(function(t){return m.default.createElement(P.default,{key:t._id,data:t})}))))),m.default.createElement("section",{styleName:"content-right",ref:"contentRight"},m.default.createElement("div",{styleName:"content-scroll"},this.state.exercises.length&&m.default.createElement("article",{className:"article-wrap",dangerouslySetInnerHTML:{__html:this.state.exercises[this.state.currentProceed].description}}))),m.default.createElement("button",{styleName:"button-toggle-sound",onClick:this.handleSounds},"声音"),m.default.createElement("figure",{styleName:"other-res"},m.default.createElement("audio",{ref:"masterAudio",onEnded:this.componentAudio().toNext,src:""}),m.default.createElement("audio",{ref:"branchAudio",src:""}))),this.state.isEnd&&this.getFinishContent())}}],[{key:"getSoundTips",value:function(t){return"file://"+__dirname+"/sounds/"+t}},{key:"getSoundNumber",value:function(t){return"file://"+__dirname+"/number/N"+t+".mp3"}},{key:"makeNumOrder",value:function(t){return t<1e3?t<100&&t<10?"00"+t:"0"+t:t}}]),e}(d.Component),s(c.prototype,"componentDidMount",[x.default],Object.getOwnPropertyDescriptor(c.prototype,"componentDidMount"),c.prototype),s(c.prototype,"componentWillUnmount",[x.default],Object.getOwnPropertyDescriptor(c.prototype,"componentWillUnmount"),c.prototype),s(c.prototype,"startExercise",[x.default],Object.getOwnPropertyDescriptor(c.prototype,"startExercise"),c.prototype),s(c.prototype,"beginCountdown",[x.default],Object.getOwnPropertyDescriptor(c.prototype,"beginCountdown"),c.prototype),s(c.prototype,"initTimerAuthor",[x.default],Object.getOwnPropertyDescriptor(c.prototype,"initTimerAuthor"),c.prototype),s(c.prototype,"recordExerciseConfig",[x.default],Object.getOwnPropertyDescriptor(c.prototype,"recordExerciseConfig"),c.prototype),s(c.prototype,"componentVideo",[x.default],Object.getOwnPropertyDescriptor(c.prototype,"componentVideo"),c.prototype),s(c.prototype,"componentAudio",[x.default],Object.getOwnPropertyDescriptor(c.prototype,"componentAudio"),c.prototype),s(c.prototype,"commentaryTrainingAudio",[x.default],Object.getOwnPropertyDescriptor(c.prototype,"commentaryTrainingAudio"),c.prototype),s(c.prototype,"componentMaster",[x.default],Object.getOwnPropertyDescriptor(c.prototype,"componentMaster"),c.prototype),s(c.prototype,"componentTimeout",[x.default],Object.getOwnPropertyDescriptor(c.prototype,"componentTimeout"),c.prototype),s(c.prototype,"resetAllState",[x.default],Object.getOwnPropertyDescriptor(c.prototype,"resetAllState"),c.prototype),s(c.prototype,"handleSounds",[x.default],Object.getOwnPropertyDescriptor(c.prototype,"handleSounds"),c.prototype),s(c.prototype,"handleMainPause",[x.default],Object.getOwnPropertyDescriptor(c.prototype,"handleMainPause"),c.prototype),s(c.prototype,"handleMainPlay",[x.default],Object.getOwnPropertyDescriptor(c.prototype,"handleMainPlay"),c.prototype),s(c.prototype,"handleVideoToggle",[x.default],Object.getOwnPropertyDescriptor(c.prototype,"handleVideoToggle"),c.prototype),s(c.prototype,"handleJumpPrev",[x.default],Object.getOwnPropertyDescriptor(c.prototype,"handleJumpPrev"),c.prototype),s(c.prototype,"handleJumpNext",[x.default],Object.getOwnPropertyDescriptor(c.prototype,"handleJumpNext"),c.prototype),s(c.prototype,"getVideoContent",[x.default],Object.getOwnPropertyDescriptor(c.prototype,"getVideoContent"),c.prototype),s(c.prototype,"getFinishContent",[x.default],Object.getOwnPropertyDescriptor(c.prototype,"getFinishContent"),c.prototype),u=c))||u),G=document.createElement("div");G.id="container",G.className="container",document.querySelector("body").appendChild(G),h.default.render(m.default.createElement(C,null),document.getElementById("container"))},412:function(t,e,o){"use strict";function i(t){return t&&t.__esModule?t:{default:t}}function r(t,e,o){return e in t?Object.defineProperty(t,e,{value:o,enumerable:!0,configurable:!0,writable:!0}):t[e]=o,t}Object.defineProperty(e,"__esModule",{value:!0});var n,a=o(410),s=i(a),l=o(413),u=i(l),c=o(402),p=(i(c),"https://api.gotokeep.com"),d=function(t){return Object.keys(t).map(function(e){return encodeURIComponent(e)+"="+encodeURIComponent(t[e])}).join("&")};e.default=(n={getToken:function(){var t=s.default.storage.get("authentication")||{};return"Bearer "+t.token},httpGet:function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};return!!t&&(e=Object.assign({method:"GET",headers:{Authorization:this.getToken()}},e),fetch(p+t,e).then(function(t){return t.json()}))},httpPost:function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};return!!t&&(e=Object.assign({method:"GET",headers:{Authorization:this.getToken()}},e),fetch(p+t,e).then(function(t){return t.json()}))},getDashboardTraining:function(){return this.httpGet("/training/v2/home")},getDashboardWorkouts:function(){return this.httpGet("/v2/home/dashboard/pwData")},getDashboardStatistics:function(){return this.httpGet("/v1.1/home/dashboard/statistics")},getDashboardUser:function(){return this.httpGet("/v1.1/home/dashboard/user")},getRankingData:function(){var t=d({date:(0,u.default)().format("YYYYMMDD")});return this.httpGet("/social/v2/rankinglist/brief?"+t)},login:function(t){return this.httpPost("/v1.1/users/login",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"},body:d(t)})},getUserData:function(t){return this.httpGet("/v2/people/"+t)},getPlansContent:function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"m";return this.httpGet("/v2/plans/"+t+"?trainer_gender="+e)},getWorkoutsPlans:function(t){return this.httpGet("/training/v2/plans/"+t+"/dynamic?tLimit=3&tSlimWorkout=true")},getWorkoutsWorks:function(t){return this.httpGet("/training/v2/workouts/"+t+"/dynamic?tLimit=3")},completeExercise:function(){return this.httpGet("/now")},commitTrainingLog:function(t){return this.httpPost("/v1.1/home/saveTrainingLog",Object.assign({serverEndTime:(new Date).toISOString(),doneDate:(new Date).toISOString()}))}},r(n,"commitTrainingLog",function(t){return this.httpPost("/v1.1/home/achievements/new")}),r(n,"getCityJson",function(){return this.httpGet("/v1.1/home/cities")}),n)},538:function(t,e,o){var i=o(539);"string"==typeof i&&(i=[[t.id,i,""]]);o(9)(i,{});i.locals&&(t.exports=i.locals)},539:function(t,e,o){e=t.exports=o(4)(),e.push([t.id,'.gGG3G,.T56YL{position:relative}.T56YL{background:#584f5f no-repeat 50%/cover;box-shadow:0 0 10px rgba(0,0,0,.6)}.T56YL:before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5)}._1hEVu{position:relative;padding:10px;height:180px}._1kXZF{font-size:24px;color:#fff;margin-top:10px}._3n5Ak{color:#ddd;font-size:12px}.YVuU5{position:absolute;bottom:10px;left:0;width:100%;margin:0;padding:0 10px;overflow:hidden;text-align:right;white-space:nowrap}.YVuU5 li{display:inline-block}._1wE0v{text-align:left;display:block;font-size:14px;color:#fff;padding:12px 0 0}._1_YaU{padding:5px 0;border-top:1px solid #fff;border-bottom:1px solid #fff}._1vG24{color:#fff;font-size:10px;display:block;padding-left:50px;padding-right:10px}._1j7xa{color:#ddd}._2MKks{padding:10px;display:flex;border-bottom:1px solid #eee}._1qiEN{text-align:center;margin-right:10px}._32OId{margin:0;padding:0;flex:1;align-self:center;text-align:right}._32OId li{display:inline-flex}._2r7mC{width:30px;height:30px;border-radius:50%;overflow:hidden;display:block;position:relative;background:#eee;border:1px solid #eee;margin-right:10px}._2r7mC img{border:none;width:100%;height:100%}._3P-i6{text-align:center;width:30px;position:relative}._3P-i6 i{margin:0;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}.gEjE-{background:#fff;border-bottom:1px solid #eee}._1hUN3{padding:10px;overflow:hidden}._2fS-z{float:right;color:#999;font-size:12px}._1Vgwh{border-left:2px solid #00c78c;padding-left:5px;line-height:1}._2tzoZ{display:block;margin:0;padding:0;overflow:hidden}._21hmZ{float:left;width:33.33%;padding:10px;position:relative}.LM-oO{margin-right:15px}._1oREy{width:15px;text-align:center;font-size:12px;position:absolute;top:26%;right:5px;color:#999}.K8_bp{width:100%;padding-bottom:64%;margin-bottom:10px;background:#999 50%/cover}._39a3J{margin-bottom:5px}._3CNEr{color:#999}._3HQju{cursor:pointer;position:fixed;bottom:50px;right:50px;width:60px;padding:0 10px;height:60px;border-radius:50%;background:rgba(0,199,140,.8);border:2px solid rgba(88,79,95,.2);color:#fff;box-shadow:0 0 5px rgba(85,85,85,.8);transition:all .35s}._3HQju:hover{background:#00c78c;border:2px solid rgba(88,79,95,.6)}._1mcce{background:#fff;padding:0 10px}._2NGue,._3ZI5H{padding:10px 0}._3ZI5H{display:flex;border-bottom:1px solid #eee}._3ZI5H:first-child{padding-top:0}._3zpl4{width:100px;height:100px;margin-right:10px;background:#999 no-repeat 50%/cover}._1KBy0{flex:1;display:flex;flex-direction:column}._3FTXV{flex:1}._3FTXV p{overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}._30yij{overflow:hidden;display:flex;align-items:center}._19wAn{width:30px;height:30px;border-radius:50%;margin-right:10px;border:1px solid #eee}._2YtCi{color:#ddd}.jJH-4{transition:transform .5s .2s}._2Sf8g{display:block;filter:blur(5px);position:relative;transform:scale(1.01)}.workout-introduce{opacity:0;position:fixed;top:60px;right:0;bottom:0;left:150px;padding:20px 30px 80px;background:rgba(0,0,0,.8);transition:opacity .5s .2s}.workout-introduce.show{opacity:1;transition:opacity .5s}.workout-introduce.show .workout-introduce-inner{opacity:1;margin-top:0;transition:all .5s .2s}.workout-introduce-inner{transition:all .5s;opacity:0;margin-top:10px;height:100%;padding-right:10px;margin-right:-10px;overflow-x:hidden;overflow-y:auto;color:#fff}._3HnIN{position:absolute;bottom:20px;left:50%;padding:0;width:30px;height:30px;line-height:30px;overflow:hidden;margin-left:-15px;border:none;background:none;color:#fff;cursor:pointer;transition:transform .35s}._3HnIN:hover{transform:scale(1.3)}._3HnIN i{font-size:30px;margin:0}._3ESct{position:absolute;top:0;left:0;height:100%;overflow-x:hidden;overflow-y:auto}._1Fdk2,._3ESct{width:100%}._1QVe8{padding:5px;margin:10px;font-size:24px;color:#fff;border-bottom:1px solid #00c78c}._16Fkx{padding:10px 20px;color:#fff}.c-93L{color:#fff;margin-top:10px;margin-bottom:0;margin-left:20px}._2BoKE{width:100%;overflow-x:auto;overflow-y:hidden;white-space:nowrap;padding:10px}._2fU4a{padding:10px;vertical-align:top;display:inline-block}._24vS1{position:relative}._1z3Ha{border-radius:10px;border:1px solid #999;height:500px}._15A6x{position:absolute;display:flex;align-items:center;justify-content:center;width:30px;height:30px;max-width:10%;max-height:10%;transform:translate(-50%,-50%);line-height:30px;text-align:center;border-radius:50%;background:rgba(0,199,140,.66)}._15A6x,.cIiAg{color:#fff;font-size:14px}.cIiAg{margin-top:10px}._3aZ9T{padding:0 10px 10px}._30KDK{padding-top:10px}._2lV3o{margin:0;padding:0;overflow-x:scroll;overflow-y:hidden;white-space:nowrap}._2lV3o li{position:relative;overflow:hidden;display:inline-block;margin-right:10px;width:40%;height:140px;background:no-repeat 50%/cover}._2lV3o li:last-child{margin:0}._2k-At{position:relative}._2k-At:before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.45)}._2k-At p{position:relative}.OHn7N{color:#fff;font-size:18px}._2Kfmk{color:#ddd;font-size:12px}._2jqeS{color:#fff;position:absolute;left:0;bottom:0;padding:10px;width:100%;text-align:right}._3p9y6{font-size:10px;margin-left:5px}._ylsI{float:right;padding:5px;font-size:10px;background:rgba(0,0,0,.3);border-radius:3px}',""]),e.locals={"workout-wrap":"gGG3G","workout-header":"T56YL","header-inner":"_1hEVu","header-title":"_1kXZF","header-desc":"_3n5Ak","header-nav":"YVuU5","header-link":"_1wE0v","link-val":"_1_YaU","header-sp":"_1vG24","sp-desc":"_1j7xa","list-nav":"_2MKks","nav-participation":"_1qiEN","complete-list":"_32OId","pioneer-item":"_2r7mC","show-more":"_3P-i6","training-content":"gEjE-","training-title":"_1hUN3","training-sp":"_2fS-z","line-title":"_1Vgwh","training-line":"_2tzoZ","line-item":"_21hmZ","line-work-item":"LM-oO","work-gap":"_1oREy","work-item-cover":"K8_bp","work-item-title":"_39a3J","work-item-desc":"_3CNEr","button-start-training":"_3HQju","training-dynamic":"_1mcce","dynamic-title":"_2NGue","dynamic-item":"_3ZI5H","item-photo":"_3zpl4","dynamic-content":"_1KBy0","dynamic-desc":"_3FTXV","dynamic-user":"_30yij","item-avatar":"_19wAn","dynamic-time":"_2YtCi","workout-mask":"jJH-4","workout-blur-mask":"_2Sf8g","button-introduce-desc":"_3HnIN","workout-desc-inner":"_3ESct","workout-desc-video":"_1Fdk2","workout-desc-title":"_1QVe8","workout-desc-article":"_16Fkx","workout-exercise-title":"c-93L","workout-desc-figure":"_2BoKE","exercise-figure":"_2fU4a","exercise-item":"_24vS1","exercise-pic":"_1z3Ha","exercise-coordinates":"_15A6x","exercise-tip":"cIiAg","scroll-wrap":"_3aZ9T","scroll-title":"_30KDK","scroll-list":"_2lV3o","training-block":"_2k-At","training-block-title":"OHn7N","training-block-desc":"_2Kfmk","training-block-info":"_2jqeS","block-info-time":"_3p9y6","block-info-tag":"_ylsI"}},544:function(t,e,o){"use strict";function i(t){return t&&t.__esModule?t:{default:t}}function r(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function n(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}function a(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}Object.defineProperty(e,"__esModule",{value:!0});var s,l,u=function(){function t(t,e){for(var o=0;o<e.length;o++){var i=e[o];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(t,i.key,i)}}return function(e,o,i){return o&&t(e.prototype,o),i&&t(e,i),e}}(),c=o(10),p=i(c),d=o(242),m=i(d),f=o(538),h=i(f),g=(s=(0,m.default)(h.default),s(l=function(t){function e(t){return r(this,e),n(this,(e.__proto__||Object.getPrototypeOf(e)).call(this,t))}return a(e,t),u(e,[{key:"render",value:function(){var t=this.props.data;return p.default.createElement("figure",{styleName:"exercise-figure"},p.default.createElement("div",{styleName:"exercise-item"},p.default.createElement("img",{
-styleName:"exercise-pic",width:"500",src:t.url,alt:""}),t.coordinates.map(function(t,e){return p.default.createElement("span",{key:t._id,style:{top:100*t.y+"%",left:100*t.x+"%"},styleName:"exercise-coordinates"},e+1)})),p.default.createElement("article",null,t.coordinates.map(function(t,e){return p.default.createElement("p",{key:t._id,styleName:"exercise-tip"},e+1,". ",t.tip)})))}}]),e}(c.Component))||l);e.default=g},546:function(t,e,o){var i=o(547);"string"==typeof i&&(i=[[t.id,i,""]]);o(9)(i,{});i.locals&&(t.exports=i.locals)},547:function(t,e,o){e=t.exports=o(4)(),e.push([t.id,"._3n1-C{position:relative;overflow:hidden;width:100%;height:100%;background:#555;color:#fff}.Jy8Ax{overflow:hidden}.Jy8Ax,.UxslB{position:absolute;top:0;left:0;width:100%;height:55px}.UxslB{font-size:24px;text-shadow:0 0 10px #000;margin:0;line-height:55px;text-align:center;z-index:10}.FUSDk{position:absolute;top:0;left:0;width:100%;height:3px;overflow:hidden}._17JXW{display:block;float:left;height:100%;border-right:1px solid #fff;opacity:.5}._3FwO6,._17JXW:last-child{border:none}._3FwO6{position:absolute;top:50%;background:none;color:#fff;transform:translateY(-50%);z-index:11}._3FwO6[disabled]{cursor:default;color:#999}._3RBKe{left:10px}._7TcRO{right:10px}._1VSHW{height:100%;overflow-y:auto}.tIKUE{margin-right:520px}._6qWUq,.tIKUE{padding:10px;padding-top:55px;height:100%}._6qWUq{width:520px;position:absolute;top:0;right:0}._1MEMb,._3L2WM,._38BmA,.EMqBv,.mYDob{position:absolute;z-index:10;width:20px;height:20px;transform:rotate(-45deg);border:1px solid transparent;transition:all 1s}.mYDob{top:-3px;left:-2px;border-top-color:#00c78c}._38BmA{top:-3px;right:-2px;border-right-color:#00c78c}._1MEMb{bottom:-3px;right:-2px;border-bottom-color:#00c78c}._3L2WM{bottom:-3px;left:-2px;border-left-color:#00c78c}._1MEMb._30hRM,._3L2WM._30hRM,._38BmA._30hRM,.mYDob._30hRM{width:100px;height:100px;border-radius:50%;border-width:2px;pointer-events:none;position:absolute;z-index:12}.mYDob._30hRM{top:50%;left:50%;transform:translate(-50%,-50%) rotate(45deg)}._38BmA._30hRM{top:50%;right:50%;transform:translate(50%,-50%) rotate(45deg)}._1MEMb._30hRM{bottom:50%;right:50%;transform:translate(50%,50%) rotate(45deg)}._3L2WM._30hRM{bottom:50%;left:50%;transform:translate(-50%,50%) rotate(45deg)}._37QEa{transform:translate(-50%,-50%);visibility:visible;position:absolute;border-radius:50%;width:100px;height:100px;top:50%;left:50%;opacity:0;border:none;background:rgba(88,79,95,.9);box-shadow:0 0 10px rgba(0,0,0,.5);transition:opacity .5s}._37QEa i{margin-left:5px;margin-right:0;color:#00c78c;font-size:30px}._37QEa._30hRM{visibility:visible;opacity:1}._2ExBK{padding-top:56%;width:100%;position:relative}._2ExBK:hover ._37QEa{visibility:visible;opacity:1}._2dgxk,._2dgxk aside{position:absolute;top:0;right:0;bottom:0;left:0}._2dgxk aside{padding:10px}._1GnKZ{overflow:hidden}._1GnKZ,._1GnKZ video{width:100%;height:100%}._1GnKZ video{max-width:100%;max-height:100%;transition:filter 1s,transform 1s}._1GnKZ._2i5wf video{filter:blur(5px);transform:scale(1.2)}._1eiIf{display:block}.Q47CE{position:relative;width:100%;height:100%;transition:visibility .35s}._3HGkX{right:10px;bottom:10px;font-size:12px;color:#fff}._3HGkX,.jRP47{position:absolute}.jRP47{bottom:5%;left:3%;width:60px;height:60px;line-height:60px;overflow:hidden;text-align:center;border-radius:50%;background:rgba(88,79,95,.8);box-shadow:0 0 10px rgba(88,79,95,.8)}.jRP47[disabled]{color:#999}._2Av6f{margin-top:5%;margin-left:5%;width:90%;height:90%;visibility:hidden;opacity:0;transition:opacity .35s;background:rgba(88,79,95,.85);padding:20px;position:relative}._2Av6f._2i5wf{margin:0;width:100%;height:100%;visibility:visible;opacity:1}._2T_w2{width:320px;display:block;margin:auto}._2AJAG{font-size:18px}._2ax7i{text-align:right;font-size:12px}.BNdkY{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border:none;border-radius:50%;width:100px;height:100px;display:block;margin:auto;color:#584f5f;font-size:24px;background:hsla(0,0%,100%,.9);box-shadow:0 0 10px rgba(0,0,0,.8)}._1nK_J{display:flex;height:100%;flex-direction:column}._1V8mG{display:flex;align-items:center;flex:1}.-Kejv{overflow-x:auto;overflow-y:hidden;white-space:nowrap}.-Kejv figure{max-width:30vh;height:100%;position:relative;margin-right:200px}.-Kejv figure div{height:70%}.-Kejv article{position:absolute;top:5px;right:-180px;width:180px}.-Kejv ._3MtSS{height:100%}.-Kejv img{width:100%;height:auto;max-width:100%}._1aNqI{display:none}._3oWTp{position:absolute;bottom:30px;right:20px;width:50px;height:50px;border-radius:50%;background:#00c78c;color:#fff;border:2px solid #999;box-shadow:0 0 10px rgba(0,0,0,.85)}._2XsM2{width:100%;height:100%}._2XsM2._2rR5P{filter:blur(8px)}.kzcUT{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(88,79,95,.8);visibility:hidden;opacity:0}.kzcUT._2rR5P{visibility:visible;opacity:1}._3sC-F{width:600px;height:100%;margin:auto;padding:50px 0}._3XS2U{text-align:center;font-size:18px;color:#fff;border-bottom:1px solid hsla(0,0%,93%,.2);margin-bottom:20px}._3D-cJ{margin-bottom:15px;display:flex;font-size:12px}._3D-cJ .ljpHo{flex:1}._3CGer{height:35vh;overflow:auto;margin:0 0 15px;padding:0 10px}._3CGer li{display:flex;margin-bottom:10px}._3CGer .ljpHo{flex:1}._3E8D9,.C8pgC{width:100%}.C8pgC{color:#fff;min-height:100px;padding:5px;border:1px solid hsla(0,0%,93%,.2);border-radius:5px;background:none}",""]),e.locals={"exercise-container":"_3n1-C","exercise-header":"Jy8Ax","exercise-title":"UxslB","title-progress-wrap":"FUSDk","progress-item":"_17JXW","button-header":"_3FwO6","button-header-prev":"_3RBKe","button-header-next":"_7TcRO","content-scroll":"_1VSHW","content-left":"tIKUE","content-right":"_6qWUq","arrow-center":"EMqBv","arrow-top":"mYDob","arrow-right":"_38BmA","arrow-bottom":"_1MEMb","arrow-left":"_3L2WM",gather:"_30hRM","button-toggle":"_37QEa","exercise-video":"_2ExBK","exercise-inner":"_2dgxk","video-wrap":"_1GnKZ",show:"_2i5wf","command-layer":"_1eiIf","info-layer":"Q47CE","timeout-total-time":"_3HGkX","countdown-times":"jRP47","timeout-layer":"_2Av6f","timeout-tips":"_2T_w2","timeout-title":"_2AJAG","timeout-author":"_2ax7i","button-timeout":"BNdkY","content-inner-flex":"_1nK_J","coordinates-flex":"_1V8mG","content-coordinates":"-Kejv","exercise-figure":"_3MtSS","other-res":"_1aNqI","button-toggle-sound":"_3oWTp","exercise-page":"_2XsM2",active:"_2rR5P","finish-page":"kzcUT","finish-inner":"_3sC-F","finish-title":"_3XS2U","finish-detail":"_3D-cJ",col:"ljpHo","finish-actions":"_3CGer","finish-feel":"_3E8D9","feel-content":"C8pgC"}},548:function(t,e){t.exports="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFsAAACGCAQAAAAYnz7jAAAE9klEQVR4Ae3ZA5TkWBxG8a8x5tq2bdu2bXNs27Ztr23bNtpG3UVtb/KKrUrenJPf/7iQGxeUCrzgjNYfuATZqRFkB9lBdpDNidxvczb3c6JMHMRjQBk72JrNDpQBj3GQwtiV+YQIm2lt9kzCQsxnV0lMxlHJvjZmsy+VOCZJYltKcKy0MnsljhK21T8YjNvRtmVzNG6DFcbG5OF4wbrsF3DksbGq0Bm3s23K5mzcOstBc37D8R7ptmSTzns4fqO53LgXt6utyb4at3tloiHf4PiKhjZk05CvcHwTo4prcbtHdcBDzqgOuAe3axWNdD7A8QvN5DOa8SuOD0hXLJyLWyf5jE64nat4eAlHLhvJR2xELo6XFB/H4jZIPmIQbscqEVbjKGYb+YRtKMaxWomxHyEck+QTJuEIsZ+SYTZVPuYC+YQL+Jgqs5QcO1EGfM9NZMhHZHAT3wNl7KTqoBcP0VgWoDEP0VO1FAgEAoFAIBAIBAIcSgce5wsKKeZnXmc6l9NcHuAQevIM35BPNt/yImO4hOZKjst4i1hy6EcLpRCn8Sqx5DKYTRQf2/IkiXzFsUoJmjGWRLK4QbGxM9+STCWDOb/e5yo+J7lOisbu/Ijt+srEdvyK/aC33FjG+qGCA1SFc4ilgFd4hyy8V8qrPMEPxPIyaQrjEyK9x5mkSxJpHMezeOd77qS1/sVOTKeSSBfpHxxMpJU0lIEcvPEYG8rAFZRjWqh/MBDTuzRUBLLxxp2Kwt2YimgW6xA5QbIqO533MZ0tMijD7UvJjmwHD2K6X2yPaayF2ftgGiqOxvSghdmNCeE2XxyC6W4Ls9MwTRd7YOpgYXZrTKPEFpiWWph9EqZekvgNtywaWZfdB9MlkliB6Sq7ssngR0zbSqItpndJtyr7Wkzf6x9sTwjTTfZk05hvMfVXGE9jymIra7IHEWkv59t6pCfJlAs/4o3rZOA0QpieUxXSeIdIk+TC+3jjTLmwP3lEOlYOziJaH/2PZ/HGoca//z8RabVMLCTa5KpDhcV4Ywf9hyP4jUgF7CQTG/Mr0Z4NP5GeeKGYBvoX11BMtDsUjVOpIFohD5LOhXjhRUliExYQy0LFxl3E9gpn44VBZHATvxHL6zRVPAwhtjK8MJEPiO0btlAiDMY+n7OtkqEHdvmAzVUdnMMf2GIxLVVdbM2z+K+ctqSpJsigKxX46S0OVG1wOE/hjz94hEzVHsfzHN76hUdorrrjFF7CG99xN41Vf9ibXnxB6hSwgMtpqFTgEAbxE/Uri6mcR2OlFi1YSP3pQqa8wiNUUHch7pe3OIFfqZsszpP32IoZVFBbz7Cd/MJuzKKSmvqOy+U39mA2pVTX+9xAI9mB1tzACnJI5AsGcJjsQzr7cxP9WMILvM/XfMq7PMs0unEBW+gfgQCncR+nsj0t9B9asR/n0UA2YyVVysmlmBBhR8teZJJHbJ1kL44gnqdlL4YQTymbyE40IYv42shOXE8iX5Im+5DGWyR2luzDxSTzBmmyCxl8THIXyy7cTHV8QqbswUb8TiT7rydMprqK2EF24ARqYp1sQCu+pWbukf+YRU0Vs5f8xY3Uxoc0l3/YjyJqZ578wsZ8Te11lD+4kP51mL5sIksEAmzMC1QSqvfJ5UGlDm1JlXKaKlUYQOpsEWQH2UF2kB1kB9nr9V1yY14kRP3L4yHVyF9QVS1HNsGowgAAAABJRU5ErkJggg=="}});
+webpackJsonp([1],{
+
+/***/ 0:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _dec, _class, _desc, _value, _class2;
+
+	__webpack_require__(114);
+
+	var _react = __webpack_require__(122);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(152);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _autobindDecorator = __webpack_require__(513);
+
+	var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
+
+	var _reactCssModules = __webpack_require__(354);
+
+	var _reactCssModules2 = _interopRequireDefault(_reactCssModules);
+
+	var _Utils = __webpack_require__(521);
+
+	var _Utils2 = _interopRequireDefault(_Utils);
+
+	var _moment = __webpack_require__(524);
+
+	var _moment2 = _interopRequireDefault(_moment);
+
+	var _moduleExercise = __webpack_require__(660);
+
+	var _moduleExercise2 = _interopRequireDefault(_moduleExercise);
+
+	var _HttpRequest = __webpack_require__(523);
+
+	var _HttpRequest2 = _interopRequireDefault(_HttpRequest);
+
+	var _WorkoutCoordinates = __webpack_require__(658);
+
+	var _WorkoutCoordinates2 = _interopRequireDefault(_WorkoutCoordinates);
+
+	var _electron = __webpack_require__(522);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+	    var desc = {};
+	    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+	        desc[key] = descriptor[key];
+	    });
+	    desc.enumerable = !!desc.enumerable;
+	    desc.configurable = !!desc.configurable;
+
+	    if ('value' in desc || desc.initializer) {
+	        desc.writable = true;
+	    }
+
+	    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+	        return decorator(target, property, desc) || desc;
+	    }, desc);
+
+	    if (context && desc.initializer !== void 0) {
+	        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+	        desc.initializer = undefined;
+	    }
+
+	    if (desc.initializer === void 0) {
+	        Object['define' + 'Property'](target, property, desc);
+	        desc = null;
+	    }
+
+	    return desc;
+	}
+
+	var ModuleExercise = (_dec = (0, _reactCssModules2.default)(_moduleExercise2.default, { allowMultiple: true }), _dec(_class = (_class2 = function (_Component) {
+	    _inherits(ModuleExercise, _Component);
+
+	    function ModuleExercise(props) {
+	        _classCallCheck(this, ModuleExercise);
+
+	        var _this = _possibleConstructorReturn(this, (ModuleExercise.__proto__ || Object.getPrototypeOf(ModuleExercise)).call(this, props));
+
+	        var workouts = _Utils2.default.storage.get('workouts') || [];
+	        var planId = location.search.substring(location.search.indexOf('=') + 1);
+
+	        _this.state = {
+	            classTimeout: '',
+	            classToggle: '',
+
+	            user: _Utils2.default.storage.get('userData') || {},
+	            workout: !workouts.length ? {} : !new Map(workouts).has(planId) ? {} : new Map(workouts).get(planId),
+	            exercises: [],
+	            currentProceed: 0,
+	            countdown: 0,
+	            currentGroupTime: 0,
+	            currentGroupDuration: 0,
+	            timeoutTip: _Utils2.default.storage.get('timeoutTip'),
+	            timeoutGap: 0,
+	            totalDuration: 0,
+	            statisticDuration: 0, // 总时长（包括休息时间和报读时间以及训练时间）
+	            isEnd: ''
+	        };
+
+	        _this.totalStart = false;
+	        _this.vStart = false;
+	        _this.statisticGroup = [];
+	        _this.groupAudio = [];
+	        _this.toNextCallback = null, // 主音频播放回调
+
+	        // setTimeout Or setInterval
+	        _this.timeoutGapId = 0, // 休息时间
+	        _this.timeoutCountdownId = 0, // 开始倒计时
+	        _this.recordId = 0, // 统计单项运行状态
+	        _this.commentaryId = 0; // 提示语
+	        return _this;
+	    }
+
+	    _createClass(ModuleExercise, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var _this2 = this;
+
+	            console.info(this.state.workout);
+
+	            _electron.remote.getCurrentWindow().removeAllListeners();
+	            _electron.remote.getCurrentWindow().on('blur', function (e) {
+	                _this2.handleMainPause();
+	            }).on('focus', function (e) {
+	                _this2.handleMainPlay();
+	            });
+
+	            var exercise = this.state.workout.workouts[0];
+	            var videos = exercise.steps;
+
+	            var totalDuration = 0;
+	            var list = videos.map(function (item) {
+	                var single = {};
+	                single.name = item.exercise.name;
+	                single.gap = item.gap;
+	                single.video = item.exercise.videos[0];
+	                single.videoName = single.video.url.substring(single.video.url.lastIndexOf('/') + 1, single.video.url.indexOf('.mp4'));
+	                single.audio = item.exercise.audio;
+	                single.audioName = single.audio.substring(single.audio.lastIndexOf('/') + 1, single.audio.indexOf('.mp3'));
+	                single.type = item.type;
+	                single.description = item.exercise.description;
+	                single.covers = item.exercise.covers;
+	                single.exerciseId = item.exercise._id;
+
+	                // 根据性别划分锻炼难度
+	                if (_this2.state.user.gender.toLowerCase() === 'm') {
+	                    single.group = item.mgroup;
+	                    single.groupTime = item.mpergroup;
+	                    single.groupDuration = item.mduration;
+	                } else {
+	                    single.group = item.fgroup;
+	                    single.groupTime = item.fpergroup;
+	                    single.groupDuration = item.fduration;
+	                }
+
+	                // 训练时提醒
+	                if (item.commentaryTraining.length) {
+	                    if (item.commentaryTraining[0].gender === _this2.state.user.gender) single.commentary = item.commentaryTraining[0].sets;else single.commentary = item.commentaryTraining[1].sets;
+	                } else {
+	                    single.commentary = null;
+	                }
+
+	                totalDuration += single.groupDuration;
+
+	                return single;
+	            });
+
+	            // 统计项目总时间
+	            this.setState({
+	                statisticDuration: totalDuration
+	            });
+
+	            this.setState({
+	                exercises: list
+	            }, this.startExercise);
+	        }
+	    }, {
+	        key: 'componentWillUnmount',
+	        value: function componentWillUnmount() {
+	            clearTimeout(this.timeId);
+	        }
+	    }, {
+	        key: 'startExercise',
+	        value: function startExercise() {
+	            var curAction = this.state.exercises[this.state.currentProceed];
+
+	            console.info(curAction);
+
+	            this.setState({
+	                countdown: 4
+	            });
+
+	            // 判断是否第一组
+	            if (this.state.currentProceed === 0) this.groupAudio.push(ModuleExercise.getSoundTips('g_2_first_motion.mp3'));
+	            // 是否是最后一组
+	            else if (this.state.currentProceed === this.state.exercises.length - 1) this.groupAudio.push(ModuleExercise.getSoundTips('g_14_last_motion.mp3'));else this.groupAudio.push(ModuleExercise.getSoundTips('g_13_next_motion.mp3'));
+
+	            // 项目名
+	            this.groupAudio.push(curAction.audio);
+
+	            // 组
+	            this.groupAudio.push(ModuleExercise.getSoundTips('one_group.mp3'));
+
+	            if (this.state.exercises.group > 1) this.groupAudio.push(ModuleExercise.getSoundTips('g_4_group.mp3'));
+
+	            // 单组次数/时间
+	            if (curAction.type === 'times') {
+	                this.groupAudio.push(ModuleExercise.getSoundNumber(ModuleExercise.makeNumOrder(curAction.groupTime)));
+	                this.groupAudio.push(ModuleExercise.getSoundTips('g_6_time.mp3'));
+	            } else {
+	                this.groupAudio.push(ModuleExercise.getSoundNumber(ModuleExercise.makeNumOrder(curAction.groupDuration)));
+	                this.groupAudio.push(ModuleExercise.getSoundTips('seconds.mp3'));
+	            }
+
+	            this.totalStart = true;
+	            this.initTimerAuthor().play();
+	            this.componentAudio().setSrc(this.groupAudio.shift()).play();
+	        }
+
+	        // 项目开始倒计时
+
+	    }, {
+	        key: 'beginCountdown',
+	        value: function beginCountdown() {
+	            var _this3 = this;
+
+	            return {
+	                play: function play() {
+	                    if (_this3.totalStart) {
+	                        if (_this3.state.countdown > 0) {
+	                            _this3.timeoutCountdownId = setTimeout(function () {
+	                                _this3.setState({
+	                                    countdown: _this3.state.countdown - 1
+	                                }, function () {
+	                                    _this3.componentAudio().setSrc(ModuleExercise.getSoundNumber('00' + _this3.state.countdown)).play();
+	                                    _this3.beginCountdown().stop().play();
+	                                });
+	                            }, 1000);
+	                        } else {
+	                            _this3.timeoutCountdownId && clearTimeout(_this3.timeoutCountdownId);
+	                            _this3.timeoutCountdownId = 0;
+	                            _this3.componentAudio().pause().setSrc(ModuleExercise.getSoundTips('g_9_go.mp3')).play();
+	                            _this3.timeoutCountdownId = setTimeout(function () {
+	                                _this3.vStart = true;
+	                                _this3.recordExerciseConfig().play();
+	                                _this3.componentVideo().reset();
+
+	                                clearTimeout(_this3.timeoutCountdownId);
+	                                _this3.timeoutCountdownId = 0;
+	                            }, 1000);
+	                        }
+	                    } else {
+	                        _this3.timeoutCountdownId && clearTimeout(_this3.timeoutCountdownId);
+	                        _this3.timeoutCountdownId = 0;
+	                    }
+	                },
+	                stop: function stop() {
+	                    _this3.timeoutCountdownId && clearTimeout(_this3.timeoutCountdownId);
+	                    _this3.timeoutCountdownId = 0;
+
+	                    return _this3.beginCountdown();
+	                }
+	            };
+	        }
+	    }, {
+	        key: 'initTimerAuthor',
+	        value: function initTimerAuthor() {
+	            var _this4 = this;
+
+	            return {
+	                play: function play() {
+	                    _this4.timerId = setTimeout(function () {
+	                        if (_this4.totalStart) {
+	                            _this4.setState({
+	                                totalDuration: _this4.state.totalDuration + 1
+	                            });
+	                            if (_this4.vStart) {
+	                                // 统计单项运动时间
+	                                _this4.setState({
+	                                    currentGroupDuration: _this4.state.currentGroupDuration + 1
+	                                });
+	                                // 如果类型不是报次,则读秒
+	                                if (_this4.state.exercises[_this4.state.currentProceed].type !== 'times') _this4.componentAudio().setSrc(ModuleExercise.getSoundTips('timer.mp3')).play();
+	                            }
+	                            _this4.initTimerAuthor().play();
+	                        } else {
+	                            _this4.initTimerAuthor().stop();
+	                        }
+	                    }, 1000);
+	                },
+	                stop: function stop() {
+	                    _this4.timerId && clearTimeout(_this4.timerId);
+	                    _this4.timerId = 0;
+	                }
+	            };
+	        }
+
+	        // 统计单项目运行时间
+
+	    }, {
+	        key: 'recordExerciseConfig',
+	        value: function recordExerciseConfig() {
+	            var _this5 = this;
+
+	            return {
+	                play: function play() {
+	                    var timeSpeed = 1000;
+	                    if (_this5.state.exercises[_this5.state.currentProceed].groupTime > 0) timeSpeed = _this5.state.exercises[_this5.state.currentProceed].groupDuration / _this5.state.exercises[_this5.state.currentProceed].groupTime * 1000;
+	                    _this5.setState({
+	                        currentGroupTime: _this5.state.currentGroupTime + 1
+	                    }, function () {
+	                        if (_this5.state.exercises[_this5.state.currentProceed].type === 'times') _this5.componentAudio().setSrc(ModuleExercise.getSoundNumber(ModuleExercise.makeNumOrder(_this5.state.currentGroupTime))).play();
+
+	                        _this5.recordId = setTimeout(function () {
+	                            if (_this5.state.exercises[_this5.state.currentProceed].type === 'times') {
+	                                if (_this5.state.currentGroupTime < _this5.state.exercises[_this5.state.currentProceed].groupTime) {
+	                                    _this5.recordExerciseConfig().play();
+	                                } else {
+	                                    if (_this5.state.exercises[_this5.state.currentProceed].gap) {
+	                                        _this5.resetAllState();
+	                                        _this5.componentTimeout().rest(_this5.state.exercises[_this5.state.currentProceed].gap);
+	                                    } else _this5.handleJumpNext();
+	                                }
+	                            } else if (_this5.state.currentGroupDuration < _this5.state.exercises[_this5.state.currentProceed].groupDuration) {
+	                                _this5.recordExerciseConfig().play();
+	                            } else {
+	                                if (_this5.state.exercises[_this5.state.currentProceed].gap) {
+	                                    _this5.resetAllState();
+	                                    _this5.componentTimeout().rest(_this5.state.exercises[_this5.state.currentProceed].gap);
+	                                } else _this5.handleJumpNext();
+	                            }
+	                        }, timeSpeed);
+	                    });
+	                },
+	                stop: function stop() {
+	                    _this5.recordId && clearTimeout(_this5.recordId);
+	                    _this5.recordId = 0;
+	                },
+	                over: function over() {
+	                    _this5.recordExerciseConfig().stop();
+
+	                    if (_this5.vStart) _this5.statisticGroup.push({
+	                        name: _this5.state.exercises[_this5.state.currentProceed].name,
+	                        type: _this5.state.exercises[_this5.state.currentProceed].type,
+	                        exercise: _this5.state.exercises[_this5.state.currentProceed].exerciseId,
+	                        actualSec: 20,
+	                        totalSec: 20
+	                    });
+	                    return true;
+	                }
+	            };
+	        }
+
+	        // 主视频对象操作
+
+	    }, {
+	        key: 'componentVideo',
+	        value: function componentVideo() {
+	            var _this6 = this;
+
+	            var masterVideo = this.refs.masterVideo;
+
+	            return {
+	                pause: function pause() {
+	                    masterVideo.pause();
+	                    return _this6.componentVideo();
+	                },
+	                play: function play() {
+	                    masterVideo.play();
+	                    return _this6.componentVideo();
+	                },
+	                reset: function reset() {
+	                    masterVideo.load();
+	                    return _this6.componentVideo();
+	                },
+	                setSrc: function setSrc(src) {
+	                    masterVideo.src = src;
+	                    return _this6.componentVideo();
+	                },
+	                stop: function stop() {
+	                    masterVideo.loop = false;
+	                },
+	                goPlay: function goPlay() {
+	                    // 项目开始
+	                    if (_this6.vStart) {
+	                        // 循环播放
+	                        masterVideo.play();
+	                    }
+	                    //else if(this.state.countdown > -1){
+	                    //    this.refs.masterVideo.play()
+	                    //}
+	                    return true;
+	                }
+	            };
+	        }
+
+	        // 主音频对象操作
+
+	    }, {
+	        key: 'componentAudio',
+	        value: function componentAudio() {
+	            var _this7 = this;
+
+	            var masterAudio = this.refs.masterAudio;
+
+	            return {
+	                togglePlay: function togglePlay() {
+	                    if (masterAudio.volume) masterAudio.volume = 0;else masterAudio.volume = 1;
+	                },
+	                pause: function pause() {
+	                    masterAudio.pause();
+	                    return _this7.componentAudio();
+	                },
+	                play: function play() {
+	                    if (masterAudio.src) masterAudio.play();else _this7.componentAudio().toNext();
+	                    return _this7.componentAudio();
+	                },
+	                replay: function replay() {
+	                    masterAudio.load();
+	                    return _this7.componentAudio();
+	                },
+	                stop: function stop() {
+	                    // 避免重复报读
+	                    //masterAudio.currentTime = masterAudio.duration * 0.99
+	                    masterAudio.src = '';
+	                    _this7.timeoutCountdownId && clearTimeout(_this7.timeoutCountdownId);
+	                    //masterAudio.pause()
+
+	                    return _this7.componentAudio();
+	                },
+	                setSrc: function setSrc(src) {
+	                    //console.info('this.refs.masterAudio', this.refs.masterAudio)
+	                    masterAudio.src = src;
+	                    return _this7.componentAudio();
+	                },
+	                toNext: function toNext() {
+	                    if (_this7.toNextCallback && typeof _this7.toNextCallback === 'function') {
+	                        _this7.toNextCallback();
+	                        _this7.toNextCallback = null;
+	                        return true;
+	                    }
+	                    if (_this7.totalStart) {
+	                        if (_this7.groupAudio.length) {
+	                            // 开始读秒
+	                            //if(this.groupAudio.length <= 4 && !this.vStart){
+	                            //    // 延迟读秒时间
+	                            //    this.timeoutCountdownId = setTimeout(() => {
+	                            //        masterAudio.src = this.groupAudio.shift()
+	                            //        masterAudio.play()
+	                            //        this.beginCountdown()
+	                            //    }, 660)
+	                            //    return true
+	                            //}
+	                            masterAudio.src = _this7.groupAudio.shift();
+	                            masterAudio.play();
+	                            return true;
+	                        } else {
+	                            if (_this7.state.countdown > 3) _this7.beginCountdown().play();
+	                        }
+	                    }
+	                }
+	            };
+	        }
+
+	        // 锻炼时提示语 (*未完* | 本地缓存、解压、目录存放)
+
+	    }, {
+	        key: 'commentaryTrainingAudio',
+	        value: function commentaryTrainingAudio() {
+	            var _this8 = this;
+
+	            var branchAudio = this.refs.branchAudio;
+	            return {
+	                start: function start() {
+	                    var commentary = _this8.state.exercises[_this8.state.currentProceed].commentary;
+	                    if (commentary) {
+	                        commentary.forEach(function (item) {
+	                            _this8.commentaryId = setTimeout(function () {
+	                                _this8.commentaryTrainingAudio().play(item.id);
+	                            }, item.time * 1000);
+	                        });
+	                    }
+	                },
+	                play: function play(src) {
+	                    branchAudio.src = src;
+	                    return _this8.commentaryTrainingAudio();
+	                },
+	                pause: function pause() {
+	                    branchAudio.pause();
+	                    return _this8.commentaryTrainingAudio();
+	                }
+	            };
+	        }
+
+	        // 视频音频开关
+
+	    }, {
+	        key: 'componentMaster',
+	        value: function componentMaster() {
+	            var _this9 = this;
+
+	            return {
+	                pause: function pause() {
+	                    _this9.setState({
+	                        totalStart: false
+	                    }, function () {
+	                        if (_this9.state.countdown > 0) _this9.beginCountdown().stop();
+	                        _this9.componentVideo().pause();
+	                        _this9.componentAudio().pause();
+	                    });
+	                },
+	                play: function play() {
+	                    _this9.setState({
+	                        totalStart: true
+	                    }, function () {
+	                        _this9.componentVideo().play();
+	                        _this9.componentAudio().play();
+	                        if (!_this9.groupAudio.length && _this9.state.countdown > 0) _this9.beginCountdown().play();
+	                    });
+	                }
+	            };
+	        }
+
+	        //休息时间
+
+	    }, {
+	        key: 'componentTimeout',
+	        value: function componentTimeout() {
+	            var _this10 = this;
+
+	            return {
+	                show: function show() {
+	                    _this10.setState({
+	                        classTimeout: 'show'
+	                    });
+	                    return true;
+	                },
+	                hide: function hide() {
+	                    _this10.setState({
+	                        classTimeout: ''
+	                    });
+	                    return true;
+	                },
+	                rest: function rest(time) {
+	                    _this10.setState({
+	                        timeoutGap: time,
+	                        classTimeout: 'show'
+	                    }, function () {
+	                        console.info(_this10.timeoutGapId);
+	                        if (_this10.timeoutGapId) return;
+	                        _this10.componentAudio().pause().setSrc(ModuleExercise.getSoundTips('g_10_take_a_rest.mp3')).play();
+	                        _this10.timeoutGapId = setInterval(function () {
+	                            if (_this10.state.timeoutGap > 0) {
+	                                _this10.setState({
+	                                    timeoutGap: _this10.state.timeoutGap - 1
+	                                });
+	                            } else {
+	                                clearInterval(_this10.timeoutGapId);
+	                                _this10.timeoutGapId = 0;
+	                                _this10.componentAudio().pause().setSrc(ModuleExercise.getSoundTips('g_11_rest_end.mp3')).play();
+	                                _this10.toNextCallback = _this10.handleJumpNext;
+	                            }
+	                        }, 1000);
+	                    });
+	                    return true;
+	                },
+	                stop: function stop() {
+	                    _this10.timeoutGapId && clearInterval(_this10.timeoutGapId);
+	                    _this10.componentTimeout().hide();
+	                    return true;
+	                }
+	            };
+	        }
+	    }, {
+	        key: 'resetAllState',
+	        value: function resetAllState() {
+	            this.recordExerciseConfig().over(); // 保存当前项目值并重置
+	            this.totalStart = false;
+	            this.vStart = false;
+	            this.groupAudio = []; // 声音重置
+
+	            this.initTimerAuthor().stop(); // 停止时间统计
+	            this.componentMaster().pause(); // 终止所有视频、音频播放
+	            this.componentTimeout().stop(); // 销毁休息状态
+	        }
+	    }, {
+	        key: 'handleSounds',
+	        value: function handleSounds() {
+	            this.componentAudio().togglePlay();
+	        }
+	    }, {
+	        key: 'handleMainPause',
+	        value: function handleMainPause() {
+	            this.initTimerAuthor().stop();
+	            if (this.vStart) this.recordExerciseConfig().stop();
+	            this.componentTimeout().show();
+	            this.componentMaster().pause();
+	            this.setState({
+	                classToggle: 'gather'
+	            });
+	        }
+	    }, {
+	        key: 'handleMainPlay',
+	        value: function handleMainPlay() {
+	            this.setState({
+	                classToggle: ''
+	            });
+	            this.componentTimeout().hide();
+	            this.componentMaster().play();
+	            this.initTimerAuthor().play();
+	            if (this.vStart) this.recordExerciseConfig().play();
+	        }
+
+	        // 总开关事件
+
+	    }, {
+	        key: 'handleVideoToggle',
+	        value: function handleVideoToggle() {
+	            if (this.state.classToggle) {
+	                // play
+	                this.handleMainPlay();
+	            } else {
+	                // pause
+	                this.handleMainPause();
+	            }
+	        }
+
+	        // 上一个！
+
+	    }, {
+	        key: 'handleJumpPrev',
+	        value: function handleJumpPrev() {
+	            this.resetAllState();
+	            this.setState({ // 重置组数据，回调进行上一次
+	                currentProceed: this.state.currentProceed > 1 ? this.state.currentProceed - 1 : 0,
+	                currentGroupTime: 0,
+	                currentGroupDuration: 0,
+	                timeoutGap: 0
+	            }, this.startExercise);
+	        }
+
+	        // 下一个！！
+
+	    }, {
+	        key: 'handleJumpNext',
+	        value: function handleJumpNext() {
+	            var _this11 = this;
+
+	            this.resetAllState();
+	            if (this.state.currentProceed < this.state.exercises.length - 1) {
+	                this.setState({ // 重置组数据，回调开始下一次
+	                    currentProceed: this.state.currentProceed + 1,
+	                    currentGroupTime: 0,
+	                    currentGroupDuration: 0,
+	                    timeoutGap: 0
+	                }, this.startExercise);
+	            } else {
+	                this.componentVideo().stop();
+	                this.componentAudio().pause().setSrc(ModuleExercise.getSoundTips('countdownend.mp3')).play();
+	                this.toNextCallback = function () {
+	                    return _this11.componentAudio().pause().setSrc(ModuleExercise.getSoundTips('g_16_well_done.mp3')).play();
+	                };
+	                _HttpRequest2.default.completeExercise();
+	                this.setState({
+	                    isEnd: 'active'
+	                });
+	            }
+	        }
+	    }, {
+	        key: 'getVideoContent',
+	        value: function getVideoContent() {
+	            if (this.state.exercises.length) return _react2.default.createElement(
+	                'section',
+	                { styleName: 'exercise-video' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { styleName: 'exercise-inner' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { styleName: 'video-wrap ' + this.state.classTimeout },
+	                        _react2.default.createElement('video', { ref: 'masterVideo', onEnded: this.componentVideo().goPlay, muted: true, autoPlay: true, loop: true, src: this.state.exercises[this.state.currentProceed].video.url })
+	                    ),
+	                    _react2.default.createElement('aside', { styleName: 'command-layer' }),
+	                    _react2.default.createElement(
+	                        'aside',
+	                        { styleName: 'info-layer' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { styleName: 'countdown-times', disabled: this.state.countdown > 3 },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'fz18', hidden: this.state.countdown <= 0 },
+	                                this.state.countdown > 3 ? 3 : this.state.countdown
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'fz18', hidden: this.state.countdown > 0 || this.state.currentGroupTime },
+	                                'GO!'
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'fz14', hidden: this.state.exercises[this.state.currentProceed].type !== 'times' && this.state.currentGroupTime },
+	                                this.state.currentGroupTime,
+	                                '/',
+	                                this.state.exercises[this.state.currentProceed].groupTime
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'fz14', hidden: this.state.exercises[this.state.currentProceed].type === 'times' && this.state.currentGroupDuration },
+	                                this.state.currentGroupDuration,
+	                                '/',
+	                                this.state.exercises[this.state.currentProceed].groupDuration,
+	                                '"'
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'span',
+	                            { styleName: 'timeout-total-time' },
+	                            (0, _moment2.default)(new Date(this.state.totalDuration * 1000)).format('mm:ss')
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'aside',
+	                        { styleName: 'timeout-layer ' + this.state.classTimeout },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { styleName: 'timeout-tips' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                null,
+	                                _react2.default.createElement('i', { className: 'iconfont icon-symbol fz24' })
+	                            ),
+	                            _react2.default.createElement(
+	                                'p',
+	                                { styleName: 'timeout-title' },
+	                                this.state.timeoutTip.content
+	                            ),
+	                            _react2.default.createElement(
+	                                'p',
+	                                { styleName: 'timeout-author' },
+	                                '\u2014\u2014',
+	                                this.state.timeoutTip.author
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'button',
+	                            { hidden: !this.state.timeoutGap, onClick: this.handleJumpNext, styleName: 'button-timeout' },
+	                            this.state.timeoutGap
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'button',
+	                        { hidden: this.state.timeoutGap, styleName: 'button-toggle ' + this.state.classToggle, onClick: this.handleVideoToggle },
+	                        _react2.default.createElement('i', { className: 'iconfont ' + (this.state.classToggle ? 'icon-play' : 'icon-pause') })
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        null,
+	                        _react2.default.createElement('span', { styleName: 'arrow-top ' + this.state.classToggle }),
+	                        _react2.default.createElement('span', { styleName: 'arrow-right ' + this.state.classToggle }),
+	                        _react2.default.createElement('span', { styleName: 'arrow-bottom ' + this.state.classToggle }),
+	                        _react2.default.createElement('span', { styleName: 'arrow-left ' + this.state.classToggle })
+	                    )
+	                )
+	            );
+	        }
+	    }, {
+	        key: 'getFinishContent',
+	        value: function getFinishContent() {
+	            return _react2.default.createElement(
+	                'div',
+	                { styleName: 'finish-page ' + this.state.isEnd },
+	                _react2.default.createElement(
+	                    'div',
+	                    { styleName: 'finish-inner' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { styleName: 'finish-title' },
+	                        _react2.default.createElement('img', { src: __webpack_require__(662), alt: '' }),
+	                        _react2.default.createElement(
+	                            'p',
+	                            { className: 'padding' },
+	                            '\u606D\u559C\u4F60\u5B8C\u6210\u8BAD\u7EC3'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { styleName: 'finish-detail' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'text-left', styleName: 'col' },
+	                            '\u65F6\u957F ',
+	                            _react2.default.createElement('br', null),
+	                            ' ',
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'fz24' },
+	                                this.state.totalDuration > 60 ? Math.floor(this.state.totalDuration / 60) : '<1'
+	                            ),
+	                            '\u5206'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'text-center', styleName: 'col' },
+	                            '\u52A8\u4F5C ',
+	                            _react2.default.createElement('br', null),
+	                            ' ',
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'fz24' },
+	                                this.statisticGroup.length
+	                            ),
+	                            '\u7EC4'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'text-right', styleName: 'col' },
+	                            '\u6D88\u8017 ',
+	                            _react2.default.createElement('br', null),
+	                            ' ',
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'fz24' },
+	                                this.state.totalDuration
+	                            ),
+	                            '\u5343\u5361'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'ul',
+	                        { styleName: 'finish-actions' },
+	                        this.statisticGroup.length && this.statisticGroup.map(function (item, index) {
+	                            return _react2.default.createElement(
+	                                'li',
+	                                { key: index },
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'text-left', styleName: 'col' },
+	                                    item.name
+	                                ),
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'text-right', styleName: 'col' },
+	                                    (0, _moment2.default)(new Date(item.totalSec * 1000)).format('mm:ss')
+	                                )
+	                            );
+	                        })
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { styleName: 'finish-feel' },
+	                        _react2.default.createElement('textarea', { styleName: 'feel-content', placeholder: '\u8BB0\u4E0B\u672C\u6B21\u8BAD\u7EC3\u7684\u611F\u53D7\u548C\u5FC3\u5F97' })
+	                    )
+	                )
+	            );
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this12 = this;
+
+	            return _react2.default.createElement(
+	                'div',
+	                { styleName: 'exercise-container' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { styleName: 'exercise-page ' + this.state.isEnd },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { styleName: 'exercise-header' },
+	                        _react2.default.createElement(
+	                            'p',
+	                            { styleName: 'exercise-title' },
+	                            this.state.currentProceed + 1,
+	                            '/',
+	                            this.state.exercises.length,
+	                            ' ',
+	                            this.state.exercises.length && this.state.exercises[this.state.currentProceed].name
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { styleName: 'title-progress-wrap' },
+	                            this.state.exercises.length && this.state.exercises.map(function (item, index) {
+	                                return _react2.default.createElement('div', { key: index, styleName: 'progress-item', style: { width: item.groupDuration * item.group / _this12.state.statisticDuration * 100 + '%' } });
+	                            })
+	                        ),
+	                        _react2.default.createElement(
+	                            'button',
+	                            { disabled: this.state.currentProceed <= 0, onClick: this.handleJumpPrev, styleName: 'button-header button-header-prev' },
+	                            _react2.default.createElement('i', { className: 'iconfont fz24 icon-forward' })
+	                        ),
+	                        _react2.default.createElement(
+	                            'button',
+	                            { disabled: this.state.currentProceed >= this.state.exercises.length - 1, onClick: this.handleJumpNext, styleName: 'button-header button-header-next' },
+	                            _react2.default.createElement('i', { className: 'iconfont fz24 icon-goback' })
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'section',
+	                        { styleName: 'content-left', ref: 'contentLeft' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { styleName: 'content-inner-flex' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'padding' },
+	                                this.getVideoContent()
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { styleName: 'coordinates-flex' },
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { styleName: 'content-coordinates' },
+	                                    this.state.exercises.length && this.state.exercises[this.state.currentProceed].covers.map(function (cover) {
+	                                        return _react2.default.createElement(_WorkoutCoordinates2.default, { key: cover._id, data: cover });
+	                                    })
+	                                )
+	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'section',
+	                        { styleName: 'content-right', ref: 'contentRight' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { styleName: 'content-scroll' },
+	                            this.state.exercises.length && _react2.default.createElement('article', { className: 'article-wrap', dangerouslySetInnerHTML: { __html: this.state.exercises[this.state.currentProceed].description } })
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'button',
+	                        { styleName: 'button-toggle-sound', onClick: this.handleSounds },
+	                        '\u58F0\u97F3'
+	                    ),
+	                    _react2.default.createElement(
+	                        'figure',
+	                        { styleName: 'other-res' },
+	                        _react2.default.createElement('audio', { ref: 'masterAudio', onEnded: this.componentAudio().toNext, src: '' }),
+	                        _react2.default.createElement('audio', { ref: 'branchAudio', src: '' })
+	                    )
+	                ),
+	                this.state.isEnd && this.getFinishContent()
+	            );
+	        }
+	    }], [{
+	        key: 'getSoundTips',
+	        value: function getSoundTips(name) {
+	            return 'file://' + (__dirname) + '/sounds/' + name;
+	        }
+	    }, {
+	        key: 'getSoundNumber',
+	        value: function getSoundNumber(name) {
+	            return 'file://' + (__dirname) + '/number/N' + name + '.mp3';
+	        }
+	    }, {
+	        key: 'makeNumOrder',
+	        value: function makeNumOrder(index) {
+	            return index < 1000 ? index < 100 ? index < 10 ? '00' + index : '0' + index : '0' + index : index;
+	        }
+	    }]);
+
+	    return ModuleExercise;
+	}(_react.Component), (_applyDecoratedDescriptor(_class2.prototype, 'componentDidMount', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentDidMount'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'componentWillUnmount', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentWillUnmount'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'startExercise', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'startExercise'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'beginCountdown', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'beginCountdown'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'initTimerAuthor', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'initTimerAuthor'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'recordExerciseConfig', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'recordExerciseConfig'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'componentVideo', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentVideo'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'componentAudio', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentAudio'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'commentaryTrainingAudio', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'commentaryTrainingAudio'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'componentMaster', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentMaster'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'componentTimeout', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentTimeout'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'resetAllState', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'resetAllState'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleSounds', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleSounds'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleMainPause', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleMainPause'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleMainPlay', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleMainPlay'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleVideoToggle', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleVideoToggle'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleJumpPrev', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleJumpPrev'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleJumpNext', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleJumpNext'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getVideoContent', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getVideoContent'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getFinishContent', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getFinishContent'), _class2.prototype)), _class2)) || _class);
+
+
+	var container = document.createElement('div');
+	container.id = 'container';
+	container.className = 'container';
+	document.querySelector('body').appendChild(container);
+
+	_reactDom2.default.render(_react2.default.createElement(ModuleExercise, null), document.getElementById('container'));
+	;
+
+	var _temp = function () {
+	    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+	        return;
+	    }
+
+	    __REACT_HOT_LOADER__.register(ModuleExercise, 'ModuleExercise', '/Users/liucong/Documents/Github/keepForMac/src/js/ModuleExercise.js');
+
+	    __REACT_HOT_LOADER__.register(container, 'container', '/Users/liucong/Documents/Github/keepForMac/src/js/ModuleExercise.js');
+	}();
+
+	;
+
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/js/ModuleExercise.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/js/ModuleExercise.js"); } } })();
+
+/***/ },
+
+/***/ 523:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _default2;
+
+	var _Utils = __webpack_require__(521);
+
+	var _Utils2 = _interopRequireDefault(_Utils);
+
+	var _moment = __webpack_require__(524);
+
+	var _moment2 = _interopRequireDefault(_moment);
+
+	var _autobindDecorator = __webpack_require__(513);
+
+	var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	var hostname = 'https://api.gotokeep.com';
+
+	var serializeJSON = function serializeJSON(data) {
+	    return Object.keys(data).map(function (keyName) {
+	        return encodeURIComponent(keyName) + '=' + encodeURIComponent(data[keyName]);
+	    }).join('&');
+	};
+
+	var _default = (_default2 = {
+	    getToken: function getToken() {
+	        var authentication = _Utils2.default.storage.get('authentication') || {};
+	        return 'Bearer ' + authentication.token;
+	    },
+	    httpGet: function httpGet(url) {
+	        var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+	        if (!url) {
+	            return false;
+	        }
+
+	        options = Object.assign({
+	            method: 'GET',
+	            headers: {
+	                'Authorization': this.getToken()
+	            }
+	        }, options);
+
+	        return fetch(hostname + url, options).then(function (res) {
+	            return res.json();
+	        });
+	    },
+	    httpPost: function httpPost(url) {
+	        var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+	        if (!url) {
+	            return false;
+	        }
+	        options = Object.assign({
+	            method: 'GET',
+	            headers: {
+	                'Authorization': this.getToken()
+	            }
+	        }, options);
+
+	        return fetch(hostname + url, options).then(function (res) {
+	            return res.json();
+	        });
+	    }
+
+	    /**
+	     * Dashboard
+	     */
+	    // Plans
+	    ,
+	    getDashboardTraining: function getDashboardTraining() {
+	        return this.httpGet('/training/v2/home');
+	    },
+	    getDashboardWorkouts: function getDashboardWorkouts() {
+	        return this.httpGet('/v2/home/dashboard/pwData');
+	    }
+
+	    // Statistics
+	    ,
+	    getDashboardStatistics: function getDashboardStatistics() {
+	        return this.httpGet('/v1.1/home/dashboard/statistics');
+	    }
+	    // User
+	    ,
+	    getDashboardUser: function getDashboardUser() {
+	        return this.httpGet('/v1.1/home/dashboard/user');
+	    },
+	    getRankingData: function getRankingData() {
+	        var para = serializeJSON({
+	            date: (0, _moment2.default)().format('YYYYMMDD')
+	        });
+	        return this.httpGet('/social/v2/rankinglist/brief?' + para);
+	    }
+
+	    // user login
+	    ,
+	    login: function login(data) {
+	        return this.httpPost('/v1.1/users/login', {
+	            method: "POST",
+	            headers: {
+	                'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+	            },
+	            body: serializeJSON(data)
+	        });
+	    }
+
+	    // 用户个人信息
+	    ,
+	    getUserData: function getUserData(userID) {
+	        return this.httpGet('/v2/people/' + userID);
+	    }
+
+	    // workouts content
+	    //getExploreContent() {
+	    //    return fetch('https://show.gotokeep.com/explore/', {
+	    //        method: 'GET',
+	    //        headers: {
+	    //            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+	    //            'Authorization': this.getToken()
+	    //        }
+	    //    })
+	    //}
+
+	    // workout plan
+	    ,
+	    getPlansContent: function getPlansContent(workoutsId) {
+	        var gender = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'm';
+
+	        return this.httpGet('/v2/plans/' + workoutsId + '?trainer_gender=' + gender);
+	    }
+	    // 获取训练内容计划[以及同类推荐]
+	    ,
+	    getWorkoutsPlans: function getWorkoutsPlans(planId) {
+	        return this.httpGet('/training/v2/plans/' + planId + '/dynamic?tLimit=3&tSlimWorkout=true');
+	    }
+	    // 获取 总打卡数量/训练评论/完成用户/座右铭
+	    ,
+	    getWorkoutsWorks: function getWorkoutsWorks(workoutId) {
+	        return this.httpGet('/training/v2/workouts/' + workoutId + '/dynamic?tLimit=3');
+	    }
+
+	    // 完成训练
+	    ,
+	    completeExercise: function completeExercise() {
+	        return this.httpGet('/now');
+	    },
+	    commitTrainingLog: function commitTrainingLog(json) {
+	        return this.httpPost('/v1.1/home/saveTrainingLog', Object.assign({
+	            'serverEndTime': new Date().toISOString(),
+	            'doneDate': new Date().toISOString()
+	        }));
+	    }
+	}, _defineProperty(_default2, 'commitTrainingLog', function commitTrainingLog(json) {
+	    return this.httpPost('/v1.1/home/achievements/new');
+	}), _defineProperty(_default2, 'getCityJson', function getCityJson() {
+	    return this.httpGet('/v1.1/home/cities');
+	}), _default2);
+
+	exports.default = _default;
+	;
+
+	var _temp = function () {
+	    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+	        return;
+	    }
+
+	    __REACT_HOT_LOADER__.register(hostname, 'hostname', '/Users/liucong/Documents/Github/keepForMac/src/js/HttpRequest.js');
+
+	    __REACT_HOT_LOADER__.register(serializeJSON, 'serializeJSON', '/Users/liucong/Documents/Github/keepForMac/src/js/HttpRequest.js');
+
+	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/js/HttpRequest.js');
+	}();
+
+	;
+
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/js/HttpRequest.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/js/HttpRequest.js"); } } })();
+
+/***/ },
+
+/***/ 652:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(653);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(121)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(true) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept(653, function() {
+				var newContent = __webpack_require__(653);
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 653:
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(116)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".gGG3G {\n  position: relative; }\n\n.T56YL {\n  background: #584f5f no-repeat center/cover;\n  position: relative;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); }\n  .T56YL:before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: rgba(0, 0, 0, 0.5); }\n\n._1hEVu {\n  position: relative;\n  padding: 10px;\n  height: 180px; }\n\n._1kXZF {\n  font-size: 24px;\n  color: #fff;\n  margin-top: 10px; }\n\n._3n5Ak {\n  color: #ddd;\n  font-size: 12px; }\n\n.YVuU5 {\n  position: absolute;\n  bottom: 10px;\n  left: 0;\n  width: 100%;\n  margin: 0;\n  padding: 0 10px;\n  overflow: hidden;\n  text-align: right;\n  white-space: nowrap; }\n  .YVuU5 li {\n    display: inline-block; }\n\n._1wE0v {\n  text-align: left;\n  display: block;\n  font-size: 14px;\n  color: #fff;\n  padding: 12px 0 0; }\n\n._1_YaU {\n  padding: 5px 0;\n  border-top: 1px solid #fff;\n  border-bottom: 1px solid #fff; }\n\n._1vG24 {\n  color: #fff;\n  font-size: 10px;\n  display: block;\n  padding-left: 50px;\n  padding-right: 10px; }\n\n._1j7xa {\n  color: #ddd; }\n\n._2MKks {\n  padding: 10px;\n  display: flex;\n  border-bottom: 1px solid #eee; }\n\n._1qiEN {\n  text-align: center;\n  margin-right: 10px; }\n\n._32OId {\n  margin: 0;\n  padding: 0;\n  flex: 1;\n  align-self: center;\n  text-align: right; }\n  ._32OId li {\n    display: inline-flex; }\n\n._2r7mC {\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  overflow: hidden;\n  display: block;\n  position: relative;\n  background: #eee;\n  border: 1px solid #eee;\n  margin-right: 10px; }\n  ._2r7mC img {\n    border: none;\n    width: 100%;\n    height: 100%; }\n\n._3P-i6 {\n  text-align: center;\n  width: 30px;\n  position: relative; }\n  ._3P-i6 i {\n    margin: 0;\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%); }\n\n.gEjE- {\n  background: #fff;\n  border-bottom: 1px solid #eee; }\n\n._1hUN3 {\n  padding: 10px;\n  overflow: hidden; }\n\n._2fS-z {\n  float: right;\n  color: #999;\n  font-size: 12px; }\n\n._1Vgwh {\n  border-left: 2px solid #00c78c;\n  padding-left: 5px;\n  line-height: 1; }\n\n._2tzoZ {\n  display: block;\n  margin: 0;\n  padding: 0;\n  overflow: hidden; }\n\n._21hmZ {\n  float: left;\n  width: 33.33%;\n  padding: 10px;\n  position: relative; }\n\n.LM-oO {\n  margin-right: 15px; }\n\n._1oREy {\n  width: 15px;\n  text-align: center;\n  font-size: 12px;\n  position: absolute;\n  top: 26%;\n  right: 5px;\n  color: #999; }\n\n.K8_bp {\n  width: 100%;\n  padding-bottom: 64%;\n  margin-bottom: 10px;\n  background: #999 center/cover; }\n\n._39a3J {\n  margin-bottom: 5px; }\n\n._3CNEr {\n  color: #999; }\n\n._3HQju {\n  cursor: pointer;\n  position: fixed;\n  bottom: 50px;\n  right: 50px;\n  width: 60px;\n  padding: 0 10px;\n  height: 60px;\n  border-radius: 50%;\n  background: rgba(0, 199, 140, 0.8);\n  border: 2px solid rgba(88, 79, 95, 0.2);\n  color: #fff;\n  box-shadow: 0 0 5px rgba(85, 85, 85, 0.8);\n  transition: all .35s; }\n  ._3HQju:hover {\n    background: #00c78c;\n    border: 2px solid rgba(88, 79, 95, 0.6); }\n\n._1mcce {\n  background: #fff;\n  padding: 0 10px; }\n\n._2NGue {\n  padding: 10px 0; }\n\n._3ZI5H {\n  display: flex;\n  border-bottom: 1px solid #eee;\n  padding: 10px 0; }\n  ._3ZI5H:first-child {\n    padding-top: 0; }\n\n._3zpl4 {\n  width: 100px;\n  height: 100px;\n  margin-right: 10px;\n  background: #999 no-repeat center/cover; }\n\n._1KBy0 {\n  flex: 1;\n  display: flex;\n  flex-direction: column; }\n\n._3FTXV {\n  flex: 1; }\n  ._3FTXV p {\n    overflow: hidden;\n    display: -webkit-box;\n    -webkit-line-clamp: 3;\n    -webkit-box-orient: vertical; }\n\n._30yij {\n  overflow: hidden;\n  display: flex;\n  align-items: center; }\n\n._19wAn {\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  margin-right: 10px;\n  border: 1px solid #eee; }\n\n._2YtCi {\n  color: #ddd; }\n\n.jJH-4 {\n  transition: transform .5s .2s; }\n\n._2Sf8g {\n  display: block;\n  filter: blur(5px);\n  position: relative;\n  transform: scale(1.01); }\n\n.workout-introduce {\n  opacity: 0;\n  position: fixed;\n  top: 60px;\n  right: 0;\n  bottom: 0;\n  left: 150px;\n  padding: 20px 30px 80px;\n  background: rgba(0, 0, 0, 0.8);\n  transition: opacity .5s .2s; }\n\n.workout-introduce.show {\n  opacity: 1;\n  transition: opacity .5s; }\n\n.workout-introduce.show .workout-introduce-inner {\n  opacity: 1;\n  margin-top: 0;\n  transition: all .5s .2s; }\n\n.workout-introduce-inner {\n  transition: all .5s;\n  opacity: 0;\n  margin-top: 10px;\n  height: 100%;\n  padding-right: 10px;\n  margin-right: -10px;\n  overflow-x: hidden;\n  overflow-y: auto;\n  color: #fff; }\n\n._3HnIN {\n  position: absolute;\n  bottom: 20px;\n  left: 50%;\n  padding: 0;\n  width: 30px;\n  height: 30px;\n  line-height: 30px;\n  overflow: hidden;\n  margin-left: -15px;\n  border: none;\n  background: none;\n  color: #fff;\n  cursor: pointer;\n  transition: transform .35s; }\n  ._3HnIN:hover {\n    transform: scale(1.3); }\n  ._3HnIN i {\n    font-size: 30px;\n    margin: 0; }\n\n._3ESct {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  overflow-x: hidden;\n  overflow-y: auto; }\n\n._1Fdk2 {\n  width: 100%; }\n\n._1QVe8 {\n  padding: 5px;\n  margin: 10px;\n  font-size: 24px;\n  color: #fff;\n  border-bottom: 1px solid #00c78c; }\n\n._16Fkx {\n  padding: 10px 20px;\n  color: #fff; }\n\n.c-93L {\n  color: #fff;\n  margin-top: 10px;\n  margin-bottom: 0;\n  margin-left: 20px; }\n\n._2BoKE {\n  width: 100%;\n  overflow-x: auto;\n  overflow-y: hidden;\n  white-space: nowrap;\n  padding: 10px; }\n\n._2fU4a {\n  padding: 10px;\n  vertical-align: top;\n  display: inline-block; }\n\n._24vS1 {\n  position: relative; }\n\n._1z3Ha {\n  border-radius: 10px;\n  border: 1px solid #999;\n  height: 500px; }\n\n._15A6x {\n  position: absolute;\n  color: #fff;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 30px;\n  height: 30px;\n  max-width: 10%;\n  max-height: 10%;\n  transform: translate(-50%, -50%);\n  line-height: 30px;\n  text-align: center;\n  border-radius: 50%;\n  font-size: 14px;\n  background: rgba(0, 199, 140, 0.66); }\n\n.cIiAg {\n  margin-top: 10px;\n  font-size: 14px;\n  color: #fff; }\n\n._3aZ9T {\n  padding: 0 10px 10px; }\n\n._30KDK {\n  padding-top: 10px; }\n\n._2lV3o {\n  margin: 0;\n  padding: 0;\n  overflow-x: scroll;\n  overflow-y: hidden;\n  white-space: nowrap; }\n  ._2lV3o li {\n    position: relative;\n    overflow: hidden;\n    display: inline-block;\n    margin-right: 10px;\n    width: 40%;\n    height: 140px;\n    background: no-repeat center/cover; }\n    ._2lV3o li:last-child {\n      margin: 0; }\n\n._2k-At {\n  position: relative; }\n  ._2k-At:before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: rgba(0, 0, 0, 0.45); }\n  ._2k-At p {\n    position: relative; }\n\n.OHn7N {\n  color: #fff;\n  font-size: 18px; }\n\n._2Kfmk {\n  color: #ddd;\n  font-size: 12px; }\n\n._2jqeS {\n  color: #fff;\n  position: absolute;\n  left: 0;\n  bottom: 0;\n  padding: 10px;\n  width: 100%;\n  text-align: right; }\n\n._3p9y6 {\n  font-size: 10px;\n  margin-left: 5px; }\n\n._ylsI {\n  float: right;\n  padding: 5px;\n  font-size: 10px;\n  background: rgba(0, 0, 0, 0.3);\n  border-radius: 3px; }\n", ""]);
+
+	// exports
+	exports.locals = {
+		"workout-wrap": "gGG3G",
+		"workout-header": "T56YL",
+		"header-inner": "_1hEVu",
+		"header-title": "_1kXZF",
+		"header-desc": "_3n5Ak",
+		"header-nav": "YVuU5",
+		"header-link": "_1wE0v",
+		"link-val": "_1_YaU",
+		"header-sp": "_1vG24",
+		"sp-desc": "_1j7xa",
+		"list-nav": "_2MKks",
+		"nav-participation": "_1qiEN",
+		"complete-list": "_32OId",
+		"pioneer-item": "_2r7mC",
+		"show-more": "_3P-i6",
+		"training-content": "gEjE-",
+		"training-title": "_1hUN3",
+		"training-sp": "_2fS-z",
+		"line-title": "_1Vgwh",
+		"training-line": "_2tzoZ",
+		"line-item": "_21hmZ",
+		"line-work-item": "LM-oO",
+		"work-gap": "_1oREy",
+		"work-item-cover": "K8_bp",
+		"work-item-title": "_39a3J",
+		"work-item-desc": "_3CNEr",
+		"button-start-training": "_3HQju",
+		"training-dynamic": "_1mcce",
+		"dynamic-title": "_2NGue",
+		"dynamic-item": "_3ZI5H",
+		"item-photo": "_3zpl4",
+		"dynamic-content": "_1KBy0",
+		"dynamic-desc": "_3FTXV",
+		"dynamic-user": "_30yij",
+		"item-avatar": "_19wAn",
+		"dynamic-time": "_2YtCi",
+		"workout-mask": "jJH-4",
+		"workout-blur-mask": "_2Sf8g",
+		"button-introduce-desc": "_3HnIN",
+		"workout-desc-inner": "_3ESct",
+		"workout-desc-video": "_1Fdk2",
+		"workout-desc-title": "_1QVe8",
+		"workout-desc-article": "_16Fkx",
+		"workout-exercise-title": "c-93L",
+		"workout-desc-figure": "_2BoKE",
+		"exercise-figure": "_2fU4a",
+		"exercise-item": "_24vS1",
+		"exercise-pic": "_1z3Ha",
+		"exercise-coordinates": "_15A6x",
+		"exercise-tip": "cIiAg",
+		"scroll-wrap": "_3aZ9T",
+		"scroll-title": "_30KDK",
+		"scroll-list": "_2lV3o",
+		"training-block": "_2k-At",
+		"training-block-title": "OHn7N",
+		"training-block-desc": "_2Kfmk",
+		"training-block-info": "_2jqeS",
+		"block-info-time": "_3p9y6",
+		"block-info-tag": "_ylsI"
+	};
+
+/***/ },
+
+/***/ 658:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _dec, _class;
+
+	var _react = __webpack_require__(122);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactCssModules = __webpack_require__(354);
+
+	var _reactCssModules2 = _interopRequireDefault(_reactCssModules);
+
+	var _appWorkouts = __webpack_require__(652);
+
+	var _appWorkouts2 = _interopRequireDefault(_appWorkouts);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var WorkoutCoordinates = (_dec = (0, _reactCssModules2.default)(_appWorkouts2.default), _dec(_class = function (_Component) {
+	    _inherits(WorkoutCoordinates, _Component);
+
+	    function WorkoutCoordinates(props) {
+	        _classCallCheck(this, WorkoutCoordinates);
+
+	        return _possibleConstructorReturn(this, (WorkoutCoordinates.__proto__ || Object.getPrototypeOf(WorkoutCoordinates)).call(this, props));
+	    }
+
+	    _createClass(WorkoutCoordinates, [{
+	        key: 'render',
+	        value: function render() {
+	            var cover = this.props.data;
+	            return _react2.default.createElement(
+	                'figure',
+	                { styleName: 'exercise-figure' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { styleName: 'exercise-item' },
+	                    _react2.default.createElement('img', { styleName: 'exercise-pic', width: '500', src: cover.url, alt: '' }),
+	                    /* 动作细节位置标识 */
+	                    cover.coordinates.map(function (item, index) {
+	                        return _react2.default.createElement(
+	                            'span',
+	                            { key: item._id, style: { top: item.y * 100 + '%', left: item.x * 100 + '%' }, styleName: 'exercise-coordinates' },
+	                            index + 1
+	                        );
+	                    })
+	                ),
+	                _react2.default.createElement(
+	                    'article',
+	                    null,
+	                    /* 动作细节描述 */
+	                    cover.coordinates.map(function (item, index) {
+	                        return _react2.default.createElement(
+	                            'p',
+	                            { key: item._id, styleName: 'exercise-tip' },
+	                            index + 1,
+	                            '. ',
+	                            item.tip
+	                        );
+	                    })
+	                )
+	            );
+	        }
+	    }]);
+
+	    return WorkoutCoordinates;
+	}(_react.Component)) || _class);
+	var _default = WorkoutCoordinates;
+	exports.default = _default;
+	;
+
+	var _temp = function () {
+	    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+	        return;
+	    }
+
+	    __REACT_HOT_LOADER__.register(WorkoutCoordinates, 'WorkoutCoordinates', '/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/WorkoutCoordinates.js');
+
+	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/WorkoutCoordinates.js');
+	}();
+
+	;
+
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/WorkoutCoordinates.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/WorkoutCoordinates.js"); } } })();
+
+/***/ },
+
+/***/ 660:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(661);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(121)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(true) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept(661, function() {
+				var newContent = __webpack_require__(661);
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 661:
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(116)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "._3n1-C {\n  position: relative;\n  overflow: hidden;\n  width: 100%;\n  height: 100%;\n  background: #555;\n  color: #fff; }\n\n.Jy8Ax {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 55px;\n  overflow: hidden; }\n\n.UxslB {\n  font-size: 24px;\n  text-shadow: 0 0 10px black;\n  margin: 0;\n  height: 55px;\n  line-height: 55px;\n  text-align: center;\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  z-index: 10; }\n\n.FUSDk {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 3px;\n  overflow: hidden; }\n\n._17JXW {\n  display: block;\n  float: left;\n  height: 100%;\n  border-right: 1px solid #fff;\n  opacity: .5; }\n  ._17JXW:last-child {\n    border: none; }\n\n._3FwO6 {\n  position: absolute;\n  top: 50%;\n  background: none;\n  border: none;\n  color: #fff;\n  transform: translateY(-50%);\n  z-index: 11; }\n  ._3FwO6[disabled] {\n    cursor: default;\n    color: #999; }\n\n._3RBKe {\n  left: 10px; }\n\n._7TcRO {\n  right: 10px; }\n\n._1VSHW {\n  height: 100%;\n  overflow-y: auto; }\n\n.tIKUE {\n  padding: 10px;\n  padding-top: 55px;\n  height: 100%;\n  margin-right: 520px; }\n\n._6qWUq {\n  padding: 10px;\n  padding-top: 55px;\n  height: 100%;\n  width: 520px;\n  position: absolute;\n  top: 0;\n  right: 0; }\n\n.EMqBv, .mYDob, ._38BmA, ._1MEMb, ._3L2WM {\n  position: absolute;\n  z-index: 10;\n  width: 20px;\n  height: 20px;\n  transform: rotate(-45deg);\n  border: 1px solid transparent;\n  transition: all 1s; }\n\n.mYDob {\n  top: -3px;\n  left: -2px;\n  border-top-color: #00c78c; }\n\n._38BmA {\n  top: -3px;\n  right: -2px;\n  border-right-color: #00c78c; }\n\n._1MEMb {\n  bottom: -3px;\n  right: -2px;\n  border-bottom-color: #00c78c; }\n\n._3L2WM {\n  bottom: -3px;\n  left: -2px;\n  border-left-color: #00c78c; }\n\n.mYDob._30hRM,\n._38BmA._30hRM,\n._1MEMb._30hRM,\n._3L2WM._30hRM {\n  width: 100px;\n  height: 100px;\n  border-radius: 50%;\n  border-width: 2px;\n  pointer-events: none;\n  position: absolute;\n  z-index: 12; }\n\n.mYDob._30hRM {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%) rotate(45deg); }\n\n._38BmA._30hRM {\n  top: 50%;\n  right: 50%;\n  transform: translate(50%, -50%) rotate(45deg); }\n\n._1MEMb._30hRM {\n  bottom: 50%;\n  right: 50%;\n  transform: translate(50%, 50%) rotate(45deg); }\n\n._3L2WM._30hRM {\n  bottom: 50%;\n  left: 50%;\n  transform: translate(-50%, 50%) rotate(45deg); }\n\n._37QEa {\n  transform: translate(-50%, -50%);\n  visibility: visible;\n  position: absolute;\n  border-radius: 50%;\n  width: 100px;\n  height: 100px;\n  top: 50%;\n  left: 50%;\n  opacity: 0;\n  border: none;\n  background: rgba(88, 79, 95, 0.9);\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);\n  transition: opacity .5s; }\n  ._37QEa i {\n    margin-left: 5px;\n    margin-right: 0;\n    color: #00c78c;\n    font-size: 30px; }\n  ._37QEa._30hRM {\n    visibility: visible;\n    opacity: 1; }\n\n._2ExBK {\n  padding-top: 56%;\n  width: 100%;\n  position: relative; }\n  ._2ExBK:hover ._37QEa {\n    visibility: visible;\n    opacity: 1; }\n\n._2dgxk {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0; }\n  ._2dgxk aside {\n    position: absolute;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    padding: 10px; }\n\n._1GnKZ {\n  width: 100%;\n  height: 100%;\n  overflow: hidden; }\n  ._1GnKZ video {\n    max-width: 100%;\n    max-height: 100%;\n    width: 100%;\n    height: 100%;\n    transition: filter 1s, transform 1s; }\n  ._1GnKZ._2i5wf video {\n    filter: blur(5px);\n    transform: scale(1.2); }\n\n._1eiIf {\n  display: block; }\n\n.Q47CE {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  transition: visibility .35s; }\n\n._3HGkX {\n  position: absolute;\n  right: 10px;\n  bottom: 10px;\n  font-size: 12px;\n  color: #fff; }\n\n.jRP47 {\n  position: absolute;\n  bottom: 5%;\n  left: 3%;\n  width: 60px;\n  height: 60px;\n  line-height: 60px;\n  overflow: hidden;\n  text-align: center;\n  border-radius: 50%;\n  background: rgba(88, 79, 95, 0.8);\n  box-shadow: 0 0 10px rgba(88, 79, 95, 0.8); }\n  .jRP47[disabled] {\n    color: #999; }\n\n._2Av6f {\n  margin-top: 5%;\n  margin-left: 5%;\n  width: 90%;\n  height: 90%;\n  visibility: hidden;\n  opacity: 0;\n  transition: opacity .35s;\n  background: rgba(88, 79, 95, 0.85);\n  padding: 20px;\n  position: relative; }\n  ._2Av6f._2i5wf {\n    margin: 0;\n    width: 100%;\n    height: 100%;\n    visibility: visible;\n    opacity: 1; }\n\n._2T_w2 {\n  width: 320px;\n  display: block;\n  margin: auto; }\n\n._2AJAG {\n  font-size: 18px; }\n\n._2ax7i {\n  text-align: right;\n  font-size: 12px; }\n\n.BNdkY {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  border: none;\n  border-radius: 50%;\n  width: 100px;\n  height: 100px;\n  display: block;\n  margin: auto;\n  color: #584f5f;\n  font-size: 24px;\n  background: rgba(255, 255, 255, 0.9);\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8); }\n\n._1nK_J {\n  display: flex;\n  height: 100%;\n  flex-direction: column; }\n\n._1V8mG {\n  display: flex;\n  align-items: center;\n  flex: 1; }\n\n.-Kejv {\n  overflow-x: auto;\n  overflow-y: hidden;\n  white-space: nowrap; }\n  .-Kejv figure {\n    max-width: 30vh;\n    height: 100%;\n    position: relative;\n    margin-right: 200px; }\n    .-Kejv figure div {\n      height: 70%; }\n  .-Kejv article {\n    position: absolute;\n    top: 5px;\n    right: -180px;\n    width: 180px; }\n  .-Kejv ._3MtSS {\n    height: 100%; }\n  .-Kejv img {\n    width: 100%;\n    height: auto;\n    max-width: 100%; }\n\n._1aNqI {\n  display: none; }\n\n._3oWTp {\n  position: absolute;\n  bottom: 30px;\n  right: 20px;\n  width: 50px;\n  height: 50px;\n  border-radius: 50%;\n  background: #00c78c;\n  color: #fff;\n  border: 2px solid #999;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.85); }\n\n._2XsM2 {\n  width: 100%;\n  height: 100%; }\n  ._2XsM2._2rR5P {\n    filter: blur(8px); }\n\n.kzcUT {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(88, 79, 95, 0.8);\n  visibility: hidden;\n  opacity: 0; }\n  .kzcUT._2rR5P {\n    visibility: visible;\n    opacity: 1; }\n\n._3sC-F {\n  width: 600px;\n  height: 100%;\n  margin: auto;\n  padding: 50px 0; }\n\n._3XS2U {\n  text-align: center;\n  font-size: 18px;\n  color: #fff;\n  border-bottom: 1px solid rgba(238, 238, 238, 0.2);\n  margin-bottom: 20px; }\n\n._3D-cJ {\n  margin-bottom: 15px;\n  display: flex;\n  font-size: 12px; }\n  ._3D-cJ .ljpHo {\n    flex: 1; }\n\n._3CGer {\n  height: 35vh;\n  overflow: auto;\n  margin: 0 0 15px;\n  padding: 0 10px; }\n  ._3CGer li {\n    display: flex;\n    margin-bottom: 10px; }\n  ._3CGer .ljpHo {\n    flex: 1; }\n\n._3E8D9 {\n  width: 100%; }\n\n.C8pgC {\n  width: 100%;\n  color: #fff;\n  min-height: 100px;\n  padding: 5px;\n  border: 1px solid rgba(238, 238, 238, 0.2);\n  border-radius: 5px;\n  background: none; }\n", ""]);
+
+	// exports
+	exports.locals = {
+		"exercise-container": "_3n1-C",
+		"exercise-header": "Jy8Ax",
+		"exercise-title": "UxslB",
+		"title-progress-wrap": "FUSDk",
+		"progress-item": "_17JXW",
+		"button-header": "_3FwO6",
+		"button-header-prev": "_3RBKe",
+		"button-header-next": "_7TcRO",
+		"content-scroll": "_1VSHW",
+		"content-left": "tIKUE",
+		"content-right": "_6qWUq",
+		"arrow-center": "EMqBv",
+		"arrow-top": "mYDob",
+		"arrow-right": "_38BmA",
+		"arrow-bottom": "_1MEMb",
+		"arrow-left": "_3L2WM",
+		"gather": "_30hRM",
+		"button-toggle": "_37QEa",
+		"exercise-video": "_2ExBK",
+		"exercise-inner": "_2dgxk",
+		"video-wrap": "_1GnKZ",
+		"show": "_2i5wf",
+		"command-layer": "_1eiIf",
+		"info-layer": "Q47CE",
+		"timeout-total-time": "_3HGkX",
+		"countdown-times": "jRP47",
+		"timeout-layer": "_2Av6f",
+		"timeout-tips": "_2T_w2",
+		"timeout-title": "_2AJAG",
+		"timeout-author": "_2ax7i",
+		"button-timeout": "BNdkY",
+		"content-inner-flex": "_1nK_J",
+		"coordinates-flex": "_1V8mG",
+		"content-coordinates": "-Kejv",
+		"exercise-figure": "_3MtSS",
+		"other-res": "_1aNqI",
+		"button-toggle-sound": "_3oWTp",
+		"exercise-page": "_2XsM2",
+		"active": "_2rR5P",
+		"finish-page": "kzcUT",
+		"finish-inner": "_3sC-F",
+		"finish-title": "_3XS2U",
+		"finish-detail": "_3D-cJ",
+		"col": "ljpHo",
+		"finish-actions": "_3CGer",
+		"finish-feel": "_3E8D9",
+		"feel-content": "C8pgC"
+	};
+
+/***/ },
+
+/***/ 662:
+/***/ function(module, exports) {
+
+	module.exports = "data:image/png;base64,bW9kdWxlLmV4cG9ydHMgPSBfX3dlYnBhY2tfcHVibGljX3BhdGhfXyArICJpbWFnZXMvN2YwMzQwZTUuZ3JlYXQucG5nIjs="
+
+/***/ }
+
+});
