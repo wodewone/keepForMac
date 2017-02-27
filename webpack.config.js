@@ -25,8 +25,8 @@ module.exports = {
     },
 	output: {
         path: path.join(__dirname, './app'),
-        publicPath: 'http://localhost:3000/',
-        //publicPath: '',
+        //publicPath: 'http://localhost:3000/',
+        publicPath: '',
         filename: '[name].js',
         chunkFilename: '[name].js'
         //hotUpdateChunkFilename: '/hot/hot-update.js',
@@ -52,10 +52,6 @@ module.exports = {
             {
                 test: /\.(png|jpg)$/,
                 loader: 'url?limit=2048&name=images/[hash:8].[name].[ext]'
-            },
-            {
-                test: /\.(png|jpg)$/,
-                loader: 'file?limit=2048&name=images/[hash:8].[name].[ext]'
             },
             {
                 // 专供iconfont方案使用的，后面会带一串时间戳，需要特别匹配到

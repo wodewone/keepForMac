@@ -1,5 +1,6 @@
 import React,{Component} from 'react'
 import CSSModules from 'react-css-modules'
+import {hashHistory} from 'react-router'
 import Utils from './Utils.js'
 import styles from '../sass/appLogin.scss'
 import autobind from 'autobind-decorator'
@@ -21,7 +22,7 @@ class AppLogin extends Component{
     componentWillMount(){
         const user = Utils.storage.get('authentication')
         if(user && user.token){
-            this.props.router.replace('/training')
+            hashHistory.replace('/training')
         }
     }
 
@@ -50,7 +51,7 @@ class AppLogin extends Component{
             if(response.ok){
                 Utils.storage.set('authentication', response.data)
                 Utils.storage.set('userData', Base64.decode(response.data.token.split('.')[1]))
-                this.props.router.replace('/training')
+                hashHistory.replace('/training')
             }else{
                 alert(response.text || '登录失败')
             }

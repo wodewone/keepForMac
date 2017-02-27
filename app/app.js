@@ -10211,6 +10211,7 @@ webpackJsonp([0],{
 	                        _react2.default.createElement(
 	                            'a',
 	                            { href: 'javascript:;' },
+	                            _react2.default.createElement('i', { className: 'iconfont icon-keep fz14' }),
 	                            '\u4E2A\u4EBA\u4E2D\u5FC3'
 	                        )
 	                    ),
@@ -10220,16 +10221,8 @@ webpackJsonp([0],{
 	                        _react2.default.createElement(
 	                            'a',
 	                            { href: 'javascript:;' },
+	                            _react2.default.createElement('i', { className: 'iconfont icon-collect fz14' }),
 	                            '\u6211\u7684\u6536\u85CF'
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'li',
-	                        null,
-	                        _react2.default.createElement(
-	                            'a',
-	                            { href: 'javascript:;' },
-	                            '\u6E05\u9664\u7F13\u5B58'
 	                        )
 	                    ),
 	                    _react2.default.createElement(
@@ -10238,6 +10231,7 @@ webpackJsonp([0],{
 	                        _react2.default.createElement(
 	                            'a',
 	                            { styleName: 'exit-btn', href: 'javascript:;' },
+	                            _react2.default.createElement('i', { className: 'iconfont icon-logout fz14' }),
 	                            '\u9000\u51FA\u767B\u5F55'
 	                        )
 	                    )
@@ -10309,7 +10303,10 @@ webpackJsonp([0],{
 	    }, {
 	        key: 'handleLogout',
 	        value: function handleLogout() {
-	            _Utils2.default.storage.clear();
+	            if (confirm('确定退出？')) {
+	                _Utils2.default.storage.clear();
+	                _reactRouter.hashHistory.replace('/login');
+	            }
 	        }
 	    }, {
 	        key: 'render',
@@ -10465,7 +10462,7 @@ webpackJsonp([0],{
 
 
 	// module
-	exports.push([module.id, ".Mb-bh {\n  height: 100%;\n  width: 150px;\n  float: left;\n  display: flex;\n  flex-direction: column;\n  border-right: 1px solid #eee;\n  padding: 25vh 0;\n  background: rgba(240, 240, 240, 0.7);\n  position: relative; }\n  .Mb-bh li {\n    display: flex;\n    flex: 1; }\n  .Mb-bh a {\n    outline: none;\n    display: flex;\n    width: 100%;\n    padding-left: 20px;\n    align-items: center;\n    border-left: 2px solid transparent; }\n    .Mb-bh a:hover, .Mb-bh a:focus {\n      border-left-color: #584f5f; }\n\n._1MkFd {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  opacity: .8;\n  z-index: -1;\n  filter: blur(2px);\n  overflow: hidden;\n  background: url(" + __webpack_require__(516) + ") center/cover; }\n\n._3fJ39 {\n  position: absolute;\n  top: 60px;\n  right: 0;\n  bottom: 0;\n  left: 0; }\n\n._2R7RT {\n  position: relative;\n  overflow: hidden;\n  height: 100%;\n  margin-left: 150px;\n  background: #E5ECEF; }\n\n.ZE6hx {\n  padding-top: 20px;\n  height: 60px;\n  background: #584f5f;\n  -webkit-app-region: drag;\n  display: flex;\n  border-bottom: 1px solid #584f5f; }\n  .ZE6hx ._2LnKA {\n    flex: 1;\n    align-self: center; }\n  .ZE6hx h2 {\n    flex: 1;\n    margin: 0;\n    color: #fff;\n    text-align: center;\n    align-self: center; }\n\n._3iOBj {\n  display: flex;\n  align-items: center; }\n\n.WPT6- {\n  width: 32px;\n  height: 32px;\n  line-height: 29px;\n  display: inline-block;\n  background: none;\n  border: none;\n  color: #fff;\n  cursor: pointer; }\n  .WPT6- i {\n    margin: 0; }\n  .WPT6-:active {\n    background: #473e4e; }\n  .WPT6-:last-child {\n    margin-right: 15px; }\n  .WPT6-[disabled] {\n    cursor: default;\n    color: #999; }\n\n._18Mek {\n  padding-left: 10px;\n  width: 150px;\n  display: flex;\n  align-self: center; }\n  ._18Mek img {\n    width: 80px;\n    height: 25px; }\n\n._3-6wn {\n  padding: 0 23px 0 0;\n  float: right;\n  cursor: pointer;\n  position: relative; }\n  ._3-6wn:after {\n    content: '';\n    position: absolute;\n    top: 45%;\n    right: 10px;\n    width: 0;\n    border: 4px solid transparent;\n    border-top-color: #fff; }\n  ._3-6wn:hover ._12Snl {\n    display: block; }\n\n._4a-00 {\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  border: 2px solid #00c78c; }\n\n._2hRSM {\n  color: #fff;\n  font-size: 10px; }\n\n._12Snl {\n  position: absolute;\n  z-index: 50;\n  top: 120%;\n  right: 10px;\n  width: 220px;\n  padding: 0;\n  border-radius: 4px;\n  filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.5));\n  background: #fff;\n  margin: 5px 0 0; }\n  ._12Snl:before {\n    content: '';\n    position: absolute;\n    top: -15px;\n    right: 18px;\n    border: 8px solid transparent;\n    border-bottom-color: #584f5f; }\n  ._12Snl li {\n    line-height: 30px; }\n    ._12Snl li:last-child {\n      border-top: 1px solid #eee; }\n  ._12Snl a {\n    font-size: 12px;\n    display: block;\n    padding: 2px 15px;\n    color: #584f5f; }\n    ._12Snl a:hover {\n      color: #fff;\n      background: #00c78c; }\n\n._1MWTN {\n  border-bottom: 1px solid #eee;\n  overflow: hidden;\n  position: relative;\n  background: #584f5f;\n  border-radius: 4px 4px 0 0; }\n  ._1MWTN:hover ._1hIft {\n    transform: scale(0.8); }\n\n._1hIft {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  transform: scale(1.01);\n  background: #584f5f no-repeat center/200% auto;\n  filter: blur(5px);\n  transition: transform 1s; }\n\n.ZllJc {\n  position: relative;\n  display: flex;\n  padding: 15px;\n  align-items: center;\n  z-index: 10;\n  color: #fff;\n  background: rgba(0, 0, 0, 0.5); }\n\n._29Ebc {\n  width: 40px;\n  height: 40px;\n  border-radius: 50%;\n  margin-right: 8px;\n  background: #584f5f;\n  border: 1px solid #00c78c; }\n\na.qF9CS:hover {\n  background: #ff5065; }\n", ""]);
+	exports.push([module.id, ".Mb-bh {\n  height: 100%;\n  width: 150px;\n  float: left;\n  display: flex;\n  flex-direction: column;\n  border-right: 1px solid #eee;\n  padding: 25vh 0;\n  background: rgba(240, 240, 240, 0.7);\n  position: relative; }\n  .Mb-bh li {\n    display: flex;\n    flex: 1; }\n  .Mb-bh a {\n    outline: none;\n    display: flex;\n    width: 100%;\n    padding-left: 20px;\n    align-items: center;\n    border-left: 2px solid transparent; }\n    .Mb-bh a:hover, .Mb-bh a:focus {\n      border-left-color: #584f5f; }\n\n._1MkFd {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  opacity: .8;\n  z-index: -1;\n  filter: blur(2px);\n  overflow: hidden;\n  background: url(" + __webpack_require__(516) + ") center/cover; }\n\n._3fJ39 {\n  position: absolute;\n  top: 60px;\n  right: 0;\n  bottom: 0;\n  left: 0; }\n\n._2R7RT {\n  position: relative;\n  overflow: hidden;\n  height: 100%;\n  margin-left: 150px;\n  background: #E5ECEF; }\n\n.ZE6hx {\n  padding-top: 20px;\n  height: 60px;\n  background: #584f5f;\n  -webkit-app-region: drag;\n  display: flex;\n  border-bottom: 1px solid #584f5f; }\n  .ZE6hx ._2LnKA {\n    flex: 1;\n    align-self: center; }\n  .ZE6hx h2 {\n    flex: 1;\n    margin: 0;\n    color: #fff;\n    text-align: center;\n    align-self: center; }\n\n._3iOBj {\n  display: flex;\n  align-items: center; }\n\n.WPT6- {\n  width: 32px;\n  height: 32px;\n  line-height: 29px;\n  display: inline-block;\n  background: none;\n  border: none;\n  color: #fff;\n  cursor: pointer; }\n  .WPT6- i {\n    margin: 0; }\n  .WPT6-:active {\n    background: #473e4e; }\n  .WPT6-:last-child {\n    margin-right: 15px; }\n  .WPT6-[disabled] {\n    cursor: default;\n    color: #999; }\n\n._18Mek {\n  padding-left: 10px;\n  width: 150px;\n  display: flex;\n  align-self: center; }\n  ._18Mek img {\n    width: 80px;\n    height: 25px; }\n\n._3-6wn {\n  padding: 0 23px 0 0;\n  float: right;\n  cursor: pointer;\n  position: relative; }\n  ._3-6wn:after {\n    content: '';\n    position: absolute;\n    top: 45%;\n    right: 10px;\n    width: 0;\n    border: 4px solid transparent;\n    border-top-color: #fff; }\n  ._3-6wn:hover ._12Snl {\n    display: block; }\n\n._4a-00 {\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  border: 2px solid #00c78c; }\n\n._2hRSM {\n  color: #fff;\n  font-size: 10px; }\n\n._12Snl {\n  display: none;\n  position: absolute;\n  z-index: 50;\n  top: 120%;\n  right: 10px;\n  width: 220px;\n  padding: 0;\n  border-radius: 4px;\n  filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.5));\n  background: #fff;\n  margin: 5px 0 0; }\n  ._12Snl:before {\n    content: '';\n    position: absolute;\n    top: -15px;\n    right: 18px;\n    border: 8px solid transparent;\n    border-bottom-color: #584f5f; }\n  ._12Snl li {\n    line-height: 30px; }\n    ._12Snl li:last-child {\n      border-top: 1px solid #eee; }\n  ._12Snl a {\n    cursor: pointer;\n    font-size: 12px;\n    display: block;\n    padding: 2px 15px;\n    color: #584f5f; }\n    ._12Snl a:hover {\n      color: #fff;\n      background: #00c78c; }\n\n._1MWTN {\n  border-bottom: 1px solid #eee;\n  overflow: hidden;\n  position: relative;\n  background: #584f5f;\n  border-radius: 4px 4px 0 0; }\n  ._1MWTN:hover ._1hIft {\n    transform: scale(0.8); }\n\n._1hIft {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  transform: scale(1.01);\n  background: #584f5f no-repeat center/200% auto;\n  filter: blur(5px);\n  transition: transform 1s; }\n\n.ZllJc {\n  position: relative;\n  display: flex;\n  padding: 15px;\n  align-items: center;\n  z-index: 10;\n  color: #fff;\n  background: rgba(0, 0, 0, 0.5); }\n\n._29Ebc {\n  width: 40px;\n  height: 40px;\n  border-radius: 50%;\n  margin-right: 8px;\n  background: #584f5f;\n  border: 1px solid #00c78c; }\n\na.qF9CS {\n  border-radius: 0 0 4px 4px; }\n\na.qF9CS:hover {\n  background: #ff5065; }\n", ""]);
 
 	// exports
 	exports.locals = {
@@ -10492,9 +10489,9 @@ webpackJsonp([0],{
 /***/ },
 
 /***/ 516:
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	module.exports = "data:image/jpeg;base64,bW9kdWxlLmV4cG9ydHMgPSBfX3dlYnBhY2tfcHVibGljX3BhdGhfXyArICJpbWFnZXMvZWJkNDA4MmQua2VlcC1tZW51LWJnLmpwZyI7"
+	module.exports = __webpack_require__.p + "images/ebd4082d.keep-menu-bg.jpg";
 
 /***/ },
 
@@ -10894,9 +10891,9 @@ webpackJsonp([0],{
 /***/ },
 
 /***/ 634:
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	module.exports = "data:image/png;base64,bW9kdWxlLmV4cG9ydHMgPSBfX3dlYnBhY2tfcHVibGljX3BhdGhfXyArICJpbWFnZXMvZWM1Y2FkOGYua2VlcC1sb2dvLnBuZyI7"
+	module.exports = __webpack_require__.p + "images/ec5cad8f.keep-logo.png";
 
 /***/ },
 
@@ -10920,6 +10917,8 @@ webpackJsonp([0],{
 	var _reactCssModules = __webpack_require__(354);
 
 	var _reactCssModules2 = _interopRequireDefault(_reactCssModules);
+
+	var _reactRouter = __webpack_require__(298);
 
 	var _Utils = __webpack_require__(521);
 
@@ -10998,7 +10997,7 @@ webpackJsonp([0],{
 	        value: function componentWillMount() {
 	            var user = _Utils2.default.storage.get('authentication');
 	            if (user && user.token) {
-	                this.props.router.replace('/training');
+	                _reactRouter.hashHistory.replace('/training');
 	            }
 	        }
 	    }, {
@@ -11009,8 +11008,6 @@ webpackJsonp([0],{
 	    }, {
 	        key: 'handleSubmit',
 	        value: function handleSubmit(e) {
-	            var _this2 = this;
-
 	            e.preventDefault();
 
 	            if (this.state.mobile.length < 11) {
@@ -11029,7 +11026,7 @@ webpackJsonp([0],{
 	                if (response.ok) {
 	                    _Utils2.default.storage.set('authentication', response.data);
 	                    _Utils2.default.storage.set('userData', _jsBase.Base64.decode(response.data.token.split('.')[1]));
-	                    _this2.props.router.replace('/training');
+	                    _reactRouter.hashHistory.replace('/training');
 	                } else {
 	                    alert(response.text || '登录失败');
 	                }

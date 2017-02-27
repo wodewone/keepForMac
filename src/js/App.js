@@ -120,8 +120,10 @@ class App extends Component{
 
     @autobind
     handleLogout(){
-        if(confirm('确定退出？'))
+        if(confirm('确定退出？')) {
             Utils.storage.clear();
+            hashHistory.replace('/login')
+        }
     }
 
     render(){
