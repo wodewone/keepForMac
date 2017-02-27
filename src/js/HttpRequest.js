@@ -119,6 +119,7 @@ export default {
         return this.httpGet('/now')
     }
 
+    // 完成训练提交训练状态
     ,commitTrainingLog(json){
         return this.httpPost('/v1.1/home/saveTrainingLog', Object.assign({
             'serverEndTime': new Date().toISOString(),
@@ -126,12 +127,20 @@ export default {
         }))
     }
 
-    ,commitTrainingLog(json){
+    // 完成训练查询是否获得新成就
+    ,checkAchievements(json){
         return this.httpPost('/v1.1/home/achievements/new')
     }
 
+    // 获取关注动态列表
+    ,getFollowTimeline(){
+        return this.httpGet('/social/v2/follow/timeline')
+    }
+
+    // 获取城市列表
     ,getCityJson(){
         return this.httpGet('/v1.1/home/cities')
     }
+
 }
 

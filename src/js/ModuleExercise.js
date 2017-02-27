@@ -5,8 +5,9 @@ import autobind from 'autobind-decorator'
 import CSSModules from 'react-css-modules'
 import Utils from './Utils.js'
 import moment from 'moment'
-import styles from '../sass/moduleExercise.scss'
 import $http from './HttpRequest.js'
+
+import styles from '../sass/moduleExercise.scss'
 
 import WorkoutCoordinates from '../components/AppTraining/workouts/WorkoutCoordinates.js'
 

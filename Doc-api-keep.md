@@ -138,6 +138,14 @@
 * 收藏动态[post]/删除收藏[delete] - `https://api.gotokeep.com/v1.1/favorites/entry/[list.id(587e823e19b6fc4fd0087d3b)]`
 
 
+#### 小组
+
+* 小组推荐 - `https://api.gotokeep.com/social/v2/group/?limit=20`
+* 发现小组 - `https://api.gotokeep.com/social/v2/group/recommend/all/?city=%E5%8C%97%E4%BA%AC%E5%B8%82&country=%E4%B8%AD%E5%9B%BD`
+	* `https://api.gotokeep.com/social/v2/group/recommend/all/?city=北京市&country=中国`
+
+
+
 ### 我
 
 * 我的配置 - `https://api.gotokeep.com/v1.1/home/setting`

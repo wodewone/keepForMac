@@ -64,6 +64,7 @@ class AppTraining extends Component{
                     })
                     //Utils.storage.set('trainingPlan',response.data)
                     Utils.storage.set('trainingWorkouts',response.data)
+                    console.info(response.data);
                 }
             }).catch((error) => {
                 console.info('getDashboardTraining:', error)
