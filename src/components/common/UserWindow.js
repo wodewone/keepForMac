@@ -40,6 +40,8 @@ export default {
             if (this.winUser) {
                 this.winUser.setTitle(title)
                 this.winUser.focus()
+            }else{
+                this.create(title)
             }
         }catch(e){
             console.info(e)

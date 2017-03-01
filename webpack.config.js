@@ -29,16 +29,16 @@ module.exports = {
         //publicPath: '',
         filename: '[name].js',
         chunkFilename: '[name].js'
-        //hotUpdateChunkFilename: '/hot/hot-update.js',
-        //hotUpdateMainFilename: '/hot/hot-update.json'
     },
 	module: {
 		loaders: [
             {
                 test: /\.jsx?$/,
-                exclude: /node_modules/,
+                //exclude: /node_modules/,
                 loader: 'react-hot-loader/webpack!babel',   // react-hot-loader v3.0
                 //loader: 'babel',
+                //loaders: ['react-hot', 'babel'],
+                include: path.join(__dirname, 'src')
             },
             {
 				test: /\.(scss|css)$/,
@@ -64,13 +64,13 @@ module.exports = {
             }
 		]
     },
-    devServer: {
-        contentBase: "./app",	    //本地服务器所加载的页面所在的目录
-        colors: true,				//终端中输出结果为彩色
-        historyApiFallback: true,	//不跳转
-        inline: true,				//实时刷新
-        compress: true,
-    },
+    //devServer: {
+    //    contentBase: "./app",	    //本地服务器所加载的页面所在的目录
+    //    colors: true,				//终端中输出结果为彩色
+    //    historyApiFallback: true,	//不跳转
+    //    inline: true,				//实时刷新
+    //    compress: true,
+    //},
     // 使用 postcss 为 css 自动添加前缀~ 很好很强大，可惜我这里用不到
     //postcss: function() {
     //    return [precss, autoprefixer];

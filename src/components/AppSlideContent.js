@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import {Link, hashHistory} from 'react-router'
 import CSSModules from 'react-css-modules'
 import autobind from 'autobind-decorator'
-import moment from 'moment'
 import Utils from '../js/Utils.js'
 import styles from '../sass/appSlideContent.scss'
 

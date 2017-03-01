@@ -71,10 +71,7 @@ class AppWorkout extends Component{
         $http.getUserData(userId).then((response) => {
             if(response.ok) {
                 Utils.storage.set('userInfo', response.data)
-                if(UserWindow.has())
-                    UserWindow.show('keeper - '+ response.data.user.username)
-                else
-                    UserWindow.create('keeper - '+ response.data.user.username)
+                UserWindow.show('keeper - '+ response.data.user.username)
             }
         })
     }

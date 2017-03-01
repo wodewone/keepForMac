@@ -1,1 +1,102 @@
 @import "variables";
+
+.art-list{
+  width: 100%;
+  padding: 10px;
+  min-height: 100%;
+  background: $color-white;
+}
+
+.art-item{
+  margin-bottom: 10px;
+  filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.3));
+}
+.art-inner{
+  border-radius: 30px 5px 5px;
+  overflow: hidden;
+  background: $color-white;
+}
+.art-header{
+  padding: 5px 10px;
+  border-bottom: 1px solid $border-color;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.header-avatar{
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.header-username{
+  margin: 0;
+  font-size: $font-size-12;
+  font-weight: bold;
+  flex: 1;
+}
+.header-sub{
+  font-weight: normal;
+  font-size: $font-size-10;
+  color: $color-gary;
+}
+.header-time{
+  font-size: $font-size-12;
+}
+.art-content{
+  display: flex;
+}
+.art-photo{
+  width: auto;
+  height: 150px;
+}
+.art-txt{
+  padding: 10px;
+  margin: 0;
+
+  a{
+    color: $keep-green;
+  }
+}
+.art-footer{
+  border-top: 1px solid $border-color;
+  display: flex;
+  align-items: center;
+  height: 39px;
+}
+.art-liked{
+  padding: 0 10px;
+  border-left: 1px solid $border-color;
+}
+.footer-inner{
+  padding-left: 10px;
+  flex: 1;
+  border-left: 1px solid $border-color;
+}
+.item-workout{
+  font-size: $font-size-12;
+  color: $color-gary;
+  padding: 4px 12px 3px 5px;
+  border-radius: 15px;
+  background: rgba($color-gary, .2);
+}
+.footer-btn{
+  padding: 10px 0;
+  background: none;
+  border: none;
+  outline: 0;
+
+  &:hover{
+    background: $border-color;
+  }
+
+  &:active{
+    color: $color-white;
+    background: $keep-gary;
+  }
+
+}
+.footer-sp{
+  padding: 0 10px;
+  position: relative;
+}

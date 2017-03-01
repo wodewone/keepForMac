@@ -57,6 +57,7 @@
   }
   img[src=""]{
     opacity: 0;
+    display: none;
   }
 
   input,
@@ -99,6 +100,7 @@
   }
 
   .icon-discovery:before { content: "\e600"; }
+  .icon-cheer:before { content: "\e602"; }
   .icon-girl:before { content: "\e612"; }
   .icon-prev:before { content: "\e601"; }
   .icon-logout:before { content: "\e6b5"; }
@@ -115,8 +117,11 @@
   .icon-symbol:before { content: "\e696"; }
   .icon-pause:before { content: "\e62a"; }
   .icon-description:before { content: "\e853"; }
+  .icon-share:before { content: "\e61b"; }
   .icon-search:before { content: "\e61d"; }
+  .icon-liked:before { content: "\e628"; }
   .icon-training:before { content: "\e615"; }
+  .icon-comment:before { content: "\e66a"; }
   .icon-record:before { content: "\e675"; }
   .icon-forward:before { content: "\e854"; }
   .icon-next:before { content: "\e855"; }
