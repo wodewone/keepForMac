@@ -47,10 +47,12 @@
   display: flex;
 }
 .art-photo{
-  width: auto;
-  height: 150px;
+  width: 200px;
+  min-height: 100px;
+  align-self: baseline;
 }
 .art-txt{
+  flex: 1;
   padding: 10px;
   margin: 0;
 
@@ -63,6 +65,7 @@
   display: flex;
   align-items: center;
   height: 39px;
+  padding-right: 10px;
 }
 .art-liked{
   padding: 0 10px;
@@ -79,20 +82,21 @@
   padding: 4px 12px 3px 5px;
   border-radius: 15px;
   background: rgba($color-gary, .2);
+  min-width: 150px;
 }
 .footer-btn{
   padding: 10px 0;
   background: none;
   border: none;
   outline: 0;
+  transition: box-shadow .2s;
 
   &:hover{
     background: $border-color;
   }
 
   &:active{
-    color: $color-white;
-    background: $keep-gary;
+    box-shadow: 0 0 5px rgba(0,0,0,.5) inset;
   }
 
 }

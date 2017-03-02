@@ -256,4 +256,56 @@
       border-radius: 50%;
     }
   }
+
+
+  i.sp-placeholder{
+    display: inline-block;
+    background: $color-desc;
+  }
+  span.sp-placeholder{
+    min-height: 10px;
+    background: $color-desc;
+    padding: 0 10px;
+    font-size: $font-size-10;
+    min-width: 10%;
+
+    & + span.sp-placeholder{
+      margin-left: 10px;
+    }
+  }
+  p.sp-placeholder{
+    background: $color-desc;
+    width: 10%;
+    padding: 8px;
+    animation: longloading 1.5s ease-in-out infinite;
+
+    & + p.sp-placeholder{
+      animation: shortloading 1.5s ease-in-out infinite;
+    }
+  }
+  button.sp-placeholder{
+    padding: 0;
+    margin: 5px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    .sp-placeholder{
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+}
+@keyframes :global(longloading) {
+  0% {width: 20%}
+  50% {width: 60%}
+  to {width: 20%}
+}
+@keyframes :global(shortloading) {
+  0% {width: 20%}
+  50% {width: 40%}
+  to {width: 20%}
 }

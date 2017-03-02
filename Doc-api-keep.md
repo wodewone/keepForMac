@@ -123,6 +123,12 @@
 	* 动态详情评论列表 - `https://api.gotokeep.com/v1.1/entries/[list.id(587e823e19b6fc4fd0087d3b)]/comments?limit=20&reverse=true`
 	* 动态点赞/取消点赞 [post] - `https://api.gotokeep.com/v1.1/entries/[list.id(587e823e19b6fc4fd0087d3b)]/likes`
 
+	***
+	动态详情：`https://api.gotokeep.com/v1.1/entries/58b7e3f219b6fc0e64764b28?limit=20&reverse=true`
+	动态评论：`https://api.gotokeep.com/v1.1/entries/58b7e3f219b6fc0e64764b28/comments`
+	动态xx：`https://api.gotokeep.com/v1.1/entries/58b7e3f219b6fc0e64764b28/comments/hot`
+	***
+
 * 动态评论[post] - `https://api.gotokeep.com/v1.1/entries/[list.id(587e823e19b6fc4fd0087d3b)]/comments`
 	> ```json
 	{
