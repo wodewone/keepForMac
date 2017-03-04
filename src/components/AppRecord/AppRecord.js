@@ -34,10 +34,10 @@ class AppRecord extends Component{
     getListData(){
         if(!!this.state.listData.length)
             return this.state.listData.map((item) => {
-                let content = item.content.replace(/#.*#/g, (ment) => {
-                    let link = `/hashtag/${encodeURIComponent(ment.substring(1, ment.length-1))}`
+                let content = item.content.replace(/#(?!\s*#)[^#]+#/g, (ment) => {
+                    let link = `/record/hashtag/${encodeURIComponent(ment.substring(1, ment.length-1))}`
                     return (
-                        `<a href=${link}>${ment}</a>`
+                        `<a href="#${link}">${ment}</a> `
                     )
                 }).replace(/\n/g, '<br>')
 

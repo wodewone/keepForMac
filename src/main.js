@@ -7,7 +7,10 @@ import App from './js/App'
 import AppLogin from './js/AppLogin'
 import AppTraining from './components/AppTraining/AppTraining'
 import AppExplore from './components/AppExplore/AppExplore'
+
 import AppRecord from './components/AppRecord/AppRecord'
+import RecordContent from './components/AppRecord/RecordContent'
+
 import AppUserCenter from './components/AppUserCenter/AppUserCenter'
 
 import AppWorkout from './components/AppTraining/workouts/AppWorkout.js'
@@ -30,7 +33,9 @@ ReactDOM.render(
                 </Route>
 
             <Route path='explore' component={AppExplore}></Route>
-            <Route path='record' component={AppRecord}></Route>
+            <Route path='record' component={AppRecord}>
+                <Route path='hashtag/:tag_name' component={RecordContent}></Route>
+            </Route>
             <Route path='user-center' component={AppUserCenter}></Route>
         </Route>
         <Route path='/login' component={AppLogin}></Route>
