@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import $http from '../../js/HttpRequest.js'
 import autobind from 'autobind-decorator'
 import CSSModules from 'react-css-modules'
-import { Link } from 'react-router'
+import { Link, hashHistory } from 'react-router'
 import moment from 'moment'
 import Utils from '../../js/Utils.js'
 
@@ -35,9 +35,8 @@ class AppRecord extends Component{
         if(!!this.state.listData.length)
             return this.state.listData.map((item) => {
                 let content = item.content.replace(/#(?!\s*#)[^#]+#/g, (ment) => {
-                    let link = `/record/hashtag/${encodeURIComponent(ment.substring(1, ment.length-1))}`
                     return (
-                        `<a href="#${link}">${ment}</a> `
+                        `<a data-tv="${encodeURIComponent(ment.substring(1, ment.length-1))}">${ment}</a> `
                     )
                 }).replace(/\n/g, '<br>')
 
@@ -51,7 +50,7 @@ class AppRecord extends Component{
                                 <span styleName="header-time">{moment(new Date()).diff(moment(item.created), 'h') < 22 ? moment(item.created).fromNow() : moment(item.created).format('YYYY/MM/DD HH:mm')}</span>
                             </header>
                             <div styleName="art-content">
-                                <img styleName="art-photo" src={item.photo || ''} alt=""/>
+                                <Link to={`${hashHistory.getCurrentLocation().pathname}/aosdiodas`}><img styleName="art-photo" src={item.photo || ''} alt=""/></Link>
                                 <p styleName="art-txt" dangerouslySetInnerHTML={{__html: content}}></p>
                             </div>
                             <footer styleName="art-footer">
