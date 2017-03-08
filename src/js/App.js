@@ -35,7 +35,7 @@ class App extends Component{
     getUser(){
         if(this.state.user._id)
             return(
-                <div styleName="header-user">
+                <div className="no-drag" styleName="header-user">
                     <img  onClick={() => {Utils.storage.set('userInfo', Utils.storage.get('mineInfo'));UserWindow.show('我的资料')}} styleName="header-avatar" src={this.state.user.avatar} alt=""/>
                     <ul styleName="header-menu">
                         <li>

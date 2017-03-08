@@ -8,7 +8,7 @@ import Utils from '../../js/Utils.js'
 
 import styles from '../../sass/appRecord.scss'
 
-@CSSModules(styles)
+@CSSModules(styles, {allowMultiple: true})
 class AppRecord extends Component{
     constructor(props){
         super(props)
@@ -21,7 +21,7 @@ class AppRecord extends Component{
     componentWillMount(){
         $http.getFollowTimeline().then((res) => {
             if(res.ok) {
-                console.info(res)
+                console.info(res.data)
                 this.setState({
                     listData: res.data.timeline
                 })
@@ -50,11 +50,28 @@ class AppRecord extends Component{
                                 <span styleName="header-time">{moment(new Date()).diff(moment(item.created), 'h') < 22 ? moment(item.created).fromNow() : moment(item.created).format('YYYY/MM/DD HH:mm')}</span>
                             </header>
                             <div styleName="art-content">
-                                <Link to={`${hashHistory.getCurrentLocation().pathname}/aosdiodas`}><img styleName="art-photo" src={item.photo || ''} alt=""/></Link>
+                                {(() => {
+                                    console.info(item.sampleComments)
+                                    if (item.type == 'normal') {
+                                        return (<img styleName="art-photo" src={item.photo || ''} alt=""/>)
+                                    }
+                                })()}
                                 <p styleName="art-txt" dangerouslySetInnerHTML={{__html: content}}></p>
                             </div>
+                            {(() => {
+                                if (item.type == 'share')
+                                    return (
+                                        <Link to={item.shareCard.url} styleName="art-share-card">
+                                            <div styleName="card-img" style={{backgroundImage:`url(${item.shareCard.image})`}}></div>
+                                            <div styleName="card-inner">
+                                                <p styleName="card-title">{item.shareCard.title}</p>
+                                                <p styleName="card-desc">{item.shareCard.content}</p>
+                                            </div>
+                                        </Link>
+                                    )
+                            })()}
                             <footer styleName="art-footer">
-                                <button styleName="footer-btn" title="加油"><span styleName="footer-sp"><i className="iconfont fz14 icon-liked"></i></span></button>
+                                <button styleName={`footer-btn ${item.hasLiked ? 'active' : ''}`} onClick={() => this.handleEventLike(item)} title={item.hasLiked ? '取消加油' : '加油'}><span styleName="footer-sp"><i className="iconfont fz14 icon-liked"></i></span></button>
                                 <button styleName="footer-btn" title="评论"><span styleName="footer-sp"><i className="iconfont fz14 icon-comment"></i></span></button>
                                 <button styleName="footer-btn" title="分享"><span styleName="footer-sp"><i className="iconfont fz14 icon-share"></i></span></button>
                                 <div styleName="footer-inner">
@@ -98,6 +115,21 @@ class AppRecord extends Component{
                     </article>
                 </div>
             )
+    }
+
+    @autobind
+    handleEventLike(item){
+        if(item) {
+            $http.setArticleLike(item._id).then((res) => {
+                if(res.status == 204){
+                    item.hasLiked = item.hasLiked ? false : true
+                    item.likes = item.hasLiked ? item.likes + 1 : item.likes - 1
+                    this.setState({
+                        listData: this.state.listData
+                    })
+                }
+            })
+        }
     }
 
     render(){

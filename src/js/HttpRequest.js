@@ -37,13 +37,17 @@ export default {
             return false
         }
         options = Object.assign({
-            method: 'GET',
+            method: 'POST',
             headers: {
                 'Authorization': this.getToken()
             }
         }, options)
 
-        return fetch(hostname + url, options).then((res) => res.json())
+        return fetch(hostname + url, options).then((res) => {
+            if(res.status == 200)
+                return res.json()
+            return res
+        })
     }
 
     /**
@@ -136,6 +140,12 @@ export default {
     ,getFollowTimeline(){
         return this.httpGet('/social/v2/follow/timeline')
     }
+
+    // 动态点赞
+    ,setArticleLike(artId){
+        return this.httpPost(`/v1.1/entries/${artId}/likes`)
+    }
+
 
     // 获取城市列表
     ,getCityJson(){

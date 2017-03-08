@@ -51,6 +51,40 @@
   min-height: 100px;
   align-self: baseline;
 }
+.art-share-card{
+  width: 50%;
+  height: 120px;
+  box-shadow: 0 0 5px rgba($keep-gary, .9);
+  display: flex;
+  margin: 10px;
+  overflow: hidden;
+}
+.card-img{
+  width: 120px;
+  height: 120px;
+  background: $color-gary no-repeat center/auto 100%;
+}
+.card-inner{
+  padding: 10px;
+  flex: 1;
+
+  p{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+  }
+}
+.card-title{
+  font-size: $font-size-14;
+  font-weight: bold;
+}
+.card-desc{
+  color: $color-gary;
+  font-size: $font-size-12;
+}
+
+
 .art-txt{
   flex: 1;
   padding: 10px;
@@ -89,7 +123,7 @@
   background: none;
   border: none;
   outline: 0;
-  transition: box-shadow .2s;
+  transition: all .2s;
 
   &:hover{
     background: $border-color;
@@ -97,6 +131,12 @@
 
   &:active{
     box-shadow: 0 0 5px rgba(0,0,0,.5) inset;
+  }
+
+  &.active{
+    color: #000;
+    font-weight: bold;
+    box-shadow: 0 0 2px rgba($keep-gary,0.9) inset, 0 0 36px rgba($keep-gary,0.7) inset;
   }
 
 }

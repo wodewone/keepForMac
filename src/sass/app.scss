@@ -68,6 +68,11 @@
     font-size: inherit;
     line-height: inherit;
     outline: none;
+    -webkit-app-region: no-drag;
+  }
+
+  .no-drag{
+    -webkit-app-region: no-drag;
   }
 
   button{
