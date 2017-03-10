@@ -9,7 +9,8 @@ import AppTraining from './components/AppTraining/AppTraining'
 import AppExplore from './components/AppExplore/AppExplore'
 
 import AppRecord from './components/AppRecord/AppRecord'
-import RecordContent from './components/AppRecord/RecordContent.js'
+import ArticleContent from './components/AppRecord/ArticleContent.js'
+import HashtagContent from './components/AppRecord/HashtagContent.js'
 
 import AppUserCenter from './components/AppUserCenter/AppUserCenter'
 
@@ -28,13 +29,14 @@ ReactDOM.render(
         <Route path='/' onEnter={RequireAuth} component={App}>
             <IndexRoute component={AppTraining}></IndexRoute>
             <Route path='training' component={AppTraining}></Route>
-                <Route path='plan/:plan_id' component={AppWorkout}>
+                <Route path='/plan/:plan_id' component={AppWorkout}>
                     <Route path=':desc_id' component={WorkoutDescription}></Route>
                 </Route>
 
             <Route path='explore' component={AppExplore}></Route>
             <Route path='record' component={AppRecord}>
-                <Route path=':tag_name' component={RecordContent}></Route>
+                <Route path='/hashtag/:tag_name' component={HashtagContent}></Route>
+                <Route path='/article/:id' component={ArticleContent}></Route>
             </Route>
             <Route path='user-center' component={AppUserCenter}></Route>
             <Route path='*' component={AppTraining}></Route>

@@ -38,6 +38,7 @@
 
   p{
     margin: 0 0 10px;
+    -webkit-user-select: auto;
   }
 
   ul{
@@ -240,11 +241,21 @@
     }
   }
 
+  .slide-content-wrap{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border: 0;
+  }
 
 
   // iconfont
   .iconfont{
-    margin-right: 5px;
+    margin-right: 2px;
   }
   .active{
     position: relative;

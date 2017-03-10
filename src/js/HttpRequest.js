@@ -136,14 +136,26 @@ export default {
         return this.httpPost('/v1.1/home/achievements/new')
     }
 
-    // 获取关注动态列表
-    ,getFollowTimeline(){
-        return this.httpGet('/social/v2/follow/timeline')
+    /**
+     * 获取关注动态列表
+     * @ lastId = 列表开始索引id（空值为最新处开始）
+     */
+    ,getFollowTimeline(lastId = ''){
+        return this.httpGet('/social/v2/follow/timeline?lastId='+ lastId)
     }
 
     // 动态点赞
     ,setArticleLike(artId){
         return this.httpPost(`/v1.1/entries/${artId}/likes`)
+    }
+
+    // 动态详情
+    ,getFollowDetail(artId){
+        return this.httpGet(`/v1.1/entries/${artId}?limit=20&reverse=true`)
+    }
+    // 动态详情评论
+    ,getFollowComments(artId){
+        return this.httpGet(`/v1.1/entries/${artId}/comments`)
     }
 
 

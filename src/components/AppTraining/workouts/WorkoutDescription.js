@@ -36,7 +36,7 @@ class WorkoutDescription extends Component{
     render(){
         return (
             <AppSlideContent>
-                <div styleName="workout-desc-inner">
+                <div className="slide-content-wrap">
                     <video styleName="workout-desc-video" src={this.state.workout.exercise.videos[0].url} muted autoPlay loop></video>
                     <p styleName="workout-desc-title">{this.state.workout.exercise.name}</p>
                     {this.getDescriptionContent()}
