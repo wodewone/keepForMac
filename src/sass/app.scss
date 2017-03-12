@@ -252,6 +252,21 @@
     border: 0;
   }
 
+  .show-more{
+    display: block;
+    text-align: center;
+    width: 30px;
+    position: relative;
+
+    i{
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
 
   // iconfont
   .iconfont{

@@ -157,6 +157,10 @@ export default {
     ,getFollowComments(artId){
         return this.httpGet(`/v1.1/entries/${artId}/comments`)
     }
+    // 动态详情精彩评论
+    ,getFollowHotComments(artId){
+        return this.httpGet(`/v1.1/entries/${artId}/comments/hot`)
+    }
 
 
     // 获取城市列表

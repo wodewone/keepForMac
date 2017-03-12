@@ -6,6 +6,7 @@ import moment from 'moment'
 import Utils from '../../../js/Utils.js'
 import $http from '../../../js/HttpRequest.js'
 import UserWindow from '../../common/UserWindow.js'
+import PioneerList from '../../common/PioneerList.js'
 
 import styles from '../../../sass/appWorkouts.scss'
 
@@ -74,17 +75,6 @@ class AppWorkout extends Component{
                 UserWindow.show('keeper - '+ response.data.user.username)
             }
         })
-    }
-
-    @autobind
-    getPioneerContent(){
-        const list = this.state.content.pioneer
-        console.info(this.state.content)
-        // const userImg = require('url-loader?mimetype=image/png!../../../assets/images/keep-small.jpg')
-        if(list && list.length>0)
-            return list.map((item, index) => {
-                return <li key={item._id + index}><Link styleName="pioneer-item" onClick={() => this.handleUserInfo(item._id)} ><img src={item.avatar} alt=""/></Link></li>
-            })
     }
 
     @autobind
@@ -224,10 +214,8 @@ class AppWorkout extends Component{
                             <div styleName="list-nav">
                                 <div styleName="nav-participation"><span
                                     className="fz10">总打卡次数</span><br/>{workContent.totalFinished}</div>
-                                <ul styleName="complete-list">
-                                    {this.getPioneerContent()}
-                                </ul>
-                                <Link styleName="show-more"><i className={`iconfont icon-more`}></i></Link>
+                                <PioneerList list={this.state.content && this.state.content.pioneer}></PioneerList>
+                                <Link className="show-more"><i className={`iconfont icon-more`}></i></Link>
                             </div>
                         </section>
                         {/* 训练详情 */}

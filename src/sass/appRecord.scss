@@ -56,9 +56,15 @@
   a{
     color: $keep-green;
   }
+  img{
+    max-width: 100%;
+  }
 }
 .art-content{
   display: flex;
+}
+.art-con-inner{
+  flex: 1;
 }
 .art-photo{
   width: 200px;
@@ -70,12 +76,11 @@ i.art-photo{
 }
 
 .art-txt{
-  flex: 1;
   margin: 0 0 10px 0;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  -webkit-line-clamp: 10;
+  -webkit-line-clamp: 5;
 }
 .art-footer{
   border-top: 1px solid $border-color;
@@ -106,6 +111,7 @@ i.art-photo{
   }
 }
 .footer-btn{
+  width: 40px;
   padding: 10px 0;
   background: none;
   border: none;
@@ -134,6 +140,7 @@ i.art-photo{
 
 .art-share-card{
   width: 50%;
+  min-width: 360px;
   height: 120px;
   box-shadow: 0 0 5px rgba($keep-gary, .9);
   border-radius: 3px;
@@ -174,6 +181,7 @@ i.art-photo{
 
 .art-run-card{
   width: 50%;
+  min-width: 360px;
   background: $color-back;
   margin-top: 10px;
 
@@ -197,6 +205,7 @@ i.art-photo{
 }
 
 .article-card{
+  display: block;
   width: 100%;
   background: $color-back no-repeat left center/100% auto;
   position: relative;
@@ -236,5 +245,89 @@ i.art-photo{
   }
 }
 .art-desc{
+  font-size: $font-size-12;
+}
+.article-detail{
+  min-height: 100%;
+  background: $keep-background;
+}
+.article-content{
+  background: $color-white;
+}
+.art-comments{
+  overflow: hidden;
+  margin-top: 10px;
+  background: $color-white;
+
+  ul{
+    margin: 0;
+    padding: 0;
+  }
+  li{
+    margin: 0;
+    padding: 10px 10px 5px;
+    border-top: 1px solid $border-color;
+  }
+}
+.comment-caption{
+  padding: 10px;
+  font-size: $font-size-14;
+}
+.comment-header{
+  display: flex;
+}
+.comment-avatar{
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: $color-white;
+  margin-right: 10px;
+}
+.comment-inner{
+  flex: 1;
+}
+.comment-username{
+  font-size: $font-size-14;
+  margin: 0;
+  line-height: 20px;
+}
+.comment-time{
+  font-size: $font-size-10;
+  color: $color-desc;
+  margin: 0;
+}
+.comment-content{
+  margin-top: 5px;
+  padding: 5px 10px 5px 45px;
+}
+.article-txt{
+  margin-top: 10px;
+}
+.article-other{
+  color: $color-desc;
+  font-size: $font-size-12;
+  margin: 10px 0 0;
+}
+.article-footer{
+  border-top: 1px solid $border-color;
+  display: flex;
+  align-items: center;
+  height: 39px;
+  padding: 0 10px;
+}
+.article-comments{
+  display: flex;
+  padding: 10px;
+  margin-top: 10px;
+  background: $color-white;
+}
+.article-pioneer{
+  align-self: center;
+}
+.article-line{
+  margin: 10px 0;
+}
+a.article-more{
+  color: $color-gary;
   font-size: $font-size-12;
 }
