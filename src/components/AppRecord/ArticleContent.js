@@ -6,10 +6,11 @@ import moment from 'moment'
 import $http from '../../js/HttpRequest.js'
 import Utils from '../../js/Utils.js'
 
-import styles from '../../sass/appRecord.scss'
-
 import AppSlideContent from '../../components/AppSlideContent.js'
 import PioneerList from '../common/PioneerList.js'
+import CommonAvatar from '../common/CommonAvatar.js'
+
+import styles from '../../sass/appRecord.scss'
 
 @CSSModules(styles, {allowMultiple: true})
 class ArticleContent extends Component{
@@ -115,7 +116,19 @@ class ArticleContent extends Component{
                     </div>
                 )
                 break;
+            default:
+                return false
         }
+    }
+
+    @autobind
+    getReplyContent(item){
+        if(item.replyComment)
+            return(
+                <div key={item.replyComment.author._id} styleName="comment-reply">
+                    <Link>{item.replyComment.author.username}</Link>: {item.replyComment.content}
+                </div>
+            )
     }
 
     // 点赞评论
@@ -141,6 +154,7 @@ class ArticleContent extends Component{
             $http.getFollowComments(this.props.params.id, this.state.comments.length ? this.state.comments[this.state.comments.length-1]._id : '').then((res) => {
                 if(res.ok) {
                     if(typeof res.data == 'object' && res.data.length) {
+                        console.info(res.data)
                         this.setState({
                             comments: [...this.state.comments, ...res.data]
                         })
@@ -160,7 +174,7 @@ class ArticleContent extends Component{
                     <div styleName="article-detail">
                         <section styleName="article-content">
                             <header styleName="art-header">
-                                <img styleName="header-avatar" src={item.author.avatar} alt=""/>
+                                <span styleName="header-avatar"><CommonAvatar userid={item.author._id} avatar={item.author.avatar}></CommonAvatar></span>
                                 <p styleName="header-username">{item.author.username} <span styleName="header-sub">{item.country} {item.city}</span></p>
                                 <span styleName="header-time">{moment(new Date()).diff(moment(item.created), 'h') < 22 ? moment(item.created).fromNow() : moment(item.created).format('YYYY/ MM /DD HH:mm')}</span>
                             </header>
@@ -188,7 +202,7 @@ class ArticleContent extends Component{
                                     return (
                                         <li key={index}>
                                             <div styleName="comment-header">
-                                                <img styleName="comment-avatar" src={item.author.avatar || defaultAvatar} alt=""/>
+                                                <span styleName="comment-avatar"><CommonAvatar userid={item.author._id} avatar={item.author.avatar}></CommonAvatar></span>
                                                 <div styleName="comment-inner">
                                                     <p styleName="comment-username">{item.author.username}</p>
                                                     <p styleName="comment-time">{moment(new Date()).diff(moment(item.created), 'h') < 22 ? moment(item.created).fromNow() : moment(item.created).format('YYYY/MM/DD HH:mm')}</p>
@@ -204,17 +218,19 @@ class ArticleContent extends Component{
                             <div styleName="comment-caption">全部评论 {item.comments}</div>
                             <ul>
                                 {this.state.comments.length && this.state.comments.map((item, index) => {
-                                    const defaultAvatar = require("../../assets/images/default-avatar.png")
                                     return (
                                         <li key={index}>
                                             <div styleName="comment-header">
-                                                <img styleName="comment-avatar" src={item.author.avatar || defaultAvatar} alt=""/>
+                                                <span styleName="comment-avatar"><CommonAvatar userid={item.author._id} avatar={item.author.avatar}></CommonAvatar></span>
                                                 <div styleName="comment-inner">
                                                     <p styleName="comment-username">{item.author.username}</p>
                                                     <p styleName="comment-time">{moment(new Date()).diff(moment(item.created), 'h') < 22 ? moment(item.created).fromNow() : moment(item.created).format('YYYY/MM/DD HH:mm')}</p>
                                                 </div>
                                             </div>
-                                            <div styleName="comment-content">{item.content}</div>
+                                            <div styleName="comment-content">
+                                                {this.getReplyContent(item)}
+                                                {item.content}
+                                            </div>
                                         </li>
                                     )
                                 })}

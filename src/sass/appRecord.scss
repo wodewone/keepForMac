@@ -139,6 +139,11 @@ i.art-photo{
   padding: 0 10px;
   position: relative;
 }
+.sp-comment-num{
+  color: $color-gary;
+  font-size: $font-size-10;
+  vertical-align: text-top;
+}
 
 .art-share-card{
   width: 360px;
@@ -280,7 +285,7 @@ i.art-photo{
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  background-color: $color-white;
+  background-color: $keep-gary;
   margin-right: 10px;
 }
 .comment-inner{
@@ -299,6 +304,15 @@ i.art-photo{
 .comment-content{
   margin-top: 5px;
   padding: 5px 10px 5px 45px;
+}
+.comment-reply{
+  background: $color-back;
+  color: $color-gary;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+.comment-reply a{
+  color: $keep-green;
 }
 .article-txt{
   margin-top: 10px;

@@ -37,7 +37,7 @@ class CommonArticle extends Component {
             case 'article':
                 return (
                     <Link to={`/article/${item._id}`} styleName="article-card">
-                        <img src={item.photo} alt=""/>
+                        <img src={item.photo ? `${item.photo}?imageMogr2/thumbnail/!300` : ''} alt=""/>
                         <article styleName="art-blur-inner">
                             <div styleName="inner-back" style={{backgroundImage: `url(${item.photo})`}}></div>
                             <p styleName="card-title">{handleText(item.title)}</p>
@@ -50,7 +50,7 @@ class CommonArticle extends Component {
             case 'direct':
                 return (
                     <div styleName="art-content">
-                        <Link to={`/article/${item._id}`}><img styleName="art-photo" src={item.photo || ''} alt=""/></Link>
+                        <Link to={`/article/${item._id}`}><img styleName="art-photo" src={item.photo ? `${item.photo}?imageMogr2/thumbnail/!300` : ''} alt=""/></Link>
                         <div styleName="art-con-inner">
                             <p styleName="art-txt">{handleLink(item.content)}</p>
                             <p styleName="article-line"><Link styleName="article-more" to={`/article/${item._id}`}>查看全部</Link></p>
@@ -79,7 +79,7 @@ class CommonArticle extends Component {
                 return(
                     <div>
                         <div styleName="art-content">
-                            <Link to={`/article/${item._id}`}><img hidden={!item.photo} styleName="art-photo" src={item.photo || ''} alt=""/></Link>
+                            <Link to={`/article/${item._id}`}><img hidden={!item.photo} styleName="art-photo" src={item.photo ? `${item.photo}?imageMogr2/thumbnail/!300` : ''} alt=""/></Link>
                             <div styleName="art-con-inner">
                                 <p styleName="art-txt">{handleLink(item.content)}</p>
                                 <p styleName="article-line"><Link styleName="article-more" to={`/article/${item._id}`}>查看全部</Link></p>
@@ -87,7 +87,7 @@ class CommonArticle extends Component {
                         </div>
                         <div styleName="art-run-card">
                             <p styleName="art-run-title"><img width="18" src={item.meta.icon} alt=""/> {handleText(item.meta.title)}</p>
-                            <img src={item.meta.picture} alt=""/>
+                            <img src={item.photo ? `${item.meta.picture}?imageMogr2/thumbnail/!300` : ''} alt=""/>
                         </div>
                     </div>
                 )

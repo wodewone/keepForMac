@@ -42,7 +42,7 @@ class AppRecord extends Component{
                             <section styleName="art-wrap"><RecordArticle data={item}></RecordArticle></section>
                             <footer styleName="art-footer">
                                 <button styleName={`footer-btn ${item.hasLiked ? 'active' : ''}`} onClick={() => this.handleEventLike(item)} title={item.hasLiked ? '取消加油' : '加油'}><span styleName="footer-sp"><i className="iconfont fz14 icon-liked"></i></span></button>
-                                <button styleName="footer-btn" title="评论"><span styleName="footer-sp"><i className="iconfont fz14 icon-comment"></i></span></button>
+                                <button styleName="footer-btn" title="评论"><span styleName="footer-sp"><i className="iconfont fz14 icon-comment"></i><span styleName="sp-comment-num" hidden={!item.comments}>{item.comments}</span></span></button>
                                 <button styleName="footer-btn" title="分享"><span styleName="footer-sp"><i className="iconfont fz14 icon-share"></i></span></button>
                                 <div styleName="footer-inner">
                                     <span styleName="item-workout" hidden={item.type != 'normal'}><i className="iconfont fz12 icon-training"></i> 完成 {item.meta.workoutName} 第 {item.meta.count} 次</span>
@@ -141,10 +141,13 @@ class AppRecord extends Component{
                 if (res.ok) {
                     let data = res.data.timeline || []
                     if(typeof data == 'object' && data.length) {
+                        // 仅缓存第一次加载的数据
+                        if(!this.state.listData.length)
+                            Utils.storage.set('followTimeline', data)
+
                         this.setState({
                             listData: [...this.state.listData, ...data]
                         })
-                        Utils.storage.set('followTimeline', [])
                         this.loading = true
                     }
                 }

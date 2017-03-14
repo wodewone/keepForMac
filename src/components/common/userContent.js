@@ -82,9 +82,8 @@ class UserContent extends Component{
         return(
             <div styleName="user-container">
                 <section styleName="user-back">
-                    <div hidden={this.state.user.backgroundAvatar} styleName="back-cover" style={{backgroundImage: `url(${this.state.user.avatar}?imageMogr2/thumbnail/!400x400r)`}}></div>
-                    <div hidden={!this.state.user.backgroundAvatar} styleName="back-avatar" style={{backgroundImage: `url(${this.state.user.backgroundAvatar}?imageMogr2/thumbnail/!400x400r)`}}></div>
-                    <div styleName="user-avatar"><img src={this.state.user.avatar+'?imageMogr2/thumbnail/!200x200r'} alt=""/></div>
+                    <div styleName="back-cover" style={{backgroundImage: `url(${this.state.user.backgroundAvatar ? this.state.user.backgroundAvatar : this.state.user.avatar}?imageMogr2/thumbnail/!400x400r)`}}></div>
+                    <div styleName="user-avatar"><img src={this.state.user.avatar ? this.state.user.avatar+'?imageMogr2/thumbnail/!200x200r' : ''} alt=""/></div>
                     <div styleName="user-info-content">
                         <p styleName="user-info-name"><span>{this.state.user.username}</span></p>
                         <p styleName="user-info-desc"><span>{this.state.user.bio || '这个人很懒，啥都没写~'}</span></p>

@@ -9,7 +9,6 @@ class CommonAvatar extends Component{
         super(props)
     }
 
-
     // 查看用户个人信息
     @autobind
     handleClick(){
@@ -23,7 +22,7 @@ class CommonAvatar extends Component{
 
     render(){
         return(
-            <img className="user-avatar" onClick={this.handleClick} src={this.props.avatar ? `${this.props.avatar}?imageMogr2/thumbnail/!200x200r` : require('../../assets/images/default-avatar.png')} alt=""/>
+            <img className="user-avatar" onClick={this.handleClick} src={this.props.avatar ? `${this.props.avatar}?imageMogr2/thumbnail/!100x100r` : require('../../assets/images/default-avatar.png')} alt=""/>
         )
     }
 }
