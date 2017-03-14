@@ -190,6 +190,8 @@
 
 * 好友信息 - `https://api.gotokeep.com/v2/people/[user.id(58518a02493303397b87862a)]/timeline?type=all%2Cphoto(all,photo)`
 * 好友推荐 - `https://api.gotokeep.com/friends/v2/rec/profile/follow?fid=[user.id(58518a02493303397b87862a)]&pageCount=10`
+* 取消关注 - `https://api.gotokeep.com/v1.1/people/[userid]/follow`
+* 添加关注 - `https://api.gotokeep.com/v1.1/people/[userid]/unfollow`
 
 
 ### Other

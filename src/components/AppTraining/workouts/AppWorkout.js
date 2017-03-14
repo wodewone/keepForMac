@@ -5,7 +5,6 @@ import autobind from 'autobind-decorator'
 import moment from 'moment'
 import Utils from '../../../js/Utils.js'
 import $http from '../../../js/HttpRequest.js'
-import UserWindow from '../../common/UserWindow.js'
 import PioneerList from '../../common/PioneerList.js'
 
 import styles from '../../../sass/appWorkouts.scss'
@@ -63,17 +62,6 @@ class AppWorkout extends Component{
                     })
                 }
             })
-        })
-    }
-
-    // 查看用户个人信息
-    @autobind
-    handleUserInfo(userId){
-        $http.getUserData(userId).then((response) => {
-            if(response.ok) {
-                Utils.storage.set('userInfo', response.data)
-                UserWindow.show('keeper - '+ response.data.user.username)
-            }
         })
     }
 

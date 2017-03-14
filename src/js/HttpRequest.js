@@ -50,9 +50,9 @@ export default {
         })
     }
 
-    /**
-     * Dashboard
-     */
+
+    /* Dashboard *********************************************************************/
+
     // Plans
     ,getDashboardTraining() {
         return this.httpGet('/training/v2/home')
@@ -105,6 +105,9 @@ export default {
     //    })
     //}
 
+
+    /* 训练 *********************************************************************/
+
     // workout plan
     ,getPlansContent(workoutsId, gender = 'm'){
         return this.httpGet('/v2/plans/'+ workoutsId +'?trainer_gender='+ gender)
@@ -136,6 +139,9 @@ export default {
         return this.httpPost('/v1.1/home/achievements/new')
     }
 
+
+    /* 动态 *********************************************************************/
+
     /**
      * 获取关注动态列表
      * @ lastId = 列表开始索引id（空值为最新处开始）
@@ -154,12 +160,22 @@ export default {
         return this.httpGet(`/v1.1/entries/${artId}?limit=20&reverse=true`)
     }
     // 动态详情评论
-    ,getFollowComments(artId){
-        return this.httpGet(`/v1.1/entries/${artId}/comments`)
+    ,getFollowComments(artId, lastId = ''){
+        return this.httpGet(`/v1.1/entries/${artId}/comments?lastId=${lastId}&limit=20&reverse=true`)
     }
     // 动态详情精彩评论
     ,getFollowHotComments(artId){
         return this.httpGet(`/v1.1/entries/${artId}/comments/hot`)
+    }
+
+
+    /* 好友 *********************************************************************/
+
+    ,addUserFollow(userId){
+        return this.httpPost(`/v1.1/people/${userId}/follow`)
+    }
+    ,removeUserFollow(userId){
+        return this.httpPost(`/v1.1/people/${userId}/unfollow`)
     }
 
 

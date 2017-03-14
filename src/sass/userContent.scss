@@ -120,21 +120,47 @@
   display: flex;
   box-shadow: 0 -1px 5px rgba(0,0,0,0.8);
 }
-.line-btn{
+.line-btn
+,.follow-btn{
   flex: 1;
   background: $keep-gary;
   color: $color-white;
   font-size: $font-size-14;
   text-align: center;
+  border: none;
+  outline: none;
   padding: 10px 0;
 
   &:hover{
     color: $color-white;
-    transition: background .35s;
-    background: $keep-green;
   }
 
   &:first-child{
     border-right: 1px solid $border-color;
+  }
+}
+.follow-btn{
+  transition: background .35s;
+
+  &.active {
+    color: $color-white;
+    background: $keep-green;
+
+    &:hover{
+      background: $keep-red;
+    }
+  }
+
+  .sp-hover {
+    display: none;
+  }
+
+  &:hover {
+    .sp-default {
+      display: none;
+    }
+    .sp-hover {
+      display: inline;
+    }
   }
 }

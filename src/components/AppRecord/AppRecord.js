@@ -6,7 +6,8 @@ import { Link, hashHistory } from 'react-router'
 import moment from 'moment'
 import Utils from '../../js/Utils.js'
 
-import CommonArticle from './CommonArticle.js'
+import RecordArticle from './RecordArticle.js'
+import CommonAvatar from '../common/CommonAvatar.js'
 
 import styles from '../../sass/appRecord.scss'
 
@@ -23,15 +24,7 @@ class AppRecord extends Component{
     }
 
     componentWillMount(){
-        $http.getFollowTimeline().then((res) => {
-            if(res.ok) {
-                console.info(res.data)
-                this.setState({
-                    listData: res.data.timeline
-                })
-                Utils.storage.set('followTimeline', res.data.timeline)
-            }
-        })
+        this.handleScroll(null, true)
     }
 
     @autobind
@@ -42,11 +35,11 @@ class AppRecord extends Component{
                     <article key={itemIndex} data-type={item.type} styleName={`art-item ${item.state == 'hot' ? 'art-hot' : ''}`}>
                         <div styleName="art-inner">
                             <header styleName="art-header">
-                                <img styleName="header-avatar" src={item.author.avatar} alt=""/>
+                                <span styleName="header-avatar"><CommonAvatar userid={item.author._id} avatar={item.author.avatar}></CommonAvatar></span>
                                 <p styleName="header-username">{item.author.username} <span styleName="header-sub">{item.country} {item.city}</span></p>
                                 <span styleName="header-time">{moment(new Date()).diff(moment(item.created), 'h') < 22 ? moment(item.created).fromNow() : moment(item.created).format('YYYY/ MM /DD HH:mm')}</span>
                             </header>
-                            <section styleName="art-wrap"><CommonArticle data={item}></CommonArticle></section>
+                            <section styleName="art-wrap"><RecordArticle data={item}></RecordArticle></section>
                             <footer styleName="art-footer">
                                 <button styleName={`footer-btn ${item.hasLiked ? 'active' : ''}`} onClick={() => this.handleEventLike(item)} title={item.hasLiked ? '取消加油' : '加油'}><span styleName="footer-sp"><i className="iconfont fz14 icon-liked"></i></span></button>
                                 <button styleName="footer-btn" title="评论"><span styleName="footer-sp"><i className="iconfont fz14 icon-comment"></i></span></button>
@@ -63,7 +56,7 @@ class AppRecord extends Component{
         else
             // loading
             return(
-                <div>
+                <div styleName="art-preview">
                     <article styleName="art-item">
                         <div styleName="art-inner">
                             <header styleName="art-header">
@@ -74,7 +67,35 @@ class AppRecord extends Component{
                             <section styleName="art-wrap">
                                 <div styleName="art-content">
                                     <i className="sp-placeholder" styleName="art-photo"></i>
-                                    <div styleName="art-txt">
+                                    <div styleName="art-con-inner">
+                                        <p className="sp-placeholder"></p>
+                                        <p className="sp-placeholder"></p>
+                                        <span className="sp-placeholder"></span>
+                                    </div>
+                                </div>
+                            </section>
+                            <footer styleName="art-footer">
+                                <button className="sp-placeholder" styleName="footer-btn"><span className="sp-placeholder"></span></button>
+                                <button className="sp-placeholder" styleName="footer-btn"><span className="sp-placeholder"></span></button>
+                                <button className="sp-placeholder" styleName="footer-btn"><span className="sp-placeholder"></span></button>
+                                <div styleName="footer-inner">
+                                    <span className="sp-placeholder"></span>
+                                </div>
+                                <span className="sp-placeholder"></span>
+                            </footer>
+                        </div>
+                    </article>
+                    <article styleName="art-item">
+                        <div styleName="art-inner">
+                            <header styleName="art-header">
+                                <i className="sp-placeholder" styleName="header-avatar"></i>
+                                <p styleName="header-username"><span className="sp-placeholder"></span> <span className="sp-placeholder"></span></p>
+                                <span styleName="header-time"><span className="sp-placeholder"></span></span>
+                            </header>
+                            <section styleName="art-wrap">
+                                <div styleName="art-content">
+                                    <i className="sp-placeholder" styleName="art-photo"></i>
+                                    <div styleName="art-con-inner">
                                         <p className="sp-placeholder"></p>
                                         <p className="sp-placeholder"></p>
                                         <span className="sp-placeholder"></span>
@@ -113,17 +134,19 @@ class AppRecord extends Component{
     }
 
     @autobind
-    handleScroll(e){
-        if(this.loading && e.target.scrollTop > (e.target.scrollHeight-e.target.clientHeight) * .99) {
+    handleScroll(e, LOAD = ''){
+        if(LOAD == true || (this.loading && e.target.scrollTop > (e.target.scrollHeight-e.target.clientHeight) * .99)) {
             this.loading = false
-            $http.getFollowTimeline(this.state.listData[this.state.listData.length - 1]._id).then((res) => {
+            $http.getFollowTimeline(this.state.listData.length ? this.state.listData[this.state.listData.length - 1]._id : '').then((res) => {
                 if (res.ok) {
                     let data = res.data.timeline || []
-                    this.setState({
-                        listData: [...this.state.listData, ...data]
-                    })
-                    Utils.storage.set('followTimeline', this.state.listData)
-                    this.loading = true
+                    if(typeof data == 'object' && data.length) {
+                        this.setState({
+                            listData: [...this.state.listData, ...data]
+                        })
+                        Utils.storage.set('followTimeline', [])
+                        this.loading = true
+                    }
                 }
             })
         }

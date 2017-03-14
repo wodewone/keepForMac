@@ -9,7 +9,6 @@ import Utils from '../../js/Utils.js'
 import styles from '../../sass/appRecord.scss'
 
 import AppSlideContent from '../../components/AppSlideContent.js'
-import CommonArticle from './CommonArticle.js'
 import PioneerList from '../common/PioneerList.js'
 
 @CSSModules(styles, {allowMultiple: true})
@@ -19,12 +18,14 @@ class ArticleContent extends Component{
 
         this.state = {
             data: null,
-            comments: null,
+            comments: [],
             hotComments: []
         }
+        this.loading = true
     }
 
     componentWillMount(){
+        // 动态详情
         $http.getFollowDetail(this.props.params.id).then((res) => {
             if(res.ok) {
                 console.info(res.data)
@@ -34,6 +35,7 @@ class ArticleContent extends Component{
             }
         })
 
+        // 精彩评论
         $http.getFollowHotComments(this.props.params.id).then((res) => {
             if(res.ok) {
                 console.info(res.data)
@@ -43,14 +45,9 @@ class ArticleContent extends Component{
             }
         })
 
-        $http.getFollowComments(this.props.params.id).then((res) => {
-            if(res.ok) {
-                console.info(res.data)
-                this.setState({
-                    comments: res.data
-                })
-            }
-        })
+        // 加载评论
+        this.handleScroll(null, true)
+
     }
 
     @autobind
@@ -88,17 +85,17 @@ class ArticleContent extends Component{
                     </article>
                 )
                 break;
-            case 'normal':
-            case 'direct':
-                return (
-                    <div styleName="art-content">
-                        <img styleName="art-photo" src={item.photo} alt=""/>
-                        <div styleName="art-con-inner">
-                            <p styleName="art-txt">{this.handleLink(item.content)}</p>
-                        </div>
-                    </div>
-                )
-                break;
+            //case 'normal':
+            //case 'direct':
+            //    return (
+            //        <div styleName="art-content">
+            //            <img styleName="art-photo" src={item.photo} alt=""/>
+            //            <div styleName="art-con-inner">
+            //                <p styleName="art-txt">{this.handleLink(item.content)}</p>
+            //            </div>
+            //        </div>
+            //    )
+            //    break;
             case 'share':
                 return(
                     <div styleName="art-share-card">
@@ -137,12 +134,29 @@ class ArticleContent extends Component{
         }
     }
 
+    @autobind
+    handleScroll(e, Load = ''){
+        if(Load == true || this.loading && e.target.scrollTop > (e.target.scrollHeight-e.target.clientHeight) * .99) {
+            this.loading = false
+            $http.getFollowComments(this.props.params.id, this.state.comments.length ? this.state.comments[this.state.comments.length-1]._id : '').then((res) => {
+                if(res.ok) {
+                    if(typeof res.data == 'object' && res.data.length) {
+                        this.setState({
+                            comments: [...this.state.comments, ...res.data]
+                        })
+                        this.loading = true
+                    }
+                }
+            })
+        }
+    }
+
     render(){
         let item = this.state.data
         if(item)
         return (
             <AppSlideContent>
-                <div className="slide-content-wrap">
+                <div className="slide-content-wrap" onScroll={this.handleScroll}>
                     <div styleName="article-detail">
                         <section styleName="article-content">
                             <header styleName="art-header">
@@ -189,7 +203,7 @@ class ArticleContent extends Component{
                         <section styleName="art-comments" hidden={!item.comments}>
                             <div styleName="comment-caption">全部评论 {item.comments}</div>
                             <ul>
-                                {this.state.comments && this.state.comments.map((item, index) => {
+                                {this.state.comments.length && this.state.comments.map((item, index) => {
                                     const defaultAvatar = require("../../assets/images/default-avatar.png")
                                     return (
                                         <li key={index}>

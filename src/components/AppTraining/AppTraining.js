@@ -7,9 +7,10 @@ import Utils from '../../js/Utils.js'
 import TrainingBlock from './TrainingBlock.js'
 import AppScroll from './AppScroll.js'
 
-import styles from '../../sass/appTraining.scss'
-
 import $http from '../../js/HttpRequest.js'
+import CommonAvatar from '../common/CommonAvatar.js'
+
+import styles from '../../sass/appTraining.scss'
 
 @CSSModules(styles)
 class AppTraining extends Component{
@@ -42,7 +43,7 @@ class AppTraining extends Component{
                     this.setState({trainingData: response.data})
                 }
             }).catch((error) => {
-                console.info('getDashboardStatistics:', error)
+                console.warn('getDashboardStatistics:', error)
             })
 
             $http.getRankingData().then((response) => {
@@ -50,7 +51,7 @@ class AppTraining extends Component{
                     this.setState({rankingData: response.data})
                 }
             }).catch((error) => {
-                console.info('getRankingData:', error)
+                console.warn('getRankingData:', error)
             })
 
             $http.getDashboardTraining().then((response) => {
@@ -67,7 +68,7 @@ class AppTraining extends Component{
                     console.info(response.data);
                 }
             }).catch((error) => {
-                console.info('getDashboardTraining:', error)
+                console.warn('getDashboardTraining:', error)
             })
 
             //$http.getDashboardWorkouts().then((response) => {
@@ -178,6 +179,25 @@ class AppTraining extends Component{
         )
     }
 
+    @autobind
+    getWeekRanking(){
+        let arr = []
+        if(this.state.rankingData.next)
+            arr.push(<span key={this.state.rankingData.next.user._id} data-type="next" hidden={!this.state.rankingData.next} styleName="ranking-user"><CommonAvatar userid={this.state.rankingData.next.user._id} avatar={this.state.rankingData.next.user.avatar}></CommonAvatar></span>)
+            else
+                arr.push(<span key="1" hidden="true" styleName="ranking-user"></span>)
+
+        if(this.state.rankingData.me)
+            arr.push(<span key={this.state.rankingData.me.user._id} styleName="ranking-user"><CommonAvatar userid={this.state.rankingData.me.user._id} avatar={this.state.rankingData.me.user.avatar}></CommonAvatar></span>)
+
+        if(this.state.rankingData.prev)
+            arr.push(<span key={this.state.rankingData.prev.user._id} data-type="prev" hidden={!this.state.rankingData.prev} styleName="ranking-user"><CommonAvatar userid={this.state.rankingData.prev.user._id} avatar={this.state.rankingData.prev.user.avatar}></CommonAvatar></span>)
+            else
+                arr.push(<span key="2" styleName="ranking-user"></span>)
+
+        return arr
+    }
+
     render(){
         return(
             <div className="scroll-content">
@@ -207,11 +227,7 @@ class AppTraining extends Component{
                     </Link>
                     <Link styleName="training-ranking">
                         <p styleName="training-ranking-title"><span styleName="training-ranking-num">{this.state.rankingData.me && this.state.rankingData.me.ranking} </span> {this.state.rankingData.paperwork}</p>
-                        <div >
-                            <span hidden={!this.state.rankingData.next} styleName="ranking-user"><img src={this.state.rankingData.next && this.state.rankingData.next.user.avatar} alt=""/></span>
-                            <span styleName="ranking-user"><img src={this.state.rankingData.me && this.state.rankingData.me.user.avatar} alt=""/></span>
-                            <span hidden={!this.state.rankingData.prev} styleName="ranking-user"><img src={this.state.rankingData.prev && this.state.rankingData.prev.user.avatar} alt=""/></span>
-                        </div>
+                        <div>{this.getWeekRanking()}</div>
                     </Link>
                 </section>
                 {this.getPhysicalGuide()}
