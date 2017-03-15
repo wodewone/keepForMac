@@ -8,6 +8,7 @@
   padding-left: 5px;
   width: 200px;
   display: flex;
+  position: relative;
 }
 .icon-search{
   margin-right: 3px;
@@ -22,4 +23,83 @@
   border: none;
   font-size: 12px;
   padding-right: 10px;
+}
+.search-result{
+  position: absolute;
+  width: 100%;
+  top: 32px;
+  left: 0;
+  background: $color-white;
+  z-index: $zindex-5;
+  filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.6));
+
+  &:before{
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    margin-left: -5px;
+    border: 5px solid transparent;
+    border-bottom-color: $color-white;
+  }
+}
+.result-list{
+  overflow: auto;
+  min-height: 300px;
+  max-height: 600px;
+  margin: 0;
+  padding: 0;
+
+  li{
+    border-bottom: 1px solid $border-color;
+  }
+}
+.list-header{
+  height: 30px;
+  padding: 5px 10px 5px 15px;
+  color: $color-white;
+  background: $color-gary;
+  border-bottom: 1px solid $border-color;
+  position: relative;
+
+  &:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 14px solid transparent;
+    border-left: 7px solid $keep-green;
+  }
+}
+.list-item{
+  height: 40px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  color: $color-gary;
+  font-size: $font-size-12;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  &:hover{
+    background: $color-back;
+  }
+
+  &:nth-child(2n-1){
+    background: $color-back;
+  }
+}
+.item-pic{
+  display: inline-block;
+  width: 30px;
+  margin-right: 10px;
+}
+.item-avatar{
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-right: 10px;
 }

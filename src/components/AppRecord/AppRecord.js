@@ -137,17 +137,24 @@ class AppRecord extends Component{
     handleScroll(e, LOAD = ''){
         if(LOAD == true || (this.loading && e.target.scrollTop > (e.target.scrollHeight-e.target.clientHeight) * .99)) {
             this.loading = false
-            $http.getFollowTimeline(this.state.listData.length ? this.state.listData[this.state.listData.length - 1]._id : '').then((res) => {
+            $http.getFollowTimeline(LOAD ? '' : this.state.listData[this.state.listData.length - 1]._id).then((res) => {
                 if (res.ok) {
                     let data = res.data.timeline || []
                     if(typeof data == 'object' && data.length) {
+                        console.info(data)
                         // 仅缓存第一次加载的数据
                         if(!this.state.listData.length)
                             Utils.storage.set('followTimeline', data)
 
-                        this.setState({
-                            listData: [...this.state.listData, ...data]
-                        })
+                        if(LOAD)
+                            this.setState({
+                                listData: data
+                            })
+                        else
+                            this.setState({
+                                listData: [...this.state.listData, ...data]
+                            })
+
                         this.loading = true
                     }
                 }

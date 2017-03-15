@@ -50,6 +50,11 @@ export default {
         })
     }
 
+    /* 全局搜索 ***/
+    ,getGlobalSearch(keyword){
+        return this.httpGet('/search/v3/global?keyword='+ keyword +'&trainer_gender=m')
+    }
+
 
     /* Dashboard *********************************************************************/
 

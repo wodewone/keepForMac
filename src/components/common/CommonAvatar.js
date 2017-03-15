@@ -20,9 +20,16 @@ class CommonAvatar extends Component{
         })
     }
 
+    @autobind
+    handleError(e){
+        console.info(e.target.src)
+        e.target.src = require('../../assets/images/default-avatar.png')
+    }
+
+
     render(){
         return(
-            <img className="user-avatar" onClick={this.handleClick} src={this.props.avatar ? `${this.props.avatar}?imageMogr2/thumbnail/!100x100r` : require('../../assets/images/default-avatar.png')} alt=""/>
+            <img onError={this.handleError} className="user-avatar" onClick={this.handleClick} src={this.props.avatar ? `${this.props.avatar}?imageMogr2/thumbnail/!100x100r` : require('../../assets/images/default-avatar.png')} alt=""/>
         )
     }
 }
