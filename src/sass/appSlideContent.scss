@@ -15,7 +15,7 @@
   width: 100%;
   height: 100%;
   transition: background .35s;
-  background: rgba(0,0,0,.45);
+  background: rgba(0,0,0,.66);
 }
 .slide-content {
   position: absolute;
@@ -24,7 +24,7 @@
   width: 75%;
   height: 100%;
   background: $body-color;
-  transition: right .35s ease-out;
+  transition: right .25s ease-in-out;
   box-shadow: -2px 0 15px rgba(0, 0, 0, .6);
 }
 .slide-content.active {
@@ -37,7 +37,6 @@
 }
 .button-slide-goback{
   transition: opacity .5s .5s, transform .5s .5s;
-  transform: translateX(-10px);
   opacity: 0;
   cursor: pointer;
   border: none;
@@ -50,8 +49,18 @@
   color: $color-white;
 
   &:hover{
-    animation: buttonFloat .5s;
-    animation-fill-mode: forwards;
+  //  animation: buttonFloat .5s;
+  //  animation-fill-mode: forwards;
+
+    i{
+      border-radius: 50%;
+      background: rgba(0,0,0, .8);
+      transition: all .35s;
+    }
+  }
+
+  i{
+    filter: drop-shadow(0 0 3px $color-white)
   }
 }
 @keyframes buttonFloat {

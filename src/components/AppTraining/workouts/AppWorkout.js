@@ -5,7 +5,9 @@ import autobind from 'autobind-decorator'
 import moment from 'moment'
 import Utils from '../../../js/Utils.js'
 import $http from '../../../js/HttpRequest.js'
+
 import PioneerList from '../../common/PioneerList.js'
+import CommonAvatar from '../../common/CommonAvatar.js'
 
 import styles from '../../../sass/appWorkouts.scss'
 
@@ -83,7 +85,8 @@ class AppWorkout extends Component{
                         </div>
                         <div>
                             <div styleName="dynamic-user">
-                                <img styleName="item-avatar" src={item.author.avatar} alt=""/> {item.author.username} &nbsp; <span styleName="dynamic-time">{completeTime}</span>
+                                <span styleName="item-avatar"><CommonAvatar userid={item.author._id} avatar={item.author.avatar}></CommonAvatar></span>
+                                {item.author.username} &nbsp; <span styleName="dynamic-time">{completeTime}</span>
                             </div>
                         </div>
                     </div>

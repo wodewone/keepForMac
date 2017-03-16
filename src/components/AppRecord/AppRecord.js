@@ -137,7 +137,7 @@ class AppRecord extends Component{
     handleScroll(e, LOAD = ''){
         if(LOAD == true || (this.loading && e.target.scrollTop > (e.target.scrollHeight-e.target.clientHeight) * .99)) {
             this.loading = false
-            $http.getFollowTimeline(LOAD ? '' : this.state.listData[this.state.listData.length - 1]._id).then((res) => {
+            $http.getFollowTimeline(LOAD == true ? '' : this.state.listData[this.state.listData.length - 1]._id).then((res) => {
                 if (res.ok) {
                     let data = res.data.timeline || []
                     if(typeof data == 'object' && data.length) {
@@ -146,7 +146,7 @@ class AppRecord extends Component{
                         if(!this.state.listData.length)
                             Utils.storage.set('followTimeline', data)
 
-                        if(LOAD)
+                        if(LOAD == true)
                             this.setState({
                                 listData: data
                             })

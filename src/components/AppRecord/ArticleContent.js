@@ -79,40 +79,49 @@ class ArticleContent extends Component{
         switch (item.type){
             case 'article':
                 return (
-                    <article styleName="art-blur-inner">
-                        <div styleName="inner-back" style={{backgroundImage: `url(${item.photo})`}}></div>
-                        <p styleName="card-title">{this.handleText(item.title)}</p>
-                        <p styleName="card-desc">{this.handleText(item.content)}</p>
-                    </article>
+                    <div styleName="article-card">
+                        <img src={item.photo ? `${item.photo}` : ''} alt=""/>
+                        <article styleName="art-blur-inner">
+                            <div styleName="inner-back" style={{backgroundImage: `url(${item.photo})`}}></div>
+                            <p styleName="card-title">{this.handleText(item.title)}</p>
+                            <p styleName="card-desc">{this.handleText(item.content)}</p>
+                        </article>
+                    </div>
                 )
                 break;
-            //case 'normal':
-            //case 'direct':
-            //    return (
-            //        <div styleName="art-content">
-            //            <img styleName="art-photo" src={item.photo} alt=""/>
-            //            <div styleName="art-con-inner">
-            //                <p styleName="art-txt">{this.handleLink(item.content)}</p>
-            //            </div>
-            //        </div>
-            //    )
-            //    break;
+            case 'normal':
+            case 'direct':
+                return (
+                    <div>
+                        <img hidden={!item.photo} src={item.photo} alt=""/>
+                        <p styleName="article-txt">{this.handleLink(item.content)}</p>
+                    </div>
+                )
+                break;
             case 'share':
                 return(
-                    <div styleName="art-share-card">
-                        <div styleName="card-img" style={{backgroundImage:`url(${item.shareCard.image})`}}></div>
-                        <div styleName="card-inner">
-                            <p styleName="card-title">{this.handleText(item.shareCard.title)}</p>
-                            <p styleName="card-desc">{this.handleText(item.shareCard.content)}</p>
+                    <div>
+                        <img hidden={!item.photo} src={item.photo} alt=""/>
+                        <p styleName="article-txt">{this.handleLink(item.content)}</p>
+                        <div styleName="art-share-card">
+                            <div styleName="card-img" style={{backgroundImage:`url(${item.shareCard.image})`}}></div>
+                            <div styleName="card-inner">
+                                <p styleName="card-title">{this.handleText(item.shareCard.title)}</p>
+                                <p styleName="card-desc">{this.handleText(item.shareCard.content)}</p>
+                            </div>
                         </div>
                     </div>
                 )
                 break;
             case 'run':
                 return(
-                    <div styleName="art-run-card">
-                        <p styleName="art-run-title"><img width="18" src={item.meta.icon} alt=""/> {this.handleText(item.meta.title)}</p>
-                        <img src={item.meta.picture} alt=""/>
+                    <div>
+                        <img hidden={!item.photo} src={item.photo} alt=""/>
+                        <p styleName="article-txt">{this.handleLink(item.content)}</p>
+                        <div styleName="art-run-card">
+                            <p styleName="art-run-title"><img width="18" src={item.meta.icon} alt=""/> {this.handleText(item.meta.title)}</p>
+                            <img src={item.meta.picture} alt=""/>
+                        </div>
                     </div>
                 )
                 break;
@@ -179,8 +188,6 @@ class ArticleContent extends Component{
                                 <span styleName="header-time">{moment(new Date()).diff(moment(item.created), 'h') < 22 ? moment(item.created).fromNow() : moment(item.created).format('YYYY/ MM /DD HH:mm')}</span>
                             </header>
                             <section styleName="art-wrap">
-                                <img hidden={!item.photo} src={item.photo} alt=""/>
-                                <p styleName="article-txt">{this.handleLink(item.content)}</p>
                                 {this.getArticleDetail(item)}
                                 <p styleName="article-other"><span hidden={!(item.externalShareCount + item.internalShareCount)}>{item.externalShareCount + item.internalShareCount} 分享</span>  <span hidden={!item.favoriteCount}> {item.favoriteCount} 收藏</span></p>
                             </section>

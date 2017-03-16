@@ -37,7 +37,7 @@ class CommonArticle extends Component {
             case 'article':
                 return (
                     <Link to={`/article/${item._id}`} styleName="article-card">
-                        <img src={item.photo ? `${item.photo}?imageMogr2/thumbnail/!300` : ''} alt=""/>
+                        <img src={item.photo ? `${item.photo}?imageMogr2/thumbnail/!600` : ''} alt=""/>
                         <article styleName="art-blur-inner">
                             <div styleName="inner-back" style={{backgroundImage: `url(${item.photo})`}}></div>
                             <p styleName="card-title">{handleText(item.title)}</p>
@@ -86,7 +86,7 @@ class CommonArticle extends Component {
                             </div>
                         </div>
                         <div styleName="art-run-card">
-                            <p styleName="art-run-title"><img width="18" src={item.meta.icon} alt=""/> {handleText(item.meta.title)}</p>
+                            <p styleName="art-run-title"><img width="18" src={item.meta.icon} alt=""/> <span dangerouslySetInnerHTML={{__html: item.meta.title}}></span></p>
                             <img src={item.photo ? `${item.meta.picture}?imageMogr2/thumbnail/!300` : ''} alt=""/>
                         </div>
                     </div>

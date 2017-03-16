@@ -97,7 +97,7 @@ class UserContent extends Component{
                     <div styleName="user-training-line">累计训练 <div styleName="user-training-data">{this.state.trainings.totalDuration} 分钟</div></div>
                     <div styleName="user-training-line">训练次数 <div styleName="user-training-data">{this.state.trainings.totalTraining} 次</div></div>
                     <div styleName="user-training-line">训练天数 <div styleName="user-training-data">{this.state.trainings.totalTrainingDay} 天</div></div>
-                    <div styleName="user-training-line">最长天数 <div styleName="user-training-data">{this.state.trainings.maxCombo} 天</div></div>
+                    <div styleName="user-training-line">最长连续 <div styleName="user-training-data">{this.state.trainings.maxCombo} 天</div></div>
                     <div styleName="user-training-line">连续训练 <div styleName="user-training-data">{this.state.trainings.currentCombo} 天</div></div>
                     <div styleName="user-training-line">累计消耗 <div styleName="user-training-data">{this.state.trainings.totalCalorie} 千卡</div></div>
                     <div styleName="both-line">

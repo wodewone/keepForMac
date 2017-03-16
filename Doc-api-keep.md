@@ -194,6 +194,11 @@
 * 添加关注 - `https://api.gotokeep.com/v1.1/people/[userid]/unfollow`
 
 
+### Gobal Search
+
+* 全局搜索 - `https://api.gotokeep.com/search/v3/global?keyword=[keyword]&trainer_gender=m`
+
+
 ### Other
 
 * `https://store.gotokeep.com/api/v1.0/userProfiles`
