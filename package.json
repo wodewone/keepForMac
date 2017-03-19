@@ -1,6 +1,6 @@
 {
   "name": "keep-for-mac",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "An keep app for mac",
   "author": "wodewone",
   "main": "./main.js",
