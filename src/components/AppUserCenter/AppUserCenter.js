@@ -8,7 +8,7 @@ class AppUserCenter extends Component{
     render(){
         return(
             <div className="scroll-content">
-                <div>个人中心</div>
+                <div>个人中心s</div>
             </div>
         )
     }
