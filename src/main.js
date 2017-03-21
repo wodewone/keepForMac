@@ -39,9 +39,10 @@ ReactDOM.render(
                 <Route path='/article/:id' component={ArticleContent}></Route>
             </Route>
             <Route path='user-center' component={AppUserCenter}></Route>
-            <Route path='*' component={AppTraining}></Route>
         </Route>
         <Route path='/login' component={AppLogin}></Route>
+
+        <Route path='*' component={AppLogin}></Route>
     </Router>,
     document.getElementById('app')
 )

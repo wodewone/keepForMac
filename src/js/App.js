@@ -57,7 +57,7 @@ class App extends Component{
 
     @autobind
     componentWillMount(){
-        console.warn(this.props.router.routes)
+        //console.warn(this.props.router.routes)
         const userData = Utils.storage.get('userData') || {}
 
         if(userData._id) {

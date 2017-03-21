@@ -59,9 +59,9 @@ class AppTraining extends Component{
                     this.setState({
                         trainingGuidance: response.data[0],
                         trainingSchedules: response.data[1],
-                        trainingWorkouts: response.data[2],
-                        recommendCourses: response.data[3],
-                        recommendBook: response.data[4],
+                        //trainingWorkouts: response.data[2],
+                        recommendCourses: response.data[2],
+                        recommendBook: response.data[3],
                     })
                     //Utils.storage.set('trainingPlan',response.data)
                     Utils.storage.set('trainingWorkouts',response.data)
@@ -71,19 +71,19 @@ class AppTraining extends Component{
                 console.warn('getDashboardTraining:', error)
             })
 
-            //$http.getDashboardWorkouts().then((response) => {
-            //    if (response.ok) {
-            //        this.setState({
-            //            trainingWorkouts: response.data.workouts
-            //        })
-            //        Utils.storage.set('trainingWorkouts',response.data)
-            //    }
-            //}).catch((error) => {
-            //    console.info('getDashboardWorkouts:', error)
-            //})
         } else {
             this.props.router.replace('/login')
         }
+
+        //$http.getDashboardWorkouts().then((response) => {
+        //    if (response.ok) {
+        //        this.setState({
+        //            trainingWorkouts: response.data.workouts
+        //        })
+        //    }
+        //}).catch((error) => {
+        //    console.info('getDashboardWorkouts:', error)
+        //})
     }
 
     @autobind
