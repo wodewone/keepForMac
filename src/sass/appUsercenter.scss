@@ -1,8 +1,12 @@
 @import "variables";
 
+.page-content{
+  background: $color-white;
+}
+
 .center-header{
   position: relative;
-  height: 220px;
+  height: 50%;
   overflow: hidden;
 
   &:hover .header-back{
@@ -25,21 +29,52 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,.3);
+  background: rgba(0,0,0,.5);
   display: flex;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 30px;
 }
 
 .user-avatar{
-  width: 120px;
-  height: 120px;
-  margin-right: 20px;
+  width: 150px;
+  height: 150px;
+  margin-right: 30px;
+  border-radius: 5px;
 }
-
+.user-info{
+  flex: 1;
+  line-height: 1.5;
+}
 .user-name{
   font-size: $font-size-24;
   color: $color-white;
   font-weight: bold;
-  text-shadow: 0 0 10px #fff;
+  text-shadow: 0 2px 2px #000;
+  margin: 0;
+}
+.user-desc{
+  font-size: $font-size-12;
+  color: $color-desc;
+}
+.center-main{
+  width: 100%;
+  height: 50%;
+  background: $background-menu;
+}
+.center-row{
+  display: flex;
+  height: 50%;
+  align-items: center;
+}
+.row-button{
+  flex: 1;
+  font-size: $font-size-14;
+  height: 100%;
+  background: none;
+  border: none;
+  border-bottom: 1px solid $border-color;
+
+  & + &{
+    border-left: 1px solid $border-color;
+  }
 }
