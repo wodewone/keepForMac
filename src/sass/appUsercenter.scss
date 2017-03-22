@@ -1,0 +1,45 @@
+@import "variables";
+
+.center-header{
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+
+  &:hover .header-back{
+    transform: scale(1);
+    transition: transform 1.5s;
+  }
+}
+
+.header-back{
+  width: 100%;
+  height: 100%;
+  background: $keep-background center/100% auto no-repeat;
+  transform: scale(1.2);
+
+}
+
+.header-inner{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.3);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.user-avatar{
+  width: 120px;
+  height: 120px;
+  margin-right: 20px;
+}
+
+.user-name{
+  font-size: $font-size-24;
+  color: $color-white;
+  font-weight: bold;
+  text-shadow: 0 0 10px #fff;
+}

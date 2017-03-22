@@ -1,23 +1,23 @@
-import React, { Component } from 'react'
-import CSSModules from 'react-css-modules'
-import autobind from 'autobind-decorator'
-import moment from 'moment'
-import { Link } from 'react-router'
-import Utils from '../../js/Utils.js'
-import TrainingBlock from './TrainingBlock.js'
-import AppScroll from './AppScroll.js'
+import React, { Component } from "react"
+import CSSModules from "react-css-modules"
+import autobind from "autobind-decorator"
+import moment from "moment"
+import { Link } from "react-router"
+import Utils from "../../js/Utils.js"
+import TrainingBlock from "./TrainingBlock.js"
+import AppScroll from "./AppScroll.js"
 
-import $http from '../../js/HttpRequest.js'
-import CommonAvatar from '../common/CommonAvatar.js'
+import $http from "../../js/HttpRequest.js"
+import CommonAvatar from "../common/CommonAvatar.js"
 
-import styles from '../../sass/appTraining.scss'
+import styles from "../../sass/appTraining.scss"
 
 @CSSModules(styles)
 class AppTraining extends Component{
     constructor(props){
         super(props)
 
-        const localTraining = Utils.storage.get('trainingWorkouts')
+        const localTraining = Utils.storage.get("trainingWorkouts")
 
         this.state = {
             trainingGuidance: localTraining ? localTraining[0] : {},
@@ -27,14 +27,14 @@ class AppTraining extends Component{
             recommendBook: localTraining ? localTraining[4] : {},
             trainingData: {},
             rankingData: {
-                'paperwork': '本周好友训练排名'
+                "paperwork": "本周好友训练排名"
             }
         }
     }
 
     @autobind
     componentWillMount(){
-        const authentication = Utils.storage.get('authentication') || {}
+        const authentication = Utils.storage.get("authentication") || {}
 
         // 判断是否登录
         if(authentication && authentication.token) {
@@ -43,7 +43,7 @@ class AppTraining extends Component{
                     this.setState({trainingData: response.data})
                 }
             }).catch((error) => {
-                console.warn('getDashboardStatistics:', error)
+                console.warn("getDashboardStatistics:", error)
             })
 
             $http.getRankingData().then((response) => {
@@ -51,7 +51,7 @@ class AppTraining extends Component{
                     this.setState({rankingData: response.data})
                 }
             }).catch((error) => {
-                console.warn('getRankingData:', error)
+                console.warn("getRankingData:", error)
             })
 
             $http.getDashboardTraining().then((response) => {
@@ -63,16 +63,16 @@ class AppTraining extends Component{
                         recommendCourses: response.data[2],
                         recommendBook: response.data[3],
                     })
-                    //Utils.storage.set('trainingPlan',response.data)
-                    Utils.storage.set('trainingWorkouts',response.data)
+                    //Utils.storage.set("trainingPlan",response.data)
+                    Utils.storage.set("trainingWorkouts",response.data)
                     console.info(response.data);
                 }
             }).catch((error) => {
-                console.warn('getDashboardTraining:', error)
+                console.warn("getDashboardTraining:", error)
             })
 
         } else {
-            this.props.router.replace('/login')
+            this.props.router.replace("/login")
         }
 
         //$http.getDashboardWorkouts().then((response) => {
@@ -82,7 +82,7 @@ class AppTraining extends Component{
         //        })
         //    }
         //}).catch((error) => {
-        //    console.info('getDashboardWorkouts:', error)
+        //    console.info("getDashboardWorkouts:", error)
         //})
     }
 
@@ -93,12 +93,12 @@ class AppTraining extends Component{
             return false
 
         const lesson = schedule.schedule
-        const startDate = moment(moment(lesson.startDate).format('YYYYMMDD')).diff(moment().format('YYYYMMDD'), 'd')
+        const startDate = moment(moment(lesson.startDate).format("YYYYMMDD")).diff(moment().format("YYYYMMDD"), "d")
         const workouts = lesson.schedule.days
         const totalPlansDays = lesson.schedule.totalDaysCount
         const successDays = 1-startDate < totalPlansDays ? 1-startDate : totalPlansDays
         let workTotalTime = []
-        let dateTips = ''
+        let dateTips = ""
 
         for(let item of workouts){
             workTotalTime = [...workTotalTime, ...item.workouts]
@@ -108,7 +108,7 @@ class AppTraining extends Component{
 
         switch (true) {
             case startDate <= -totalPlansDays:
-                dateTips = '已过期'
+                dateTips = "已过期"
                 break
 
             case startDate == 0:
@@ -116,15 +116,15 @@ class AppTraining extends Component{
                 break
 
             case startDate == 1:
-                dateTips = '课程将于明天开始，准备好了吗？'
+                dateTips = "课程将于明天开始，准备好了吗？"
                 break
 
             case startDate > 1:
-                dateTips = `课程将于 ${moment(lesson.startDate).format('MM')}/${moment(lesson.startDate).format('DD')} 开始`
+                dateTips = `课程将于 ${moment(lesson.startDate).format("MM")}/${moment(lesson.startDate).format("DD")} 开始`
                 break
 
             default:
-                dateTips = ''
+                dateTips = ""
         }
 
         if (!dateTips) {
@@ -171,7 +171,7 @@ class AppTraining extends Component{
 
         return(
             <section hidden={!data.physicalGuide.launch} className={`margin-bottom white-background`}>
-                <p styleName="guide-tips"><i style={{marginLeft: '-3px'}} className={`iconfont icon-symbol fz18`}></i><br/>{data.physicalGuide.tips}</p>
+                <p styleName="guide-tips"><i style={{marginLeft: "-3px"}} className={`iconfont icon-symbol fz18`}></i><br/>{data.physicalGuide.tips}</p>
                 <div className="text-center">
                     <Link styleName="button-guide-start" >进行运动能力测试</Link>
                 </div>
@@ -208,7 +208,7 @@ class AppTraining extends Component{
                             <i className={`iconfont icon-more pull-right`}></i>
                         </div>
                         <div className="text-center">
-                            <span style={{fontSize: '50px'}}>{this.state.trainingData.totalDuration}</span> 分钟
+                            <span style={{fontSize: "50px"}}>{this.state.trainingData.totalDuration}</span> 分钟
                         </div>
                         <div styleName="training-data-other">
                             <figure styleName="other-item-first">
