@@ -20,7 +20,7 @@ class AppUserCenter extends Component{
 
     componentWillMount(){
         console.info(this.state.usercenter)
-        
+
     }
 
     render(){

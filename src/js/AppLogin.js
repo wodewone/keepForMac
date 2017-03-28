@@ -53,6 +53,8 @@ class AppLogin extends Component{
                 Utils.storage.set('userData', Base64.decode(response.data.token.split('.')[1]))
                 hashHistory.replace('/training')
             }else{
+                //return res.json()
+                console.info(response)
                 alert(response.text || '登录失败')
             }
         }, (error) => {

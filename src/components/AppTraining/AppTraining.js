@@ -17,7 +17,7 @@ class AppTraining extends Component{
     constructor(props){
         super(props)
 
-        const localTraining = Utils.storage.get("trainingWorkouts")
+        const localTraining = {} || Utils.storage.get("trainingWorkouts")
 
         this.state = {
             trainingGuidance: localTraining ? localTraining[0] : {},
@@ -37,7 +37,7 @@ class AppTraining extends Component{
         const authentication = Utils.storage.get("authentication") || {}
 
         // 判断是否登录
-        if(authentication && authentication.token) {
+        if(1 || authentication && authentication.token) {
             $http.getDashboardStatistics().then((response) => {
                 if (response.ok) {
                     this.setState({trainingData: response.data})
