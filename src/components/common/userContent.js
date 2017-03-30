@@ -82,7 +82,7 @@ class UserContent extends Component{
         return(
             <div styleName="user-container">
                 <section styleName="user-back">
-                    <div styleName="back-cover" style={{backgroundImage: `url(${this.state.user.backgroundAvatar ? this.state.user.backgroundAvatar : this.state.user.avatar}?imageMogr2/thumbnail/!400x400r)`}}></div>
+                    <div styleName="back-cover" style={{backgroundImage: `url(${this.state.user.backgroundAvatar ? this.state.user.backgroundAvatar : this.state.user.avatar}?imageMogr2/thumbnail/!300x300r)`}}></div>
                     <div styleName="user-avatar"><img src={this.state.user.avatar ? this.state.user.avatar+'?imageMogr2/thumbnail/!200x200r' : ''} alt=""/></div>
                     <div styleName="user-info-content">
                         <p styleName="user-info-name"><span>{this.state.user.username}</span></p>

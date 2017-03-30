@@ -42,7 +42,7 @@ class AppScroll extends Component{
     }
 
     render(){
-        if(!this.props.data.data){
+        if(!this.props.data || !this.props.data.data){
             return false
         }
 

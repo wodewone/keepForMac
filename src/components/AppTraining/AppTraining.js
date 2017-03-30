@@ -17,7 +17,7 @@ class AppTraining extends Component{
     constructor(props){
         super(props)
 
-        const localTraining = {} || Utils.storage.get("trainingWorkouts")
+        const localTraining = Utils.storage.get("trainingWorkouts")
 
         this.state = {
             trainingGuidance: localTraining ? localTraining[0] : {},
@@ -37,7 +37,7 @@ class AppTraining extends Component{
         const authentication = Utils.storage.get("authentication") || {}
 
         // 判断是否登录
-        if(1 || authentication && authentication.token) {
+        if(authentication && authentication.token) {
             $http.getDashboardStatistics().then((response) => {
                 if (response.ok) {
                     this.setState({trainingData: response.data})
@@ -57,15 +57,15 @@ class AppTraining extends Component{
             $http.getDashboardTraining().then((response) => {
                 if (response.ok) {
                     this.setState({
-                        trainingGuidance: response.data[0],
-                        trainingSchedules: response.data[1],
-                        //trainingWorkouts: response.data[2],
+                        //trainingGuidance: response.data[0],
+                        trainingSchedules: response.data[0],
+                        trainingWorkouts: response.data[1],
                         recommendCourses: response.data[2],
                         recommendBook: response.data[3],
                     })
+
                     //Utils.storage.set("trainingPlan",response.data)
                     Utils.storage.set("trainingWorkouts",response.data)
-                    console.info(response.data);
                 }
             }).catch((error) => {
                 console.warn("getDashboardTraining:", error)
@@ -82,7 +82,7 @@ class AppTraining extends Component{
         //        })
         //    }
         //}).catch((error) => {
-        //    console.info("getDashboardWorkouts:", error)
+        //    console.warn("getDashboardWorkouts:", error)
         //})
     }
 
@@ -156,10 +156,17 @@ class AppTraining extends Component{
 
         if(workouts.plans && workouts.plans.length)
             return(
-                workouts.plans.map((item)=> {
-                    return <TrainingBlock key={item.id} data={item} />
+                workouts.plans.map((item, index)=> {
+                    return <TrainingBlock key={index} data={item} />
                 })
             )
+
+        //if(workouts.length)
+        //    return(
+        //        workouts.map((item, index)=> {
+        //            return <TrainingBlock key={index} data={item.workout} />
+        //        })
+        //    )
     }
 
     @autobind
