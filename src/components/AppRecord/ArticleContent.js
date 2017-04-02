@@ -151,6 +151,7 @@ class ArticleContent extends Component{
                     this.setState({
                         data: this.state.data
                     })
+                    this.props.onLikeEvent()
                 }
             })
         }
@@ -175,7 +176,7 @@ class ArticleContent extends Component{
     }
 
     render(){
-        let item = this.state.data
+        const item = this.state.data
         if(item)
         return (
             <AppSlideContent>
