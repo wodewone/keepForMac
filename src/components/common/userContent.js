@@ -87,7 +87,7 @@ class UserContent extends Component{
                     <div styleName="user-info-content">
                         <p styleName="user-info-name"><span>{this.state.user.username}</span></p>
                         <p styleName="user-info-desc"><span>{this.state.user.bio || '这个人很懒，啥都没写~'}</span></p>
-                        <p styleName="user-info-other"><span>{moment(new Date(this.state.user.birthday)).format('YYYY-MM-DD')}</span> | <span>{this.getCityAddress(this.state.user.citycode || '').cityName}</span></p>
+                        <p styleName="user-info-other"><span>{this.state.user.birthday ? moment(new Date(this.state.user.birthday)).format('YYYY-MM-DD') : '宇宙大爆炸时间'}</span> | <span>{this.getCityAddress(this.state.user.citycode || '').cityName}</span></p>
                         <p styleName="user-info-config">
                             {`${this.state.statistics.follow}关注`} - {`${this.state.statistics.followed}粉丝`} - {`${this.state.statistics.totalEntries}个动态`} - {`${this.state.statistics.liked}人加油`}
                         </p>

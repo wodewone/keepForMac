@@ -87,7 +87,7 @@ class CommonArticle extends Component {
                         </div>
                         <div styleName="art-run-card">
                             <p styleName="art-run-title"><img width="18" src={item.meta.icon} alt=""/> <span dangerouslySetInnerHTML={{__html: item.meta.title}}></span></p>
-                            <img src={item.photo ? `${item.meta.picture}?imageMogr2/thumbnail/!300` : ''} alt=""/>
+                            <img src={item.meta.picture ? `${item.meta.picture}?imageMogr2/thumbnail/!360` : ''} alt=""/>
                         </div>
                     </div>
                 )
