@@ -29,6 +29,7 @@ class AppUserCenter extends Component{
         const STATISTICS = this.state.usercenter.statistics
         return(
             <div className="scroll-content" styleName="page-content">
+                <section styleName="center-block"></section>
                 <header styleName="center-header">
                     <div styleName="header-back" style={{backgroundImage: `url(${USERCENTER.backgroundAvatar})`}}></div>
                     <div styleName="header-inner">
