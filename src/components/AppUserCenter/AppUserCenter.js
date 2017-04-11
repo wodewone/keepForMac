@@ -29,13 +29,17 @@ class AppUserCenter extends Component{
         const STATISTICS = this.state.usercenter.statistics
         return(
             <div className="scroll-content" styleName="page-content">
-                <section styleName="center-block"></section>
                 <header styleName="center-header">
                     <div styleName="header-back" style={{backgroundImage: `url(${USERCENTER.backgroundAvatar})`}}></div>
                     <div styleName="header-inner">
                         <img styleName="user-avatar" src={USERCENTER.avatar} alt={USERCENTER.username}/>
-                        <p styleName="user-info"><span styleName="user-name">{USERCENTER.username}</span> <br/> <span styleName="user-desc">{USERCENTER.bio}</span>
-                            <br/> {STATISTICS.totalEntries}动态 {STATISTICS.follow}关注 {STATISTICS.followed}粉丝</p>
+                        <div styleName="user-info">
+                            <p styleName="user-name">{USERCENTER.username}</p>
+                            <p styleName="user-desc">{USERCENTER.bio}</p>
+                            <p styleName="user-other">
+                                <span styleName="user-sp">{STATISTICS.totalEntries}<br/>动态</span><span styleName="user-sp">{STATISTICS.follow}<br/>关注</span><span styleName="user-sp">{STATISTICS.followed}<br/>粉丝</span>
+                            </p>
+                        </div>
                     </div>
                 </header>
                 <section styleName="center-main">

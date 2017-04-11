@@ -49,14 +49,8 @@
   color: $color-white;
 
   &:hover{
-  //  animation: buttonFloat .5s;
-  //  animation-fill-mode: forwards;
-
-    i{
-      border-radius: 50%;
-      background: rgba(0,0,0, .8);
-      transition: all .35s;
-    }
+    animation: buttonFloat .5s;
+    animation-fill-mode: forwards;
   }
 
   i{
