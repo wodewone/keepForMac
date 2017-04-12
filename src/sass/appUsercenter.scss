@@ -7,7 +7,6 @@
 .center-header{
   position: relative;
   height: 30%;
-  min-height: 200px;
   overflow: hidden;
 }
 
@@ -77,23 +76,93 @@
 }
 .center-main{
   width: 100%;
-  height: 50%;
-  background: $background-menu;
+  padding: 20px 10px;
 }
 .center-row{
   display: flex;
-  height: 50%;
   align-items: center;
 }
-.row-button{
+.row-block{
   flex: 1;
-  font-size: $font-size-14;
-  height: 100%;
-  background: none;
-  border: none;
-  border-bottom: 1px solid $border-color;
+  margin: 0 10px;
+  background: $background-menu center/auto 100% no-repeat;;
+  border: 1px solid $border-color;
 
-  & + &{
-    border-left: 1px solid $border-color;
+  &:hover{
+    .row-block-inner{
+      background: rgba($keep-green, .95);
+      box-shadow: 0 0 15px rgba($keep-green, .8);
+    }
+    .block-header{
+      margin-top: 0;
+    }
+    .block-caption{
+      margin-top: 0;
+    }
+    .todo-list{
+      opacity: 1;
+    }
+    .caption-sp{
+      display: inline;
+    }
   }
+}
+.row-block-inner{
+  overflow: hidden;
+  height: 50vh;
+  padding-top: 10%;
+  background: rgba(0,0,0,0.5);
+  transition: all .5s;
+}
+.block-header{
+  font-size: $font-size-14;
+  color: $color-white;
+  padding: 10px;
+  text-align: center;
+  margin-top: 30%;
+  transition: margin .35s;
+}
+.block-caption{
+  width: 100%;
+  padding: 10px;
+  display: block;
+  text-align: center;
+  color: $color-white;
+  margin-top: 10%;
+  font-size: $font-size-10;
+  line-height: 2;
+  transition: margin .35s;
+}
+.caption-sp{
+  font-size: $font-size-12;
+  display: block;
+}
+.todo-list{
+  margin: 0;
+  padding: 0;
+  color: $color-white;
+  opacity: 0;
+  transition: opacity .35s;
+}
+.todo-item{
+  display: flex;
+  white-space: nowrap;
+  padding: 5px 10px;
+  font-size: $font-size-12;
+}
+.todo-sp{
+  flex: 1;
+  text-align: right;
+}
+.block-training{
+  background-image: url("../assets/images/keep-center-traning.jpg");
+}
+.block-running{
+  background-image: url("../assets/images/keep-center-running.jpg");
+}
+.block-cycling{
+  background-image: url("../assets/images/keep-center-cycling.jpg");
+}
+.block-badge{
+  background-image: url("../assets/images/keep-center-badge.jpg");
 }

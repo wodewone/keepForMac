@@ -62,12 +62,7 @@ class UserContent extends Component{
 
     @autobind
     handleFriend(){
-        if(this.state.user.relation) {
-            $http.removeUserFollow(this.state.user._id)
-        }else{
-            $http.addUserFollow(this.state.user._id)
-        }
-        $http.getUserData(this.state.user._id).then((res) => {
+        const updateState = $http.getUserData(this.state.user._id).then((res) => {
             if(res.ok){
                 this.setState({
                     statistics: res.data.statistics,
@@ -76,18 +71,24 @@ class UserContent extends Component{
                 })
             }
         })
+        if(this.state.user.relation) {
+            $http.removeUserFollow(this.state.user._id).then(updateState())
+        }else{
+            $http.addUserFollow(this.state.user._id).then(updateState())
+        }
     }
 
     render(){
+        const USER = this.state.user
         return(
             <div styleName="user-container">
                 <section styleName="user-back">
-                    <div styleName="back-cover" style={{backgroundImage: `url(${this.state.user.backgroundAvatar ? this.state.user.backgroundAvatar : this.state.user.avatar}?imageMogr2/thumbnail/!300x300r)`}}></div>
-                    <div styleName="user-avatar"><img src={this.state.user.avatar ? this.state.user.avatar+'?imageMogr2/thumbnail/!200x200r' : ''} alt=""/></div>
+                    <div styleName={USER.backgroundAvatar ? 'back-cover' : 'back-cover blur'} style={{backgroundImage: `url(${USER.backgroundAvatar ? USER.backgroundAvatar : USER.avatar}?imageMogr2/thumbnail/!300x300r)`}}></div>
+                    <div styleName="user-avatar"><img src={USER.avatar ? USER.avatar+'?imageMogr2/thumbnail/!200x200r' : ''} alt=""/></div>
                     <div styleName="user-info-content">
-                        <p styleName="user-info-name"><span>{this.state.user.username}</span></p>
-                        <p styleName="user-info-desc"><span>{this.state.user.bio || '这个人很懒，啥都没写~'}</span></p>
-                        <p styleName="user-info-other"><span>{this.state.user.birthday ? moment(new Date(this.state.user.birthday)).format('YYYY-MM-DD') : '宇宙大爆炸时间'}</span> | <span>{this.getCityAddress(this.state.user.citycode || '').cityName}</span></p>
+                        <p styleName="user-info-name"><span>{USER.username}</span></p>
+                        <p styleName="user-info-desc"><span>{USER.bio || '这个人很懒，啥都没写~'}</span></p>
+                        <p styleName="user-info-other"><span>{USER.birthday ? moment(new Date(USER.birthday)).format('YYYY-MM-DD') : '宇宙大爆炸时间'}</span> | <span>{this.getCityAddress(USER.citycode || '').cityName}</span></p>
                         <p styleName="user-info-config">
                             {`${this.state.statistics.follow}关注`} - {`${this.state.statistics.followed}粉丝`} - {`${this.state.statistics.totalEntries}个动态`} - {`${this.state.statistics.liked}人加油`}
                         </p>
@@ -102,9 +103,9 @@ class UserContent extends Component{
                     <div styleName="user-training-line">累计消耗 <div styleName="user-training-data">{this.state.trainings.totalCalorie} 千卡</div></div>
                     <div styleName="both-line">
                         <Link to='' styleName="line-btn">去Ta主页(暂未开发)</Link>
-                        <button styleName={this.state.user.relation ? 'follow-btn active' : 'follow-btn'} onClick={this.handleFriend}>
-                            <span styleName="sp-default">{!this.state.user.relation ? '关注Ta' : this.state.user.relation == 2 ? '已关注' : '相互关注'}</span>
-                            <span styleName="sp-hover">{!this.state.user.relation ? '关注Ta' : '取消关注'}</span>
+                        <button styleName={USER.relation ? 'follow-btn active' : 'follow-btn'} onClick={this.handleFriend}>
+                            <span styleName="sp-default">{!USER.relation ? '关注Ta' : USER.relation == 2 ? '已关注' : '相互关注'}</span>
+                            <span styleName="sp-hover">{!USER.relation ? '关注Ta' : '取消关注'}</span>
                         </button>
                     </div>
                 </section>
