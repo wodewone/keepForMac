@@ -74,6 +74,27 @@
     border-left: 1px solid $border-color;
   }
 }
+.center-action{
+  padding: 20px 20px 0;
+}
+.center-action-inner{
+  padding: 0 12.5%;
+  display: flex;
+}
+.action-button{
+  flex: 1;
+  line-height: 1;
+  padding: 10px;
+  border: 1px solid $border-color;
+  border-radius: 30px;
+  font-size: $font-size-14;
+  background: $background-menu;
+  color: $keep-gary;
+
+  & + &{
+    margin-left: 20px;
+  }
+}
 .center-main{
   width: 100%;
   padding: 20px 10px;
@@ -109,7 +130,7 @@
 }
 .row-block-inner{
   overflow: hidden;
-  height: 50vh;
+  height: 47vh;
   padding-top: 10%;
   background: rgba(0,0,0,0.5);
   transition: all .5s;
@@ -119,7 +140,7 @@
   color: $color-white;
   padding: 10px;
   text-align: center;
-  margin-top: 30%;
+  margin-top: 22%;
   transition: margin .35s;
 }
 .block-caption{

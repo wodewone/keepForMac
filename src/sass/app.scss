@@ -105,32 +105,39 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  .icon-discovery:before { content: "\e600"; }
-  .icon-cheer:before { content: "\e602"; }
-  .icon-girl:before { content: "\e612"; }
-  .icon-prev:before { content: "\e601"; }
-  .icon-logout:before { content: "\e6b5"; }
-  .icon-exit:before { content: "\e640"; }
-  .icon-close:before { content: "\e608"; }
-  .icon-tianjia:before { content: "\e633"; }
-  .icon-boy:before { content: "\e605"; }
-  .icon-more:before { content: "\e634"; }
-  .icon-collect:before { content: "\e68c"; }
-  .icon-goback:before { content: "\e61e"; }
-  .icon-usercenter:before { content: "\e60b"; }
-  .icon-play:before { content: "\e6c5"; }
-  .icon-keep:before { content: "\e616"; }
-  .icon-symbol:before { content: "\e696"; }
-  .icon-pause:before { content: "\e62a"; }
-  .icon-description:before { content: "\e853"; }
-  .icon-share:before { content: "\e61b"; }
-  .icon-search:before { content: "\e61d"; }
-  .icon-liked:before { content: "\e628"; }
-  .icon-training:before { content: "\e615"; }
-  .icon-comment:before { content: "\e66a"; }
-  .icon-record:before { content: "\e675"; }
-  .icon-forward:before { content: "\e854"; }
-  .icon-next:before { content: "\e855"; }
+  .icon-discovery:before{content:"\e600";}
+  .icon-cheer:before{content:"\e602";}
+  .icon-girl:before{content:"\e612";}
+  .icon-prev:before{content:"\e601";}
+  .icon-logout:before{content:"\e6b5";}
+  .icon-exit:before{content:"\e640";}
+  .icon-close:before{content:"\e608";}
+  .icon-tianjia:before{content:"\e633";}
+  .icon-boy:before{content:"\e605";}
+  .icon-more:before{content:"\e634";}
+  .icon-collect:before{content:"\e68c";}
+  .icon-paobu:before{content:"\e655";}
+  .icon-goback:before{content:"\e61e";}
+  .icon-usercenter:before{content:"\e60b";}
+  .icon-play:before{content:"\e6c5";}
+  .icon-xunlian:before{content:"\e637";}
+  .icon-lishi:before{content:"\e6a0";}
+  .icon-qixing:before{content:"\e6e9";}
+  .icon-keep:before{content:"\e616";}
+  .icon-symbol:before{content:"\e696";}
+  .icon-pause:before{content:"\e62a";}
+  .icon-tizhong:before{content:"\e68e";}
+  .icon-description:before{content:"\e853";}
+  .icon-share:before{content:"\e61b";}
+  .icon-search:before{content:"\e61d";}
+  .icon-liked:before{content:"\e628";}
+  .icon-training:before{content:"\e615";}
+  .icon-comment:before{content:"\e66a";}
+  .icon-record:before{content:"\e675";}
+  .icon-huizhang:before{content:"\e62f";}
+  .icon-forward:before{content:"\e854";}
+  .icon-next:before{content:"\e855";}
+  .icon-ding:before{content:"\e635";}
 
   .pull-left{
     float: left;
@@ -196,6 +203,16 @@
   }
   .white-background{
     background: $color-white;
+  }
+
+  .font-white{
+    color: $color-white;
+  }
+  .font-green{
+    color: $keep-green;
+  }
+  .font-gary{
+    color: $color-gary;
   }
 
   .index-content{

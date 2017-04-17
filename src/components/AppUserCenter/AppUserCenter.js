@@ -44,12 +44,19 @@ class AppUserCenter extends Component{
                         </div>
                     </div>
                 </header>
+                <section styleName="center-action">
+                    <div styleName="center-action-inner">
+                        <button styleName="action-button"><i className="iconfont icon-lishi fz24"></i></button>
+                        <button styleName="action-button"><i className="iconfont icon-collect fz24"></i></button>
+                        <button styleName="action-button"><i className="iconfont icon-tizhong fz24"></i></button>
+                    </div>
+                </section>
                 <section styleName="center-main">
                     <div styleName="center-row">
                         <article styleName="row-block block-training">
                             <div styleName="row-block-inner">
                                 <header styleName="block-header">我的训练</header>
-                                <div styleName="block-caption">累计训练 <span styleName="caption-sp">999</span> 分钟</div>
+                                <div styleName="block-caption">累计训练 <span styleName="caption-sp"><i className="iconfont icon-xunlian fz14"></i>999</span> 分钟</div>
                                 <ul styleName="todo-list">
                                     <li styleName="todo-item">训练等级 <span styleName="todo-sp">1029次</span></li>
                                     <li styleName="todo-item">训练次数 <span styleName="todo-sp">303天</span></li>
@@ -61,7 +68,7 @@ class AppUserCenter extends Component{
                         <article styleName="row-block block-running">
                             <div styleName="row-block-inner">
                                 <header styleName="block-header">我的跑步</header>
-                                <div styleName="block-caption">累计训练 <span styleName="caption-sp">999</span> 分钟</div>
+                                <div styleName="block-caption">累计训练 <span styleName="caption-sp"><i className="iconfont icon-paobu fz14"></i>999</span> 分钟</div>
                                 <ul styleName="todo-list">
                                     <li styleName="todo-item">训练等级 <span styleName="todo-sp">1029次</span></li>
                                     <li styleName="todo-item">训练次数 <span styleName="todo-sp">303天</span></li>
@@ -73,7 +80,7 @@ class AppUserCenter extends Component{
                         <article styleName="row-block block-cycling">
                             <div styleName="row-block-inner">
                                 <header styleName="block-header">我的骑行</header>
-                                <div styleName="block-caption">累计训练 <span styleName="caption-sp">999</span> 分钟</div>
+                                <div styleName="block-caption">累计训练 <span styleName="caption-sp"> <i className="iconfont icon-qixing fz14"></i>999</span> 分钟</div>
                                 <ul styleName="todo-list">
                                     <li styleName="todo-item">训练等级 <span styleName="todo-sp">1029次</span></li>
                                     <li styleName="todo-item">训练次数 <span styleName="todo-sp">303天</span></li>
@@ -85,7 +92,7 @@ class AppUserCenter extends Component{
                         <article styleName="row-block block-badge">
                             <div styleName="row-block-inner">
                                 <header styleName="block-header">我的徽章</header>
-                                <div styleName="block-caption">累计训练 <span styleName="caption-sp">999</span> 分钟</div>
+                                <div styleName="block-caption">累计训练 <span styleName="caption-sp"><i className="iconfont icon-huizhang fz14"></i>999</span> 分钟</div>
                                 <ul styleName="todo-list">
                                     <li styleName="todo-item">训练等级 <span styleName="todo-sp">1029次</span></li>
                                     <li styleName="todo-item">训练次数 <span styleName="todo-sp">303天</span></li>
