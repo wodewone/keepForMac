@@ -1,11 +1,11 @@
 @import "variables";
 @font-face {
   font-family: "iconfont";
-  src: url('../assets/iconfont/iconfont.eot?t=1487236972892');
-  src: url('../assets/iconfont/iconfont.eot?t=1487236972892#iefix') format('embedded-opentype'),
-  url('../assets/iconfont/iconfont.woff?t=1487236972892') format('woff'),
-  url('../assets/iconfont/iconfont.ttf?t=1487236972892') format('truetype'),
-  url('../assets/iconfont/iconfont.svg?t=1487236972892#iconfont') format('svg');
+  src: url('../assets/iconfont/iconfont.eot?t=14872369728922');
+  src: url('../assets/iconfont/iconfont.eot?t=14872369728922#iefix') format('embedded-opentype'),
+  url('../assets/iconfont/iconfont.woff?t=14872369728922') format('woff'),
+  url('../assets/iconfont/iconfont.ttf?t=14872369728922') format('truetype'),
+  url('../assets/iconfont/iconfont.svg?t=14872369728922#iconfont') format('svg');
 }
 :global {
   * {
@@ -113,6 +113,7 @@
   .icon-exit:before{content:"\e640";}
   .icon-close:before{content:"\e608";}
   .icon-tianjia:before{content:"\e633";}
+  .icon-setting:before{content:"\e618";}
   .icon-boy:before{content:"\e605";}
   .icon-more:before{content:"\e634";}
   .icon-collect:before{content:"\e68c";}

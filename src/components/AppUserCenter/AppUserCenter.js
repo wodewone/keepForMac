@@ -32,6 +32,7 @@ class AppUserCenter extends Component{
         return(
             <div className="scroll-content" styleName="page-content">
                 <header styleName="center-header">
+                    <a styleName="setting-button" href="javascript:;"><i className="iconfont icon-setting fz16"></i></a>
                     <div styleName="header-back" style={{backgroundImage: `url(${USERCENTER.backgroundAvatar})`}}></div>
                     <div styleName="header-inner">
                         <div styleName="user-avatar"><CommonAvatar userid={USERCENTER._id} avatar={USERCENTER.avatar}></CommonAvatar></div>
@@ -46,9 +47,9 @@ class AppUserCenter extends Component{
                 </header>
                 <section styleName="center-action">
                     <div styleName="center-action-inner">
-                        <button styleName="action-button"><i className="iconfont icon-lishi fz24"></i></button>
-                        <button styleName="action-button"><i className="iconfont icon-collect fz24"></i></button>
-                        <button styleName="action-button"><i className="iconfont icon-tizhong fz24"></i></button>
+                        <button styleName="action-button"><i className="iconfont icon-lishi fz24"></i> 训练历史</button>
+                        <button styleName="action-button"><i className="iconfont icon-collect fz24"></i> 我的收藏</button>
+                        <button styleName="action-button"><i className="iconfont icon-tizhong fz24"></i> 身体数据</button>
                     </div>
                 </section>
                 <section styleName="center-main">

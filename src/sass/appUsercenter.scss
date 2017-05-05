@@ -9,6 +9,19 @@
   height: 30%;
   overflow: hidden;
 }
+.setting-button{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: block;
+  color: $color-white;
+  z-index: $zindex-2;
+
+  &:hover,
+  &:focus{
+    color: $color-white;
+  }
+}
 
 .header-back{
   width: 100%;
@@ -83,16 +96,28 @@
 }
 .action-button{
   flex: 1;
-  line-height: 1;
+  line-height: 0.9;
   padding: 10px;
-  border: 1px solid $border-color;
+  border: 1px solid $color-desc;
   border-radius: 30px;
   font-size: $font-size-14;
-  background: $background-menu;
+  background: $color-desc;
   color: $keep-gary;
+  transition: all .35s;
+
+  i{
+    vertical-align: middle;
+    margin-top: -1px;
+  }
 
   & + &{
     margin-left: 20px;
+  }
+
+  &:hover{
+    border-color: $color-white;
+    background: $keep-green;
+    color: $color-white;
   }
 }
 .center-main{

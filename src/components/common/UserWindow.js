@@ -25,7 +25,7 @@ export default {
             'backgroundColor': '#584f5f',
             'alwaysOnTop': true,
             //'show': false,
-            //'resizable': false,
+            'resizable': false,
         })
         this.winUser.loadURL(`file://${$dirname}/userContent.html`)
         this.winUser.on('close', () =>{

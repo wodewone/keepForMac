@@ -1,6 +1,5 @@
-webpackJsonp([0],{
-
-/***/ 0:
+webpackJsonp([0],[
+/* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(1);
@@ -9,8 +8,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 1:
+/* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(__resourceQuery) {var url = __webpack_require__(2);
@@ -145,15 +143,13 @@ webpackJsonp([0],{
 	/* WEBPACK VAR INJECTION */}.call(exports, "?http://localhost:3000"))
 
 /***/ },
-
-/***/ 2:
+/* 2 */
 /***/ function(module, exports) {
 
 	module.exports = require("url");
 
 /***/ },
-
-/***/ 3:
+/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -165,19 +161,17 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 4:
+/* 4 */
 /***/ function(module, exports) {
 
 	'use strict';
 	module.exports = function () {
-		return /[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g;
+		return /[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-PRZcf-nqry=><]/g;
 	};
 
 
 /***/ },
-
-/***/ 5:
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var SockJS = __webpack_require__(6);
@@ -224,8 +218,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 6:
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -241,8 +234,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 7:
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -266,8 +258,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 8:
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -338,10 +329,11 @@ webpackJsonp([0],{
 
 	WebSocketTransport.prototype.close = function() {
 	  debug('close');
-	  if (this.ws) {
-	    this.ws.close();
-	  }
+	  var ws = this.ws;
 	  this._cleanup();
+	  if (ws) {
+	    ws.close();
+	  }
 	};
 
 	WebSocketTransport.prototype._cleanup = function() {
@@ -371,8 +363,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 9:
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -451,8 +442,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 10:
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -487,15 +477,13 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 11:
+/* 11 */
 /***/ function(module, exports) {
 
 	module.exports = require("crypto");
 
 /***/ },
-
-/***/ 12:
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -548,8 +536,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 13:
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -714,7 +701,7 @@ webpackJsonp([0],{
 	          address = address.slice(0, index);
 	        }
 	      }
-	    } else if (index = parse.exec(address)) {
+	    } else if ((index = parse.exec(address))) {
 	      url[key] = index[1];
 	      address = address.slice(0, index.index);
 	    }
@@ -792,7 +779,7 @@ webpackJsonp([0],{
 	 * @returns {URL}
 	 * @api public
 	 */
-	URL.prototype.set = function set(part, value, fn) {
+	function set(part, value, fn) {
 	  var url = this;
 
 	  switch (part) {
@@ -873,7 +860,7 @@ webpackJsonp([0],{
 	 * @returns {String}
 	 * @api public
 	 */
-	URL.prototype.toString = function toString(stringify) {
+	function toString(stringify) {
 	  if (!stringify || 'function' !== typeof stringify) stringify = qs.stringify;
 
 	  var query
@@ -898,7 +885,9 @@ webpackJsonp([0],{
 	  if (url.hash) result += url.hash;
 
 	  return result;
-	};
+	}
+
+	URL.prototype = { set: set, toString: toString };
 
 	//
 	// Expose the URL parser and some additional properties that might be useful for
@@ -912,8 +901,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 14:
+/* 14 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -957,8 +945,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 15:
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1017,8 +1004,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 16:
+/* 16 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1085,8 +1071,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 17:
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -1102,8 +1087,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 18:
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -1148,20 +1132,20 @@ webpackJsonp([0],{
 	  // NB: In an Electron preload script, document will be defined but not fully
 	  // initialized. Since we know we're in Chrome, we'll just detect this case
 	  // explicitly
-	  if (typeof window !== 'undefined' && 'process' in window && window.process.type === 'renderer') {
+	  if (typeof window !== 'undefined' && window && typeof window.process !== 'undefined' && window.process.type === 'renderer') {
 	    return true;
 	  }
 
 	  // is webkit? http://stackoverflow.com/a/16459606/376773
 	  // document is undefined in react-native: https://github.com/facebook/react-native/pull/1632
-	  return (typeof document !== 'undefined' && 'WebkitAppearance' in document.documentElement.style) ||
+	  return (typeof document !== 'undefined' && document && 'WebkitAppearance' in document.documentElement.style) ||
 	    // is firebug? http://stackoverflow.com/a/398120/376773
-	    (typeof window !== 'undefined' && window.console && (console.firebug || (console.exception && console.table))) ||
+	    (typeof window !== 'undefined' && window && window.console && (console.firebug || (console.exception && console.table))) ||
 	    // is firefox >= v31?
 	    // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
-	    (navigator.userAgent && navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31) ||
+	    (typeof navigator !== 'undefined' && navigator && navigator.userAgent && navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31) ||
 	    // double check webkit in userAgent just in case we are in a worker
-	    (navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/));
+	    (typeof navigator !== 'undefined' && navigator && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/));
 	}
 
 	/**
@@ -1203,7 +1187,7 @@ webpackJsonp([0],{
 	  // figure out the correct index to insert the CSS into
 	  var index = 0;
 	  var lastC = 0;
-	  args[0].replace(/%[a-z%]/g, function(match) {
+	  args[0].replace(/%[a-zA-Z%]/g, function(match) {
 	    if ('%%' === match) return;
 	    index++;
 	    if ('%c' === match) {
@@ -1258,13 +1242,15 @@ webpackJsonp([0],{
 	function load() {
 	  var r;
 	  try {
-	    return exports.storage.debug;
+	    r = exports.storage.debug;
 	  } catch(e) {}
 
 	  // If debug isn't set in LS, and we're in Electron, try to load $DEBUG
-	  if (typeof process !== 'undefined' && 'env' in process) {
-	    return ({"NODE_ENV":undefined}).DEBUG;
+	  if (!r && typeof process !== 'undefined' && 'env' in process) {
+	    r = ({"NODE_ENV":undefined}).DEBUG;
 	  }
+
+	  return r;
 	}
 
 	/**
@@ -1292,8 +1278,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 19:
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -1304,7 +1289,7 @@ webpackJsonp([0],{
 	 * Expose `debug()` as the module.
 	 */
 
-	exports = module.exports = createDebug.debug = createDebug.default = createDebug;
+	exports = module.exports = createDebug.debug = createDebug['default'] = createDebug;
 	exports.coerce = coerce;
 	exports.disable = disable;
 	exports.enable = enable;
@@ -1408,7 +1393,7 @@ webpackJsonp([0],{
 	    // apply env-specific formatting (colors, etc.)
 	    exports.formatArgs.call(self, args);
 
-	    var logFn = enabled.log || exports.log || console.log.bind(console);
+	    var logFn = debug.log || exports.log || console.log.bind(console);
 	    logFn.apply(self, args);
 	  }
 
@@ -1435,6 +1420,9 @@ webpackJsonp([0],{
 
 	function enable(namespaces) {
 	  exports.save(namespaces);
+
+	  exports.names = [];
+	  exports.skips = [];
 
 	  var split = (namespaces || '').split(/[\s,]+/);
 	  var len = split.length;
@@ -1498,8 +1486,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 20:
+/* 20 */
 /***/ function(module, exports) {
 
 	/**
@@ -1654,8 +1641,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 21:
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -1698,7 +1684,7 @@ webpackJsonp([0],{
 	  var prop = key
 	    .substring(6)
 	    .toLowerCase()
-	    .replace(/_([a-z])/, function (_, k) { return k.toUpperCase() });
+	    .replace(/_([a-z])/g, function (_, k) { return k.toUpperCase() });
 
 	  // coerce string value into JS value
 	  var val = ({"NODE_ENV":undefined})[key];
@@ -1719,6 +1705,11 @@ webpackJsonp([0],{
 	 */
 
 	var fd = parseInt(({"NODE_ENV":undefined}).DEBUG_FD, 10) || 2;
+
+	if (1 !== fd && 2 !== fd) {
+	  util.deprecate(function(){}, 'except for stderr(2) and stdout(1), any other usage of DEBUG_FD is deprecated. Override debug.log if you want to use a different log function (https://git.io/debug_fd)')()
+	}
+
 	var stream = 1 === fd ? process.stdout :
 	             2 === fd ? process.stderr :
 	             createWritableStdioStream(fd);
@@ -1897,36 +1888,31 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 22:
+/* 22 */
 /***/ function(module, exports) {
 
 	module.exports = require("tty");
 
 /***/ },
-
-/***/ 23:
+/* 23 */
 /***/ function(module, exports) {
 
 	module.exports = require("util");
 
 /***/ },
-
-/***/ 24:
+/* 24 */
 /***/ function(module, exports) {
 
 	module.exports = require("fs");
 
 /***/ },
-
-/***/ 25:
+/* 25 */
 /***/ function(module, exports) {
 
 	module.exports = require("net");
 
 /***/ },
-
-/***/ 26:
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	try {
@@ -1939,8 +1925,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 27:
+/* 27 */
 /***/ function(module, exports) {
 
 	if (typeof Object.create === 'function') {
@@ -1969,30 +1954,27 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 28:
+/* 28 */
 /***/ function(module, exports) {
 
 	module.exports = require("events");
 
 /***/ },
-
-/***/ 29:
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__(30).Client;
 
 
 /***/ },
-
-/***/ 30:
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// API references:
 	//
-	// * http://dev.w3.org/html5/websockets/
-	// * http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#interface-eventtarget
-	// * http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#interface-event
+	// * https://html.spec.whatwg.org/multipage/comms.html#network
+	// * https://dom.spec.whatwg.org/#interface-eventtarget
+	// * https://dom.spec.whatwg.org/#interface-event
 
 	var util   = __webpack_require__(23),
 	    driver = __webpack_require__(31),
@@ -2036,8 +2018,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 31:
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2093,8 +2074,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 32:
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2247,8 +2227,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 33:
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2400,15 +2379,13 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 34:
+/* 34 */
 /***/ function(module, exports) {
 
 	module.exports = require("stream");
 
 /***/ },
-
-/***/ 35:
+/* 35 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2449,8 +2426,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 36:
+/* 36 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2536,8 +2512,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 37:
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2681,8 +2656,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 38:
+/* 38 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2788,8 +2762,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 39:
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3269,8 +3242,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 40:
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3438,8 +3410,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 41:
+/* 41 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3544,8 +3515,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 42:
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3598,8 +3568,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 43:
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3657,8 +3626,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 44:
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3725,8 +3693,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 45:
+/* 45 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3794,8 +3761,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 46:
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3838,8 +3804,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 47:
+/* 47 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3866,8 +3831,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 48:
+/* 48 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3914,8 +3878,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 49:
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4019,8 +3982,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 50:
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4134,8 +4096,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 51:
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4263,8 +4224,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 52:
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4386,8 +4346,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 53:
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Stream      = __webpack_require__(34).Stream,
@@ -4455,6 +4414,8 @@ webpackJsonp([0],{
 	API.CLOSING    = 2;
 	API.CLOSED     = 3;
 
+	API.CLOSE_TIMEOUT = 30000;
+
 	var instance = {
 	  write: function(data) {
 	    return this.send(data);
@@ -4495,6 +4456,12 @@ webpackJsonp([0],{
 
 	    if (this.readyState !== API.CLOSED) this.readyState = API.CLOSING;
 	    this._driver.close(reason, code);
+
+	    var self = this;
+
+	    this._closeTimer = setTimeout(function() {
+	      self._beginClose('', 1006);
+	    }, API.CLOSE_TIMEOUT);
 	  },
 
 	  _configureStream: function() {
@@ -4548,7 +4515,7 @@ webpackJsonp([0],{
 	    this._closeParams = [reason, code];
 
 	    if (this._stream) {
-	      this._stream.end();
+	      this._stream.destroy();
 	      if (!this._stream.readable) this._finalizeClose();
 	    }
 	  },
@@ -4557,6 +4524,7 @@ webpackJsonp([0],{
 	    if (this.readyState === API.CLOSED) return;
 	    this.readyState = API.CLOSED;
 
+	    if (this._closeTimer) clearTimeout(this._closeTimer);
 	    if (this._pingTimer) clearInterval(this._pingTimer);
 	    if (this._stream) this._stream.end();
 
@@ -4579,8 +4547,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 54:
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Event = __webpack_require__(55);
@@ -4614,8 +4581,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 55:
+/* 55 */
 /***/ function(module, exports) {
 
 	var Event = function(eventType, options) {
@@ -4641,8 +4607,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 56:
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var util   = __webpack_require__(23),
@@ -4736,15 +4701,13 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 57:
+/* 57 */
 /***/ function(module, exports) {
 
 	module.exports = require("tls");
 
 /***/ },
-
-/***/ 58:
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Stream      = __webpack_require__(34).Stream,
@@ -4881,8 +4844,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 59:
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4929,8 +4891,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 60:
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4985,8 +4946,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 61:
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5024,21 +4984,20 @@ webpackJsonp([0],{
 	inherits(SenderReceiver, BufferedSender);
 
 	SenderReceiver.prototype.close = function() {
+	  BufferedSender.prototype.close.call(this);
 	  debug('close');
 	  this.removeAllListeners();
 	  if (this.poll) {
 	    this.poll.abort();
 	    this.poll = null;
 	  }
-	  this.stop();
 	};
 
 	module.exports = SenderReceiver;
 
 
 /***/ },
-
-/***/ 62:
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5104,7 +5063,7 @@ webpackJsonp([0],{
 	      if (err) {
 	        debug('error', err);
 	        self.emit('close', err.code || 1006, 'Sending error: ' + err);
-	        self._cleanup();
+	        self.close();
 	      } else {
 	        self.sendScheduleWait();
 	      }
@@ -5118,8 +5077,8 @@ webpackJsonp([0],{
 	  this.removeAllListeners();
 	};
 
-	BufferedSender.prototype.stop = function() {
-	  debug('stop');
+	BufferedSender.prototype.close = function() {
+	  debug('close');
 	  this._cleanup();
 	  if (this.sendStop) {
 	    this.sendStop();
@@ -5131,8 +5090,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 63:
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5195,8 +5153,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 64:
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5272,8 +5229,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 65:
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5294,8 +5250,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 66:
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5373,22 +5328,19 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 67:
+/* 67 */
 /***/ function(module, exports) {
 
 	module.exports = require("http");
 
 /***/ },
-
-/***/ 68:
+/* 68 */
 /***/ function(module, exports) {
 
 	module.exports = require("https");
 
 /***/ },
-
-/***/ 69:
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5411,8 +5363,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 70:
+/* 70 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5445,8 +5396,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 71:
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5484,8 +5434,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 72:
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5594,8 +5543,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 73:
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5628,8 +5576,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 74:
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5698,8 +5645,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 75:
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var original = __webpack_require__(76)
@@ -6017,8 +5963,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 76:
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6070,8 +6015,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 77:
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6305,8 +6249,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 78:
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6357,8 +6300,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 79:
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6397,8 +6339,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 80:
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6545,8 +6486,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 81:
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module) {/*! JSON v3.3.2 | http://bestiejs.github.io/json3 | Copyright 2012-2014, Kit Cambridge | http://kit.mit-license.org */
@@ -7455,8 +7395,8 @@ webpackJsonp([0],{
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(82)(module)))
 
 /***/ },
-
-/***/ 83:
+/* 82 */,
+/* 83 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {module.exports = __webpack_amd_options__;
@@ -7464,16 +7404,14 @@ webpackJsonp([0],{
 	/* WEBPACK VAR INJECTION */}.call(exports, {}))
 
 /***/ },
-
-/***/ 84:
+/* 84 */
 /***/ function(module, exports) {
 
-	module.exports = '1.1.1';
+	module.exports = '1.1.2';
 
 
 /***/ },
-
-/***/ 85:
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7589,8 +7527,7 @@ webpackJsonp([0],{
 	    };
 	  }
 
-	/* jshint undef: false, newcap: false */
-	/* eslint no-undef: 0, new-cap: 0 */
+	/* eslint no-undef: "off", new-cap: "off" */
 	, createHtmlfile: function(iframeUrl, errorCallback) {
 	    var axo = ['Active'].concat('Object').join('X');
 	    var doc = new global[axo]('htmlfile');
@@ -7666,8 +7603,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 86:
+/* 86 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -7697,8 +7633,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 87:
+/* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7729,8 +7664,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 88:
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7823,8 +7757,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 89:
+/* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7863,8 +7796,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 90:
+/* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7893,8 +7825,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 91:
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7934,8 +7865,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 92:
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8124,8 +8054,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 93:
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8230,8 +8159,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 94:
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8618,8 +8546,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 95:
+/* 95 */
 /***/ function(module, exports) {
 
 	/* eslint-disable */
@@ -9058,27 +8985,6 @@ webpackJsonp([0],{
 	    };
 	}
 
-	// ES5 15.5.4.20
-	// whitespace from: http://es5.github.io/#x15.5.4.20
-	var ws = '\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003' +
-	    '\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028' +
-	    '\u2029\uFEFF';
-	var zeroWidth = '\u200b';
-	var wsRegexChars = '[' + ws + ']';
-	var trimBeginRegexp = new RegExp('^' + wsRegexChars + wsRegexChars + '*');
-	var trimEndRegexp = new RegExp(wsRegexChars + wsRegexChars + '*$');
-	var hasTrimWhitespaceBug = StringPrototype.trim && (ws.trim() || !zeroWidth.trim());
-	defineProperties(StringPrototype, {
-	    // http://blog.stevenlevithan.com/archives/faster-trim-javascript
-	    // http://perfectionkills.com/whitespace-deviations/
-	    trim: function trim() {
-	        if (this === void 0 || this === null) {
-	            throw new TypeError("can't convert " + this + ' to object');
-	        }
-	        return String(this).replace(trimBeginRegexp, '').replace(trimEndRegexp, '');
-	    }
-	}, hasTrimWhitespaceBug);
-
 	// ECMA-262, 3rd B.2.3
 	// Not an ECMAScript standard, although ECMAScript 3rd Edition has a
 	// non-normative section suggesting uniform semantics and it should be
@@ -9098,8 +9004,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 96:
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9108,6 +9013,7 @@ webpackJsonp([0],{
 
 	// Some extra characters that Chrome gets wrong, and substitutes with
 	// something else on the wire.
+	// eslint-disable-next-line no-control-regex
 	var extraEscapable = /[\x00-\x1f\ud800-\udfff\ufffe\uffff\u0300-\u0333\u033d-\u0346\u034a-\u034c\u0350-\u0352\u0357-\u0358\u035c-\u0362\u0374\u037e\u0387\u0591-\u05af\u05c4\u0610-\u0617\u0653-\u0654\u0657-\u065b\u065d-\u065e\u06df-\u06e2\u06eb-\u06ec\u0730\u0732-\u0733\u0735-\u0736\u073a\u073d\u073f-\u0741\u0743\u0745\u0747\u07eb-\u07f1\u0951\u0958-\u095f\u09dc-\u09dd\u09df\u0a33\u0a36\u0a59-\u0a5b\u0a5e\u0b5c-\u0b5d\u0e38-\u0e39\u0f43\u0f4d\u0f52\u0f57\u0f5c\u0f69\u0f72-\u0f76\u0f78\u0f80-\u0f83\u0f93\u0f9d\u0fa2\u0fa7\u0fac\u0fb9\u1939-\u193a\u1a17\u1b6b\u1cda-\u1cdb\u1dc0-\u1dcf\u1dfc\u1dfe\u1f71\u1f73\u1f75\u1f77\u1f79\u1f7b\u1f7d\u1fbb\u1fbe\u1fc9\u1fcb\u1fd3\u1fdb\u1fe3\u1feb\u1fee-\u1fef\u1ff9\u1ffb\u1ffd\u2000-\u2001\u20d0-\u20d1\u20d4-\u20d7\u20e7-\u20e9\u2126\u212a-\u212b\u2329-\u232a\u2adc\u302b-\u302c\uaab2-\uaab3\uf900-\ufa0d\ufa10\ufa12\ufa15-\ufa1e\ufa20\ufa22\ufa25-\ufa26\ufa2a-\ufa2d\ufa30-\ufa6d\ufa70-\ufad9\ufb1d\ufb1f\ufb2a-\ufb36\ufb38-\ufb3c\ufb3e\ufb40-\ufb41\ufb43-\ufb44\ufb46-\ufb4e\ufff0-\uffff]/g
 	  , extraLookup;
 
@@ -9154,8 +9060,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 97:
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9211,8 +9116,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 98:
+/* 98 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -9236,8 +9140,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 99:
+/* 99 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -9265,8 +9168,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 100:
+/* 100 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -9334,8 +9236,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 101:
+/* 101 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -9351,8 +9252,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 102:
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9375,8 +9275,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 103:
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9397,8 +9296,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 104:
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9493,8 +9391,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 105:
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9524,8 +9421,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 106:
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9600,8 +9496,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 107:
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9640,8 +9535,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 108:
+/* 108 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9696,8 +9590,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 109:
+/* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9805,8 +9698,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 110:
+/* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9839,8 +9731,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 111:
+/* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -9923,8 +9814,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 112:
+/* 112 */
 /***/ function(module, exports) {
 
 	/*
@@ -9955,8 +9845,7 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 113:
+/* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9973,39 +9862,47 @@ webpackJsonp([0],{
 
 	var _reactRouter = __webpack_require__(298);
 
-	var _App = __webpack_require__(353);
+	var _App = __webpack_require__(354);
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _AppLogin = __webpack_require__(635);
+	var _AppLogin = __webpack_require__(646);
 
 	var _AppLogin2 = _interopRequireDefault(_AppLogin);
 
-	var _AppTraining = __webpack_require__(640);
+	var _AppTraining = __webpack_require__(651);
 
 	var _AppTraining2 = _interopRequireDefault(_AppTraining);
 
-	var _AppExplore = __webpack_require__(645);
+	var _AppExplore = __webpack_require__(656);
 
 	var _AppExplore2 = _interopRequireDefault(_AppExplore);
 
-	var _AppRecord = __webpack_require__(649);
+	var _AppRecord = __webpack_require__(660);
 
 	var _AppRecord2 = _interopRequireDefault(_AppRecord);
 
-	var _AppUserCenter = __webpack_require__(650);
+	var _ArticleContent = __webpack_require__(664);
+
+	var _ArticleContent2 = _interopRequireDefault(_ArticleContent);
+
+	var _HashtagContent = __webpack_require__(671);
+
+	var _HashtagContent2 = _interopRequireDefault(_HashtagContent);
+
+	var _AppUserCenter = __webpack_require__(674);
 
 	var _AppUserCenter2 = _interopRequireDefault(_AppUserCenter);
 
-	var _AppWorkout = __webpack_require__(651);
+	var _AppWorkout = __webpack_require__(681);
 
 	var _AppWorkout2 = _interopRequireDefault(_AppWorkout);
 
-	var _WorkoutDescription = __webpack_require__(654);
+	var _WorkoutDescription = __webpack_require__(682);
 
 	var _WorkoutDescription2 = _interopRequireDefault(_WorkoutDescription);
 
-	var _RequireAuth = __webpack_require__(659);
+	var _RequireAuth = __webpack_require__(684);
 
 	var _RequireAuth2 = _interopRequireDefault(_RequireAuth);
 
@@ -10027,14 +9924,20 @@ webpackJsonp([0],{
 	        _react2.default.createElement(_reactRouter.Route, { path: 'training', component: _AppTraining2.default }),
 	        _react2.default.createElement(
 	            _reactRouter.Route,
-	            { path: 'plan/:plan_id', component: _AppWorkout2.default },
+	            { path: '/plan/:plan_id', component: _AppWorkout2.default },
 	            _react2.default.createElement(_reactRouter.Route, { path: ':desc_id', component: _WorkoutDescription2.default })
 	        ),
 	        _react2.default.createElement(_reactRouter.Route, { path: 'explore', component: _AppExplore2.default }),
-	        _react2.default.createElement(_reactRouter.Route, { path: 'record', component: _AppRecord2.default }),
+	        _react2.default.createElement(
+	            _reactRouter.Route,
+	            { path: 'record', component: _AppRecord2.default },
+	            _react2.default.createElement(_reactRouter.Route, { path: '/hashtag/:tag_name', component: _HashtagContent2.default }),
+	            _react2.default.createElement(_reactRouter.Route, { path: '/article/:id', component: _ArticleContent2.default })
+	        ),
 	        _react2.default.createElement(_reactRouter.Route, { path: 'user-center', component: _AppUserCenter2.default })
 	    ),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _AppLogin2.default })
+	    _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _AppLogin2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '*', component: _AppLogin2.default })
 	), document.getElementById('app'));
 
 	// Hot Module Replacement API
@@ -10065,8 +9968,247 @@ webpackJsonp([0],{
 	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/main.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/main.js"); } } })();
 
 /***/ },
-
-/***/ 353:
+/* 114 */,
+/* 115 */,
+/* 116 */,
+/* 117 */,
+/* 118 */,
+/* 119 */,
+/* 120 */,
+/* 121 */,
+/* 122 */,
+/* 123 */,
+/* 124 */,
+/* 125 */,
+/* 126 */,
+/* 127 */,
+/* 128 */,
+/* 129 */,
+/* 130 */,
+/* 131 */,
+/* 132 */,
+/* 133 */,
+/* 134 */,
+/* 135 */,
+/* 136 */,
+/* 137 */,
+/* 138 */,
+/* 139 */,
+/* 140 */,
+/* 141 */,
+/* 142 */,
+/* 143 */,
+/* 144 */,
+/* 145 */,
+/* 146 */,
+/* 147 */,
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */,
+/* 155 */,
+/* 156 */,
+/* 157 */,
+/* 158 */,
+/* 159 */,
+/* 160 */,
+/* 161 */,
+/* 162 */,
+/* 163 */,
+/* 164 */,
+/* 165 */,
+/* 166 */,
+/* 167 */,
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */,
+/* 181 */,
+/* 182 */,
+/* 183 */,
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */,
+/* 200 */,
+/* 201 */,
+/* 202 */,
+/* 203 */,
+/* 204 */,
+/* 205 */,
+/* 206 */,
+/* 207 */,
+/* 208 */,
+/* 209 */,
+/* 210 */,
+/* 211 */,
+/* 212 */,
+/* 213 */,
+/* 214 */,
+/* 215 */,
+/* 216 */,
+/* 217 */,
+/* 218 */,
+/* 219 */,
+/* 220 */,
+/* 221 */,
+/* 222 */,
+/* 223 */,
+/* 224 */,
+/* 225 */,
+/* 226 */,
+/* 227 */,
+/* 228 */,
+/* 229 */,
+/* 230 */,
+/* 231 */,
+/* 232 */,
+/* 233 */,
+/* 234 */,
+/* 235 */,
+/* 236 */,
+/* 237 */,
+/* 238 */,
+/* 239 */,
+/* 240 */,
+/* 241 */,
+/* 242 */,
+/* 243 */,
+/* 244 */,
+/* 245 */,
+/* 246 */,
+/* 247 */,
+/* 248 */,
+/* 249 */,
+/* 250 */,
+/* 251 */,
+/* 252 */,
+/* 253 */,
+/* 254 */,
+/* 255 */,
+/* 256 */,
+/* 257 */,
+/* 258 */,
+/* 259 */,
+/* 260 */,
+/* 261 */,
+/* 262 */,
+/* 263 */,
+/* 264 */,
+/* 265 */,
+/* 266 */,
+/* 267 */,
+/* 268 */,
+/* 269 */,
+/* 270 */,
+/* 271 */,
+/* 272 */,
+/* 273 */,
+/* 274 */,
+/* 275 */,
+/* 276 */,
+/* 277 */,
+/* 278 */,
+/* 279 */,
+/* 280 */,
+/* 281 */,
+/* 282 */,
+/* 283 */,
+/* 284 */,
+/* 285 */,
+/* 286 */,
+/* 287 */,
+/* 288 */,
+/* 289 */,
+/* 290 */,
+/* 291 */,
+/* 292 */,
+/* 293 */,
+/* 294 */,
+/* 295 */,
+/* 296 */,
+/* 297 */,
+/* 298 */,
+/* 299 */,
+/* 300 */,
+/* 301 */,
+/* 302 */,
+/* 303 */,
+/* 304 */,
+/* 305 */,
+/* 306 */,
+/* 307 */,
+/* 308 */,
+/* 309 */,
+/* 310 */,
+/* 311 */,
+/* 312 */,
+/* 313 */,
+/* 314 */,
+/* 315 */,
+/* 316 */,
+/* 317 */,
+/* 318 */,
+/* 319 */,
+/* 320 */,
+/* 321 */,
+/* 322 */,
+/* 323 */,
+/* 324 */,
+/* 325 */,
+/* 326 */,
+/* 327 */,
+/* 328 */,
+/* 329 */,
+/* 330 */,
+/* 331 */,
+/* 332 */,
+/* 333 */,
+/* 334 */,
+/* 335 */,
+/* 336 */,
+/* 337 */,
+/* 338 */,
+/* 339 */,
+/* 340 */,
+/* 341 */,
+/* 342 */,
+/* 343 */,
+/* 344 */,
+/* 345 */,
+/* 346 */,
+/* 347 */,
+/* 348 */,
+/* 349 */,
+/* 350 */,
+/* 351 */,
+/* 352 */,
+/* 353 */,
+/* 354 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10083,25 +10225,25 @@ webpackJsonp([0],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactCssModules = __webpack_require__(354);
+	var _reactCssModules = __webpack_require__(355);
 
 	var _reactCssModules2 = _interopRequireDefault(_reactCssModules);
 
-	var _autobindDecorator = __webpack_require__(513);
+	var _autobindDecorator = __webpack_require__(515);
 
 	var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
 
 	var _reactRouter = __webpack_require__(298);
 
-	var _index = __webpack_require__(514);
+	var _index = __webpack_require__(516);
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _AppSearch = __webpack_require__(517);
+	var _AppSearch = __webpack_require__(519);
 
 	var _AppSearch2 = _interopRequireDefault(_AppSearch);
 
-	var _UserWindow = __webpack_require__(520);
+	var _UserWindow = __webpack_require__(640);
 
 	var _UserWindow2 = _interopRequireDefault(_UserWindow);
 
@@ -10109,7 +10251,7 @@ webpackJsonp([0],{
 
 	var _Utils2 = _interopRequireDefault(_Utils);
 
-	var _HttpRequest = __webpack_require__(523);
+	var _HttpRequest = __webpack_require__(520);
 
 	var _HttpRequest2 = _interopRequireDefault(_HttpRequest);
 
@@ -10183,9 +10325,9 @@ webpackJsonp([0],{
 	        value: function getUser() {
 	            if (this.state.user._id) return _react2.default.createElement(
 	                'div',
-	                { styleName: 'header-user' },
+	                { className: 'no-drag', styleName: 'header-user' },
 	                _react2.default.createElement('img', { onClick: function onClick() {
-	                        _Utils2.default.storage.set('userInfo', _Utils2.default.storage.get('mineInfo'));_UserWindow2.default.create('我的资料');
+	                        _Utils2.default.storage.set('userInfo', _Utils2.default.storage.get('mineInfo'));_UserWindow2.default.show('我的资料');
 	                    }, styleName: 'header-avatar', src: this.state.user.avatar, alt: '' }),
 	                _react2.default.createElement(
 	                    'ul',
@@ -10241,7 +10383,7 @@ webpackJsonp([0],{
 	    }, {
 	        key: 'componentWillMount',
 	        value: function componentWillMount() {
-	            console.warn(this.props.router.routes);
+	            //console.warn(this.props.router.routes)
 	            var userData = _Utils2.default.storage.get('userData') || {};
 
 	            if (userData._id) {
@@ -10257,19 +10399,17 @@ webpackJsonp([0],{
 	                // 获取地区信息缓存
 	                _HttpRequest2.default.getCityJson().then(function (response) {
 	                    if (response.ok) {
-	                        (function () {
-	                            _Utils2.default.storage.set('cityData', response.data);
-	                            var cityArr = [];
-	                            response.data.forEach(function (city) {
-	                                cityArr = [].concat(_toConsumableArray(cityArr), _toConsumableArray(city.children.map(function (item) {
-	                                    return {
-	                                        'cityCode': item.code,
-	                                        'cityName': city.name + ',' + item.name
-	                                    };
-	                                })));
-	                            });
-	                            _Utils2.default.storage.set('cityJson', cityArr);
-	                        })();
+	                        _Utils2.default.storage.set('cityData', response.data);
+	                        var cityArr = [];
+	                        response.data.forEach(function (city) {
+	                            cityArr = [].concat(_toConsumableArray(cityArr), _toConsumableArray(city.children.map(function (item) {
+	                                return {
+	                                    'cityCode': item.code,
+	                                    'cityName': city.name + ',' + item.name
+	                                };
+	                            })));
+	                        });
+	                        _Utils2.default.storage.set('cityJson', cityArr);
 	                    }
 	                });
 	            }
@@ -10320,7 +10460,7 @@ webpackJsonp([0],{
 	                    _react2.default.createElement(
 	                        'div',
 	                        { styleName: 'index-logo' },
-	                        _react2.default.createElement('img', { src: __webpack_require__(634), alt: '' })
+	                        _react2.default.createElement('img', { src: __webpack_require__(645), alt: '' })
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
@@ -10376,20 +10516,20 @@ webpackJsonp([0],{
 	                        ),
 	                        _react2.default.createElement(
 	                            'li',
-	                            { onClick: this.handleBuild },
+	                            null,
 	                            _react2.default.createElement(
 	                                _reactRouter.Link,
-	                                { activeClassName: 'active' },
+	                                { to: '/record', activeClassName: 'active' },
 	                                _react2.default.createElement('i', { className: 'iconfont icon-record fz18' }),
 	                                '\u52A8\u6001'
 	                            )
 	                        ),
 	                        _react2.default.createElement(
 	                            'li',
-	                            { onClick: this.handleBuild },
+	                            null,
 	                            _react2.default.createElement(
 	                                _reactRouter.Link,
-	                                { activeClassName: 'active' },
+	                                { to: '/user-center', activeClassName: 'active' },
 	                                _react2.default.createElement('i', { className: 'iconfont icon-usercenter fz18' }),
 	                                '\u6211'
 	                            )
@@ -10426,14 +10566,174 @@ webpackJsonp([0],{
 	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/js/App.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/js/App.js"); } } })();
 
 /***/ },
-
-/***/ 514:
+/* 355 */,
+/* 356 */,
+/* 357 */,
+/* 358 */,
+/* 359 */,
+/* 360 */,
+/* 361 */,
+/* 362 */,
+/* 363 */,
+/* 364 */,
+/* 365 */,
+/* 366 */,
+/* 367 */,
+/* 368 */,
+/* 369 */,
+/* 370 */,
+/* 371 */,
+/* 372 */,
+/* 373 */,
+/* 374 */,
+/* 375 */,
+/* 376 */,
+/* 377 */,
+/* 378 */,
+/* 379 */,
+/* 380 */,
+/* 381 */,
+/* 382 */,
+/* 383 */,
+/* 384 */,
+/* 385 */,
+/* 386 */,
+/* 387 */,
+/* 388 */,
+/* 389 */,
+/* 390 */,
+/* 391 */,
+/* 392 */,
+/* 393 */,
+/* 394 */,
+/* 395 */,
+/* 396 */,
+/* 397 */,
+/* 398 */,
+/* 399 */,
+/* 400 */,
+/* 401 */,
+/* 402 */,
+/* 403 */,
+/* 404 */,
+/* 405 */,
+/* 406 */,
+/* 407 */,
+/* 408 */,
+/* 409 */,
+/* 410 */,
+/* 411 */,
+/* 412 */,
+/* 413 */,
+/* 414 */,
+/* 415 */,
+/* 416 */,
+/* 417 */,
+/* 418 */,
+/* 419 */,
+/* 420 */,
+/* 421 */,
+/* 422 */,
+/* 423 */,
+/* 424 */,
+/* 425 */,
+/* 426 */,
+/* 427 */,
+/* 428 */,
+/* 429 */,
+/* 430 */,
+/* 431 */,
+/* 432 */,
+/* 433 */,
+/* 434 */,
+/* 435 */,
+/* 436 */,
+/* 437 */,
+/* 438 */,
+/* 439 */,
+/* 440 */,
+/* 441 */,
+/* 442 */,
+/* 443 */,
+/* 444 */,
+/* 445 */,
+/* 446 */,
+/* 447 */,
+/* 448 */,
+/* 449 */,
+/* 450 */,
+/* 451 */,
+/* 452 */,
+/* 453 */,
+/* 454 */,
+/* 455 */,
+/* 456 */,
+/* 457 */,
+/* 458 */,
+/* 459 */,
+/* 460 */,
+/* 461 */,
+/* 462 */,
+/* 463 */,
+/* 464 */,
+/* 465 */,
+/* 466 */,
+/* 467 */,
+/* 468 */,
+/* 469 */,
+/* 470 */,
+/* 471 */,
+/* 472 */,
+/* 473 */,
+/* 474 */,
+/* 475 */,
+/* 476 */,
+/* 477 */,
+/* 478 */,
+/* 479 */,
+/* 480 */,
+/* 481 */,
+/* 482 */,
+/* 483 */,
+/* 484 */,
+/* 485 */,
+/* 486 */,
+/* 487 */,
+/* 488 */,
+/* 489 */,
+/* 490 */,
+/* 491 */,
+/* 492 */,
+/* 493 */,
+/* 494 */,
+/* 495 */,
+/* 496 */,
+/* 497 */,
+/* 498 */,
+/* 499 */,
+/* 500 */,
+/* 501 */,
+/* 502 */,
+/* 503 */,
+/* 504 */,
+/* 505 */,
+/* 506 */,
+/* 507 */,
+/* 508 */,
+/* 509 */,
+/* 510 */,
+/* 511 */,
+/* 512 */,
+/* 513 */,
+/* 514 */,
+/* 515 */,
+/* 516 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(515);
+	var content = __webpack_require__(517);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(121)(content, {});
@@ -10442,8 +10742,8 @@ webpackJsonp([0],{
 	if(true) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept(515, function() {
-				var newContent = __webpack_require__(515);
+			module.hot.accept(517, function() {
+				var newContent = __webpack_require__(517);
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -10453,8 +10753,7 @@ webpackJsonp([0],{
 	}
 
 /***/ },
-
-/***/ 515:
+/* 517 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(116)();
@@ -10462,7 +10761,7 @@ webpackJsonp([0],{
 
 
 	// module
-	exports.push([module.id, ".Mb-bh {\n  height: 100%;\n  width: 150px;\n  float: left;\n  display: flex;\n  flex-direction: column;\n  border-right: 1px solid #eee;\n  padding: 25vh 0;\n  background: rgba(240, 240, 240, 0.7);\n  position: relative; }\n  .Mb-bh li {\n    display: flex;\n    flex: 1; }\n  .Mb-bh a {\n    outline: none;\n    display: flex;\n    width: 100%;\n    padding-left: 20px;\n    align-items: center;\n    border-left: 2px solid transparent; }\n    .Mb-bh a:hover, .Mb-bh a:focus {\n      border-left-color: #584f5f; }\n\n._1MkFd {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  opacity: .8;\n  z-index: -1;\n  filter: blur(2px);\n  overflow: hidden;\n  background: url(" + __webpack_require__(516) + ") center/cover; }\n\n._3fJ39 {\n  position: absolute;\n  top: 60px;\n  right: 0;\n  bottom: 0;\n  left: 0; }\n\n._2R7RT {\n  position: relative;\n  overflow: hidden;\n  height: 100%;\n  margin-left: 150px;\n  background: #E5ECEF; }\n\n.ZE6hx {\n  padding-top: 20px;\n  height: 60px;\n  background: #584f5f;\n  -webkit-app-region: drag;\n  display: flex;\n  border-bottom: 1px solid #584f5f; }\n  .ZE6hx ._2LnKA {\n    flex: 1;\n    align-self: center; }\n  .ZE6hx h2 {\n    flex: 1;\n    margin: 0;\n    color: #fff;\n    text-align: center;\n    align-self: center; }\n\n._3iOBj {\n  display: flex;\n  align-items: center; }\n\n.WPT6- {\n  width: 32px;\n  height: 32px;\n  line-height: 29px;\n  display: inline-block;\n  background: none;\n  border: none;\n  color: #fff;\n  cursor: pointer; }\n  .WPT6- i {\n    margin: 0; }\n  .WPT6-:active {\n    background: #473e4e; }\n  .WPT6-:last-child {\n    margin-right: 15px; }\n  .WPT6-[disabled] {\n    cursor: default;\n    color: #999; }\n\n._18Mek {\n  padding-left: 10px;\n  width: 150px;\n  display: flex;\n  align-self: center; }\n  ._18Mek img {\n    width: 80px;\n    height: 25px; }\n\n._3-6wn {\n  padding: 0 23px 0 0;\n  float: right;\n  cursor: pointer;\n  position: relative; }\n  ._3-6wn:after {\n    content: '';\n    position: absolute;\n    top: 45%;\n    right: 10px;\n    width: 0;\n    border: 4px solid transparent;\n    border-top-color: #fff; }\n  ._3-6wn:hover ._12Snl {\n    display: block; }\n\n._4a-00 {\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  border: 2px solid #00c78c; }\n\n._2hRSM {\n  color: #fff;\n  font-size: 10px; }\n\n._12Snl {\n  display: none;\n  position: absolute;\n  z-index: 50;\n  top: 120%;\n  right: 10px;\n  width: 220px;\n  padding: 0;\n  border-radius: 4px;\n  filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.5));\n  background: #fff;\n  margin: 5px 0 0; }\n  ._12Snl:before {\n    content: '';\n    position: absolute;\n    top: -15px;\n    right: 18px;\n    border: 8px solid transparent;\n    border-bottom-color: #584f5f; }\n  ._12Snl li {\n    line-height: 30px; }\n    ._12Snl li:last-child {\n      border-top: 1px solid #eee; }\n  ._12Snl a {\n    cursor: pointer;\n    font-size: 12px;\n    display: block;\n    padding: 2px 15px;\n    color: #584f5f; }\n    ._12Snl a:hover {\n      color: #fff;\n      background: #00c78c; }\n\n._1MWTN {\n  border-bottom: 1px solid #eee;\n  overflow: hidden;\n  position: relative;\n  background: #584f5f;\n  border-radius: 4px 4px 0 0; }\n  ._1MWTN:hover ._1hIft {\n    transform: scale(0.8); }\n\n._1hIft {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  transform: scale(1.01);\n  background: #584f5f no-repeat center/200% auto;\n  filter: blur(5px);\n  transition: transform 1s; }\n\n.ZllJc {\n  position: relative;\n  display: flex;\n  padding: 15px;\n  align-items: center;\n  z-index: 10;\n  color: #fff;\n  background: rgba(0, 0, 0, 0.5); }\n\n._29Ebc {\n  width: 40px;\n  height: 40px;\n  border-radius: 50%;\n  margin-right: 8px;\n  background: #584f5f;\n  border: 1px solid #00c78c; }\n\na.qF9CS {\n  border-radius: 0 0 4px 4px; }\n\na.qF9CS:hover {\n  background: #ff5065; }\n", ""]);
+	exports.push([module.id, ".Mb-bh {\n  height: 100%;\n  width: 150px;\n  float: left;\n  display: flex;\n  flex-direction: column;\n  border-right: 1px solid #eee;\n  padding: 25vh 0;\n  background: rgba(240, 240, 240, 0.7);\n  position: relative; }\n  .Mb-bh li {\n    display: flex;\n    flex: 1; }\n  .Mb-bh a {\n    outline: none;\n    display: flex;\n    width: 100%;\n    padding-left: 20px;\n    align-items: center;\n    border-left: 2px solid transparent; }\n    .Mb-bh a:hover, .Mb-bh a:focus {\n      border-left-color: #584f5f; }\n\n._1MkFd {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  opacity: .8;\n  z-index: -1;\n  filter: blur(2px);\n  overflow: hidden;\n  background: url(" + __webpack_require__(518) + ") center/cover; }\n\n._3fJ39 {\n  position: absolute;\n  top: 60px;\n  right: 0;\n  bottom: 0;\n  left: 0; }\n\n._2R7RT {\n  position: relative;\n  overflow: hidden;\n  height: 100%;\n  margin-left: 150px;\n  background: #E5ECEF; }\n\n.ZE6hx {\n  padding-top: 20px;\n  height: 60px;\n  background: #584f5f;\n  -webkit-app-region: drag;\n  display: flex;\n  border-bottom: 1px solid #584f5f; }\n  .ZE6hx ._2LnKA {\n    flex: 1;\n    align-self: center; }\n  .ZE6hx h2 {\n    flex: 1;\n    margin: 0;\n    color: #fff;\n    text-align: center;\n    align-self: center; }\n\n._3iOBj {\n  display: flex;\n  align-items: center; }\n\n.WPT6- {\n  width: 32px;\n  height: 32px;\n  line-height: 29px;\n  display: inline-block;\n  background: none;\n  border: none;\n  color: #fff;\n  cursor: pointer; }\n  .WPT6- i {\n    margin: 0; }\n  .WPT6-:active {\n    background: #473e4e; }\n  .WPT6-:last-child {\n    margin-right: 15px; }\n  .WPT6-[disabled] {\n    cursor: default;\n    color: #999; }\n\n._18Mek {\n  padding-left: 10px;\n  width: 150px;\n  display: flex;\n  align-self: center; }\n  ._18Mek img {\n    width: 80px;\n    height: 25px; }\n\n._3-6wn {\n  padding: 0 23px 0 0;\n  float: right;\n  cursor: pointer;\n  position: relative; }\n  ._3-6wn:after {\n    content: '';\n    position: absolute;\n    top: 45%;\n    right: 10px;\n    width: 0;\n    border: 4px solid transparent;\n    border-top-color: #fff; }\n  ._3-6wn:hover ._12Snl {\n    display: block; }\n\n._4a-00 {\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  border: 2px solid #23A570; }\n\n._2hRSM {\n  color: #fff;\n  font-size: 10px; }\n\n._12Snl {\n  display: none;\n  position: absolute;\n  z-index: 50;\n  top: 120%;\n  right: 10px;\n  width: 220px;\n  padding: 0;\n  border-radius: 4px;\n  filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.5));\n  background: #fff;\n  margin: 5px 0 0; }\n  ._12Snl:before {\n    content: '';\n    position: absolute;\n    top: -15px;\n    right: 18px;\n    border: 8px solid transparent;\n    border-bottom-color: #584f5f; }\n  ._12Snl li {\n    line-height: 30px; }\n    ._12Snl li:last-child {\n      border-top: 1px solid #eee; }\n  ._12Snl a {\n    cursor: pointer;\n    font-size: 12px;\n    display: block;\n    padding: 2px 15px;\n    color: #584f5f; }\n    ._12Snl a:hover {\n      color: #fff;\n      background: #23A570; }\n\n._1MWTN {\n  border-bottom: 1px solid #eee;\n  overflow: hidden;\n  position: relative;\n  background: #584f5f;\n  border-radius: 4px 4px 0 0; }\n  ._1MWTN:hover ._1hIft {\n    transform: scale(0.8); }\n\n._1hIft {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  transform: scale(1.01);\n  background: #584f5f no-repeat center/200% auto;\n  filter: blur(5px);\n  transition: transform 1s; }\n\n.ZllJc {\n  position: relative;\n  display: flex;\n  padding: 15px;\n  align-items: center;\n  z-index: 10;\n  color: #fff;\n  background: rgba(0, 0, 0, 0.5); }\n\n._29Ebc {\n  width: 40px;\n  height: 40px;\n  border-radius: 50%;\n  margin-right: 8px;\n  background: #584f5f;\n  border: 1px solid #23A570; }\n\na.qF9CS {\n  border-radius: 0 0 4px 4px; }\n\na.qF9CS:hover {\n  background: #ff5065; }\n", ""]);
 
 	// exports
 	exports.locals = {
@@ -10487,15 +10786,13 @@ webpackJsonp([0],{
 	};
 
 /***/ },
-
-/***/ 516:
+/* 518 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "images/ebd4082d.keep-menu-bg.jpg";
 
 /***/ },
-
-/***/ 517:
+/* 519 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10506,17 +10803,29 @@ webpackJsonp([0],{
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _dec, _class;
+	var _dec, _class, _desc, _value, _class2;
 
 	var _react = __webpack_require__(122);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactCssModules = __webpack_require__(354);
+	var _reactCssModules = __webpack_require__(355);
 
 	var _reactCssModules2 = _interopRequireDefault(_reactCssModules);
 
-	var _appSearch = __webpack_require__(518);
+	var _autobindDecorator = __webpack_require__(515);
+
+	var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
+
+	var _HttpRequest = __webpack_require__(520);
+
+	var _HttpRequest2 = _interopRequireDefault(_HttpRequest);
+
+	var _CommonAvatar = __webpack_require__(639);
+
+	var _CommonAvatar2 = _interopRequireDefault(_CommonAvatar);
+
+	var _appSearch = __webpack_require__(643);
 
 	var _appSearch2 = _interopRequireDefault(_appSearch);
 
@@ -10528,29 +10837,134 @@ webpackJsonp([0],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var AppSearch = (_dec = (0, _reactCssModules2.default)(_appSearch2.default), _dec(_class = function (_Component) {
+	function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+	    var desc = {};
+	    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+	        desc[key] = descriptor[key];
+	    });
+	    desc.enumerable = !!desc.enumerable;
+	    desc.configurable = !!desc.configurable;
+
+	    if ('value' in desc || desc.initializer) {
+	        desc.writable = true;
+	    }
+
+	    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+	        return decorator(target, property, desc) || desc;
+	    }, desc);
+
+	    if (context && desc.initializer !== void 0) {
+	        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+	        desc.initializer = undefined;
+	    }
+
+	    if (desc.initializer === void 0) {
+	        Object['define' + 'Property'](target, property, desc);
+	        desc = null;
+	    }
+
+	    return desc;
+	}
+
+	var AppSearch = (_dec = (0, _reactCssModules2.default)(_appSearch2.default), _dec(_class = (_class2 = function (_Component) {
 	    _inherits(AppSearch, _Component);
 
 	    function AppSearch(props) {
 	        _classCallCheck(this, AppSearch);
 
-	        return _possibleConstructorReturn(this, (AppSearch.__proto__ || Object.getPrototypeOf(AppSearch)).call(this, props));
+	        var _this = _possibleConstructorReturn(this, (AppSearch.__proto__ || Object.getPrototypeOf(AppSearch)).call(this, props));
+
+	        _this.state = {
+	            indexTag: null,
+	            content: null
+	        };
+	        return _this;
 	    }
 
 	    _createClass(AppSearch, [{
+	        key: 'getResultContent',
+	        value: function getResultContent() {
+	            var _this2 = this;
+
+	            var getItemType = function getItemType(type, single) {
+	                if (type == 'group') return false;
+
+	                switch (type) {
+	                    case 'username':
+	                        return _react2.default.createElement(
+	                            'span',
+	                            { styleName: 'item-avatar' },
+	                            _react2.default.createElement(_CommonAvatar2.default, { userid: single.id, avatar: single.pic })
+	                        );
+	                    case 'material':
+	                    case 'goods':
+	                        return _react2.default.createElement('img', { styleName: 'item-pic', src: single.pic ? single.pic + '?imageMogr2/thumbnail/!100' : '', alt: '' });
+	                }
+	            };
+
+	            if (this.state.content) {
+	                return this.state.indexTag.map(function (item, index) {
+	                    if (_this2.state.content[item.searchType].entites.length) return _react2.default.createElement(
+	                        'li',
+	                        { key: index },
+	                        _react2.default.createElement(
+	                            'header',
+	                            { styleName: 'list-header' },
+	                            item.name
+	                        ),
+	                        _this2.state.content[item.searchType].entites.map(function (single, sinIndex) {
+	                            return _react2.default.createElement(
+	                                'div',
+	                                { key: sinIndex, styleName: 'list-item' },
+	                                getItemType(item.searchType, single),
+	                                ' ',
+	                                single.title || single.desc
+	                            );
+	                        })
+	                    );
+	                });
+	            }
+	        }
+	    }, {
+	        key: 'handleSearch',
+	        value: function handleSearch(e) {
+	            var _this3 = this;
+
+	            if (e.target.value) _HttpRequest2.default.getGlobalSearch(encodeURIComponent(e.target.value)).then(function (res) {
+	                if (res.ok) {
+	                    console.info(res);
+	                    _this3.setState({
+	                        indexTag: res.data.index,
+	                        content: res.data.result
+	                    });
+	                }
+	            });else this.setState({
+	                content: null
+	            });
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'div',
 	                { styleName: 'common-search-wrap' },
 	                _react2.default.createElement('i', { styleName: 'icon-search', className: 'iconfont icon-search fz18' }),
-	                _react2.default.createElement('input', { styleName: 'common-search', type: 'search', placeholder: '\u641C\u7D22' })
+	                _react2.default.createElement('input', { styleName: 'common-search', onChange: this.handleSearch, type: 'search', placeholder: '\u641C\u7D22' }),
+	                _react2.default.createElement(
+	                    'section',
+	                    { styleName: 'search-result', hidden: !this.state.content },
+	                    _react2.default.createElement(
+	                        'ul',
+	                        { styleName: 'result-list' },
+	                        this.getResultContent()
+	                    )
+	                )
 	            );
 	        }
 	    }]);
 
 	    return AppSearch;
-	}(_react.Component)) || _class);
+	}(_react.Component), (_applyDecoratedDescriptor(_class2.prototype, 'getResultContent', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getResultContent'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleSearch', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleSearch'), _class2.prototype)), _class2)) || _class);
 	var _default = AppSearch;
 	exports.default = _default;
 	;
@@ -10570,54 +10984,126 @@ webpackJsonp([0],{
 	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppSearch.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppSearch.js"); } } })();
 
 /***/ },
-
-/***/ 518:
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(519);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(121)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(true) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept(519, function() {
-				var newContent = __webpack_require__(519);
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-
-/***/ 519:
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(116)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "._3lEoT {\n  height: 25px;\n  border-radius: 20px;\n  border: 1px solid #eee;\n  background: #fff;\n  padding-left: 5px;\n  width: 200px;\n  display: flex; }\n\n._1Vdge {\n  margin-right: 3px;\n  line-height: 24px;\n  float: left; }\n\n._2Mvad {\n  flex: 1;\n  outline: none;\n  height: 100%;\n  background: none;\n  border: none;\n  font-size: 12px;\n  padding-right: 10px; }\n", ""]);
-
-	// exports
-	exports.locals = {
-		"common-search-wrap": "_3lEoT",
-		"icon-search": "_1Vdge",
-		"common-search": "_2Mvad"
-	};
-
-/***/ },
-
-/***/ 520:
+/* 520 */,
+/* 521 */,
+/* 522 */,
+/* 523 */,
+/* 524 */,
+/* 525 */,
+/* 526 */,
+/* 527 */,
+/* 528 */,
+/* 529 */,
+/* 530 */,
+/* 531 */,
+/* 532 */,
+/* 533 */,
+/* 534 */,
+/* 535 */,
+/* 536 */,
+/* 537 */,
+/* 538 */,
+/* 539 */,
+/* 540 */,
+/* 541 */,
+/* 542 */,
+/* 543 */,
+/* 544 */,
+/* 545 */,
+/* 546 */,
+/* 547 */,
+/* 548 */,
+/* 549 */,
+/* 550 */,
+/* 551 */,
+/* 552 */,
+/* 553 */,
+/* 554 */,
+/* 555 */,
+/* 556 */,
+/* 557 */,
+/* 558 */,
+/* 559 */,
+/* 560 */,
+/* 561 */,
+/* 562 */,
+/* 563 */,
+/* 564 */,
+/* 565 */,
+/* 566 */,
+/* 567 */,
+/* 568 */,
+/* 569 */,
+/* 570 */,
+/* 571 */,
+/* 572 */,
+/* 573 */,
+/* 574 */,
+/* 575 */,
+/* 576 */,
+/* 577 */,
+/* 578 */,
+/* 579 */,
+/* 580 */,
+/* 581 */,
+/* 582 */,
+/* 583 */,
+/* 584 */,
+/* 585 */,
+/* 586 */,
+/* 587 */,
+/* 588 */,
+/* 589 */,
+/* 590 */,
+/* 591 */,
+/* 592 */,
+/* 593 */,
+/* 594 */,
+/* 595 */,
+/* 596 */,
+/* 597 */,
+/* 598 */,
+/* 599 */,
+/* 600 */,
+/* 601 */,
+/* 602 */,
+/* 603 */,
+/* 604 */,
+/* 605 */,
+/* 606 */,
+/* 607 */,
+/* 608 */,
+/* 609 */,
+/* 610 */,
+/* 611 */,
+/* 612 */,
+/* 613 */,
+/* 614 */,
+/* 615 */,
+/* 616 */,
+/* 617 */,
+/* 618 */,
+/* 619 */,
+/* 620 */,
+/* 621 */,
+/* 622 */,
+/* 623 */,
+/* 624 */,
+/* 625 */,
+/* 626 */,
+/* 627 */,
+/* 628 */,
+/* 629 */,
+/* 630 */,
+/* 631 */,
+/* 632 */,
+/* 633 */,
+/* 634 */,
+/* 635 */,
+/* 636 */,
+/* 637 */,
+/* 638 */,
+/* 639 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10626,7 +11112,15 @@ webpackJsonp([0],{
 	    value: true
 	});
 
-	var _autobindDecorator = __webpack_require__(513);
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _desc, _value, _class;
+
+	var _react = __webpack_require__(122);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _autobindDecorator = __webpack_require__(515);
 
 	var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
 
@@ -10634,7 +11128,125 @@ webpackJsonp([0],{
 
 	var _Utils2 = _interopRequireDefault(_Utils);
 
-	var _electron = __webpack_require__(522);
+	var _HttpRequest = __webpack_require__(520);
+
+	var _HttpRequest2 = _interopRequireDefault(_HttpRequest);
+
+	var _UserWindow = __webpack_require__(640);
+
+	var _UserWindow2 = _interopRequireDefault(_UserWindow);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+	    var desc = {};
+	    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+	        desc[key] = descriptor[key];
+	    });
+	    desc.enumerable = !!desc.enumerable;
+	    desc.configurable = !!desc.configurable;
+
+	    if ('value' in desc || desc.initializer) {
+	        desc.writable = true;
+	    }
+
+	    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+	        return decorator(target, property, desc) || desc;
+	    }, desc);
+
+	    if (context && desc.initializer !== void 0) {
+	        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+	        desc.initializer = undefined;
+	    }
+
+	    if (desc.initializer === void 0) {
+	        Object['define' + 'Property'](target, property, desc);
+	        desc = null;
+	    }
+
+	    return desc;
+	}
+
+	var CommonAvatar = (_class = function (_Component) {
+	    _inherits(CommonAvatar, _Component);
+
+	    function CommonAvatar(props) {
+	        _classCallCheck(this, CommonAvatar);
+
+	        return _possibleConstructorReturn(this, (CommonAvatar.__proto__ || Object.getPrototypeOf(CommonAvatar)).call(this, props));
+	    }
+
+	    // 查看用户个人信息
+
+
+	    _createClass(CommonAvatar, [{
+	        key: 'handleClick',
+	        value: function handleClick() {
+	            _HttpRequest2.default.getUserData(this.props.userid).then(function (response) {
+	                if (response.ok) {
+	                    _Utils2.default.storage.set('userInfo', response.data);
+	                    _UserWindow2.default.show('keeper - ' + response.data.user.username);
+	                }
+	            });
+	        }
+	    }, {
+	        key: 'handleError',
+	        value: function handleError(e) {
+	            console.info(e.target.src);
+	            e.target.src = __webpack_require__(642);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement('img', { onError: this.handleError, className: 'user-avatar', onClick: this.handleClick, src: this.props.avatar ? this.props.avatar + '?imageMogr2/thumbnail/!100x100r' : __webpack_require__(642), alt: '' });
+	        }
+	    }]);
+
+	    return CommonAvatar;
+	}(_react.Component), (_applyDecoratedDescriptor(_class.prototype, 'handleClick', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class.prototype, 'handleClick'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'handleError', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class.prototype, 'handleError'), _class.prototype)), _class);
+	var _default = CommonAvatar;
+	exports.default = _default;
+	;
+
+	var _temp = function () {
+	    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+	        return;
+	    }
+
+	    __REACT_HOT_LOADER__.register(CommonAvatar, 'CommonAvatar', '/Users/liucong/Documents/Github/keepForMac/src/components/common/CommonAvatar.js');
+
+	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/components/common/CommonAvatar.js');
+	}();
+
+	;
+
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/common/CommonAvatar.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/common/CommonAvatar.js"); } } })();
+
+/***/ },
+/* 640 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _autobindDecorator = __webpack_require__(515);
+
+	var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
+
+	var _Utils = __webpack_require__(521);
+
+	var _Utils2 = _interopRequireDefault(_Utils);
+
+	var _electron = __webpack_require__(641);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -10660,9 +11272,7 @@ webpackJsonp([0],{
 	            'fullscreen': false,
 	            'fullscreenable': false,
 	            'backgroundColor': '#584f5f',
-	            'alwaysOnTop': true,
-	            //'show': false,
-	            'resizable': false
+	            'alwaysOnTop': true
 	        });
 	        this.winUser.loadURL('file://' + (__dirname) + '/userContent.html');
 	        this.winUser.on('close', function () {
@@ -10677,6 +11287,8 @@ webpackJsonp([0],{
 	            if (this.winUser) {
 	                this.winUser.setTitle(title);
 	                this.winUser.focus();
+	            } else {
+	                this.create(title);
 	            }
 	        } catch (e) {
 	            console.info(e);
@@ -10699,205 +11311,70 @@ webpackJsonp([0],{
 	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/common/UserWindow.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/common/UserWindow.js"); } } })();
 
 /***/ },
+/* 641 */,
+/* 642 */
+/***/ function(module, exports) {
 
-/***/ 523:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _default2;
-
-	var _Utils = __webpack_require__(521);
-
-	var _Utils2 = _interopRequireDefault(_Utils);
-
-	var _moment = __webpack_require__(524);
-
-	var _moment2 = _interopRequireDefault(_moment);
-
-	var _autobindDecorator = __webpack_require__(513);
-
-	var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-	var hostname = 'https://api.gotokeep.com';
-
-	var serializeJSON = function serializeJSON(data) {
-	    return Object.keys(data).map(function (keyName) {
-	        return encodeURIComponent(keyName) + '=' + encodeURIComponent(data[keyName]);
-	    }).join('&');
-	};
-
-	var _default = (_default2 = {
-	    getToken: function getToken() {
-	        var authentication = _Utils2.default.storage.get('authentication') || {};
-	        return 'Bearer ' + authentication.token;
-	    },
-	    httpGet: function httpGet(url) {
-	        var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
-	        if (!url) {
-	            return false;
-	        }
-
-	        options = Object.assign({
-	            method: 'GET',
-	            headers: {
-	                'Authorization': this.getToken()
-	            }
-	        }, options);
-
-	        return fetch(hostname + url, options).then(function (res) {
-	            return res.json();
-	        });
-	    },
-	    httpPost: function httpPost(url) {
-	        var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
-	        if (!url) {
-	            return false;
-	        }
-	        options = Object.assign({
-	            method: 'GET',
-	            headers: {
-	                'Authorization': this.getToken()
-	            }
-	        }, options);
-
-	        return fetch(hostname + url, options).then(function (res) {
-	            return res.json();
-	        });
-	    }
-
-	    /**
-	     * Dashboard
-	     */
-	    // Plans
-	    ,
-	    getDashboardTraining: function getDashboardTraining() {
-	        return this.httpGet('/training/v2/home');
-	    },
-	    getDashboardWorkouts: function getDashboardWorkouts() {
-	        return this.httpGet('/v2/home/dashboard/pwData');
-	    }
-
-	    // Statistics
-	    ,
-	    getDashboardStatistics: function getDashboardStatistics() {
-	        return this.httpGet('/v1.1/home/dashboard/statistics');
-	    }
-	    // User
-	    ,
-	    getDashboardUser: function getDashboardUser() {
-	        return this.httpGet('/v1.1/home/dashboard/user');
-	    },
-	    getRankingData: function getRankingData() {
-	        var para = serializeJSON({
-	            date: (0, _moment2.default)().format('YYYYMMDD')
-	        });
-	        return this.httpGet('/social/v2/rankinglist/brief?' + para);
-	    }
-
-	    // user login
-	    ,
-	    login: function login(data) {
-	        return this.httpPost('/v1.1/users/login', {
-	            method: "POST",
-	            headers: {
-	                'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-	            },
-	            body: serializeJSON(data)
-	        });
-	    }
-
-	    // 用户个人信息
-	    ,
-	    getUserData: function getUserData(userID) {
-	        return this.httpGet('/v2/people/' + userID);
-	    }
-
-	    // workouts content
-	    //getExploreContent() {
-	    //    return fetch('https://show.gotokeep.com/explore/', {
-	    //        method: 'GET',
-	    //        headers: {
-	    //            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-	    //            'Authorization': this.getToken()
-	    //        }
-	    //    })
-	    //}
-
-	    // workout plan
-	    ,
-	    getPlansContent: function getPlansContent(workoutsId) {
-	        var gender = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'm';
-
-	        return this.httpGet('/v2/plans/' + workoutsId + '?trainer_gender=' + gender);
-	    }
-	    // 获取训练内容计划[以及同类推荐]
-	    ,
-	    getWorkoutsPlans: function getWorkoutsPlans(planId) {
-	        return this.httpGet('/training/v2/plans/' + planId + '/dynamic?tLimit=3&tSlimWorkout=true');
-	    }
-	    // 获取 总打卡数量/训练评论/完成用户/座右铭
-	    ,
-	    getWorkoutsWorks: function getWorkoutsWorks(workoutId) {
-	        return this.httpGet('/training/v2/workouts/' + workoutId + '/dynamic?tLimit=3');
-	    }
-
-	    // 完成训练
-	    ,
-	    completeExercise: function completeExercise() {
-	        return this.httpGet('/now');
-	    },
-	    commitTrainingLog: function commitTrainingLog(json) {
-	        return this.httpPost('/v1.1/home/saveTrainingLog', Object.assign({
-	            'serverEndTime': new Date().toISOString(),
-	            'doneDate': new Date().toISOString()
-	        }));
-	    }
-	}, _defineProperty(_default2, 'commitTrainingLog', function commitTrainingLog(json) {
-	    return this.httpPost('/v1.1/home/achievements/new');
-	}), _defineProperty(_default2, 'getCityJson', function getCityJson() {
-	    return this.httpGet('/v1.1/home/cities');
-	}), _default2);
-
-	exports.default = _default;
-	;
-
-	var _temp = function () {
-	    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-	        return;
-	    }
-
-	    __REACT_HOT_LOADER__.register(hostname, 'hostname', '/Users/liucong/Documents/Github/keepForMac/src/js/HttpRequest.js');
-
-	    __REACT_HOT_LOADER__.register(serializeJSON, 'serializeJSON', '/Users/liucong/Documents/Github/keepForMac/src/js/HttpRequest.js');
-
-	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/js/HttpRequest.js');
-	}();
-
-	;
-
-	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/js/HttpRequest.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/js/HttpRequest.js"); } } })();
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAMAAADVRocKAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAnUExURUxpcfX19vv6+/f3+Pj4+f39/fn4+fj3+NPQ1e/u8M/M0eTj5tnX27ogz2oAAAAIdFJOUwD+RduODSW+42LahQAAA6JJREFUaN69WgGS2yAMNDGO8S3/f29tfDYGAVpIrupMenNNWa0kJCGYJk0Wa35lu+X6jV2mj2R5HWLF+jeCDV8YR3mt87qu81aV8M/ra1h7O2eKS9m/MNshFrv287xRsn+xk8Wl/UZKN4u3pbV/sLBvWv8e7RMWC6n/Vloej8/rrxRiozgE/bM1QJKgOOz6k1KCVTkc+qvLIP85/kLl0NafMVWTw67/WlkQrOHWFgfe/hIQBIen/hg3086hS3+0WfCxJOKnCgVNiRKH5aG/XAi9frHvpVv/vtyXcVgq+WdwR0BwiPpjq/5QW6qcBVMOr9lomqKThZlzADZlsvXhAZBnOHzuZCR577WyEYQgpOdjJxA8AN3+gA8iMFBEi0Z6uLhlHXjnfg5xzoOI4Atg4fbYrv65fIDw4HbbEjxAbSrE5QMEFQnBC3IPlP6vT9fnEE4jlfdA7kb/k4uHuuV/AVaj+iuu7ySCaiKmjLnH6q4BkOSlzRwAVo8h8wigpyu8qtls7cR0oZeFbgaOtZExAgANgJzBEEAfAzMIgKqPXd9WOAGg9VLpLqgxQOGz30R/4gOTMIgoHnoO3gGYQusz957uYPKdmbhKljuBtNAuU0lz6BTYhL1NXHtV2GqlGILsiSeqnTAyX3uy9+B8cFbkfgc0ACD7rZhT95IMto+ayI7w2PAXgPOH/U0fA5UxkACAbSJJH5w91wXgvPdA/UT1jCMqTJOeqOyHOgOjeytZPm40qvti6gFKy5OxmtSDSiYVW6yncyHSddIyuoyCkpCYglNIQknZUTioXcW9vsimov0qFl6VgS/YPi2cbSO1AYwoxgUG7eZlB7DyiFxp2nMGTqdwtI6tA8gvgaQUCwYtP69X+w49RF3BB06hYConnJjhXIuBU92sAvjEFFUGVRtdJxyuWalL3QmBQe0Ya/KDZQvANI6xNSMZmoErAYiTPspHe6/+CRW6PW+pDUPASjmTxmHI6QWw5Z+ZtSEbY9dClWkcDDvx+rJkACFSe+ek1UICMRTsHmvqdstHs/duwxdcLAez12iZbmnVgeB7GRiO03PguTzgb473258pSPXK7r6g+GzPVS8ouq5Yxq6J8kuiEWes7YuuMgfSDZr+jyEqRmOJuGyMHDDgaOK69L4s7d8J7IXvmZcwlH/6LqxRdLO0HLYe/f/DlXv2aAB6Fhp6+vCnzx7Eww2Ik09UfvThxsVCe3oyjz49EY9nspD8yuOZbzz/+QdpaQUjwP9DLgAAAABJRU5ErkJggg=="
 
 /***/ },
+/* 643 */
+/***/ function(module, exports, __webpack_require__) {
 
-/***/ 634:
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(644);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(121)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(true) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept(644, function() {
+				var newContent = __webpack_require__(644);
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 644 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(116)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "._3lEoT {\n  height: 25px;\n  border-radius: 20px;\n  border: 1px solid #eee;\n  background: #fff;\n  padding-left: 5px;\n  width: 200px;\n  display: flex;\n  position: relative; }\n\n._1Vdge {\n  margin-right: 3px;\n  line-height: 24px;\n  float: left; }\n\n._2Mvad {\n  flex: 1;\n  outline: none;\n  height: 100%;\n  background: none;\n  border: none;\n  font-size: 12px;\n  padding-right: 10px; }\n\n._2HU6r {\n  position: absolute;\n  width: 100%;\n  top: 32px;\n  left: 0;\n  background: #fff;\n  z-index: 50;\n  filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.6)); }\n  ._2HU6r:before {\n    content: '';\n    position: absolute;\n    top: -10px;\n    left: 50%;\n    margin-left: -5px;\n    border: 5px solid transparent;\n    border-bottom-color: #fff; }\n\n._3Kj9Q {\n  overflow: auto;\n  min-height: 300px;\n  max-height: 600px;\n  margin: 0;\n  padding: 0; }\n  ._3Kj9Q li {\n    border-bottom: 1px solid #eee; }\n\n._2B9xE {\n  height: 30px;\n  padding: 5px 10px 5px 15px;\n  color: #fff;\n  background: #999;\n  border-bottom: 1px solid #eee;\n  position: relative; }\n  ._2B9xE:before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    border: 14px solid transparent;\n    border-left: 7px solid #23A570; }\n\n.JLKaY {\n  height: 40px;\n  padding: 5px;\n  display: flex;\n  align-items: center;\n  color: #999;\n  font-size: 12px;\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  overflow: hidden; }\n  .JLKaY:hover {\n    background: #f7f7f7; }\n  .JLKaY:nth-child(2n-1) {\n    background: #f7f7f7; }\n\n._3v8Ad {\n  display: inline-block;\n  width: 30px;\n  margin-right: 10px; }\n\n._35Zuq {\n  display: inline-block;\n  width: 30px;\n  height: 30px;\n  overflow: hidden;\n  border-radius: 50%;\n  margin-right: 10px; }\n", ""]);
+
+	// exports
+	exports.locals = {
+		"common-search-wrap": "_3lEoT",
+		"icon-search": "_1Vdge",
+		"common-search": "_2Mvad",
+		"search-result": "_2HU6r",
+		"result-list": "_3Kj9Q",
+		"list-header": "_2B9xE",
+		"list-item": "JLKaY",
+		"item-pic": "_3v8Ad",
+		"item-avatar": "_35Zuq"
+	};
+
+/***/ },
+/* 645 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "images/ec5cad8f.keep-logo.png";
 
 /***/ },
-
-/***/ 635:
+/* 646 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10914,7 +11391,7 @@ webpackJsonp([0],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactCssModules = __webpack_require__(354);
+	var _reactCssModules = __webpack_require__(355);
 
 	var _reactCssModules2 = _interopRequireDefault(_reactCssModules);
 
@@ -10924,17 +11401,17 @@ webpackJsonp([0],{
 
 	var _Utils2 = _interopRequireDefault(_Utils);
 
-	var _appLogin = __webpack_require__(636);
+	var _appLogin = __webpack_require__(647);
 
 	var _appLogin2 = _interopRequireDefault(_appLogin);
 
-	var _autobindDecorator = __webpack_require__(513);
+	var _autobindDecorator = __webpack_require__(515);
 
 	var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
 
-	var _jsBase = __webpack_require__(638);
+	var _jsBase = __webpack_require__(649);
 
-	var _HttpRequest = __webpack_require__(523);
+	var _HttpRequest = __webpack_require__(520);
 
 	var _HttpRequest2 = _interopRequireDefault(_HttpRequest);
 
@@ -11028,6 +11505,8 @@ webpackJsonp([0],{
 	                    _Utils2.default.storage.set('userData', _jsBase.Base64.decode(response.data.token.split('.')[1]));
 	                    _reactRouter.hashHistory.replace('/training');
 	                } else {
+	                    //return res.json()
+	                    console.info(response);
 	                    alert(response.text || '登录失败');
 	                }
 	            }, function (error) {
@@ -11094,14 +11573,13 @@ webpackJsonp([0],{
 	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/js/AppLogin.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/js/AppLogin.js"); } } })();
 
 /***/ },
-
-/***/ 636:
+/* 647 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(637);
+	var content = __webpack_require__(648);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(121)(content, {});
@@ -11110,8 +11588,8 @@ webpackJsonp([0],{
 	if(true) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept(637, function() {
-				var newContent = __webpack_require__(637);
+			module.hot.accept(648, function() {
+				var newContent = __webpack_require__(648);
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -11121,8 +11599,7 @@ webpackJsonp([0],{
 	}
 
 /***/ },
-
-/***/ 637:
+/* 648 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(116)();
@@ -11130,7 +11607,7 @@ webpackJsonp([0],{
 
 
 	// module
-	exports.push([module.id, "._3N_UK {\n  width: 100%;\n  height: 100%;\n  padding-top: 30vh;\n  background: #584f5f;\n  position: relative;\n  -webkit-app-region: drag; }\n  ._3N_UK:before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: rgba(0, 0, 0, 0.3);\n    z-index: 2; }\n\n._3GFq9 {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 1; }\n\n.W31p7 {\n  width: 300px;\n  margin: auto;\n  position: relative;\n  z-index: 3;\n  -webkit-app-region: no-drag; }\n\n._3bEfO {\n  color: #fff; }\n\n._1dle1 {\n  margin-bottom: 10px; }\n\n._2aPka {\n  width: 100%;\n  border: 1px solid #584f5f;\n  border-radius: 5px;\n  padding: 10px;\n  background: #fff;\n  color: #584f5f; }\n  ._2aPka:focus {\n    border-color: #00c78c; }\n\n.wz0bl {\n  display: block;\n  width: 100%;\n  padding: 10px;\n  background: #00c78c;\n  border-radius: 5px;\n  border: none;\n  color: #fff; }\n", ""]);
+	exports.push([module.id, "._3N_UK {\n  width: 100%;\n  height: 100%;\n  padding-top: 30vh;\n  background: #584f5f;\n  position: relative;\n  -webkit-app-region: drag; }\n  ._3N_UK:before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: rgba(0, 0, 0, 0.3);\n    z-index: 2; }\n\n._3GFq9 {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 1; }\n\n.W31p7 {\n  width: 300px;\n  margin: auto;\n  position: relative;\n  z-index: 3;\n  -webkit-app-region: no-drag; }\n\n._3bEfO {\n  color: #fff; }\n\n._1dle1 {\n  margin-bottom: 10px; }\n\n._2aPka {\n  width: 100%;\n  border: 1px solid #584f5f;\n  border-radius: 5px;\n  padding: 10px;\n  background: #fff;\n  color: #584f5f; }\n  ._2aPka:focus {\n    border-color: #23A570; }\n\n.wz0bl {\n  display: block;\n  width: 100%;\n  padding: 10px;\n  background: #23A570;\n  border-radius: 5px;\n  border: none;\n  color: #fff; }\n", ""]);
 
 	// exports
 	exports.locals = {
@@ -11144,8 +11621,7 @@ webpackJsonp([0],{
 	};
 
 /***/ },
-
-/***/ 638:
+/* 649 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -11167,7 +11643,7 @@ webpackJsonp([0],{
 	    var buffer;
 	    if (typeof module !== 'undefined' && module.exports) {
 	        try {
-	            buffer = __webpack_require__(639).Buffer;
+	            buffer = __webpack_require__(650).Buffer;
 	        } catch (err) {}
 	    }
 	    // constants
@@ -11345,18 +11821,16 @@ webpackJsonp([0],{
 
 
 /***/ },
-
-/***/ 639:
+/* 650 */
 /***/ function(module, exports) {
 
 	module.exports = require("buffer");
 
 /***/ },
-
-/***/ 640:
+/* 651 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -11370,15 +11844,15 @@ webpackJsonp([0],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactCssModules = __webpack_require__(354);
+	var _reactCssModules = __webpack_require__(355);
 
 	var _reactCssModules2 = _interopRequireDefault(_reactCssModules);
 
-	var _autobindDecorator = __webpack_require__(513);
+	var _autobindDecorator = __webpack_require__(515);
 
 	var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
 
-	var _moment = __webpack_require__(524);
+	var _moment = __webpack_require__(522);
 
 	var _moment2 = _interopRequireDefault(_moment);
 
@@ -11388,21 +11862,25 @@ webpackJsonp([0],{
 
 	var _Utils2 = _interopRequireDefault(_Utils);
 
-	var _TrainingBlock = __webpack_require__(641);
+	var _TrainingBlock = __webpack_require__(652);
 
 	var _TrainingBlock2 = _interopRequireDefault(_TrainingBlock);
 
-	var _AppScroll = __webpack_require__(644);
+	var _AppScroll = __webpack_require__(655);
 
 	var _AppScroll2 = _interopRequireDefault(_AppScroll);
 
-	var _appTraining = __webpack_require__(642);
-
-	var _appTraining2 = _interopRequireDefault(_appTraining);
-
-	var _HttpRequest = __webpack_require__(523);
+	var _HttpRequest = __webpack_require__(520);
 
 	var _HttpRequest2 = _interopRequireDefault(_HttpRequest);
+
+	var _CommonAvatar = __webpack_require__(639);
+
+	var _CommonAvatar2 = _interopRequireDefault(_CommonAvatar);
+
+	var _appTraining = __webpack_require__(653);
+
+	var _appTraining2 = _interopRequireDefault(_appTraining);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -11451,7 +11929,7 @@ webpackJsonp([0],{
 
 	        var _this = _possibleConstructorReturn(this, (AppTraining.__proto__ || Object.getPrototypeOf(AppTraining)).call(this, props));
 
-	        var localTraining = _Utils2.default.storage.get('trainingWorkouts');
+	        var localTraining = _Utils2.default.storage.get("trainingWorkouts");
 
 	        _this.state = {
 	            trainingGuidance: localTraining ? localTraining[0] : {},
@@ -11461,18 +11939,18 @@ webpackJsonp([0],{
 	            recommendBook: localTraining ? localTraining[4] : {},
 	            trainingData: {},
 	            rankingData: {
-	                'paperwork': '本周好友训练排名'
+	                "paperwork": "本周好友训练排名"
 	            }
 	        };
 	        return _this;
 	    }
 
 	    _createClass(AppTraining, [{
-	        key: 'componentWillMount',
+	        key: "componentWillMount",
 	        value: function componentWillMount() {
 	            var _this2 = this;
 
-	            var authentication = _Utils2.default.storage.get('authentication') || {};
+	            var authentication = _Utils2.default.storage.get("authentication") || {};
 
 	            // 判断是否登录
 	            if (authentication && authentication.token) {
@@ -11481,7 +11959,7 @@ webpackJsonp([0],{
 	                        _this2.setState({ trainingData: response.data });
 	                    }
 	                }).catch(function (error) {
-	                    console.info('getDashboardStatistics:', error);
+	                    console.warn("getDashboardStatistics:", error);
 	                });
 
 	                _HttpRequest2.default.getRankingData().then(function (response) {
@@ -11489,52 +11967,52 @@ webpackJsonp([0],{
 	                        _this2.setState({ rankingData: response.data });
 	                    }
 	                }).catch(function (error) {
-	                    console.info('getRankingData:', error);
+	                    console.warn("getRankingData:", error);
 	                });
 
 	                _HttpRequest2.default.getDashboardTraining().then(function (response) {
 	                    if (response.ok) {
 	                        _this2.setState({
-	                            trainingGuidance: response.data[0],
-	                            trainingSchedules: response.data[1],
-	                            trainingWorkouts: response.data[2],
-	                            recommendCourses: response.data[3],
-	                            recommendBook: response.data[4]
+	                            //trainingGuidance: response.data[0],
+	                            trainingSchedules: response.data[0],
+	                            trainingWorkouts: response.data[1],
+	                            recommendCourses: response.data[2],
+	                            recommendBook: response.data[3]
 	                        });
-	                        //Utils.storage.set('trainingPlan',response.data)
-	                        _Utils2.default.storage.set('trainingWorkouts', response.data);
+
+	                        //Utils.storage.set("trainingPlan",response.data)
+	                        _Utils2.default.storage.set("trainingWorkouts", response.data);
 	                    }
 	                }).catch(function (error) {
-	                    console.info('getDashboardTraining:', error);
+	                    console.warn("getDashboardTraining:", error);
 	                });
-
-	                //$http.getDashboardWorkouts().then((response) => {
-	                //    if (response.ok) {
-	                //        this.setState({
-	                //            trainingWorkouts: response.data.workouts
-	                //        })
-	                //        Utils.storage.set('trainingWorkouts',response.data)
-	                //    }
-	                //}).catch((error) => {
-	                //    console.info('getDashboardWorkouts:', error)
-	                //})
 	            } else {
-	                this.props.router.replace('/login');
+	                this.props.router.replace("/login");
 	            }
+
+	            //$http.getDashboardWorkouts().then((response) => {
+	            //    if (response.ok) {
+	            //        this.setState({
+	            //            trainingWorkouts: response.data.workouts
+	            //        })
+	            //    }
+	            //}).catch((error) => {
+	            //    console.warn("getDashboardWorkouts:", error)
+	            //})
 	        }
 	    }, {
-	        key: 'getScheduleContent',
+	        key: "getScheduleContent",
 	        value: function getScheduleContent() {
 	            var schedule = this.state.trainingSchedules;
 	            if (!schedule.schedule) return false;
 
 	            var lesson = schedule.schedule;
-	            var startDate = (0, _moment2.default)((0, _moment2.default)(lesson.startDate).format('YYYYMMDD')).diff((0, _moment2.default)().format('YYYYMMDD'), 'd');
+	            var startDate = (0, _moment2.default)((0, _moment2.default)(lesson.startDate).format("YYYYMMDD")).diff((0, _moment2.default)().format("YYYYMMDD"), "d");
 	            var workouts = lesson.schedule.days;
 	            var totalPlansDays = lesson.schedule.totalDaysCount;
 	            var successDays = 1 - startDate < totalPlansDays ? 1 - startDate : totalPlansDays;
 	            var workTotalTime = [];
-	            var dateTips = '';
+	            var dateTips = "";
 
 	            var _iteratorNormalCompletion = true;
 	            var _didIteratorError = false;
@@ -11566,7 +12044,7 @@ webpackJsonp([0],{
 
 	            switch (true) {
 	                case startDate <= -totalPlansDays:
-	                    dateTips = '已过期';
+	                    dateTips = "已过期";
 	                    break;
 
 	                case startDate == 0:
@@ -11574,68 +12052,75 @@ webpackJsonp([0],{
 	                    break;
 
 	                case startDate == 1:
-	                    dateTips = '课程将于明天开始，准备好了吗？';
+	                    dateTips = "课程将于明天开始，准备好了吗？";
 	                    break;
 
 	                case startDate > 1:
-	                    dateTips = '\u8BFE\u7A0B\u5C06\u4E8E ' + (0, _moment2.default)(lesson.startDate).format('MM') + '/' + (0, _moment2.default)(lesson.startDate).format('DD') + ' \u5F00\u59CB';
+	                    dateTips = "\u8BFE\u7A0B\u5C06\u4E8E " + (0, _moment2.default)(lesson.startDate).format("MM") + "/" + (0, _moment2.default)(lesson.startDate).format("DD") + " \u5F00\u59CB";
 	                    break;
 
 	                default:
-	                    dateTips = '';
+	                    dateTips = "";
 	            }
 
 	            if (!dateTips) {
-	                dateTips = '\u7B2C ' + successDays + '/' + totalPlansDays + ' \u5929 ';
+	                dateTips = "\u7B2C " + successDays + "/" + totalPlansDays + " \u5929 ";
 	                if (workouts[-startDate].workouts.length) {
-	                    dateTips += workouts[-startDate].duration + '\u5206\u949F  ' + workouts[-startDate].workouts.length + '\u4E2A\u8BAD\u7EC3';
+	                    dateTips += workouts[-startDate].duration + "\u5206\u949F  " + workouts[-startDate].workouts.length + "\u4E2A\u8BAD\u7EC3";
 	                } else {
-	                    dateTips += '\u4F11\u606F\u65E5';
+	                    dateTips += "\u4F11\u606F\u65E5";
 	                }
 	            }
 
 	            return _react2.default.createElement(
-	                'article',
-	                { styleName: 'training-lesson', style: { backgroundImage: 'url(' + lesson.schedule.picture + ')' } },
+	                "article",
+	                { styleName: "training-lesson", style: { backgroundImage: "url(" + lesson.schedule.picture + ")" } },
 	                _react2.default.createElement(
-	                    'p',
-	                    { styleName: 'training-block-title' },
+	                    "p",
+	                    { styleName: "training-block-title" },
 	                    lesson.schedule.name
 	                ),
 	                _react2.default.createElement(
-	                    'p',
-	                    { styleName: 'training-block-desc' },
+	                    "p",
+	                    { styleName: "training-block-desc" },
 	                    dateTips
 	                ),
 	                _react2.default.createElement(
-	                    'span',
-	                    { className: 'text-left', styleName: 'training-block-info' },
+	                    "span",
+	                    { className: "text-left", styleName: "training-block-info" },
 	                    _react2.default.createElement(
-	                        'span',
-	                        { className: 'fz10' },
-	                        '\u5B8C\u6210',
+	                        "span",
+	                        { className: "fz10" },
+	                        "\u5B8C\u6210",
 	                        planProgress,
-	                        '%'
+	                        "%"
 	                    ),
 	                    _react2.default.createElement(
-	                        'div',
-	                        { styleName: 'plan-progress-bar' },
-	                        _react2.default.createElement('span', { style: { width: planProgress + '%' }, styleName: 'progress-bar-inner' })
+	                        "div",
+	                        { styleName: "plan-progress-bar" },
+	                        _react2.default.createElement("span", { style: { width: planProgress + "%" }, styleName: "progress-bar-inner" })
 	                    )
 	                )
 	            );
 	        }
 	    }, {
-	        key: 'getTrainingData',
+	        key: "getTrainingData",
 	        value: function getTrainingData() {
 	            var workouts = this.state.trainingWorkouts;
 
-	            if (workouts.plans && workouts.plans.length) return workouts.plans.map(function (item) {
-	                return _react2.default.createElement(_TrainingBlock2.default, { key: item.id, data: item });
+	            if (workouts.plans && workouts.plans.length) return workouts.plans.map(function (item, index) {
+	                return _react2.default.createElement(_TrainingBlock2.default, { key: index, data: item });
 	            });
+
+	            //if(workouts.length)
+	            //    return(
+	            //        workouts.map((item, index)=> {
+	            //            return <TrainingBlock key={index} data={item.workout} />
+	            //        })
+	            //    )
 	        }
 	    }, {
-	        key: 'getPhysicalGuide',
+	        key: "getPhysicalGuide",
 	        value: function getPhysicalGuide() {
 	            var data = this.state.trainingGuidance;
 	            if (!data.physicalGuide) {
@@ -11643,153 +12128,163 @@ webpackJsonp([0],{
 	            }
 
 	            return _react2.default.createElement(
-	                'section',
-	                { hidden: !data.physicalGuide.launch, className: 'margin-bottom white-background' },
+	                "section",
+	                { hidden: !data.physicalGuide.launch, className: "margin-bottom white-background" },
 	                _react2.default.createElement(
-	                    'p',
-	                    { styleName: 'guide-tips' },
-	                    _react2.default.createElement('i', { style: { marginLeft: '-3px' }, className: 'iconfont icon-symbol fz18' }),
-	                    _react2.default.createElement('br', null),
+	                    "p",
+	                    { styleName: "guide-tips" },
+	                    _react2.default.createElement("i", { style: { marginLeft: "-3px" }, className: "iconfont icon-symbol fz18" }),
+	                    _react2.default.createElement("br", null),
 	                    data.physicalGuide.tips
 	                ),
 	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'text-center' },
+	                    "div",
+	                    { className: "text-center" },
 	                    _react2.default.createElement(
 	                        _reactRouter.Link,
-	                        { styleName: 'button-guide-start' },
-	                        '\u8FDB\u884C\u8FD0\u52A8\u80FD\u529B\u6D4B\u8BD5'
+	                        { styleName: "button-guide-start" },
+	                        "\u8FDB\u884C\u8FD0\u52A8\u80FD\u529B\u6D4B\u8BD5"
 	                    )
 	                )
 	            );
 	        }
 	    }, {
-	        key: 'render',
+	        key: "getWeekRanking",
+	        value: function getWeekRanking() {
+	            var arr = [];
+	            if (this.state.rankingData.next) arr.push(_react2.default.createElement(
+	                "span",
+	                { key: this.state.rankingData.next.user._id, "data-type": "next", hidden: !this.state.rankingData.next, styleName: "ranking-user" },
+	                _react2.default.createElement(_CommonAvatar2.default, { userid: this.state.rankingData.next.user._id, avatar: this.state.rankingData.next.user.avatar })
+	            ));else arr.push(_react2.default.createElement("span", { key: "1", hidden: "true", styleName: "ranking-user" }));
+
+	            if (this.state.rankingData.me) arr.push(_react2.default.createElement(
+	                "span",
+	                { key: this.state.rankingData.me.user._id, styleName: "ranking-user" },
+	                _react2.default.createElement(_CommonAvatar2.default, { userid: this.state.rankingData.me.user._id, avatar: this.state.rankingData.me.user.avatar })
+	            ));
+
+	            if (this.state.rankingData.prev) arr.push(_react2.default.createElement(
+	                "span",
+	                { key: this.state.rankingData.prev.user._id, "data-type": "prev", hidden: !this.state.rankingData.prev, styleName: "ranking-user" },
+	                _react2.default.createElement(_CommonAvatar2.default, { userid: this.state.rankingData.prev.user._id, avatar: this.state.rankingData.prev.user.avatar })
+	            ));else arr.push(_react2.default.createElement("span", { key: "2", styleName: "ranking-user" }));
+
+	            return arr;
+	        }
+	    }, {
+	        key: "render",
 	        value: function render() {
 	            return _react2.default.createElement(
-	                'div',
-	                { className: 'scroll-content' },
+	                "div",
+	                { className: "scroll-content" },
 	                _react2.default.createElement(
-	                    'section',
-	                    { className: 'margin-bottom white-background' },
+	                    "section",
+	                    { className: "margin-bottom white-background" },
 	                    _react2.default.createElement(
 	                        _reactRouter.Link,
-	                        { styleName: 'training-data' },
+	                        { styleName: "training-data" },
 	                        _react2.default.createElement(
-	                            'div',
-	                            { styleName: 'training-data-title' },
-	                            '\u603B\u5171\u8BAD\u7EC3',
-	                            _react2.default.createElement('i', { className: 'iconfont icon-more pull-right' })
+	                            "div",
+	                            { styleName: "training-data-title" },
+	                            "\u603B\u5171\u8BAD\u7EC3",
+	                            _react2.default.createElement("i", { className: "iconfont icon-more pull-right" })
 	                        ),
 	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'text-center' },
+	                            "div",
+	                            { className: "text-center" },
 	                            _react2.default.createElement(
-	                                'span',
-	                                { style: { fontSize: '50px' } },
+	                                "span",
+	                                { style: { fontSize: "50px" } },
 	                                this.state.trainingData.totalDuration
 	                            ),
-	                            ' \u5206\u949F'
+	                            " \u5206\u949F"
 	                        ),
 	                        _react2.default.createElement(
-	                            'div',
-	                            { styleName: 'training-data-other' },
+	                            "div",
+	                            { styleName: "training-data-other" },
 	                            _react2.default.createElement(
-	                                'figure',
-	                                { styleName: 'other-item-first' },
-	                                '\u5B8C\u6210',
-	                                _react2.default.createElement('br', null),
+	                                "figure",
+	                                { styleName: "other-item-first" },
+	                                "\u5B8C\u6210",
+	                                _react2.default.createElement("br", null),
 	                                _react2.default.createElement(
-	                                    'span',
-	                                    { styleName: 'data-val' },
+	                                    "span",
+	                                    { styleName: "data-val" },
 	                                    this.state.trainingData.totalTraining
 	                                ),
-	                                '\u6B21'
+	                                "\u6B21"
 	                            ),
 	                            _react2.default.createElement(
-	                                'figure',
-	                                { styleName: 'other-item-second' },
-	                                '\u7D2F\u8BA1',
-	                                _react2.default.createElement('br', null),
+	                                "figure",
+	                                { styleName: "other-item-second" },
+	                                "\u7D2F\u8BA1",
+	                                _react2.default.createElement("br", null),
 	                                _react2.default.createElement(
-	                                    'span',
-	                                    { styleName: 'data-val' },
+	                                    "span",
+	                                    { styleName: "data-val" },
 	                                    this.state.trainingData.totalTrainingDay
 	                                ),
-	                                '\u5929'
+	                                "\u5929"
 	                            ),
 	                            _react2.default.createElement(
-	                                'figure',
-	                                { styleName: 'other-item-three' },
-	                                '\u6D88\u8017',
-	                                _react2.default.createElement('br', null),
+	                                "figure",
+	                                { styleName: "other-item-three" },
+	                                "\u6D88\u8017",
+	                                _react2.default.createElement("br", null),
 	                                _react2.default.createElement(
-	                                    'span',
-	                                    { styleName: 'data-val' },
+	                                    "span",
+	                                    { styleName: "data-val" },
 	                                    this.state.trainingData.totalCalorie
 	                                ),
-	                                '\u5343\u5361'
+	                                "\u5343\u5361"
 	                            )
 	                        )
 	                    ),
 	                    _react2.default.createElement(
 	                        _reactRouter.Link,
-	                        { styleName: 'training-ranking' },
+	                        { styleName: "training-ranking" },
 	                        _react2.default.createElement(
-	                            'p',
-	                            { styleName: 'training-ranking-title' },
+	                            "p",
+	                            { styleName: "training-ranking-title" },
 	                            _react2.default.createElement(
-	                                'span',
-	                                { styleName: 'training-ranking-num' },
+	                                "span",
+	                                { styleName: "training-ranking-num" },
 	                                this.state.rankingData.me && this.state.rankingData.me.ranking,
-	                                ' '
+	                                " "
 	                            ),
-	                            ' ',
+	                            " ",
 	                            this.state.rankingData.paperwork
 	                        ),
 	                        _react2.default.createElement(
-	                            'div',
+	                            "div",
 	                            null,
-	                            _react2.default.createElement(
-	                                'span',
-	                                { hidden: !this.state.rankingData.next, styleName: 'ranking-user' },
-	                                _react2.default.createElement('img', { src: this.state.rankingData.next && this.state.rankingData.next.user.avatar, alt: '' })
-	                            ),
-	                            _react2.default.createElement(
-	                                'span',
-	                                { styleName: 'ranking-user' },
-	                                _react2.default.createElement('img', { src: this.state.rankingData.me && this.state.rankingData.me.user.avatar, alt: '' })
-	                            ),
-	                            _react2.default.createElement(
-	                                'span',
-	                                { hidden: !this.state.rankingData.prev, styleName: 'ranking-user' },
-	                                _react2.default.createElement('img', { src: this.state.rankingData.prev && this.state.rankingData.prev.user.avatar, alt: '' })
-	                            )
+	                            this.getWeekRanking()
 	                        )
 	                    )
 	                ),
 	                this.getPhysicalGuide(),
 	                _react2.default.createElement(
-	                    'section',
-	                    { className: 'margin-bottom white-background' },
+	                    "section",
+	                    { className: "margin-bottom white-background" },
 	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'padding' },
-	                        '\u6211\u7684\u8BFE\u7A0B\u8868'
+	                        "div",
+	                        { className: "padding" },
+	                        "\u6211\u7684\u8BFE\u7A0B\u8868"
 	                    ),
 	                    this.getScheduleContent()
 	                ),
 	                _react2.default.createElement(
-	                    'section',
-	                    { className: 'margin-bottom white-background' },
+	                    "section",
+	                    { className: "margin-bottom white-background" },
 	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'padding' },
-	                        '\u6211\u7684\u8BAD\u7EC3'
+	                        "div",
+	                        { className: "padding" },
+	                        "\u6211\u7684\u8BAD\u7EC3"
 	                    ),
 	                    _react2.default.createElement(
-	                        'div',
-	                        { styleName: 'training-block-wrap' },
+	                        "div",
+	                        { styleName: "training-block-wrap" },
 	                        this.getTrainingData()
 	                    )
 	                ),
@@ -11800,7 +12295,7 @@ webpackJsonp([0],{
 	    }]);
 
 	    return AppTraining;
-	}(_react.Component), (_applyDecoratedDescriptor(_class2.prototype, 'componentWillMount', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentWillMount'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getScheduleContent', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getScheduleContent'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getTrainingData', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getTrainingData'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getPhysicalGuide', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getPhysicalGuide'), _class2.prototype)), _class2)) || _class);
+	}(_react.Component), (_applyDecoratedDescriptor(_class2.prototype, "componentWillMount", [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, "componentWillMount"), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, "getScheduleContent", [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, "getScheduleContent"), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, "getTrainingData", [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, "getTrainingData"), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, "getPhysicalGuide", [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, "getPhysicalGuide"), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, "getWeekRanking", [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, "getWeekRanking"), _class2.prototype)), _class2)) || _class);
 	var _default = AppTraining;
 	exports.default = _default;
 	;
@@ -11810,9 +12305,9 @@ webpackJsonp([0],{
 	        return;
 	    }
 
-	    __REACT_HOT_LOADER__.register(AppTraining, 'AppTraining', '/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/AppTraining.js');
+	    __REACT_HOT_LOADER__.register(AppTraining, "AppTraining", "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/AppTraining.js");
 
-	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/AppTraining.js');
+	    __REACT_HOT_LOADER__.register(_default, "default", "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/AppTraining.js");
 	}();
 
 	;
@@ -11820,8 +12315,7 @@ webpackJsonp([0],{
 	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/AppTraining.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/AppTraining.js"); } } })();
 
 /***/ },
-
-/***/ 641:
+/* 652 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11838,21 +12332,21 @@ webpackJsonp([0],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _autobindDecorator = __webpack_require__(513);
+	var _autobindDecorator = __webpack_require__(515);
 
 	var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
 
-	var _reactCssModules = __webpack_require__(354);
+	var _reactCssModules = __webpack_require__(355);
 
 	var _reactCssModules2 = _interopRequireDefault(_reactCssModules);
 
-	var _moment = __webpack_require__(524);
+	var _moment = __webpack_require__(522);
 
 	var _moment2 = _interopRequireDefault(_moment);
 
 	var _reactRouter = __webpack_require__(298);
 
-	var _appTraining = __webpack_require__(642);
+	var _appTraining = __webpack_require__(653);
 
 	var _appTraining2 = _interopRequireDefault(_appTraining);
 
@@ -11978,14 +12472,13 @@ webpackJsonp([0],{
 	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/TrainingBlock.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/TrainingBlock.js"); } } })();
 
 /***/ },
-
-/***/ 642:
+/* 653 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(643);
+	var content = __webpack_require__(654);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(121)(content, {});
@@ -11994,8 +12487,8 @@ webpackJsonp([0],{
 	if(true) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept(643, function() {
-				var newContent = __webpack_require__(643);
+			module.hot.accept(654, function() {
+				var newContent = __webpack_require__(654);
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -12005,8 +12498,7 @@ webpackJsonp([0],{
 	}
 
 /***/ },
-
-/***/ 643:
+/* 654 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(116)();
@@ -12014,7 +12506,7 @@ webpackJsonp([0],{
 
 
 	// module
-	exports.push([module.id, "._2Nv_2 {\n  display: block;\n  width: 100%; }\n\n.akWWR {\n  padding: 5px 10px;\n  overflow: hidden; }\n\n._2CkpE {\n  display: flex;\n  padding: 5px 10px 15px;\n  border-bottom: 1px solid #eee;\n  font-size: 10px;\n  position: relative; }\n  ._2CkpE figure {\n    flex: 1;\n    color: #999; }\n    ._2CkpE figure ._1nZ5H {\n      font-size: 16px;\n      color: #584f5f; }\n  ._2CkpE:before {\n    content: '';\n    position: absolute;\n    left: 50%;\n    bottom: 0;\n    z-index: 1;\n    transform: translateX(-50%);\n    width: 0;\n    border: 6px solid transparent;\n    border-bottom-color: #eee; }\n  ._2CkpE:after {\n    content: '';\n    position: absolute;\n    left: 50%;\n    bottom: -1.5px;\n    z-index: 2;\n    transform: translateX(-50%);\n    width: 0;\n    border: 6px solid transparent;\n    border-bottom-color: #fff; }\n\n._2xGm9 {\n  text-align: left; }\n\n._1AekU {\n  text-align: center; }\n\n._2zrRj {\n  text-align: right; }\n\n._1SGGr {\n  display: flex;\n  padding: 10px;\n  overflow: hidden; }\n\n._2Awuf {\n  flex: 1;\n  margin: 0;\n  align-self: center; }\n\n._2vjI7 {\n  font-size: 18px;\n  color: #00c78c;\n  font-weight: bold; }\n\n._22cXH {\n  margin-top: 1px;\n  border: .5px solid #fff;\n  float: right;\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  position: relative;\n  margin-left: -10px;\n  text-align: center;\n  box-sizing: content-box; }\n  ._22cXH:nth-child(2) {\n    margin-top: 0;\n    border: 2px solid #00c78c; }\n  ._22cXH img {\n    border-radius: 50%;\n    width: 100%; }\n\n._3ydNS,\n._2iAnH {\n  display: block;\n  padding: 10px;\n  height: 200px;\n  background-color: #999;\n  position: relative; }\n  ._3ydNS:before,\n  ._2iAnH:before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: rgba(0, 0, 0, 0.42); }\n  ._3ydNS p,\n  ._2iAnH p {\n    position: relative;\n    z-index: auto; }\n\n._3ydNS {\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-position: center; }\n  ._3ydNS:before {\n    content: '';\n    background: rgba(0, 0, 0, 0.22); }\n  ._3ydNS:hover ._2wTwu {\n    transition: background .35s;\n    background: #fff; }\n  ._3ydNS:hover ._2LjaT {\n    background: #00c78c; }\n\n.dGXEk {\n  overflow: hidden;\n  padding: 5px;\n  border-top: 1px solid #eee; }\n\n._2iAnH {\n  width: 31%;\n  height: 22vh;\n  float: left;\n  background: #999 no-repeat center/100% auto;\n  margin: 1.16%;\n  position: relative;\n  transition: box-shadow .35s .1s, transform .35s .1s; }\n  ._2iAnH:hover {\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);\n    transform: scale(1.01); }\n\n.ED31q {\n  color: #fff;\n  font-size: 18px; }\n\n._25ujx {\n  color: #ddd;\n  font-size: 12px; }\n\n._3z7y5 {\n  color: #fff;\n  position: absolute;\n  left: 0;\n  bottom: 0;\n  padding: 10px;\n  width: 100%;\n  text-align: right; }\n\n._3Ditf {\n  font-size: 10px;\n  margin-left: 5px; }\n\n._2wTwu {\n  width: 100%;\n  height: 8px;\n  background: rgba(255, 255, 255, 0.5); }\n\n._2LjaT {\n  display: block;\n  height: 100%;\n  max-width: 10%;\n  background: #fff;\n  transition: background .5s .2s; }\n\n.UhFWg {\n  padding: 20px; }\n\n._1qDeN {\n  display: inline-block;\n  padding: 5px 10px;\n  border-radius: 30px;\n  color: #00c78c;\n  border: 1px solid #00c78c;\n  opacity: .6;\n  margin-bottom: 20px; }\n\n._32EG3 {\n  padding: 0 10px 10px; }\n\n._2kVBi {\n  padding-top: 10px; }\n\n._1GnNk {\n  margin: 0;\n  padding: 0;\n  overflow-x: scroll;\n  overflow-y: hidden;\n  white-space: nowrap; }\n  ._1GnNk li {\n    position: relative;\n    overflow: hidden;\n    display: inline-block;\n    margin-right: 10px;\n    width: 40%;\n    min-height: 180px;\n    background: no-repeat center/cover; }\n    ._1GnNk li:last-child {\n      margin: 0; }\n\n.XXgaN {\n  padding-bottom: 55%;\n  background: #999 no-repeat center/cover; }\n\n._25FwQ,\n._2Lzjf {\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis; }\n\n._25FwQ {\n  font-size: 14px; }\n\n._2Lzjf {\n  font-size: 10px;\n  margin: 0;\n  color: #999; }\n", ""]);
+	exports.push([module.id, "._2Nv_2 {\n  display: block;\n  width: 100%; }\n\n.akWWR {\n  padding: 5px 10px;\n  overflow: hidden; }\n\n._2CkpE {\n  display: flex;\n  padding: 5px 10px 15px;\n  border-bottom: 1px solid #eee;\n  font-size: 10px;\n  position: relative; }\n  ._2CkpE figure {\n    flex: 1;\n    color: #999; }\n    ._2CkpE figure ._1nZ5H {\n      font-size: 16px;\n      color: #584f5f; }\n  ._2CkpE:before {\n    content: '';\n    position: absolute;\n    left: 50%;\n    bottom: 0;\n    z-index: 1;\n    transform: translateX(-50%);\n    width: 0;\n    border: 6px solid transparent;\n    border-bottom-color: #eee; }\n  ._2CkpE:after {\n    content: '';\n    position: absolute;\n    left: 50%;\n    bottom: -1.5px;\n    z-index: 2;\n    transform: translateX(-50%);\n    width: 0;\n    border: 6px solid transparent;\n    border-bottom-color: #fff; }\n\n._2xGm9 {\n  text-align: left; }\n\n._1AekU {\n  text-align: center; }\n\n._2zrRj {\n  text-align: right; }\n\n._1SGGr {\n  display: flex;\n  padding: 10px;\n  overflow: hidden; }\n\n._2Awuf {\n  flex: 1;\n  margin: 0;\n  align-self: center; }\n\n._2vjI7 {\n  font-size: 18px;\n  color: #23A570;\n  font-weight: bold; }\n\n._22cXH {\n  margin-top: 1px;\n  border: .5px solid #fff;\n  float: right;\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  position: relative;\n  margin-left: -10px;\n  text-align: center;\n  box-sizing: content-box; }\n  ._22cXH:nth-child(2) {\n    margin-top: 0;\n    border: 2px solid #23A570; }\n  ._22cXH img {\n    border-radius: 50%;\n    width: 100%; }\n\n._3ydNS,\n._2iAnH {\n  display: block;\n  padding: 10px;\n  height: 200px;\n  background-color: #999;\n  position: relative; }\n  ._3ydNS:before,\n  ._2iAnH:before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: rgba(0, 0, 0, 0.42); }\n  ._3ydNS p,\n  ._2iAnH p {\n    position: relative;\n    z-index: auto; }\n\n._3ydNS {\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-position: center; }\n  ._3ydNS:before {\n    content: '';\n    background: rgba(0, 0, 0, 0.22); }\n  ._3ydNS:hover ._2wTwu {\n    transition: background .35s;\n    background: #fff; }\n  ._3ydNS:hover ._2LjaT {\n    background: #23A570; }\n\n.dGXEk {\n  overflow: hidden;\n  padding: 5px;\n  border-top: 1px solid #eee; }\n\n._2iAnH {\n  width: 31%;\n  height: 22vh;\n  float: left;\n  background: #999 no-repeat center/100% auto;\n  margin: 1.16%;\n  position: relative;\n  transition: box-shadow .35s .1s, transform .35s .1s; }\n  ._2iAnH:hover {\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);\n    transform: scale(1.01); }\n\n.ED31q {\n  color: #fff;\n  font-size: 18px; }\n\n._25ujx {\n  color: #ddd;\n  font-size: 12px; }\n\n._3z7y5 {\n  color: #fff;\n  position: absolute;\n  left: 0;\n  bottom: 0;\n  padding: 10px;\n  width: 100%;\n  text-align: right; }\n\n._3Ditf {\n  font-size: 10px;\n  margin-left: 5px; }\n\n._2wTwu {\n  width: 100%;\n  height: 8px;\n  background: rgba(255, 255, 255, 0.5); }\n\n._2LjaT {\n  display: block;\n  height: 100%;\n  max-width: 10%;\n  background: #fff;\n  transition: background .5s .2s; }\n\n.UhFWg {\n  padding: 20px; }\n\n._1qDeN {\n  display: inline-block;\n  padding: 5px 10px;\n  border-radius: 30px;\n  color: #23A570;\n  border: 1px solid #23A570;\n  opacity: .6;\n  margin-bottom: 20px; }\n\n._32EG3 {\n  padding: 0 10px 10px; }\n\n._2kVBi {\n  padding-top: 10px; }\n\n._1GnNk {\n  margin: 0;\n  padding: 0;\n  overflow-x: scroll;\n  overflow-y: hidden;\n  white-space: nowrap; }\n  ._1GnNk li {\n    position: relative;\n    overflow: hidden;\n    display: inline-block;\n    margin-right: 10px;\n    width: 40%;\n    min-height: 180px;\n    background: no-repeat center/cover; }\n    ._1GnNk li:last-child {\n      margin: 0; }\n\n.XXgaN {\n  padding-bottom: 55%;\n  background: #999 no-repeat center/cover; }\n\n._25FwQ,\n._2Lzjf {\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis; }\n\n._25FwQ {\n  font-size: 14px; }\n\n._2Lzjf {\n  font-size: 10px;\n  margin: 0;\n  color: #999; }\n", ""]);
 
 	// exports
 	exports.locals = {
@@ -12049,8 +12541,7 @@ webpackJsonp([0],{
 	};
 
 /***/ },
-
-/***/ 644:
+/* 655 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12067,11 +12558,11 @@ webpackJsonp([0],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactCssModules = __webpack_require__(354);
+	var _reactCssModules = __webpack_require__(355);
 
 	var _reactCssModules2 = _interopRequireDefault(_reactCssModules);
 
-	var _appTraining = __webpack_require__(642);
+	var _appTraining = __webpack_require__(653);
 
 	var _appTraining2 = _interopRequireDefault(_appTraining);
 
@@ -12159,7 +12650,7 @@ webpackJsonp([0],{
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            if (!this.props.data.data) {
+	            if (!this.props.data || !this.props.data.data) {
 	                return false;
 	            }
 
@@ -12201,8 +12692,7 @@ webpackJsonp([0],{
 	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/AppScroll.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/AppScroll.js"); } } })();
 
 /***/ },
-
-/***/ 645:
+/* 656 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12219,23 +12709,23 @@ webpackJsonp([0],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactCssModules = __webpack_require__(354);
+	var _reactCssModules = __webpack_require__(355);
 
 	var _reactCssModules2 = _interopRequireDefault(_reactCssModules);
 
-	var _autobindDecorator = __webpack_require__(513);
+	var _autobindDecorator = __webpack_require__(515);
 
 	var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
 
-	var _AppMenu = __webpack_require__(646);
+	var _AppMenu = __webpack_require__(657);
 
 	var _AppMenu2 = _interopRequireDefault(_AppMenu);
 
-	var _appExplore = __webpack_require__(647);
+	var _appExplore = __webpack_require__(658);
 
 	var _appExplore2 = _interopRequireDefault(_appExplore);
 
-	var _HttpRequest = __webpack_require__(523);
+	var _HttpRequest = __webpack_require__(520);
 
 	var _HttpRequest2 = _interopRequireDefault(_HttpRequest);
 
@@ -12342,8 +12832,7 @@ webpackJsonp([0],{
 	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppExplore/AppExplore.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppExplore/AppExplore.js"); } } })();
 
 /***/ },
-
-/***/ 646:
+/* 657 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12360,17 +12849,17 @@ webpackJsonp([0],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactCssModules = __webpack_require__(354);
+	var _reactCssModules = __webpack_require__(355);
 
 	var _reactCssModules2 = _interopRequireDefault(_reactCssModules);
 
-	var _autobindDecorator = __webpack_require__(513);
+	var _autobindDecorator = __webpack_require__(515);
 
 	var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
 
 	var _reactRouter = __webpack_require__(298);
 
-	var _index = __webpack_require__(514);
+	var _index = __webpack_require__(516);
 
 	var _index2 = _interopRequireDefault(_index);
 
@@ -12496,14 +12985,13 @@ webpackJsonp([0],{
 	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppMenu.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppMenu.js"); } } })();
 
 /***/ },
-
-/***/ 647:
+/* 658 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(648);
+	var content = __webpack_require__(659);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(121)(content, {});
@@ -12512,8 +13000,8 @@ webpackJsonp([0],{
 	if(true) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept(648, function() {
-				var newContent = __webpack_require__(648);
+			module.hot.accept(659, function() {
+				var newContent = __webpack_require__(659);
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -12523,8 +13011,7 @@ webpackJsonp([0],{
 	}
 
 /***/ },
-
-/***/ 648:
+/* 659 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(116)();
@@ -12540,23 +13027,62 @@ webpackJsonp([0],{
 	};
 
 /***/ },
-
-/***/ 649:
+/* 660 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _dec, _class, _desc, _value, _class2;
 
 	var _react = __webpack_require__(122);
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _HttpRequest = __webpack_require__(520);
+
+	var _HttpRequest2 = _interopRequireDefault(_HttpRequest);
+
+	var _autobindDecorator = __webpack_require__(515);
+
+	var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
+
+	var _reactCssModules = __webpack_require__(355);
+
+	var _reactCssModules2 = _interopRequireDefault(_reactCssModules);
+
+	var _reactRouter = __webpack_require__(298);
+
+	var _moment = __webpack_require__(522);
+
+	var _moment2 = _interopRequireDefault(_moment);
+
+	var _Utils = __webpack_require__(521);
+
+	var _Utils2 = _interopRequireDefault(_Utils);
+
+	var _RecordArticle = __webpack_require__(661);
+
+	var _RecordArticle2 = _interopRequireDefault(_RecordArticle);
+
+	var _CommonAvatar = __webpack_require__(639);
+
+	var _CommonAvatar2 = _interopRequireDefault(_CommonAvatar);
+
+	var _appRecord = __webpack_require__(662);
+
+	var _appRecord2 = _interopRequireDefault(_appRecord);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -12564,38 +13090,373 @@ webpackJsonp([0],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var AppRecord = function (_Component) {
+	function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+	    var desc = {};
+	    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+	        desc[key] = descriptor[key];
+	    });
+	    desc.enumerable = !!desc.enumerable;
+	    desc.configurable = !!desc.configurable;
+
+	    if ('value' in desc || desc.initializer) {
+	        desc.writable = true;
+	    }
+
+	    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+	        return decorator(target, property, desc) || desc;
+	    }, desc);
+
+	    if (context && desc.initializer !== void 0) {
+	        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+	        desc.initializer = undefined;
+	    }
+
+	    if (desc.initializer === void 0) {
+	        Object['define' + 'Property'](target, property, desc);
+	        desc = null;
+	    }
+
+	    return desc;
+	}
+
+	var AppRecord = (_dec = (0, _reactCssModules2.default)(_appRecord2.default, { allowMultiple: true }), _dec(_class = (_class2 = function (_Component) {
 	    _inherits(AppRecord, _Component);
 
 	    function AppRecord(props) {
 	        _classCallCheck(this, AppRecord);
 
-	        return _possibleConstructorReturn(this, (AppRecord.__proto__ || Object.getPrototypeOf(AppRecord)).call(this, props));
+	        var _this = _possibleConstructorReturn(this, (AppRecord.__proto__ || Object.getPrototypeOf(AppRecord)).call(this, props));
+
+	        _this.state = {
+	            listData: _Utils2.default.storage.get("followTimeline") || []
+	        };
+	        _this.loading = true;
+
+	        // 设置 moment 的语言格式为中文
+	        _moment2.default.locale("zh-cn");
+	        return _this;
 	    }
 
 	    _createClass(AppRecord, [{
-	        key: 'render',
+	        key: "componentWillMount",
+	        value: function componentWillMount() {
+	            this.handleScroll(null, true);
+	        }
+	    }, {
+	        key: "getListData",
+	        value: function getListData() {
+	            var _this2 = this;
+
+	            if (!!this.state.listData.length) return this.state.listData.map(function (item, itemIndex) {
+	                return _react2.default.createElement(
+	                    "article",
+	                    { key: itemIndex, "data-type": item.type, styleName: "art-item " + (item.state == "hot" ? "art-hot" : "") },
+	                    _react2.default.createElement(
+	                        "div",
+	                        { styleName: "art-inner" },
+	                        _react2.default.createElement(
+	                            "header",
+	                            { styleName: "art-header" },
+	                            _react2.default.createElement(
+	                                "span",
+	                                { styleName: "header-avatar" },
+	                                _react2.default.createElement(_CommonAvatar2.default, { userid: item.author._id, avatar: item.author.avatar })
+	                            ),
+	                            _react2.default.createElement(
+	                                "p",
+	                                { styleName: "header-username" },
+	                                item.author.username,
+	                                " ",
+	                                _react2.default.createElement(
+	                                    "span",
+	                                    { styleName: "header-sub" },
+	                                    item.country,
+	                                    " ",
+	                                    item.city
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                "span",
+	                                { styleName: "header-time" },
+	                                (0, _moment2.default)(new Date()).diff((0, _moment2.default)(item.created), "h") < 22 ? (0, _moment2.default)(item.created).fromNow() : (0, _moment2.default)(item.created).format("YYYY/ MM /DD HH:mm")
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            "section",
+	                            { styleName: "art-wrap" },
+	                            _react2.default.createElement(_RecordArticle2.default, { data: item })
+	                        ),
+	                        _react2.default.createElement(
+	                            "footer",
+	                            { styleName: "art-footer" },
+	                            _react2.default.createElement(
+	                                "button",
+	                                { styleName: "footer-btn " + (item.hasLiked ? "active" : ""), onClick: function onClick() {
+	                                        return _this2.handleEventLike(item);
+	                                    }, title: item.hasLiked ? "取消加油" : "加油" },
+	                                _react2.default.createElement(
+	                                    "span",
+	                                    { styleName: "footer-sp" },
+	                                    _react2.default.createElement("i", { className: "iconfont fz14 icon-liked" })
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                "button",
+	                                { styleName: "footer-btn", title: "\u8BC4\u8BBA" },
+	                                _react2.default.createElement(
+	                                    "span",
+	                                    { styleName: "footer-sp" },
+	                                    _react2.default.createElement("i", { className: "iconfont fz14 icon-comment" }),
+	                                    _react2.default.createElement(
+	                                        "span",
+	                                        { styleName: "sp-comment-num", hidden: !item.comments },
+	                                        item.comments
+	                                    )
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                "button",
+	                                { styleName: "footer-btn", title: "\u5206\u4EAB" },
+	                                _react2.default.createElement(
+	                                    "span",
+	                                    { styleName: "footer-sp" },
+	                                    _react2.default.createElement("i", { className: "iconfont fz14 icon-share" })
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                "div",
+	                                { styleName: "footer-inner" },
+	                                _react2.default.createElement(
+	                                    "span",
+	                                    { styleName: "item-workout", hidden: item.type != "normal" },
+	                                    _react2.default.createElement("i", { className: "iconfont fz12 icon-training" }),
+	                                    " \u5B8C\u6210 ",
+	                                    item.meta.workoutName,
+	                                    " \u7B2C ",
+	                                    item.meta.count,
+	                                    " \u6B21"
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                "span",
+	                                { className: "fz12", styleName: "art-liked" },
+	                                _react2.default.createElement("i", { className: "iconfont icon-cheer fz14" }),
+	                                item.likes,
+	                                "\u4EBA\u52A0\u6CB9"
+	                            )
+	                        )
+	                    )
+	                );
+	            });else
+	                // loading
+	                return _react2.default.createElement(
+	                    "div",
+	                    { styleName: "art-preview" },
+	                    _react2.default.createElement(
+	                        "article",
+	                        { styleName: "art-item" },
+	                        _react2.default.createElement(
+	                            "div",
+	                            { styleName: "art-inner" },
+	                            _react2.default.createElement(
+	                                "header",
+	                                { styleName: "art-header" },
+	                                _react2.default.createElement("i", { className: "sp-placeholder", styleName: "header-avatar" }),
+	                                _react2.default.createElement(
+	                                    "p",
+	                                    { styleName: "header-username" },
+	                                    _react2.default.createElement("span", { className: "sp-placeholder" }),
+	                                    " ",
+	                                    _react2.default.createElement("span", { className: "sp-placeholder" })
+	                                ),
+	                                _react2.default.createElement(
+	                                    "span",
+	                                    { styleName: "header-time" },
+	                                    _react2.default.createElement("span", { className: "sp-placeholder" })
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                "section",
+	                                { styleName: "art-wrap" },
+	                                _react2.default.createElement(
+	                                    "div",
+	                                    { styleName: "art-content" },
+	                                    _react2.default.createElement("i", { className: "sp-placeholder", styleName: "art-photo" }),
+	                                    _react2.default.createElement(
+	                                        "div",
+	                                        { styleName: "art-con-inner" },
+	                                        _react2.default.createElement("p", { className: "sp-placeholder" }),
+	                                        _react2.default.createElement("p", { className: "sp-placeholder" }),
+	                                        _react2.default.createElement("span", { className: "sp-placeholder" })
+	                                    )
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                "footer",
+	                                { styleName: "art-footer" },
+	                                _react2.default.createElement(
+	                                    "button",
+	                                    { className: "sp-placeholder", styleName: "footer-btn" },
+	                                    _react2.default.createElement("span", { className: "sp-placeholder" })
+	                                ),
+	                                _react2.default.createElement(
+	                                    "button",
+	                                    { className: "sp-placeholder", styleName: "footer-btn" },
+	                                    _react2.default.createElement("span", { className: "sp-placeholder" })
+	                                ),
+	                                _react2.default.createElement(
+	                                    "button",
+	                                    { className: "sp-placeholder", styleName: "footer-btn" },
+	                                    _react2.default.createElement("span", { className: "sp-placeholder" })
+	                                ),
+	                                _react2.default.createElement(
+	                                    "div",
+	                                    { styleName: "footer-inner" },
+	                                    _react2.default.createElement("span", { className: "sp-placeholder" })
+	                                ),
+	                                _react2.default.createElement("span", { className: "sp-placeholder" })
+	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        "article",
+	                        { styleName: "art-item" },
+	                        _react2.default.createElement(
+	                            "div",
+	                            { styleName: "art-inner" },
+	                            _react2.default.createElement(
+	                                "header",
+	                                { styleName: "art-header" },
+	                                _react2.default.createElement("i", { className: "sp-placeholder", styleName: "header-avatar" }),
+	                                _react2.default.createElement(
+	                                    "p",
+	                                    { styleName: "header-username" },
+	                                    _react2.default.createElement("span", { className: "sp-placeholder" }),
+	                                    " ",
+	                                    _react2.default.createElement("span", { className: "sp-placeholder" })
+	                                ),
+	                                _react2.default.createElement(
+	                                    "span",
+	                                    { styleName: "header-time" },
+	                                    _react2.default.createElement("span", { className: "sp-placeholder" })
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                "section",
+	                                { styleName: "art-wrap" },
+	                                _react2.default.createElement(
+	                                    "div",
+	                                    { styleName: "art-content" },
+	                                    _react2.default.createElement("i", { className: "sp-placeholder", styleName: "art-photo" }),
+	                                    _react2.default.createElement(
+	                                        "div",
+	                                        { styleName: "art-con-inner" },
+	                                        _react2.default.createElement("p", { className: "sp-placeholder" }),
+	                                        _react2.default.createElement("p", { className: "sp-placeholder" }),
+	                                        _react2.default.createElement("span", { className: "sp-placeholder" })
+	                                    )
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                "footer",
+	                                { styleName: "art-footer" },
+	                                _react2.default.createElement(
+	                                    "button",
+	                                    { className: "sp-placeholder", styleName: "footer-btn" },
+	                                    _react2.default.createElement("span", { className: "sp-placeholder" })
+	                                ),
+	                                _react2.default.createElement(
+	                                    "button",
+	                                    { className: "sp-placeholder", styleName: "footer-btn" },
+	                                    _react2.default.createElement("span", { className: "sp-placeholder" })
+	                                ),
+	                                _react2.default.createElement(
+	                                    "button",
+	                                    { className: "sp-placeholder", styleName: "footer-btn" },
+	                                    _react2.default.createElement("span", { className: "sp-placeholder" })
+	                                ),
+	                                _react2.default.createElement(
+	                                    "div",
+	                                    { styleName: "footer-inner" },
+	                                    _react2.default.createElement("span", { className: "sp-placeholder" })
+	                                ),
+	                                _react2.default.createElement("span", { className: "sp-placeholder" })
+	                            )
+	                        )
+	                    )
+	                );
+	        }
+
+	        // 点赞评论
+
+	    }, {
+	        key: "handleEventLike",
+	        value: function handleEventLike(item) {
+	            var _this3 = this;
+
+	            if (item) {
+	                _HttpRequest2.default.setArticleLike(item._id).then(function (res) {
+	                    if (res.status == 204) {
+	                        item.hasLiked = item.hasLiked ? false : true;
+	                        item.likes = item.hasLiked ? item.likes + 1 : item.likes - 1;
+	                        _this3.setState({
+	                            listData: _this3.state.listData
+	                        });
+	                    }
+	                });
+	            }
+	        }
+	    }, {
+	        key: "handleScroll",
+	        value: function handleScroll(e) {
+	            var _this4 = this;
+
+	            var LOAD = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+
+	            if (LOAD == true || this.loading && e.target.scrollTop > (e.target.scrollHeight - e.target.clientHeight) * .99) {
+	                this.loading = false;
+	                _HttpRequest2.default.getFollowTimeline(LOAD == true ? "" : this.state.listData[this.state.listData.length - 1]._id).then(function (res) {
+	                    if (res.ok) {
+	                        var data = res.data.timeline || [];
+	                        if ((typeof data === "undefined" ? "undefined" : _typeof(data)) == "object" && data.length) {
+	                            console.info(data);
+	                            // 仅缓存第一次加载的数据
+	                            if (!_this4.state.listData.length) _Utils2.default.storage.set("followTimeline", data);
+
+	                            if (LOAD == true) _this4.setState({
+	                                listData: data
+	                            });else _this4.setState({
+	                                listData: [].concat(_toConsumableArray(_this4.state.listData), _toConsumableArray(data))
+	                            });
+
+	                            _this4.loading = true;
+	                        }
+	                    }
+	                });
+	            }
+	        }
+	    }, {
+	        key: "render",
 	        value: function render() {
 	            return _react2.default.createElement(
-	                'div',
-	                { style: { width: '100%' } },
-	                _react2.default.createElement(AppMenu, null),
+	                "div",
+	                { className: "scroll-content" },
 	                _react2.default.createElement(
-	                    'div',
-	                    { styleName: 'index-content' },
+	                    "div",
+	                    { className: "scroll-content", onScroll: this.handleScroll },
 	                    _react2.default.createElement(
-	                        'div',
-	                        null,
-	                        'AppRecord'
+	                        "section",
+	                        { styleName: "art-list" },
+	                        this.getListData()
 	                    )
-	                )
+	                ),
+	                this.props.children
 	            );
 	        }
 	    }]);
 
 	    return AppRecord;
-	}(_react.Component);
-
+	}(_react.Component), (_applyDecoratedDescriptor(_class2.prototype, "getListData", [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, "getListData"), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, "handleEventLike", [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, "handleEventLike"), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, "handleScroll", [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, "handleScroll"), _class2.prototype)), _class2)) || _class);
 	var _default = AppRecord;
 	exports.default = _default;
 	;
@@ -12605,9 +13466,9 @@ webpackJsonp([0],{
 	        return;
 	    }
 
-	    __REACT_HOT_LOADER__.register(AppRecord, 'AppRecord', '/Users/liucong/Documents/Github/keepForMac/src/components/AppRecord/AppRecord.js');
+	    __REACT_HOT_LOADER__.register(AppRecord, "AppRecord", "/Users/liucong/Documents/Github/keepForMac/src/components/AppRecord/AppRecord.js");
 
-	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/components/AppRecord/AppRecord.js');
+	    __REACT_HOT_LOADER__.register(_default, "default", "/Users/liucong/Documents/Github/keepForMac/src/components/AppRecord/AppRecord.js");
 	}();
 
 	;
@@ -12615,8 +13476,7 @@ webpackJsonp([0],{
 	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppRecord/AppRecord.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppRecord/AppRecord.js"); } } })();
 
 /***/ },
-
-/***/ 650:
+/* 661 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12627,9 +13487,37 @@ webpackJsonp([0],{
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+	var _dec, _class;
+
 	var _react = __webpack_require__(122);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _HttpRequest = __webpack_require__(520);
+
+	var _HttpRequest2 = _interopRequireDefault(_HttpRequest);
+
+	var _autobindDecorator = __webpack_require__(515);
+
+	var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
+
+	var _reactCssModules = __webpack_require__(355);
+
+	var _reactCssModules2 = _interopRequireDefault(_reactCssModules);
+
+	var _reactRouter = __webpack_require__(298);
+
+	var _moment = __webpack_require__(522);
+
+	var _moment2 = _interopRequireDefault(_moment);
+
+	var _Utils = __webpack_require__(521);
+
+	var _Utils2 = _interopRequireDefault(_Utils);
+
+	var _appRecord = __webpack_require__(662);
+
+	var _appRecord2 = _interopRequireDefault(_appRecord);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12639,39 +13527,187 @@ webpackJsonp([0],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var AppUserCenter = function (_Component) {
-	    _inherits(AppUserCenter, _Component);
+	var CommonArticle = (_dec = (0, _reactCssModules2.default)(_appRecord2.default), _dec(_class = function (_Component) {
+	    _inherits(CommonArticle, _Component);
 
-	    function AppUserCenter(props) {
-	        _classCallCheck(this, AppUserCenter);
+	    function CommonArticle(props) {
+	        _classCallCheck(this, CommonArticle);
 
-	        return _possibleConstructorReturn(this, (AppUserCenter.__proto__ || Object.getPrototypeOf(AppUserCenter)).call(this, props));
+	        return _possibleConstructorReturn(this, (CommonArticle.__proto__ || Object.getPrototypeOf(CommonArticle)).call(this, props));
 	    }
 
-	    _createClass(AppUserCenter, [{
+	    _createClass(CommonArticle, [{
 	        key: 'render',
 	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                { style: { width: '100%' } },
-	                _react2.default.createElement(AppMenu, null),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'index-content' },
-	                    _react2.default.createElement(
+	            var item = this.props.data;
+
+	            var handleText = function handleText(val) {
+	                var reg = /(<br>)/g;
+	                var br = _react2.default.createElement('br');
+	                return val.replace(/\n/g, '<br>').split(reg).map(function (item, index) {
+	                    return item.match(reg) ? _react2.default.createElement('br', { key: index }) : item;
+	                });
+	            };
+
+	            var handleLink = function handleLink(val) {
+	                var reg = /(#(?!\s*#)[^#]+#)/g;
+	                return val.split(reg).map(function (ment, key) {
+	                    return !ment.match(reg) ? handleText(ment) : _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { key: key, to: '/hashtag/' + encodeURIComponent(ment.substring(1, ment.length - 1)) },
+	                        ment
+	                    );
+	                });
+	            };
+
+	            switch (item.type) {
+	                case 'article':
+	                    return _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { to: '/article/' + item._id, styleName: 'article-card' },
+	                        _react2.default.createElement('img', { src: item.photo ? item.photo + '?imageMogr2/thumbnail/!600' : '', alt: '' }),
+	                        _react2.default.createElement(
+	                            'article',
+	                            { styleName: 'art-blur-inner' },
+	                            _react2.default.createElement('div', { styleName: 'inner-back', style: { backgroundImage: 'url(' + item.photo + ')' } }),
+	                            _react2.default.createElement(
+	                                'p',
+	                                { styleName: 'card-title' },
+	                                handleText(item.title)
+	                            ),
+	                            _react2.default.createElement(
+	                                'p',
+	                                { styleName: 'card-desc' },
+	                                handleText(item.content)
+	                            )
+	                        )
+	                    );
+	                    break;
+	                case 'normal':
+	                case 'direct':
+	                    return _react2.default.createElement(
+	                        'div',
+	                        { styleName: 'art-content' },
+	                        _react2.default.createElement(
+	                            _reactRouter.Link,
+	                            { to: '/article/' + item._id },
+	                            _react2.default.createElement('img', { styleName: 'art-photo', src: item.photo ? item.photo + '?imageMogr2/thumbnail/!300' : '', alt: '' })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { styleName: 'art-con-inner' },
+	                            _react2.default.createElement(
+	                                'p',
+	                                { styleName: 'art-txt' },
+	                                handleLink(item.content)
+	                            ),
+	                            _react2.default.createElement(
+	                                'p',
+	                                { styleName: 'article-line' },
+	                                _react2.default.createElement(
+	                                    _reactRouter.Link,
+	                                    { styleName: 'article-more', to: '/article/' + item._id },
+	                                    '\u67E5\u770B\u5168\u90E8'
+	                                )
+	                            )
+	                        )
+	                    );
+	                    break;
+	                case 'share':
+	                    return _react2.default.createElement(
 	                        'div',
 	                        null,
-	                        'AppUserCenter'
-	                    )
-	                )
-	            );
+	                        _react2.default.createElement(
+	                            'div',
+	                            { styleName: 'art-con-inner' },
+	                            _react2.default.createElement(
+	                                'p',
+	                                { styleName: 'art-txt' },
+	                                handleLink(item.content)
+	                            ),
+	                            _react2.default.createElement(
+	                                'p',
+	                                { styleName: 'article-line' },
+	                                _react2.default.createElement(
+	                                    _reactRouter.Link,
+	                                    { styleName: 'article-more', to: '/article/' + item._id },
+	                                    '\u67E5\u770B\u5168\u90E8'
+	                                )
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            _reactRouter.Link,
+	                            { to: item.shareCard.url, styleName: 'art-share-card' },
+	                            _react2.default.createElement('div', { styleName: 'card-img', style: { backgroundImage: 'url(' + item.shareCard.image + ')' } }),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { styleName: 'card-inner' },
+	                                _react2.default.createElement(
+	                                    'p',
+	                                    { styleName: 'card-title' },
+	                                    handleText(item.shareCard.title)
+	                                ),
+	                                _react2.default.createElement(
+	                                    'p',
+	                                    { styleName: 'card-desc' },
+	                                    handleText(item.shareCard.content)
+	                                )
+	                            )
+	                        )
+	                    );
+	                    break;
+	                case 'run':
+	                    return _react2.default.createElement(
+	                        'div',
+	                        null,
+	                        _react2.default.createElement(
+	                            'div',
+	                            { styleName: 'art-content' },
+	                            _react2.default.createElement(
+	                                _reactRouter.Link,
+	                                { to: '/article/' + item._id },
+	                                _react2.default.createElement('img', { hidden: !item.photo, styleName: 'art-photo', src: item.photo ? item.photo + '?imageMogr2/thumbnail/!300' : '', alt: '' })
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { styleName: 'art-con-inner' },
+	                                _react2.default.createElement(
+	                                    'p',
+	                                    { styleName: 'art-txt' },
+	                                    handleLink(item.content)
+	                                ),
+	                                _react2.default.createElement(
+	                                    'p',
+	                                    { styleName: 'article-line' },
+	                                    _react2.default.createElement(
+	                                        _reactRouter.Link,
+	                                        { styleName: 'article-more', to: '/article/' + item._id },
+	                                        '\u67E5\u770B\u5168\u90E8'
+	                                    )
+	                                )
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { styleName: 'art-run-card' },
+	                            _react2.default.createElement(
+	                                'p',
+	                                { styleName: 'art-run-title' },
+	                                _react2.default.createElement('img', { width: '18', src: item.meta.icon, alt: '' }),
+	                                ' ',
+	                                _react2.default.createElement('span', { dangerouslySetInnerHTML: { __html: item.meta.title } })
+	                            ),
+	                            _react2.default.createElement('img', { src: item.meta.picture ? item.meta.picture + '?imageMogr2/thumbnail/!360' : '', alt: '' })
+	                        )
+	                    );
+	                    break;
+	            }
 	        }
 	    }]);
 
-	    return AppUserCenter;
-	}(_react.Component);
-
-	var _default = AppUserCenter;
+	    return CommonArticle;
+	}(_react.Component)) || _class);
+	var _default = CommonArticle;
 	exports.default = _default;
 	;
 
@@ -12680,18 +13716,693 @@ webpackJsonp([0],{
 	        return;
 	    }
 
-	    __REACT_HOT_LOADER__.register(AppUserCenter, 'AppUserCenter', '/Users/liucong/Documents/Github/keepForMac/src/components/AppUserCenter/AppUserCenter.js');
+	    __REACT_HOT_LOADER__.register(CommonArticle, 'CommonArticle', '/Users/liucong/Documents/Github/keepForMac/src/components/AppRecord/RecordArticle.js');
 
-	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/components/AppUserCenter/AppUserCenter.js');
+	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/components/AppRecord/RecordArticle.js');
 	}();
 
 	;
 
-	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppUserCenter/AppUserCenter.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppUserCenter/AppUserCenter.js"); } } })();
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppRecord/RecordArticle.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppRecord/RecordArticle.js"); } } })();
 
 /***/ },
+/* 662 */
+/***/ function(module, exports, __webpack_require__) {
 
-/***/ 651:
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(663);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(121)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(true) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept(663, function() {
+				var newContent = __webpack_require__(663);
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 663 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(116)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "._3-jxe {\n  width: 100%;\n  padding: 10px;\n  min-height: 100%;\n  background: #fff; }\n\n._3ggm6 ._1xFOd {\n  opacity: .5; }\n\n._1xFOd {\n  margin-bottom: 10px;\n  filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.3)); }\n  ._1xFOd._1EVUW {\n    background: #23A570; }\n\n._2ghZT {\n  border-radius: 30px 5px 5px;\n  overflow: hidden;\n  background: #fff; }\n\n._3SMkp {\n  padding: 5px 10px;\n  border-bottom: 1px solid #eee;\n  display: flex;\n  align-items: center;\n  position: relative; }\n\n._29M6g {\n  width: 35px;\n  height: 35px;\n  border-radius: 50%;\n  margin-right: 10px; }\n\n._2V6sz {\n  margin: 0;\n  font-size: 12px;\n  font-weight: bold;\n  flex: 1;\n  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2); }\n\n._1rOY5 {\n  font-weight: normal;\n  font-size: 10px;\n  color: #999; }\n\n._32k4B {\n  color: #999;\n  font-size: 12px; }\n\n._3g9YY {\n  padding: 10px; }\n  ._3g9YY a {\n    color: #23A570; }\n  ._3g9YY img {\n    max-width: 100%; }\n\n._318Bm {\n  display: flex; }\n\n._3UnCC {\n  flex: 1; }\n\n._3Srh- {\n  width: 200px;\n  align-self: baseline;\n  margin-right: 10px; }\n\ni._3Srh- {\n  min-height: 100px; }\n\n._3uFno {\n  margin: 0 0 10px 0;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  overflow: hidden;\n  -webkit-line-clamp: 5; }\n\n._2rdmH {\n  border-top: 1px solid #eee;\n  display: flex;\n  align-items: center;\n  height: 39px;\n  padding-right: 10px; }\n\n._1ZYKg {\n  padding: 0 10px;\n  border-left: 1px solid #eee; }\n\n._219xr {\n  padding-left: 10px;\n  flex: 1;\n  border-left: 1px solid #eee; }\n\n._22eL6 {\n  font-size: 12px;\n  color: #999;\n  padding: 4px 12px 3px 5px;\n  border-radius: 15px;\n  background: rgba(153, 153, 153, 0.2);\n  min-width: 150px; }\n  ._22eL6 i {\n    color: #584f5f; }\n\n._9sb0B {\n  width: 40px;\n  padding: 10px 0;\n  background: none;\n  border: none;\n  outline: 0;\n  transition: all .2s; }\n  ._9sb0B:hover {\n    background: #eee; }\n  ._9sb0B:active {\n    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5) inset; }\n  ._9sb0B.BjDhg {\n    color: #000;\n    font-weight: bold;\n    box-shadow: 0 0 2px rgba(88, 79, 95, 0.9) inset, 0 0 36px rgba(88, 79, 95, 0.7) inset; }\n\n._1s4bI {\n  padding: 0 10px;\n  position: relative; }\n\n.-tgih {\n  color: #999;\n  font-size: 10px;\n  vertical-align: text-top; }\n\n._362Z_ {\n  width: 360px;\n  height: 120px;\n  box-shadow: 0 0 5px rgba(88, 79, 95, 0.9);\n  border-radius: 3px;\n  display: flex;\n  overflow: hidden; }\n\n._3gr54 {\n  width: 120px;\n  height: 120px;\n  background: #999 no-repeat center/auto 100%; }\n\n._1y36O {\n  padding: 10px;\n  flex: 1; }\n  ._1y36O .AH_f7 {\n    display: -webkit-box;\n    -webkit-box-orient: vertical;\n    overflow: hidden;\n    -webkit-line-clamp: 2; }\n  ._1y36O ._3KDoc {\n    display: -webkit-box;\n    -webkit-box-orient: vertical;\n    overflow: hidden;\n    -webkit-line-clamp: 3; }\n\n.AH_f7 {\n  font-size: 14px;\n  font-weight: bold; }\n\n._3KDoc {\n  color: #999;\n  font-size: 12px; }\n\n._2up94 {\n  width: 360px;\n  background: #f7f7f7;\n  margin-top: 10px; }\n  ._2up94 img {\n    max-width: 100%; }\n\n._20hgg {\n  font-size: 12px;\n  position: relative;\n  color: #999;\n  padding: 10px 10px 10px 33px;\n  margin: 0; }\n  ._20hgg img {\n    position: absolute;\n    top: 10px;\n    left: 10px;\n    vertical-align: text-bottom; }\n\n._18Id8 {\n  display: block;\n  width: 100%;\n  background: #f7f7f7 no-repeat left center/100% auto;\n  position: relative;\n  overflow: hidden; }\n  ._18Id8 > img {\n    width: 100%; }\n\n._33-vV {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: 80px;\n  padding: 10px; }\n  ._33-vV .HbTz2 {\n    position: absolute;\n    top: 0;\n    left: 0;\n    filter: blur(15px);\n    width: 100%;\n    height: 110%;\n    background: no-repeat left bottom/100% auto; }\n  ._33-vV p {\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    color: #fff;\n    margin: 8px;\n    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);\n    position: relative; }\n\n.bQmbn {\n  font-size: 12px; }\n\n.jxSoe {\n  min-height: 100%;\n  background: #E5ECEF; }\n\n._5L3Y7 {\n  background: #fff; }\n\n._13W2y {\n  overflow: hidden;\n  margin-top: 10px;\n  background: #fff; }\n  ._13W2y ul {\n    margin: 0;\n    padding: 0; }\n  ._13W2y li {\n    margin: 0;\n    padding: 10px 10px 5px;\n    border-top: 1px solid #eee; }\n\n._14_My {\n  padding: 10px;\n  font-size: 14px; }\n\n._2vDr9 {\n  display: flex; }\n\n._318tK {\n  width: 35px;\n  height: 35px;\n  border-radius: 50%;\n  background-color: #584f5f;\n  margin-right: 10px; }\n\n._2QGrH {\n  flex: 1; }\n\n._15CrS {\n  font-size: 14px;\n  margin: 0;\n  line-height: 20px; }\n\n._3SRph {\n  font-size: 10px;\n  color: #ddd;\n  margin: 0; }\n\n._3KcmY {\n  margin-top: 5px;\n  padding: 5px 10px 5px 45px; }\n\n.I9F4N {\n  background: #f7f7f7;\n  color: #999;\n  margin-bottom: 10px;\n  padding: 10px; }\n\n.I9F4N a {\n  color: #23A570; }\n\n._3puBp {\n  margin-top: 10px; }\n\n._22cJo {\n  color: #ddd;\n  font-size: 12px;\n  margin: 10px 0 0; }\n\n._35Lzn {\n  border-top: 1px solid #eee;\n  display: flex;\n  align-items: center;\n  height: 39px;\n  padding: 0 10px; }\n\n.YY5YI {\n  display: flex;\n  padding: 10px;\n  margin-top: 10px;\n  background: #fff; }\n\n._3qMgE {\n  align-self: center; }\n\n._3n4SV {\n  margin: 10px 0; }\n\na._1CrLt {\n  color: #999;\n  font-size: 12px; }\n", ""]);
+
+	// exports
+	exports.locals = {
+		"art-list": "_3-jxe",
+		"art-preview": "_3ggm6",
+		"art-item": "_1xFOd",
+		"art-hot": "_1EVUW",
+		"art-inner": "_2ghZT",
+		"art-header": "_3SMkp",
+		"header-avatar": "_29M6g",
+		"header-username": "_2V6sz",
+		"header-sub": "_1rOY5",
+		"header-time": "_32k4B",
+		"art-wrap": "_3g9YY",
+		"art-content": "_318Bm",
+		"art-con-inner": "_3UnCC",
+		"art-photo": "_3Srh-",
+		"art-txt": "_3uFno",
+		"art-footer": "_2rdmH",
+		"art-liked": "_1ZYKg",
+		"footer-inner": "_219xr",
+		"item-workout": "_22eL6",
+		"footer-btn": "_9sb0B",
+		"active": "BjDhg",
+		"footer-sp": "_1s4bI",
+		"sp-comment-num": "-tgih",
+		"art-share-card": "_362Z_",
+		"card-img": "_3gr54",
+		"card-inner": "_1y36O",
+		"card-title": "AH_f7",
+		"card-desc": "_3KDoc",
+		"art-run-card": "_2up94",
+		"art-run-title": "_20hgg",
+		"article-card": "_18Id8",
+		"art-blur-inner": "_33-vV",
+		"inner-back": "HbTz2",
+		"art-desc": "bQmbn",
+		"article-detail": "jxSoe",
+		"article-content": "_5L3Y7",
+		"art-comments": "_13W2y",
+		"comment-caption": "_14_My",
+		"comment-header": "_2vDr9",
+		"comment-avatar": "_318tK",
+		"comment-inner": "_2QGrH",
+		"comment-username": "_15CrS",
+		"comment-time": "_3SRph",
+		"comment-content": "_3KcmY",
+		"comment-reply": "I9F4N",
+		"article-txt": "_3puBp",
+		"article-other": "_22cJo",
+		"article-footer": "_35Lzn",
+		"article-comments": "YY5YI",
+		"article-pioneer": "_3qMgE",
+		"article-line": "_3n4SV",
+		"article-more": "_1CrLt"
+	};
+
+/***/ },
+/* 664 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _dec, _class, _desc, _value, _class2;
+
+	var _react = __webpack_require__(122);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactCssModules = __webpack_require__(355);
+
+	var _reactCssModules2 = _interopRequireDefault(_reactCssModules);
+
+	var _autobindDecorator = __webpack_require__(515);
+
+	var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
+
+	var _reactRouter = __webpack_require__(298);
+
+	var _moment = __webpack_require__(522);
+
+	var _moment2 = _interopRequireDefault(_moment);
+
+	var _HttpRequest = __webpack_require__(520);
+
+	var _HttpRequest2 = _interopRequireDefault(_HttpRequest);
+
+	var _Utils = __webpack_require__(521);
+
+	var _Utils2 = _interopRequireDefault(_Utils);
+
+	var _AppSlideContent = __webpack_require__(665);
+
+	var _AppSlideContent2 = _interopRequireDefault(_AppSlideContent);
+
+	var _PioneerList = __webpack_require__(668);
+
+	var _PioneerList2 = _interopRequireDefault(_PioneerList);
+
+	var _CommonAvatar = __webpack_require__(639);
+
+	var _CommonAvatar2 = _interopRequireDefault(_CommonAvatar);
+
+	var _appRecord = __webpack_require__(662);
+
+	var _appRecord2 = _interopRequireDefault(_appRecord);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+	    var desc = {};
+	    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+	        desc[key] = descriptor[key];
+	    });
+	    desc.enumerable = !!desc.enumerable;
+	    desc.configurable = !!desc.configurable;
+
+	    if ('value' in desc || desc.initializer) {
+	        desc.writable = true;
+	    }
+
+	    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+	        return decorator(target, property, desc) || desc;
+	    }, desc);
+
+	    if (context && desc.initializer !== void 0) {
+	        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+	        desc.initializer = undefined;
+	    }
+
+	    if (desc.initializer === void 0) {
+	        Object['define' + 'Property'](target, property, desc);
+	        desc = null;
+	    }
+
+	    return desc;
+	}
+
+	var ArticleContent = (_dec = (0, _reactCssModules2.default)(_appRecord2.default, { allowMultiple: true }), _dec(_class = (_class2 = function (_Component) {
+	    _inherits(ArticleContent, _Component);
+
+	    function ArticleContent(props) {
+	        _classCallCheck(this, ArticleContent);
+
+	        var _this = _possibleConstructorReturn(this, (ArticleContent.__proto__ || Object.getPrototypeOf(ArticleContent)).call(this, props));
+
+	        _this.state = {
+	            data: null,
+	            comments: [],
+	            hotComments: []
+	        };
+	        _this.loading = true;
+	        return _this;
+	    }
+
+	    _createClass(ArticleContent, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            var _this2 = this;
+
+	            // 动态详情
+	            _HttpRequest2.default.getFollowDetail(this.props.params.id).then(function (res) {
+	                if (res.ok) {
+	                    console.info(res.data);
+	                    _this2.setState({
+	                        data: res.data
+	                    });
+	                }
+	            });
+
+	            // 精彩评论
+	            _HttpRequest2.default.getFollowHotComments(this.props.params.id).then(function (res) {
+	                if (res.ok) {
+	                    console.info(res.data);
+	                    _this2.setState({
+	                        hotComments: res.data
+	                    });
+	                }
+	            });
+
+	            // 加载评论
+	            this.handleScroll(null, true);
+	        }
+	    }, {
+	        key: 'getPioneerContent',
+	        value: function getPioneerContent() {
+	            var _this3 = this;
+
+	            var list = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+	            if (list && list.length > 0) return list.map(function (item, index) {
+	                return _react2.default.createElement(
+	                    'li',
+	                    { key: item._id + index },
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { styleName: 'pioneer-item', onClick: function onClick() {
+	                                return _this3.handleUserInfo(item._id);
+	                            } },
+	                        _react2.default.createElement('img', { src: item.avatar, alt: '' })
+	                    )
+	                );
+	            });
+	        }
+	    }, {
+	        key: 'handleText',
+	        value: function handleText(val) {
+	            var reg = /(<br>)/g;
+	            var br = _react2.default.createElement('br');
+	            return val.replace(/\n/g, '<br>').split(reg).map(function (item, index) {
+	                return item.match(reg) ? _react2.default.createElement('br', { key: index }) : item;
+	            });
+	        }
+	    }, {
+	        key: 'handleLink',
+	        value: function handleLink(val) {
+	            var _this4 = this;
+
+	            var reg = /(#(?!\s*#)[^#]+#)/g;
+	            return val.split(reg).map(function (ment, key) {
+	                return !ment.match(reg) ? _this4.handleText(ment) : _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { key: key, to: '/hashtag/' + encodeURIComponent(ment.substring(1, ment.length - 1)) },
+	                    ment
+	                );
+	            });
+	        }
+	    }, {
+	        key: 'getArticleDetail',
+	        value: function getArticleDetail(item) {
+	            switch (item.type) {
+	                case 'article':
+	                    return _react2.default.createElement(
+	                        'div',
+	                        { styleName: 'article-card' },
+	                        _react2.default.createElement('img', { src: item.photo ? '' + item.photo : '', alt: '' }),
+	                        _react2.default.createElement(
+	                            'article',
+	                            { styleName: 'art-blur-inner' },
+	                            _react2.default.createElement('div', { styleName: 'inner-back', style: { backgroundImage: 'url(' + item.photo + ')' } }),
+	                            _react2.default.createElement(
+	                                'p',
+	                                { styleName: 'card-title' },
+	                                this.handleText(item.title)
+	                            ),
+	                            _react2.default.createElement(
+	                                'p',
+	                                { styleName: 'card-desc' },
+	                                this.handleText(item.content)
+	                            )
+	                        )
+	                    );
+	                    break;
+	                case 'normal':
+	                case 'direct':
+	                    return _react2.default.createElement(
+	                        'div',
+	                        null,
+	                        _react2.default.createElement('img', { hidden: !item.photo, src: item.photo, alt: '' }),
+	                        _react2.default.createElement(
+	                            'p',
+	                            { styleName: 'article-txt' },
+	                            this.handleLink(item.content)
+	                        )
+	                    );
+	                    break;
+	                case 'share':
+	                    return _react2.default.createElement(
+	                        'div',
+	                        null,
+	                        _react2.default.createElement('img', { hidden: !item.photo, src: item.photo, alt: '' }),
+	                        _react2.default.createElement(
+	                            'p',
+	                            { styleName: 'article-txt' },
+	                            this.handleLink(item.content)
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { styleName: 'art-share-card' },
+	                            _react2.default.createElement('div', { styleName: 'card-img', style: { backgroundImage: 'url(' + item.shareCard.image + ')' } }),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { styleName: 'card-inner' },
+	                                _react2.default.createElement(
+	                                    'p',
+	                                    { styleName: 'card-title' },
+	                                    this.handleText(item.shareCard.title)
+	                                ),
+	                                _react2.default.createElement(
+	                                    'p',
+	                                    { styleName: 'card-desc' },
+	                                    this.handleText(item.shareCard.content)
+	                                )
+	                            )
+	                        )
+	                    );
+	                    break;
+	                case 'run':
+	                    return _react2.default.createElement(
+	                        'div',
+	                        null,
+	                        _react2.default.createElement('img', { hidden: !item.photo, src: item.photo, alt: '' }),
+	                        _react2.default.createElement(
+	                            'p',
+	                            { styleName: 'article-txt' },
+	                            this.handleLink(item.content)
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { styleName: 'art-run-card' },
+	                            _react2.default.createElement(
+	                                'p',
+	                                { styleName: 'art-run-title' },
+	                                _react2.default.createElement('img', { width: '18', src: item.meta.icon, alt: '' }),
+	                                ' ',
+	                                this.handleText(item.meta.title)
+	                            ),
+	                            _react2.default.createElement('img', { src: item.meta.picture, alt: '' })
+	                        )
+	                    );
+	                    break;
+	                default:
+	                    return false;
+	            }
+	        }
+	    }, {
+	        key: 'getReplyContent',
+	        value: function getReplyContent(item) {
+	            if (item.replyComment) return _react2.default.createElement(
+	                'div',
+	                { key: item.replyComment.author._id, styleName: 'comment-reply' },
+	                _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    null,
+	                    item.replyComment.author.username
+	                ),
+	                ': ',
+	                item.replyComment.content
+	            );
+	        }
+
+	        // 点赞评论
+
+	    }, {
+	        key: 'handleEventLike',
+	        value: function handleEventLike() {
+	            var _this5 = this;
+
+	            if (this.props.params.id) {
+	                _HttpRequest2.default.setArticleLike(this.props.params.id).then(function (res) {
+	                    if (res.status == 204) {
+	                        _this5.state.data.hasLiked = _this5.state.data.hasLiked ? false : true;
+	                        _this5.state.data.likes = _this5.state.data.hasLiked ? _this5.state.data.likes + 1 : _this5.state.data.likes - 1;
+	                        _this5.setState({
+	                            data: _this5.state.data
+	                        });
+	                        _this5.props.onLikeEvent();
+	                    }
+	                });
+	            }
+	        }
+	    }, {
+	        key: 'handleScroll',
+	        value: function handleScroll(e) {
+	            var _this6 = this;
+
+	            var Load = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+
+	            if (Load == true || this.loading && e.target.scrollTop > (e.target.scrollHeight - e.target.clientHeight) * .99) {
+	                this.loading = false;
+	                _HttpRequest2.default.getFollowComments(this.props.params.id, this.state.comments.length ? this.state.comments[this.state.comments.length - 1]._id : '').then(function (res) {
+	                    if (res.ok) {
+	                        if (_typeof(res.data) == 'object' && res.data.length) {
+	                            console.info(res.data);
+	                            _this6.setState({
+	                                comments: [].concat(_toConsumableArray(_this6.state.comments), _toConsumableArray(res.data))
+	                            });
+	                            _this6.loading = true;
+	                        }
+	                    }
+	                });
+	            }
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this7 = this;
+
+	            var item = this.state.data;
+	            if (item) return _react2.default.createElement(
+	                _AppSlideContent2.default,
+	                null,
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'slide-content-wrap', onScroll: this.handleScroll },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { styleName: 'article-detail' },
+	                        _react2.default.createElement(
+	                            'section',
+	                            { styleName: 'article-content' },
+	                            _react2.default.createElement(
+	                                'header',
+	                                { styleName: 'art-header' },
+	                                _react2.default.createElement(
+	                                    'span',
+	                                    { styleName: 'header-avatar' },
+	                                    _react2.default.createElement(_CommonAvatar2.default, { userid: item.author._id, avatar: item.author.avatar })
+	                                ),
+	                                _react2.default.createElement(
+	                                    'p',
+	                                    { styleName: 'header-username' },
+	                                    item.author.username,
+	                                    ' ',
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        { styleName: 'header-sub' },
+	                                        item.country,
+	                                        ' ',
+	                                        item.city
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'span',
+	                                    { styleName: 'header-time' },
+	                                    (0, _moment2.default)(new Date()).diff((0, _moment2.default)(item.created), 'h') < 22 ? (0, _moment2.default)(item.created).fromNow() : (0, _moment2.default)(item.created).format('YYYY/ MM /DD HH:mm')
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                'section',
+	                                { styleName: 'art-wrap' },
+	                                this.getArticleDetail(item),
+	                                _react2.default.createElement(
+	                                    'p',
+	                                    { styleName: 'article-other' },
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        { hidden: !(item.externalShareCount + item.internalShareCount) },
+	                                        item.externalShareCount + item.internalShareCount,
+	                                        ' \u5206\u4EAB'
+	                                    ),
+	                                    '  ',
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        { hidden: !item.favoriteCount },
+	                                        ' ',
+	                                        item.favoriteCount,
+	                                        ' \u6536\u85CF'
+	                                    )
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                'footer',
+	                                { styleName: 'article-footer' },
+	                                _react2.default.createElement(
+	                                    'button',
+	                                    { styleName: 'footer-btn ' + (item.hasLiked ? 'active' : ''), onClick: function onClick() {
+	                                            return _this7.handleEventLike(item);
+	                                        }, title: item.hasLiked ? '取消加油' : '加油' },
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        { styleName: 'footer-sp' },
+	                                        _react2.default.createElement('i', { className: 'iconfont fz14 icon-liked' })
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'button',
+	                                    { styleName: 'footer-btn', title: '\u8BC4\u8BBA' },
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        { styleName: 'footer-sp' },
+	                                        _react2.default.createElement('i', { className: 'iconfont fz14 icon-comment' })
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'button',
+	                                    { styleName: 'footer-btn', title: '\u5206\u4EAB' },
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        { styleName: 'footer-sp' },
+	                                        _react2.default.createElement('i', { className: 'iconfont fz14 icon-share' })
+	                                    )
+	                                )
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'section',
+	                            { styleName: 'article-comments' },
+	                            _react2.default.createElement(
+	                                'span',
+	                                { styleName: 'article-pioneer' },
+	                                item.likes,
+	                                ' \u52A0\u6CB9'
+	                            ),
+	                            _react2.default.createElement(_PioneerList2.default, { hidden: !item.likers.length, list: item.likers }),
+	                            _react2.default.createElement(
+	                                _reactRouter.Link,
+	                                { className: 'show-more' },
+	                                _react2.default.createElement('i', { className: 'iconfont icon-more' })
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'section',
+	                            { styleName: 'art-comments', hidden: !this.state.hotComments.length },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { styleName: 'comment-caption' },
+	                                '\u7CBE\u5F69\u8BC4\u8BBA ',
+	                                this.state.hotComments.length
+	                            ),
+	                            _react2.default.createElement(
+	                                'ul',
+	                                null,
+	                                this.state.hotComments.length && this.state.hotComments.map(function (item, index) {
+	                                    return _react2.default.createElement(
+	                                        'li',
+	                                        { key: index },
+	                                        _react2.default.createElement(
+	                                            'div',
+	                                            { styleName: 'comment-header' },
+	                                            _react2.default.createElement(
+	                                                'span',
+	                                                { styleName: 'comment-avatar' },
+	                                                _react2.default.createElement(_CommonAvatar2.default, { userid: item.author._id, avatar: item.author.avatar })
+	                                            ),
+	                                            _react2.default.createElement(
+	                                                'div',
+	                                                { styleName: 'comment-inner' },
+	                                                _react2.default.createElement(
+	                                                    'p',
+	                                                    { styleName: 'comment-username' },
+	                                                    item.author.username
+	                                                ),
+	                                                _react2.default.createElement(
+	                                                    'p',
+	                                                    { styleName: 'comment-time' },
+	                                                    (0, _moment2.default)(new Date()).diff((0, _moment2.default)(item.created), 'h') < 22 ? (0, _moment2.default)(item.created).fromNow() : (0, _moment2.default)(item.created).format('YYYY/MM/DD HH:mm')
+	                                                )
+	                                            )
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'div',
+	                                            { styleName: 'comment-content' },
+	                                            item.content
+	                                        )
+	                                    );
+	                                })
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'section',
+	                            { styleName: 'art-comments', hidden: !item.comments },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { styleName: 'comment-caption' },
+	                                '\u5168\u90E8\u8BC4\u8BBA ',
+	                                item.comments
+	                            ),
+	                            _react2.default.createElement(
+	                                'ul',
+	                                null,
+	                                this.state.comments.length && this.state.comments.map(function (item, index) {
+	                                    return _react2.default.createElement(
+	                                        'li',
+	                                        { key: index },
+	                                        _react2.default.createElement(
+	                                            'div',
+	                                            { styleName: 'comment-header' },
+	                                            _react2.default.createElement(
+	                                                'span',
+	                                                { styleName: 'comment-avatar' },
+	                                                _react2.default.createElement(_CommonAvatar2.default, { userid: item.author._id, avatar: item.author.avatar })
+	                                            ),
+	                                            _react2.default.createElement(
+	                                                'div',
+	                                                { styleName: 'comment-inner' },
+	                                                _react2.default.createElement(
+	                                                    'p',
+	                                                    { styleName: 'comment-username' },
+	                                                    item.author.username
+	                                                ),
+	                                                _react2.default.createElement(
+	                                                    'p',
+	                                                    { styleName: 'comment-time' },
+	                                                    (0, _moment2.default)(new Date()).diff((0, _moment2.default)(item.created), 'h') < 22 ? (0, _moment2.default)(item.created).fromNow() : (0, _moment2.default)(item.created).format('YYYY/MM/DD HH:mm')
+	                                                )
+	                                            )
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'div',
+	                                            { styleName: 'comment-content' },
+	                                            _this7.getReplyContent(item),
+	                                            item.content
+	                                        )
+	                                    );
+	                                })
+	                            )
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return ArticleContent;
+	}(_react.Component), (_applyDecoratedDescriptor(_class2.prototype, 'getPioneerContent', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getPioneerContent'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getArticleDetail', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getArticleDetail'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getReplyContent', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getReplyContent'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleEventLike', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleEventLike'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleScroll', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleScroll'), _class2.prototype)), _class2)) || _class);
+	var _default = ArticleContent;
+	exports.default = _default;
+	;
+
+	var _temp = function () {
+	    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+	        return;
+	    }
+
+	    __REACT_HOT_LOADER__.register(ArticleContent, 'ArticleContent', '/Users/liucong/Documents/Github/keepForMac/src/components/AppRecord/ArticleContent.js');
+
+	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/components/AppRecord/ArticleContent.js');
+	}();
+
+	;
+
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppRecord/ArticleContent.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppRecord/ArticleContent.js"); } } })();
+
+/***/ },
+/* 665 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12710,15 +14421,591 @@ webpackJsonp([0],{
 
 	var _reactRouter = __webpack_require__(298);
 
-	var _reactCssModules = __webpack_require__(354);
+	var _reactCssModules = __webpack_require__(355);
 
 	var _reactCssModules2 = _interopRequireDefault(_reactCssModules);
 
-	var _autobindDecorator = __webpack_require__(513);
+	var _autobindDecorator = __webpack_require__(515);
 
 	var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
 
-	var _moment = __webpack_require__(524);
+	var _Utils = __webpack_require__(521);
+
+	var _Utils2 = _interopRequireDefault(_Utils);
+
+	var _appSlideContent = __webpack_require__(666);
+
+	var _appSlideContent2 = _interopRequireDefault(_appSlideContent);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+	    var desc = {};
+	    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+	        desc[key] = descriptor[key];
+	    });
+	    desc.enumerable = !!desc.enumerable;
+	    desc.configurable = !!desc.configurable;
+
+	    if ('value' in desc || desc.initializer) {
+	        desc.writable = true;
+	    }
+
+	    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+	        return decorator(target, property, desc) || desc;
+	    }, desc);
+
+	    if (context && desc.initializer !== void 0) {
+	        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+	        desc.initializer = undefined;
+	    }
+
+	    if (desc.initializer === void 0) {
+	        Object['define' + 'Property'](target, property, desc);
+	        desc = null;
+	    }
+
+	    return desc;
+	}
+
+	var AppSlideContent = (_dec = (0, _reactCssModules2.default)(_appSlideContent2.default, { allowMultiple: true }), _dec(_class = (_class2 = function (_Component) {
+	    _inherits(AppSlideContent, _Component);
+
+	    function AppSlideContent(props) {
+	        _classCallCheck(this, AppSlideContent);
+
+	        var _this = _possibleConstructorReturn(this, (AppSlideContent.__proto__ || Object.getPrototypeOf(AppSlideContent)).call(this, props));
+
+	        _this.state = {
+	            className: 'slide-content'
+	        };
+	        return _this;
+	    }
+
+	    _createClass(AppSlideContent, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var _this2 = this;
+
+	            setTimeout(function () {
+	                _this2.timer = _this2.setState({
+	                    className: 'slide-content active'
+	                });
+	            }, 100);
+	        }
+	    }, {
+	        key: 'componentWillUnmount',
+	        value: function componentWillUnmount() {
+	            this.timer && clearTimeout(this.timer);
+	        }
+	    }, {
+	        key: 'handleGoback',
+	        value: function handleGoback() {
+	            this.setState({
+	                className: 'slide-content'
+	            });
+	            setTimeout(function () {
+	                _reactRouter.hashHistory.goBack();
+	            }, 350);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { styleName: 'slide-wrap' },
+	                _react2.default.createElement('div', { styleName: 'slide-mask' }),
+	                _react2.default.createElement(
+	                    'div',
+	                    { styleName: this.state.className },
+	                    _react2.default.createElement(
+	                        'button',
+	                        { styleName: 'button-slide-goback', onClick: this.handleGoback },
+	                        _react2.default.createElement('i', { className: 'iconfont icon-goback fz36' })
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        null,
+	                        this.props.children
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return AppSlideContent;
+	}(_react.Component), (_applyDecoratedDescriptor(_class2.prototype, 'componentDidMount', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentDidMount'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'componentWillUnmount', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentWillUnmount'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleGoback', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleGoback'), _class2.prototype)), _class2)) || _class);
+	var _default = AppSlideContent;
+	exports.default = _default;
+	;
+
+	var _temp = function () {
+	    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+	        return;
+	    }
+
+	    __REACT_HOT_LOADER__.register(AppSlideContent, 'AppSlideContent', '/Users/liucong/Documents/Github/keepForMac/src/components/AppSlideContent.js');
+
+	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/components/AppSlideContent.js');
+	}();
+
+	;
+
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppSlideContent.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppSlideContent.js"); } } })();
+
+/***/ },
+/* 666 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(667);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(121)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(true) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept(667, function() {
+				var newContent = __webpack_require__(667);
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 667 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(116)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "._3h-mm {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  overflow: hidden; }\n\n._QeqJ {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  transition: background .35s;\n  background: rgba(0, 0, 0, 0.66); }\n\n._2uiQd {\n  position: absolute;\n  top: 0;\n  right: -75%;\n  width: 75%;\n  height: 100%;\n  background: #555;\n  transition: right .25s ease-in-out;\n  box-shadow: -2px 0 15px rgba(0, 0, 0, 0.6); }\n\n._2uiQd.BkEY- {\n  right: 0; }\n  ._2uiQd.BkEY- ._3QeEg {\n    opacity: 1;\n    transform: translateX(0px); }\n\n._3QeEg {\n  transition: opacity .5s .5s, transform .5s .5s;\n  opacity: 0;\n  cursor: pointer;\n  border: none;\n  background: none;\n  position: absolute;\n  top: 50%;\n  left: -18%;\n  margin-top: -12px;\n  margin-left: -12px;\n  color: #fff; }\n  ._3QeEg:hover {\n    animation: _2CBwY .5s;\n    animation-fill-mode: forwards; }\n  ._3QeEg i {\n    filter: drop-shadow(0 0 3px #fff); }\n\n@keyframes _2CBwY {\n  0% {\n    transform: translateX(0); }\n  100% {\n    transform: translateX(10px); } }\n", ""]);
+
+	// exports
+	exports.locals = {
+		"slide-wrap": "_3h-mm",
+		"slide-mask": "_QeqJ",
+		"slide-content": "_2uiQd",
+		"active": "BkEY-",
+		"button-slide-goback": "_3QeEg",
+		"buttonFloat": "_2CBwY"
+	};
+
+/***/ },
+/* 668 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _dec, _class, _desc, _value, _class2;
+
+	var _react = __webpack_require__(122);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _autobindDecorator = __webpack_require__(515);
+
+	var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
+
+	var _reactCssModules = __webpack_require__(355);
+
+	var _reactCssModules2 = _interopRequireDefault(_reactCssModules);
+
+	var _reactRouter = __webpack_require__(298);
+
+	var _Utils = __webpack_require__(521);
+
+	var _Utils2 = _interopRequireDefault(_Utils);
+
+	var _UserWindow = __webpack_require__(640);
+
+	var _UserWindow2 = _interopRequireDefault(_UserWindow);
+
+	var _HttpRequest = __webpack_require__(520);
+
+	var _HttpRequest2 = _interopRequireDefault(_HttpRequest);
+
+	var _CommonAvatar = __webpack_require__(639);
+
+	var _CommonAvatar2 = _interopRequireDefault(_CommonAvatar);
+
+	var _pioneerList = __webpack_require__(669);
+
+	var _pioneerList2 = _interopRequireDefault(_pioneerList);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+	    var desc = {};
+	    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+	        desc[key] = descriptor[key];
+	    });
+	    desc.enumerable = !!desc.enumerable;
+	    desc.configurable = !!desc.configurable;
+
+	    if ('value' in desc || desc.initializer) {
+	        desc.writable = true;
+	    }
+
+	    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+	        return decorator(target, property, desc) || desc;
+	    }, desc);
+
+	    if (context && desc.initializer !== void 0) {
+	        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+	        desc.initializer = undefined;
+	    }
+
+	    if (desc.initializer === void 0) {
+	        Object['define' + 'Property'](target, property, desc);
+	        desc = null;
+	    }
+
+	    return desc;
+	}
+
+	var PioneerList = (_dec = (0, _reactCssModules2.default)(_pioneerList2.default), _dec(_class = (_class2 = function (_Component) {
+	    _inherits(PioneerList, _Component);
+
+	    function PioneerList(props) {
+	        _classCallCheck(this, PioneerList);
+
+	        return _possibleConstructorReturn(this, (PioneerList.__proto__ || Object.getPrototypeOf(PioneerList)).call(this, props));
+	    }
+
+	    _createClass(PioneerList, [{
+	        key: 'getPioneerContent',
+	        value: function getPioneerContent() {
+	            var list = this.props.list;
+	            if (list && list.length > 0) return list.map(function (item, index) {
+	                return _react2.default.createElement(
+	                    'li',
+	                    { key: item._id + index },
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { styleName: 'pioneer-item' },
+	                        _react2.default.createElement(_CommonAvatar2.default, { userid: item._id, avatar: item.avatar })
+	                    )
+	                );
+	            });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'ul',
+	                { styleName: 'pioneer-list' },
+	                this.getPioneerContent()
+	            );
+	        }
+	    }]);
+
+	    return PioneerList;
+	}(_react.Component), (_applyDecoratedDescriptor(_class2.prototype, 'getPioneerContent', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getPioneerContent'), _class2.prototype)), _class2)) || _class);
+	var _default = PioneerList;
+	exports.default = _default;
+	;
+
+	var _temp = function () {
+	    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+	        return;
+	    }
+
+	    __REACT_HOT_LOADER__.register(PioneerList, 'PioneerList', '/Users/liucong/Documents/Github/keepForMac/src/components/common/PioneerList.js');
+
+	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/components/common/PioneerList.js');
+	}();
+
+	;
+
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/common/PioneerList.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/common/PioneerList.js"); } } })();
+
+/***/ },
+/* 669 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(670);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(121)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(true) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept(670, function() {
+				var newContent = __webpack_require__(670);
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 670 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(116)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "._2uGxf {\n  margin: 0;\n  padding: 0;\n  flex: 1;\n  align-self: center;\n  text-align: right; }\n  ._2uGxf li {\n    display: inline-flex; }\n\n.lByD0 {\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  overflow: hidden;\n  display: block;\n  position: relative;\n  background: #eee;\n  border: 1px solid #eee;\n  margin-right: 10px; }\n  .lByD0 img {\n    border: none;\n    width: 100%;\n    height: 100%; }\n", ""]);
+
+	// exports
+	exports.locals = {
+		"pioneer-list": "_2uGxf",
+		"pioneer-item": "lByD0"
+	};
+
+/***/ },
+/* 671 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _dec, _class;
+
+	var _react = __webpack_require__(122);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactCssModules = __webpack_require__(355);
+
+	var _reactCssModules2 = _interopRequireDefault(_reactCssModules);
+
+	var _autobindDecorator = __webpack_require__(515);
+
+	var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
+
+	var _appWorkouts = __webpack_require__(672);
+
+	var _appWorkouts2 = _interopRequireDefault(_appWorkouts);
+
+	var _AppSlideContent = __webpack_require__(665);
+
+	var _AppSlideContent2 = _interopRequireDefault(_AppSlideContent);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ArticleContent = (_dec = (0, _reactCssModules2.default)(_appWorkouts2.default), _dec(_class = function (_Component) {
+	    _inherits(ArticleContent, _Component);
+
+	    function ArticleContent(props) {
+	        _classCallCheck(this, ArticleContent);
+
+	        var _this = _possibleConstructorReturn(this, (ArticleContent.__proto__ || Object.getPrototypeOf(ArticleContent)).call(this, props));
+
+	        _this.state = {
+	            name: _this.props.params.tag_name
+	        };
+	        return _this;
+	    }
+
+	    _createClass(ArticleContent, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                _AppSlideContent2.default,
+	                null,
+	                _react2.default.createElement('iframe', { className: 'slide-content-wrap', src: 'http://www.gotokeep.com/hashtag/' + this.state.name })
+	            );
+	        }
+	    }]);
+
+	    return ArticleContent;
+	}(_react.Component)) || _class);
+	var _default = ArticleContent;
+	exports.default = _default;
+	;
+
+	var _temp = function () {
+	    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+	        return;
+	    }
+
+	    __REACT_HOT_LOADER__.register(ArticleContent, 'ArticleContent', '/Users/liucong/Documents/Github/keepForMac/src/components/AppRecord/HashtagContent.js');
+
+	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/components/AppRecord/HashtagContent.js');
+	}();
+
+	;
+
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppRecord/HashtagContent.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppRecord/HashtagContent.js"); } } })();
+
+/***/ },
+/* 672 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(673);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(121)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(true) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept(673, function() {
+				var newContent = __webpack_require__(673);
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 673 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(116)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".gGG3G {\n  position: relative; }\n\n.T56YL {\n  background: #584f5f no-repeat center/cover;\n  position: relative;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); }\n  .T56YL:before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: rgba(0, 0, 0, 0.5); }\n\n._1hEVu {\n  position: relative;\n  padding: 10px;\n  height: 180px; }\n\n._1kXZF {\n  font-size: 24px;\n  color: #fff;\n  margin-top: 10px; }\n\n._3n5Ak {\n  color: #ddd;\n  font-size: 12px; }\n\n.YVuU5 {\n  position: absolute;\n  bottom: 10px;\n  left: 0;\n  width: 100%;\n  margin: 0;\n  padding: 0 10px;\n  overflow: hidden;\n  text-align: right;\n  white-space: nowrap; }\n  .YVuU5 li {\n    display: inline-block; }\n\n._1wE0v {\n  text-align: left;\n  display: block;\n  font-size: 14px;\n  color: #fff;\n  padding: 12px 0 0; }\n\n._1_YaU {\n  padding: 5px 0;\n  border-top: 1px solid #fff;\n  border-bottom: 1px solid #fff; }\n\n._1vG24 {\n  color: #fff;\n  font-size: 10px;\n  display: block;\n  padding-left: 50px;\n  padding-right: 10px; }\n\n._1j7xa {\n  color: #ddd; }\n\n._2MKks {\n  padding: 10px;\n  display: flex;\n  border-bottom: 1px solid #eee; }\n\n._1qiEN {\n  text-align: center;\n  margin-right: 10px; }\n\n.gEjE- {\n  background: #fff;\n  border-bottom: 1px solid #eee; }\n\n._1hUN3 {\n  padding: 10px;\n  overflow: hidden; }\n\n._2fS-z {\n  float: right;\n  color: #999;\n  font-size: 12px; }\n\n._1Vgwh {\n  border-left: 2px solid #23A570;\n  padding-left: 5px;\n  line-height: 1; }\n\n._2tzoZ {\n  display: block;\n  margin: 0;\n  padding: 0;\n  overflow: hidden; }\n\n._21hmZ {\n  float: left;\n  width: 33.33%;\n  padding: 10px;\n  position: relative; }\n\n.LM-oO {\n  margin-right: 15px; }\n\n._1oREy {\n  width: 15px;\n  text-align: center;\n  font-size: 12px;\n  position: absolute;\n  top: 26%;\n  right: 5px;\n  color: #999; }\n\n.K8_bp {\n  width: 100%;\n  padding-bottom: 64%;\n  margin-bottom: 10px;\n  background: #999 center/cover; }\n\n._39a3J {\n  margin-bottom: 5px; }\n\n._3CNEr {\n  color: #999; }\n\n._3HQju {\n  cursor: pointer;\n  position: fixed;\n  bottom: 50px;\n  right: 50px;\n  width: 60px;\n  padding: 0 10px;\n  height: 60px;\n  border-radius: 50%;\n  background: rgba(35, 165, 112, 0.8);\n  border: 2px solid rgba(88, 79, 95, 0.2);\n  color: #fff;\n  box-shadow: 0 0 5px rgba(85, 85, 85, 0.8);\n  transition: all .35s; }\n  ._3HQju:hover {\n    background: #23a570;\n    border: 2px solid rgba(88, 79, 95, 0.6); }\n\n._1mcce {\n  background: #fff;\n  padding: 0 10px; }\n\n._2NGue {\n  padding: 10px 0; }\n\n._3ZI5H {\n  display: flex;\n  border-bottom: 1px solid #eee;\n  padding: 10px 0; }\n  ._3ZI5H:first-child {\n    padding-top: 0; }\n\n._3zpl4 {\n  width: 100px;\n  height: 100px;\n  margin-right: 10px;\n  background: #999 no-repeat center/cover; }\n\n._1KBy0 {\n  flex: 1;\n  display: flex;\n  flex-direction: column; }\n\n._3FTXV {\n  flex: 1; }\n  ._3FTXV p {\n    overflow: hidden;\n    display: -webkit-box;\n    -webkit-line-clamp: 3;\n    -webkit-box-orient: vertical; }\n\n._30yij {\n  overflow: hidden;\n  display: flex;\n  align-items: center; }\n\n._19wAn {\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  margin-right: 10px;\n  border: 1px solid #eee; }\n\n._2YtCi {\n  font-size: 12px;\n  color: #ddd; }\n\n.jJH-4 {\n  transition: transform .5s .2s; }\n\n._2Sf8g {\n  display: block;\n  filter: blur(5px);\n  position: relative;\n  transform: scale(1.01); }\n\n.workout-introduce {\n  opacity: 0;\n  position: fixed;\n  top: 60px;\n  right: 0;\n  bottom: 0;\n  left: 150px;\n  padding: 20px 30px 80px;\n  background: rgba(0, 0, 0, 0.8);\n  transition: opacity .5s .2s; }\n\n.workout-introduce.show {\n  opacity: 1;\n  transition: opacity .5s; }\n\n.workout-introduce.show .workout-introduce-inner {\n  opacity: 1;\n  margin-top: 0;\n  transition: all .5s .2s; }\n\n.workout-introduce-inner {\n  transition: all .5s;\n  opacity: 0;\n  margin-top: 10px;\n  height: 100%;\n  padding-right: 10px;\n  margin-right: -10px;\n  overflow-x: hidden;\n  overflow-y: auto;\n  color: #fff; }\n\n._3HnIN {\n  position: absolute;\n  bottom: 20px;\n  left: 50%;\n  padding: 0;\n  width: 30px;\n  height: 30px;\n  line-height: 30px;\n  overflow: hidden;\n  margin-left: -15px;\n  border: none;\n  background: none;\n  color: #fff;\n  cursor: pointer;\n  transition: transform .35s; }\n  ._3HnIN:hover {\n    transform: scale(1.3); }\n  ._3HnIN i {\n    font-size: 30px;\n    margin: 0; }\n\n._1Fdk2 {\n  width: 100%; }\n\n._1QVe8 {\n  padding: 5px;\n  margin: 10px;\n  font-size: 24px;\n  color: #fff;\n  border-bottom: 1px solid #23A570; }\n\n._16Fkx {\n  padding: 10px 20px;\n  color: #fff; }\n\n.c-93L {\n  color: #fff;\n  margin-top: 10px;\n  margin-bottom: 0;\n  margin-left: 20px; }\n\n._2BoKE {\n  width: 100%;\n  overflow-x: auto;\n  overflow-y: hidden;\n  white-space: nowrap;\n  padding: 10px; }\n\n._2fU4a {\n  padding: 10px;\n  vertical-align: top;\n  display: inline-block; }\n\n._24vS1 {\n  position: relative; }\n\n._1z3Ha {\n  border-radius: 10px;\n  border: 1px solid #999;\n  height: 500px; }\n\n._15A6x {\n  position: absolute;\n  color: #fff;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 30px;\n  height: 30px;\n  max-width: 10%;\n  max-height: 10%;\n  transform: translate(-50%, -50%);\n  line-height: 30px;\n  text-align: center;\n  border-radius: 50%;\n  font-size: 14px;\n  background: rgba(35, 165, 112, 0.66); }\n\n.cIiAg {\n  margin-top: 10px;\n  font-size: 14px;\n  color: #fff; }\n\n._3aZ9T {\n  padding: 0 10px 10px; }\n\n._30KDK {\n  padding-top: 10px; }\n\n._2lV3o {\n  margin: 0;\n  padding: 0;\n  overflow-x: scroll;\n  overflow-y: hidden;\n  white-space: nowrap; }\n  ._2lV3o li {\n    position: relative;\n    overflow: hidden;\n    display: inline-block;\n    margin-right: 10px;\n    width: 40%;\n    height: 140px;\n    background: no-repeat center/cover; }\n    ._2lV3o li:last-child {\n      margin: 0; }\n\n._2k-At {\n  position: relative; }\n  ._2k-At:before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: rgba(0, 0, 0, 0.45); }\n  ._2k-At p {\n    position: relative; }\n\n.OHn7N {\n  color: #fff;\n  font-size: 18px; }\n\n._2Kfmk {\n  color: #ddd;\n  font-size: 12px; }\n\n._2jqeS {\n  color: #fff;\n  position: absolute;\n  left: 0;\n  bottom: 0;\n  padding: 10px;\n  width: 100%;\n  text-align: right; }\n\n._3p9y6 {\n  font-size: 10px;\n  margin-left: 5px; }\n\n._ylsI {\n  float: right;\n  padding: 5px;\n  font-size: 10px;\n  background: rgba(0, 0, 0, 0.3);\n  border-radius: 3px; }\n", ""]);
+
+	// exports
+	exports.locals = {
+		"workout-wrap": "gGG3G",
+		"workout-header": "T56YL",
+		"header-inner": "_1hEVu",
+		"header-title": "_1kXZF",
+		"header-desc": "_3n5Ak",
+		"header-nav": "YVuU5",
+		"header-link": "_1wE0v",
+		"link-val": "_1_YaU",
+		"header-sp": "_1vG24",
+		"sp-desc": "_1j7xa",
+		"list-nav": "_2MKks",
+		"nav-participation": "_1qiEN",
+		"training-content": "gEjE-",
+		"training-title": "_1hUN3",
+		"training-sp": "_2fS-z",
+		"line-title": "_1Vgwh",
+		"training-line": "_2tzoZ",
+		"line-item": "_21hmZ",
+		"line-work-item": "LM-oO",
+		"work-gap": "_1oREy",
+		"work-item-cover": "K8_bp",
+		"work-item-title": "_39a3J",
+		"work-item-desc": "_3CNEr",
+		"button-start-training": "_3HQju",
+		"training-dynamic": "_1mcce",
+		"dynamic-title": "_2NGue",
+		"dynamic-item": "_3ZI5H",
+		"item-photo": "_3zpl4",
+		"dynamic-content": "_1KBy0",
+		"dynamic-desc": "_3FTXV",
+		"dynamic-user": "_30yij",
+		"item-avatar": "_19wAn",
+		"dynamic-time": "_2YtCi",
+		"workout-mask": "jJH-4",
+		"workout-blur-mask": "_2Sf8g",
+		"button-introduce-desc": "_3HnIN",
+		"workout-desc-video": "_1Fdk2",
+		"workout-desc-title": "_1QVe8",
+		"workout-desc-article": "_16Fkx",
+		"workout-exercise-title": "c-93L",
+		"workout-desc-figure": "_2BoKE",
+		"exercise-figure": "_2fU4a",
+		"exercise-item": "_24vS1",
+		"exercise-pic": "_1z3Ha",
+		"exercise-coordinates": "_15A6x",
+		"exercise-tip": "cIiAg",
+		"scroll-wrap": "_3aZ9T",
+		"scroll-title": "_30KDK",
+		"scroll-list": "_2lV3o",
+		"training-block": "_2k-At",
+		"training-block-title": "OHn7N",
+		"training-block-desc": "_2Kfmk",
+		"training-block-info": "_2jqeS",
+		"block-info-time": "_3p9y6",
+		"block-info-tag": "_ylsI"
+	};
+
+/***/ },
+/* 674 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _dec, _class;
+
+	var _react = __webpack_require__(122);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _HttpRequest = __webpack_require__(520);
+
+	var _HttpRequest2 = _interopRequireDefault(_HttpRequest);
+
+	var _autobindDecorator = __webpack_require__(515);
+
+	var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
+
+	var _reactCssModules = __webpack_require__(355);
+
+	var _reactCssModules2 = _interopRequireDefault(_reactCssModules);
+
+	var _reactRouter = __webpack_require__(298);
+
+	var _moment = __webpack_require__(522);
 
 	var _moment2 = _interopRequireDefault(_moment);
 
@@ -12726,19 +15013,601 @@ webpackJsonp([0],{
 
 	var _Utils2 = _interopRequireDefault(_Utils);
 
-	var _HttpRequest = __webpack_require__(523);
+	var _CommonAvatar = __webpack_require__(639);
+
+	var _CommonAvatar2 = _interopRequireDefault(_CommonAvatar);
+
+	var _appUsercenter = __webpack_require__(675);
+
+	var _appUsercenter2 = _interopRequireDefault(_appUsercenter);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var AppUserCenter = (_dec = (0, _reactCssModules2.default)(_appUsercenter2.default, { allowMultiple: true }), _dec(_class = function (_Component) {
+	    _inherits(AppUserCenter, _Component);
+
+	    function AppUserCenter(props) {
+	        _classCallCheck(this, AppUserCenter);
+
+	        var _this = _possibleConstructorReturn(this, (AppUserCenter.__proto__ || Object.getPrototypeOf(AppUserCenter)).call(this, props));
+
+	        _this.state = {
+	            "usercenter": _Utils2.default.storage.get("mineInfo") || null
+	        };
+	        return _this;
+	    }
+
+	    _createClass(AppUserCenter, [{
+	        key: "componentWillMount",
+	        value: function componentWillMount() {
+	            console.info(this.state.usercenter);
+	        }
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            var USERCENTER = this.state.usercenter.user;
+	            var STATISTICS = this.state.usercenter.statistics;
+	            return _react2.default.createElement(
+	                "div",
+	                { className: "scroll-content", styleName: "page-content" },
+	                _react2.default.createElement(
+	                    "header",
+	                    { styleName: "center-header" },
+	                    _react2.default.createElement(
+	                        "a",
+	                        { styleName: "setting-button", href: "" },
+	                        _react2.default.createElement("i", { className: "iconfont icon-setting fz14" })
+	                    ),
+	                    _react2.default.createElement("div", { styleName: "header-back", style: { backgroundImage: "url(" + USERCENTER.backgroundAvatar + ")" } }),
+	                    _react2.default.createElement(
+	                        "div",
+	                        { styleName: "header-inner" },
+	                        _react2.default.createElement(
+	                            "div",
+	                            { styleName: "user-avatar" },
+	                            _react2.default.createElement(_CommonAvatar2.default, { userid: USERCENTER._id, avatar: USERCENTER.avatar })
+	                        ),
+	                        _react2.default.createElement(
+	                            "div",
+	                            { styleName: "user-info" },
+	                            _react2.default.createElement(
+	                                "p",
+	                                { styleName: "user-name" },
+	                                USERCENTER.username
+	                            ),
+	                            _react2.default.createElement(
+	                                "p",
+	                                { styleName: "user-desc" },
+	                                USERCENTER.bio
+	                            ),
+	                            _react2.default.createElement(
+	                                "p",
+	                                { styleName: "user-other" },
+	                                _react2.default.createElement(
+	                                    "span",
+	                                    { styleName: "user-sp" },
+	                                    _react2.default.createElement(
+	                                        "span",
+	                                        { className: "fz14" },
+	                                        STATISTICS.totalEntries
+	                                    ),
+	                                    _react2.default.createElement("br", null),
+	                                    "\u52A8\u6001"
+	                                ),
+	                                _react2.default.createElement(
+	                                    "span",
+	                                    { styleName: "user-sp" },
+	                                    _react2.default.createElement(
+	                                        "span",
+	                                        { className: "fz14" },
+	                                        STATISTICS.follow
+	                                    ),
+	                                    _react2.default.createElement("br", null),
+	                                    "\u5173\u6CE8"
+	                                ),
+	                                _react2.default.createElement(
+	                                    "span",
+	                                    { styleName: "user-sp" },
+	                                    _react2.default.createElement(
+	                                        "span",
+	                                        { className: "fz14" },
+	                                        STATISTICS.followed
+	                                    ),
+	                                    _react2.default.createElement("br", null),
+	                                    "\u7C89\u4E1D"
+	                                )
+	                            )
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    "section",
+	                    { styleName: "center-action" },
+	                    _react2.default.createElement(
+	                        "div",
+	                        { styleName: "center-action-inner" },
+	                        _react2.default.createElement(
+	                            "button",
+	                            { styleName: "action-button" },
+	                            _react2.default.createElement("i", { className: "iconfont icon-lishi fz24" }),
+	                            " \u8BAD\u7EC3\u5386\u53F2"
+	                        ),
+	                        _react2.default.createElement(
+	                            "button",
+	                            { styleName: "action-button" },
+	                            _react2.default.createElement("i", { className: "iconfont icon-collect fz24" }),
+	                            " \u6211\u7684\u6536\u85CF"
+	                        ),
+	                        _react2.default.createElement(
+	                            "button",
+	                            { styleName: "action-button" },
+	                            _react2.default.createElement("i", { className: "iconfont icon-tizhong fz24" }),
+	                            " \u8EAB\u4F53\u6570\u636E"
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    "section",
+	                    { styleName: "center-main" },
+	                    _react2.default.createElement(
+	                        "div",
+	                        { styleName: "center-row" },
+	                        _react2.default.createElement(
+	                            "article",
+	                            { styleName: "row-block block-training" },
+	                            _react2.default.createElement(
+	                                "div",
+	                                { styleName: "row-block-inner" },
+	                                _react2.default.createElement(
+	                                    "header",
+	                                    { styleName: "block-header" },
+	                                    "\u6211\u7684\u8BAD\u7EC3"
+	                                ),
+	                                _react2.default.createElement(
+	                                    "div",
+	                                    { styleName: "block-caption" },
+	                                    "\u7D2F\u8BA1\u8BAD\u7EC3 ",
+	                                    _react2.default.createElement(
+	                                        "span",
+	                                        { styleName: "caption-sp" },
+	                                        _react2.default.createElement("i", { className: "iconfont icon-xunlian fz14" }),
+	                                        "999"
+	                                    ),
+	                                    " \u5206\u949F"
+	                                ),
+	                                _react2.default.createElement(
+	                                    "ul",
+	                                    { styleName: "todo-list" },
+	                                    _react2.default.createElement(
+	                                        "li",
+	                                        { styleName: "todo-item" },
+	                                        "\u8BAD\u7EC3\u7B49\u7EA7 ",
+	                                        _react2.default.createElement(
+	                                            "span",
+	                                            { styleName: "todo-sp" },
+	                                            "1029\u6B21"
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        "li",
+	                                        { styleName: "todo-item" },
+	                                        "\u8BAD\u7EC3\u6B21\u6570 ",
+	                                        _react2.default.createElement(
+	                                            "span",
+	                                            { styleName: "todo-sp" },
+	                                            "303\u5929"
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        "li",
+	                                        { styleName: "todo-item" },
+	                                        "\u8FDE\u7EED\u8BAD\u7EC3 ",
+	                                        _react2.default.createElement(
+	                                            "span",
+	                                            { styleName: "todo-sp" },
+	                                            "4\u5929"
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        "li",
+	                                        { styleName: "todo-item" },
+	                                        "\u7D2F\u8BA1\u6D88\u8017 ",
+	                                        _react2.default.createElement(
+	                                            "span",
+	                                            { styleName: "todo-sp" },
+	                                            "1292198\u5343\u5361"
+	                                        )
+	                                    )
+	                                )
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            "article",
+	                            { styleName: "row-block block-running" },
+	                            _react2.default.createElement(
+	                                "div",
+	                                { styleName: "row-block-inner" },
+	                                _react2.default.createElement(
+	                                    "header",
+	                                    { styleName: "block-header" },
+	                                    "\u6211\u7684\u8DD1\u6B65"
+	                                ),
+	                                _react2.default.createElement(
+	                                    "div",
+	                                    { styleName: "block-caption" },
+	                                    "\u7D2F\u8BA1\u8BAD\u7EC3 ",
+	                                    _react2.default.createElement(
+	                                        "span",
+	                                        { styleName: "caption-sp" },
+	                                        _react2.default.createElement("i", { className: "iconfont icon-paobu fz14" }),
+	                                        "999"
+	                                    ),
+	                                    " \u5206\u949F"
+	                                ),
+	                                _react2.default.createElement(
+	                                    "ul",
+	                                    { styleName: "todo-list" },
+	                                    _react2.default.createElement(
+	                                        "li",
+	                                        { styleName: "todo-item" },
+	                                        "\u8BAD\u7EC3\u7B49\u7EA7 ",
+	                                        _react2.default.createElement(
+	                                            "span",
+	                                            { styleName: "todo-sp" },
+	                                            "1029\u6B21"
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        "li",
+	                                        { styleName: "todo-item" },
+	                                        "\u8BAD\u7EC3\u6B21\u6570 ",
+	                                        _react2.default.createElement(
+	                                            "span",
+	                                            { styleName: "todo-sp" },
+	                                            "303\u5929"
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        "li",
+	                                        { styleName: "todo-item" },
+	                                        "\u8FDE\u7EED\u8BAD\u7EC3 ",
+	                                        _react2.default.createElement(
+	                                            "span",
+	                                            { styleName: "todo-sp" },
+	                                            "4\u5929"
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        "li",
+	                                        { styleName: "todo-item" },
+	                                        "\u7D2F\u8BA1\u6D88\u8017 ",
+	                                        _react2.default.createElement(
+	                                            "span",
+	                                            { styleName: "todo-sp" },
+	                                            "1292198\u5343\u5361"
+	                                        )
+	                                    )
+	                                )
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            "article",
+	                            { styleName: "row-block block-cycling" },
+	                            _react2.default.createElement(
+	                                "div",
+	                                { styleName: "row-block-inner" },
+	                                _react2.default.createElement(
+	                                    "header",
+	                                    { styleName: "block-header" },
+	                                    "\u6211\u7684\u9A91\u884C"
+	                                ),
+	                                _react2.default.createElement(
+	                                    "div",
+	                                    { styleName: "block-caption" },
+	                                    "\u7D2F\u8BA1\u8BAD\u7EC3 ",
+	                                    _react2.default.createElement(
+	                                        "span",
+	                                        { styleName: "caption-sp" },
+	                                        " ",
+	                                        _react2.default.createElement("i", { className: "iconfont icon-qixing fz14" }),
+	                                        "999"
+	                                    ),
+	                                    " \u5206\u949F"
+	                                ),
+	                                _react2.default.createElement(
+	                                    "ul",
+	                                    { styleName: "todo-list" },
+	                                    _react2.default.createElement(
+	                                        "li",
+	                                        { styleName: "todo-item" },
+	                                        "\u8BAD\u7EC3\u7B49\u7EA7 ",
+	                                        _react2.default.createElement(
+	                                            "span",
+	                                            { styleName: "todo-sp" },
+	                                            "1029\u6B21"
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        "li",
+	                                        { styleName: "todo-item" },
+	                                        "\u8BAD\u7EC3\u6B21\u6570 ",
+	                                        _react2.default.createElement(
+	                                            "span",
+	                                            { styleName: "todo-sp" },
+	                                            "303\u5929"
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        "li",
+	                                        { styleName: "todo-item" },
+	                                        "\u8FDE\u7EED\u8BAD\u7EC3 ",
+	                                        _react2.default.createElement(
+	                                            "span",
+	                                            { styleName: "todo-sp" },
+	                                            "4\u5929"
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        "li",
+	                                        { styleName: "todo-item" },
+	                                        "\u7D2F\u8BA1\u6D88\u8017 ",
+	                                        _react2.default.createElement(
+	                                            "span",
+	                                            { styleName: "todo-sp" },
+	                                            "1292198\u5343\u5361"
+	                                        )
+	                                    )
+	                                )
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            "article",
+	                            { styleName: "row-block block-badge" },
+	                            _react2.default.createElement(
+	                                "div",
+	                                { styleName: "row-block-inner" },
+	                                _react2.default.createElement(
+	                                    "header",
+	                                    { styleName: "block-header" },
+	                                    "\u6211\u7684\u5FBD\u7AE0"
+	                                ),
+	                                _react2.default.createElement(
+	                                    "div",
+	                                    { styleName: "block-caption" },
+	                                    "\u7D2F\u8BA1\u8BAD\u7EC3 ",
+	                                    _react2.default.createElement(
+	                                        "span",
+	                                        { styleName: "caption-sp" },
+	                                        _react2.default.createElement("i", { className: "iconfont icon-huizhang fz14" }),
+	                                        "999"
+	                                    ),
+	                                    " \u5206\u949F"
+	                                ),
+	                                _react2.default.createElement(
+	                                    "ul",
+	                                    { styleName: "todo-list" },
+	                                    _react2.default.createElement(
+	                                        "li",
+	                                        { styleName: "todo-item" },
+	                                        "\u8BAD\u7EC3\u7B49\u7EA7 ",
+	                                        _react2.default.createElement(
+	                                            "span",
+	                                            { styleName: "todo-sp" },
+	                                            "1029\u6B21"
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        "li",
+	                                        { styleName: "todo-item" },
+	                                        "\u8BAD\u7EC3\u6B21\u6570 ",
+	                                        _react2.default.createElement(
+	                                            "span",
+	                                            { styleName: "todo-sp" },
+	                                            "303\u5929"
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        "li",
+	                                        { styleName: "todo-item" },
+	                                        "\u8FDE\u7EED\u8BAD\u7EC3 ",
+	                                        _react2.default.createElement(
+	                                            "span",
+	                                            { styleName: "todo-sp" },
+	                                            "4\u5929"
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        "li",
+	                                        { styleName: "todo-item" },
+	                                        "\u7D2F\u8BA1\u6D88\u8017 ",
+	                                        _react2.default.createElement(
+	                                            "span",
+	                                            { styleName: "todo-sp" },
+	                                            "1292198\u5343\u5361"
+	                                        )
+	                                    )
+	                                )
+	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement("div", { styleName: "center-row" })
+	                )
+	            );
+	        }
+	    }]);
+
+	    return AppUserCenter;
+	}(_react.Component)) || _class);
+	var _default = AppUserCenter;
+	exports.default = _default;
+	;
+
+	var _temp = function () {
+	    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+	        return;
+	    }
+
+	    __REACT_HOT_LOADER__.register(AppUserCenter, "AppUserCenter", "/Users/liucong/Documents/Github/keepForMac/src/components/AppUserCenter/AppUserCenter.js");
+
+	    __REACT_HOT_LOADER__.register(_default, "default", "/Users/liucong/Documents/Github/keepForMac/src/components/AppUserCenter/AppUserCenter.js");
+	}();
+
+	;
+
+	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppUserCenter/AppUserCenter.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppUserCenter/AppUserCenter.js"); } } })();
+
+/***/ },
+/* 675 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(676);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(121)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(true) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept(676, function() {
+				var newContent = __webpack_require__(676);
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 676 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(116)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "._1DT7x {\n  background: #fff; }\n\n.mwvdI {\n  position: relative;\n  height: 30%;\n  overflow: hidden; }\n\n.He3Zc {\n  position: absolute;\n  top: 20px;\n  right: 20px;\n  display: block;\n  color: #fff;\n  z-index: 20; }\n\n._2k_0k {\n  width: 100%;\n  height: 100%;\n  background: #E5ECEF center/100% auto no-repeat; }\n\n._3DBWh {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(0, 0, 0, 0.5);\n  display: flex;\n  align-items: center;\n  padding: 0 10%; }\n\n.woTiD {\n  width: 100px;\n  height: 100px;\n  margin-right: 30px;\n  border-radius: 50%;\n  border: 3px solid #999; }\n\n._2X3Js {\n  flex: 1;\n  line-height: 1;\n  color: #ddd; }\n\n._13ofT {\n  font-size: 18px;\n  color: #fff;\n  text-shadow: 0 2px 2px #000;\n  margin: 5px 0 10px; }\n\n._3T0cW {\n  font-size: 12px; }\n\n.aoYzM {\n  font-size: 10px;\n  overflow: hidden; }\n\n._1L1Uh {\n  padding: 0 10px;\n  display: inline-block;\n  text-align: center;\n  line-height: 1.1;\n  position: relative; }\n  ._1L1Uh:first-child {\n    padding-left: 0; }\n  ._1L1Uh:after {\n    content: '';\n    position: absolute;\n    top: 12%;\n    left: -1px;\n    height: 80%;\n    border-left: 1px solid #eee; }\n\n._1KkkD {\n  padding: 20px 20px 0; }\n\n._3ihQl {\n  padding: 0 12.5%;\n  display: flex; }\n\n._8zAQk {\n  flex: 1;\n  line-height: 0.9;\n  padding: 10px;\n  border: 1px solid #ddd;\n  border-radius: 30px;\n  font-size: 14px;\n  background: #ddd;\n  color: #584f5f;\n  transition: all .35s; }\n  ._8zAQk i {\n    vertical-align: middle;\n    margin-top: -1px; }\n  ._8zAQk + ._8zAQk {\n    margin-left: 20px; }\n  ._8zAQk:hover {\n    border-color: #fff;\n    background: #23A570;\n    color: #fff; }\n\n._17uet {\n  width: 100%;\n  padding: 20px 10px; }\n\n.t8YMW {\n  display: flex;\n  align-items: center; }\n\n._2ZSc1 {\n  flex: 1;\n  margin: 0 10px;\n  background: #fcfcfc center/auto 100% no-repeat;\n  border: 1px solid #eee; }\n  ._2ZSc1:hover ._1R_dz {\n    background: rgba(35, 165, 112, 0.95);\n    box-shadow: 0 0 15px rgba(35, 165, 112, 0.8); }\n  ._2ZSc1:hover ._25uNo {\n    margin-top: 0; }\n  ._2ZSc1:hover .P7c-9 {\n    margin-top: 0; }\n  ._2ZSc1:hover .UcOA4 {\n    opacity: 1; }\n  ._2ZSc1:hover ._3YmsG {\n    display: inline; }\n\n._1R_dz {\n  overflow: hidden;\n  height: 47vh;\n  padding-top: 10%;\n  background: rgba(0, 0, 0, 0.5);\n  transition: all .5s; }\n\n._25uNo {\n  font-size: 14px;\n  color: #fff;\n  padding: 10px;\n  text-align: center;\n  margin-top: 22%;\n  transition: margin .35s; }\n\n.P7c-9 {\n  width: 100%;\n  padding: 10px;\n  display: block;\n  text-align: center;\n  color: #fff;\n  margin-top: 10%;\n  font-size: 10px;\n  line-height: 2;\n  transition: margin .35s; }\n\n._3YmsG {\n  font-size: 12px;\n  display: block; }\n\n.UcOA4 {\n  margin: 0;\n  padding: 0;\n  color: #fff;\n  opacity: 0;\n  transition: opacity .35s; }\n\n._-01LY {\n  display: flex;\n  white-space: nowrap;\n  padding: 5px 10px;\n  font-size: 12px; }\n\n.hsQCQ {\n  flex: 1;\n  text-align: right; }\n\n._2fs9h {\n  background-image: url(" + __webpack_require__(677) + "); }\n\n._1aVlO {\n  background-image: url(" + __webpack_require__(678) + "); }\n\n._1MO3R {\n  background-image: url(" + __webpack_require__(679) + "); }\n\n._3jJvO {\n  background-image: url(" + __webpack_require__(680) + "); }\n", ""]);
+
+	// exports
+	exports.locals = {
+		"page-content": "_1DT7x",
+		"center-header": "mwvdI",
+		"setting-button": "He3Zc",
+		"header-back": "_2k_0k",
+		"header-inner": "_3DBWh",
+		"user-avatar": "woTiD",
+		"user-info": "_2X3Js",
+		"user-name": "_13ofT",
+		"user-desc": "_3T0cW",
+		"user-other": "aoYzM",
+		"user-sp": "_1L1Uh",
+		"center-action": "_1KkkD",
+		"center-action-inner": "_3ihQl",
+		"action-button": "_8zAQk",
+		"center-main": "_17uet",
+		"center-row": "t8YMW",
+		"row-block": "_2ZSc1",
+		"row-block-inner": "_1R_dz",
+		"block-header": "_25uNo",
+		"block-caption": "P7c-9",
+		"todo-list": "UcOA4",
+		"caption-sp": "_3YmsG",
+		"todo-item": "_-01LY",
+		"todo-sp": "hsQCQ",
+		"block-training": "_2fs9h",
+		"block-running": "_1aVlO",
+		"block-cycling": "_1MO3R",
+		"block-badge": "_3jJvO"
+	};
+
+/***/ },
+/* 677 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "images/c2366510.keep-center-traning.jpg";
+
+/***/ },
+/* 678 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "images/b1b3549a.keep-center-running.jpg";
+
+/***/ },
+/* 679 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "images/955bb97c.keep-center-cycling.jpg";
+
+/***/ },
+/* 680 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "images/d6f36b57.keep-center-badge.jpg";
+
+/***/ },
+/* 681 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _dec, _class, _desc, _value, _class2;
+
+	var _react = __webpack_require__(122);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(298);
+
+	var _reactCssModules = __webpack_require__(355);
+
+	var _reactCssModules2 = _interopRequireDefault(_reactCssModules);
+
+	var _autobindDecorator = __webpack_require__(515);
+
+	var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
+
+	var _moment = __webpack_require__(522);
+
+	var _moment2 = _interopRequireDefault(_moment);
+
+	var _Utils = __webpack_require__(521);
+
+	var _Utils2 = _interopRequireDefault(_Utils);
+
+	var _HttpRequest = __webpack_require__(520);
 
 	var _HttpRequest2 = _interopRequireDefault(_HttpRequest);
 
-	var _UserWindow = __webpack_require__(520);
+	var _PioneerList = __webpack_require__(668);
 
-	var _UserWindow2 = _interopRequireDefault(_UserWindow);
+	var _PioneerList2 = _interopRequireDefault(_PioneerList);
 
-	var _appWorkouts = __webpack_require__(652);
+	var _CommonAvatar = __webpack_require__(639);
+
+	var _CommonAvatar2 = _interopRequireDefault(_CommonAvatar);
+
+	var _appWorkouts = __webpack_require__(672);
 
 	var _appWorkouts2 = _interopRequireDefault(_appWorkouts);
 
-	var _electron = __webpack_require__(522);
+	var _electron = __webpack_require__(641);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12840,41 +15709,6 @@ webpackJsonp([0],{
 	                });
 	            });
 	        }
-
-	        // 查看用户个人信息
-
-	    }, {
-	        key: 'handleUserInfo',
-	        value: function handleUserInfo(userId) {
-	            _HttpRequest2.default.getUserData(userId).then(function (response) {
-	                if (response.ok) {
-	                    _Utils2.default.storage.set('userInfo', response.data);
-	                    if (_UserWindow2.default.has()) _UserWindow2.default.show('keeper - ' + response.data.user.username);else _UserWindow2.default.create('keeper - ' + response.data.user.username);
-	                }
-	            });
-	        }
-	    }, {
-	        key: 'getPioneerContent',
-	        value: function getPioneerContent() {
-	            var _this3 = this;
-
-	            var list = this.state.content.pioneer;
-	            console.info(this.state.content);
-	            // const userImg = require('url-loader?mimetype=image/png!../../../assets/images/keep-small.jpg')
-	            if (list && list.length > 0) return list.map(function (item, index) {
-	                return _react2.default.createElement(
-	                    'li',
-	                    { key: item._id + index },
-	                    _react2.default.createElement(
-	                        _reactRouter.Link,
-	                        { styleName: 'pioneer-item', onClick: function onClick() {
-	                                return _this3.handleUserInfo(item._id);
-	                            } },
-	                        _react2.default.createElement('img', { src: item.avatar, alt: '' })
-	                    )
-	                );
-	            });
-	        }
 	    }, {
 	        key: 'getWorkoutDynamic',
 	        value: function getWorkoutDynamic() {
@@ -12906,8 +15740,11 @@ webpackJsonp([0],{
 	                            _react2.default.createElement(
 	                                'div',
 	                                { styleName: 'dynamic-user' },
-	                                _react2.default.createElement('img', { styleName: 'item-avatar', src: item.author.avatar, alt: '' }),
-	                                ' ',
+	                                _react2.default.createElement(
+	                                    'span',
+	                                    { styleName: 'item-avatar' },
+	                                    _react2.default.createElement(_CommonAvatar2.default, { userid: item.author._id, avatar: item.author.avatar })
+	                                ),
 	                                item.author.username,
 	                                ' \xA0 ',
 	                                _react2.default.createElement(
@@ -12924,14 +15761,14 @@ webpackJsonp([0],{
 	    }, {
 	        key: 'getTrainingWorkoutItem',
 	        value: function getTrainingWorkoutItem(workoutStep) {
-	            var _this4 = this;
+	            var _this3 = this;
 
 	            var steps = this.state.workout.workouts[0].steps;
 	            var stepList = new Map(steps.map(function (step) {
 	                return [step._id, step];
 	            }));
 	            return workoutStep.map(function (stepItem, index) {
-	                var Gender = _this4.state.user.gender.toLowerCase();
+	                var Gender = _this3.state.user.gender.toLowerCase();
 	                var item = stepList.has(stepItem) ? stepList.get(stepItem) : {};
 	                var detail = item.exercise.videos[0] || {};
 	                return _react2.default.createElement(
@@ -12939,7 +15776,7 @@ webpackJsonp([0],{
 	                    { key: item._id + index, styleName: 'line-item' },
 	                    _react2.default.createElement(
 	                        _reactRouter.Link,
-	                        { to: _this4.props.router.getCurrentLocation().pathname + '/' + item._id },
+	                        { to: _this3.props.router.getCurrentLocation().pathname + '/' + item._id },
 	                        _react2.default.createElement(
 	                            'div',
 	                            { styleName: 'line-work-item' },
@@ -12976,7 +15813,7 @@ webpackJsonp([0],{
 	    }, {
 	        key: 'getTrainingDetail',
 	        value: function getTrainingDetail() {
-	            var _this5 = this;
+	            var _this4 = this;
 
 	            var workContent = this.state.workout.workouts[0];
 
@@ -12992,7 +15829,7 @@ webpackJsonp([0],{
 	                    _react2.default.createElement(
 	                        'ul',
 	                        { styleName: 'training-line' },
-	                        _this5.getTrainingWorkoutItem(item.subSteps)
+	                        _this4.getTrainingWorkoutItem(item.subSteps)
 	                    )
 	                );
 	            });
@@ -13169,14 +16006,10 @@ webpackJsonp([0],{
 	                                    _react2.default.createElement('br', null),
 	                                    workContent.totalFinished
 	                                ),
-	                                _react2.default.createElement(
-	                                    'ul',
-	                                    { styleName: 'complete-list' },
-	                                    this.getPioneerContent()
-	                                ),
+	                                _react2.default.createElement(_PioneerList2.default, { list: this.state.content && this.state.content.pioneer }),
 	                                _react2.default.createElement(
 	                                    _reactRouter.Link,
-	                                    { styleName: 'show-more' },
+	                                    { className: 'show-more' },
 	                                    _react2.default.createElement('i', { className: 'iconfont icon-more' })
 	                                )
 	                            )
@@ -13299,7 +16132,7 @@ webpackJsonp([0],{
 	    }]);
 
 	    return AppWorkout;
-	}(_react.Component), (_applyDecoratedDescriptor(_class2.prototype, 'componentWillMount', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentWillMount'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleUserInfo', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleUserInfo'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getPioneerContent', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getPioneerContent'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getWorkoutDynamic', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getWorkoutDynamic'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getTrainingWorkoutItem', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getTrainingWorkoutItem'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getTrainingDetail', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getTrainingDetail'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleToggleDetail', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleToggleDetail'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleStartExercise', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleStartExercise'), _class2.prototype)), _class2)) || _class);
+	}(_react.Component), (_applyDecoratedDescriptor(_class2.prototype, 'componentWillMount', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentWillMount'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getWorkoutDynamic', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getWorkoutDynamic'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getTrainingWorkoutItem', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getTrainingWorkoutItem'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getTrainingDetail', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getTrainingDetail'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleToggleDetail', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleToggleDetail'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleStartExercise', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleStartExercise'), _class2.prototype)), _class2)) || _class);
 	var _default = AppWorkout;
 	exports.default = _default;
 	;
@@ -13319,110 +16152,7 @@ webpackJsonp([0],{
 	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/AppWorkout.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/AppWorkout.js"); } } })();
 
 /***/ },
-
-/***/ 652:
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(653);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(121)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(true) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept(653, function() {
-				var newContent = __webpack_require__(653);
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-
-/***/ 653:
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(116)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".gGG3G {\n  position: relative; }\n\n.T56YL {\n  background: #584f5f no-repeat center/cover;\n  position: relative;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); }\n  .T56YL:before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: rgba(0, 0, 0, 0.5); }\n\n._1hEVu {\n  position: relative;\n  padding: 10px;\n  height: 180px; }\n\n._1kXZF {\n  font-size: 24px;\n  color: #fff;\n  margin-top: 10px; }\n\n._3n5Ak {\n  color: #ddd;\n  font-size: 12px; }\n\n.YVuU5 {\n  position: absolute;\n  bottom: 10px;\n  left: 0;\n  width: 100%;\n  margin: 0;\n  padding: 0 10px;\n  overflow: hidden;\n  text-align: right;\n  white-space: nowrap; }\n  .YVuU5 li {\n    display: inline-block; }\n\n._1wE0v {\n  text-align: left;\n  display: block;\n  font-size: 14px;\n  color: #fff;\n  padding: 12px 0 0; }\n\n._1_YaU {\n  padding: 5px 0;\n  border-top: 1px solid #fff;\n  border-bottom: 1px solid #fff; }\n\n._1vG24 {\n  color: #fff;\n  font-size: 10px;\n  display: block;\n  padding-left: 50px;\n  padding-right: 10px; }\n\n._1j7xa {\n  color: #ddd; }\n\n._2MKks {\n  padding: 10px;\n  display: flex;\n  border-bottom: 1px solid #eee; }\n\n._1qiEN {\n  text-align: center;\n  margin-right: 10px; }\n\n._32OId {\n  margin: 0;\n  padding: 0;\n  flex: 1;\n  align-self: center;\n  text-align: right; }\n  ._32OId li {\n    display: inline-flex; }\n\n._2r7mC {\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  overflow: hidden;\n  display: block;\n  position: relative;\n  background: #eee;\n  border: 1px solid #eee;\n  margin-right: 10px; }\n  ._2r7mC img {\n    border: none;\n    width: 100%;\n    height: 100%; }\n\n._3P-i6 {\n  text-align: center;\n  width: 30px;\n  position: relative; }\n  ._3P-i6 i {\n    margin: 0;\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%); }\n\n.gEjE- {\n  background: #fff;\n  border-bottom: 1px solid #eee; }\n\n._1hUN3 {\n  padding: 10px;\n  overflow: hidden; }\n\n._2fS-z {\n  float: right;\n  color: #999;\n  font-size: 12px; }\n\n._1Vgwh {\n  border-left: 2px solid #00c78c;\n  padding-left: 5px;\n  line-height: 1; }\n\n._2tzoZ {\n  display: block;\n  margin: 0;\n  padding: 0;\n  overflow: hidden; }\n\n._21hmZ {\n  float: left;\n  width: 33.33%;\n  padding: 10px;\n  position: relative; }\n\n.LM-oO {\n  margin-right: 15px; }\n\n._1oREy {\n  width: 15px;\n  text-align: center;\n  font-size: 12px;\n  position: absolute;\n  top: 26%;\n  right: 5px;\n  color: #999; }\n\n.K8_bp {\n  width: 100%;\n  padding-bottom: 64%;\n  margin-bottom: 10px;\n  background: #999 center/cover; }\n\n._39a3J {\n  margin-bottom: 5px; }\n\n._3CNEr {\n  color: #999; }\n\n._3HQju {\n  cursor: pointer;\n  position: fixed;\n  bottom: 50px;\n  right: 50px;\n  width: 60px;\n  padding: 0 10px;\n  height: 60px;\n  border-radius: 50%;\n  background: rgba(0, 199, 140, 0.8);\n  border: 2px solid rgba(88, 79, 95, 0.2);\n  color: #fff;\n  box-shadow: 0 0 5px rgba(85, 85, 85, 0.8);\n  transition: all .35s; }\n  ._3HQju:hover {\n    background: #00c78c;\n    border: 2px solid rgba(88, 79, 95, 0.6); }\n\n._1mcce {\n  background: #fff;\n  padding: 0 10px; }\n\n._2NGue {\n  padding: 10px 0; }\n\n._3ZI5H {\n  display: flex;\n  border-bottom: 1px solid #eee;\n  padding: 10px 0; }\n  ._3ZI5H:first-child {\n    padding-top: 0; }\n\n._3zpl4 {\n  width: 100px;\n  height: 100px;\n  margin-right: 10px;\n  background: #999 no-repeat center/cover; }\n\n._1KBy0 {\n  flex: 1;\n  display: flex;\n  flex-direction: column; }\n\n._3FTXV {\n  flex: 1; }\n  ._3FTXV p {\n    overflow: hidden;\n    display: -webkit-box;\n    -webkit-line-clamp: 3;\n    -webkit-box-orient: vertical; }\n\n._30yij {\n  overflow: hidden;\n  display: flex;\n  align-items: center; }\n\n._19wAn {\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  margin-right: 10px;\n  border: 1px solid #eee; }\n\n._2YtCi {\n  color: #ddd; }\n\n.jJH-4 {\n  transition: transform .5s .2s; }\n\n._2Sf8g {\n  display: block;\n  filter: blur(5px);\n  position: relative;\n  transform: scale(1.01); }\n\n.workout-introduce {\n  opacity: 0;\n  position: fixed;\n  top: 60px;\n  right: 0;\n  bottom: 0;\n  left: 150px;\n  padding: 20px 30px 80px;\n  background: rgba(0, 0, 0, 0.8);\n  transition: opacity .5s .2s; }\n\n.workout-introduce.show {\n  opacity: 1;\n  transition: opacity .5s; }\n\n.workout-introduce.show .workout-introduce-inner {\n  opacity: 1;\n  margin-top: 0;\n  transition: all .5s .2s; }\n\n.workout-introduce-inner {\n  transition: all .5s;\n  opacity: 0;\n  margin-top: 10px;\n  height: 100%;\n  padding-right: 10px;\n  margin-right: -10px;\n  overflow-x: hidden;\n  overflow-y: auto;\n  color: #fff; }\n\n._3HnIN {\n  position: absolute;\n  bottom: 20px;\n  left: 50%;\n  padding: 0;\n  width: 30px;\n  height: 30px;\n  line-height: 30px;\n  overflow: hidden;\n  margin-left: -15px;\n  border: none;\n  background: none;\n  color: #fff;\n  cursor: pointer;\n  transition: transform .35s; }\n  ._3HnIN:hover {\n    transform: scale(1.3); }\n  ._3HnIN i {\n    font-size: 30px;\n    margin: 0; }\n\n._3ESct {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  overflow-x: hidden;\n  overflow-y: auto; }\n\n._1Fdk2 {\n  width: 100%; }\n\n._1QVe8 {\n  padding: 5px;\n  margin: 10px;\n  font-size: 24px;\n  color: #fff;\n  border-bottom: 1px solid #00c78c; }\n\n._16Fkx {\n  padding: 10px 20px;\n  color: #fff; }\n\n.c-93L {\n  color: #fff;\n  margin-top: 10px;\n  margin-bottom: 0;\n  margin-left: 20px; }\n\n._2BoKE {\n  width: 100%;\n  overflow-x: auto;\n  overflow-y: hidden;\n  white-space: nowrap;\n  padding: 10px; }\n\n._2fU4a {\n  padding: 10px;\n  vertical-align: top;\n  display: inline-block; }\n\n._24vS1 {\n  position: relative; }\n\n._1z3Ha {\n  border-radius: 10px;\n  border: 1px solid #999;\n  height: 500px; }\n\n._15A6x {\n  position: absolute;\n  color: #fff;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 30px;\n  height: 30px;\n  max-width: 10%;\n  max-height: 10%;\n  transform: translate(-50%, -50%);\n  line-height: 30px;\n  text-align: center;\n  border-radius: 50%;\n  font-size: 14px;\n  background: rgba(0, 199, 140, 0.66); }\n\n.cIiAg {\n  margin-top: 10px;\n  font-size: 14px;\n  color: #fff; }\n\n._3aZ9T {\n  padding: 0 10px 10px; }\n\n._30KDK {\n  padding-top: 10px; }\n\n._2lV3o {\n  margin: 0;\n  padding: 0;\n  overflow-x: scroll;\n  overflow-y: hidden;\n  white-space: nowrap; }\n  ._2lV3o li {\n    position: relative;\n    overflow: hidden;\n    display: inline-block;\n    margin-right: 10px;\n    width: 40%;\n    height: 140px;\n    background: no-repeat center/cover; }\n    ._2lV3o li:last-child {\n      margin: 0; }\n\n._2k-At {\n  position: relative; }\n  ._2k-At:before {\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background: rgba(0, 0, 0, 0.45); }\n  ._2k-At p {\n    position: relative; }\n\n.OHn7N {\n  color: #fff;\n  font-size: 18px; }\n\n._2Kfmk {\n  color: #ddd;\n  font-size: 12px; }\n\n._2jqeS {\n  color: #fff;\n  position: absolute;\n  left: 0;\n  bottom: 0;\n  padding: 10px;\n  width: 100%;\n  text-align: right; }\n\n._3p9y6 {\n  font-size: 10px;\n  margin-left: 5px; }\n\n._ylsI {\n  float: right;\n  padding: 5px;\n  font-size: 10px;\n  background: rgba(0, 0, 0, 0.3);\n  border-radius: 3px; }\n", ""]);
-
-	// exports
-	exports.locals = {
-		"workout-wrap": "gGG3G",
-		"workout-header": "T56YL",
-		"header-inner": "_1hEVu",
-		"header-title": "_1kXZF",
-		"header-desc": "_3n5Ak",
-		"header-nav": "YVuU5",
-		"header-link": "_1wE0v",
-		"link-val": "_1_YaU",
-		"header-sp": "_1vG24",
-		"sp-desc": "_1j7xa",
-		"list-nav": "_2MKks",
-		"nav-participation": "_1qiEN",
-		"complete-list": "_32OId",
-		"pioneer-item": "_2r7mC",
-		"show-more": "_3P-i6",
-		"training-content": "gEjE-",
-		"training-title": "_1hUN3",
-		"training-sp": "_2fS-z",
-		"line-title": "_1Vgwh",
-		"training-line": "_2tzoZ",
-		"line-item": "_21hmZ",
-		"line-work-item": "LM-oO",
-		"work-gap": "_1oREy",
-		"work-item-cover": "K8_bp",
-		"work-item-title": "_39a3J",
-		"work-item-desc": "_3CNEr",
-		"button-start-training": "_3HQju",
-		"training-dynamic": "_1mcce",
-		"dynamic-title": "_2NGue",
-		"dynamic-item": "_3ZI5H",
-		"item-photo": "_3zpl4",
-		"dynamic-content": "_1KBy0",
-		"dynamic-desc": "_3FTXV",
-		"dynamic-user": "_30yij",
-		"item-avatar": "_19wAn",
-		"dynamic-time": "_2YtCi",
-		"workout-mask": "jJH-4",
-		"workout-blur-mask": "_2Sf8g",
-		"button-introduce-desc": "_3HnIN",
-		"workout-desc-inner": "_3ESct",
-		"workout-desc-video": "_1Fdk2",
-		"workout-desc-title": "_1QVe8",
-		"workout-desc-article": "_16Fkx",
-		"workout-exercise-title": "c-93L",
-		"workout-desc-figure": "_2BoKE",
-		"exercise-figure": "_2fU4a",
-		"exercise-item": "_24vS1",
-		"exercise-pic": "_1z3Ha",
-		"exercise-coordinates": "_15A6x",
-		"exercise-tip": "cIiAg",
-		"scroll-wrap": "_3aZ9T",
-		"scroll-title": "_30KDK",
-		"scroll-list": "_2lV3o",
-		"training-block": "_2k-At",
-		"training-block-title": "OHn7N",
-		"training-block-desc": "_2Kfmk",
-		"training-block-info": "_2jqeS",
-		"block-info-time": "_3p9y6",
-		"block-info-tag": "_ylsI"
-	};
-
-/***/ },
-
-/***/ 654:
+/* 682 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13439,15 +16169,15 @@ webpackJsonp([0],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactCssModules = __webpack_require__(354);
+	var _reactCssModules = __webpack_require__(355);
 
 	var _reactCssModules2 = _interopRequireDefault(_reactCssModules);
 
-	var _autobindDecorator = __webpack_require__(513);
+	var _autobindDecorator = __webpack_require__(515);
 
 	var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
 
-	var _moment = __webpack_require__(524);
+	var _moment = __webpack_require__(522);
 
 	var _moment2 = _interopRequireDefault(_moment);
 
@@ -13455,15 +16185,15 @@ webpackJsonp([0],{
 
 	var _Utils2 = _interopRequireDefault(_Utils);
 
-	var _appWorkouts = __webpack_require__(652);
+	var _appWorkouts = __webpack_require__(672);
 
 	var _appWorkouts2 = _interopRequireDefault(_appWorkouts);
 
-	var _AppSlideContent = __webpack_require__(655);
+	var _AppSlideContent = __webpack_require__(665);
 
 	var _AppSlideContent2 = _interopRequireDefault(_AppSlideContent);
 
-	var _WorkoutCoordinates = __webpack_require__(658);
+	var _WorkoutCoordinates = __webpack_require__(683);
 
 	var _WorkoutCoordinates2 = _interopRequireDefault(_WorkoutCoordinates);
 
@@ -13542,7 +16272,7 @@ webpackJsonp([0],{
 	                null,
 	                _react2.default.createElement(
 	                    'div',
-	                    { styleName: 'workout-desc-inner' },
+	                    { className: 'slide-content-wrap' },
 	                    _react2.default.createElement('video', { styleName: 'workout-desc-video', src: this.state.workout.exercise.videos[0].url, muted: true, autoPlay: true, loop: true }),
 	                    _react2.default.createElement(
 	                        'p',
@@ -13588,220 +16318,7 @@ webpackJsonp([0],{
 	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/WorkoutDescription.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/WorkoutDescription.js"); } } })();
 
 /***/ },
-
-/***/ 655:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _dec, _class, _desc, _value, _class2;
-
-	var _react = __webpack_require__(122);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRouter = __webpack_require__(298);
-
-	var _reactCssModules = __webpack_require__(354);
-
-	var _reactCssModules2 = _interopRequireDefault(_reactCssModules);
-
-	var _autobindDecorator = __webpack_require__(513);
-
-	var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
-
-	var _moment = __webpack_require__(524);
-
-	var _moment2 = _interopRequireDefault(_moment);
-
-	var _Utils = __webpack_require__(521);
-
-	var _Utils2 = _interopRequireDefault(_Utils);
-
-	var _appSlideContent = __webpack_require__(656);
-
-	var _appSlideContent2 = _interopRequireDefault(_appSlideContent);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-	    var desc = {};
-	    Object['ke' + 'ys'](descriptor).forEach(function (key) {
-	        desc[key] = descriptor[key];
-	    });
-	    desc.enumerable = !!desc.enumerable;
-	    desc.configurable = !!desc.configurable;
-
-	    if ('value' in desc || desc.initializer) {
-	        desc.writable = true;
-	    }
-
-	    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-	        return decorator(target, property, desc) || desc;
-	    }, desc);
-
-	    if (context && desc.initializer !== void 0) {
-	        desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-	        desc.initializer = undefined;
-	    }
-
-	    if (desc.initializer === void 0) {
-	        Object['define' + 'Property'](target, property, desc);
-	        desc = null;
-	    }
-
-	    return desc;
-	}
-
-	var AppSlideContent = (_dec = (0, _reactCssModules2.default)(_appSlideContent2.default, { allowMultiple: true }), _dec(_class = (_class2 = function (_Component) {
-	    _inherits(AppSlideContent, _Component);
-
-	    function AppSlideContent(props) {
-	        _classCallCheck(this, AppSlideContent);
-
-	        var _this = _possibleConstructorReturn(this, (AppSlideContent.__proto__ || Object.getPrototypeOf(AppSlideContent)).call(this, props));
-
-	        _this.state = {
-	            className: 'slide-content'
-	        };
-	        return _this;
-	    }
-
-	    _createClass(AppSlideContent, [{
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {
-	            var _this2 = this;
-
-	            setTimeout(function () {
-	                _this2.timer = _this2.setState({
-	                    className: 'slide-content active'
-	                });
-	            }, 100);
-	        }
-	    }, {
-	        key: 'componentWillUnmount',
-	        value: function componentWillUnmount() {
-	            this.timer && clearTimeout(this.timer);
-	        }
-	    }, {
-	        key: 'handleGoback',
-	        value: function handleGoback() {
-	            this.setState({
-	                className: 'slide-content'
-	            });
-	            setTimeout(function () {
-	                _reactRouter.hashHistory.goBack();
-	            }, 350);
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                { styleName: 'slide-wrap' },
-	                _react2.default.createElement('div', { styleName: 'slide-mask' }),
-	                _react2.default.createElement(
-	                    'div',
-	                    { styleName: this.state.className },
-	                    _react2.default.createElement(
-	                        'button',
-	                        { styleName: 'button-slide-goback', onClick: this.handleGoback },
-	                        _react2.default.createElement('i', { className: 'iconfont icon-goback fz36' })
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        null,
-	                        this.props.children
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-
-	    return AppSlideContent;
-	}(_react.Component), (_applyDecoratedDescriptor(_class2.prototype, 'componentDidMount', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentDidMount'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'componentWillUnmount', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentWillUnmount'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleGoback', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleGoback'), _class2.prototype)), _class2)) || _class);
-	var _default = AppSlideContent;
-	exports.default = _default;
-	;
-
-	var _temp = function () {
-	    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-	        return;
-	    }
-
-	    __REACT_HOT_LOADER__.register(AppSlideContent, 'AppSlideContent', '/Users/liucong/Documents/Github/keepForMac/src/components/AppSlideContent.js');
-
-	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/components/AppSlideContent.js');
-	}();
-
-	;
-
-	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppSlideContent.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppSlideContent.js"); } } })();
-
-/***/ },
-
-/***/ 656:
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(657);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(121)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(true) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept(657, function() {
-				var newContent = __webpack_require__(657);
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-
-/***/ 657:
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(116)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "._3h-mm {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  overflow: hidden; }\n\n._QeqJ {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  transition: background .35s;\n  background: rgba(0, 0, 0, 0.45); }\n\n._2uiQd {\n  position: absolute;\n  top: 0;\n  right: -75%;\n  width: 75%;\n  height: 100%;\n  background: #555;\n  transition: right .35s ease-out;\n  box-shadow: -2px 0 15px rgba(0, 0, 0, 0.6); }\n\n._2uiQd.BkEY- {\n  right: 0; }\n  ._2uiQd.BkEY- ._3QeEg {\n    opacity: 1;\n    transform: translateX(0px); }\n\n._3QeEg {\n  transition: opacity .5s .5s, transform .5s .5s;\n  transform: translateX(-10px);\n  opacity: 0;\n  cursor: pointer;\n  border: none;\n  background: none;\n  position: absolute;\n  top: 50%;\n  left: -18%;\n  margin-top: -12px;\n  margin-left: -12px;\n  color: #fff; }\n  ._3QeEg:hover {\n    animation: _2CBwY .5s;\n    animation-fill-mode: forwards; }\n\n@keyframes _2CBwY {\n  0% {\n    transform: translateX(0); }\n  100% {\n    transform: translateX(10px); } }\n", ""]);
-
-	// exports
-	exports.locals = {
-		"slide-wrap": "_3h-mm",
-		"slide-mask": "_QeqJ",
-		"slide-content": "_2uiQd",
-		"active": "BkEY-",
-		"button-slide-goback": "_3QeEg",
-		"buttonFloat": "_2CBwY"
-	};
-
-/***/ },
-
-/***/ 658:
+/* 683 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13818,11 +16335,11 @@ webpackJsonp([0],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactCssModules = __webpack_require__(354);
+	var _reactCssModules = __webpack_require__(355);
 
 	var _reactCssModules2 = _interopRequireDefault(_reactCssModules);
 
-	var _appWorkouts = __webpack_require__(652);
+	var _appWorkouts = __webpack_require__(672);
 
 	var _appWorkouts2 = _interopRequireDefault(_appWorkouts);
 
@@ -13902,15 +16419,16 @@ webpackJsonp([0],{
 	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/WorkoutCoordinates.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/components/AppTraining/workouts/WorkoutCoordinates.js"); } } })();
 
 /***/ },
-
-/***/ 659:
+/* 684 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+
+	var _reactRouter = __webpack_require__(298);
 
 	var _Utils = __webpack_require__(521);
 
@@ -13919,10 +16437,8 @@ webpackJsonp([0],{
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var _default = function _default(nextState, replace) {
-	    if (!_Utils2.default.storage.get('authentication')) {
-	        replace({ pathname: '/login' });
-	    } else {
-	        //replace({ pathname: '/training' })
+	    if (_reactRouter.hashHistory.getCurrentLocation().pathname !== "/login" && !_Utils2.default.storage.get("authentication")) {
+	        replace({ pathname: "/login" });
 	    }
 	};
 
@@ -13934,7 +16450,7 @@ webpackJsonp([0],{
 	        return;
 	    }
 
-	    __REACT_HOT_LOADER__.register(_default, 'default', '/Users/liucong/Documents/Github/keepForMac/src/js/RequireAuth.js');
+	    __REACT_HOT_LOADER__.register(_default, "default", "/Users/liucong/Documents/Github/keepForMac/src/js/RequireAuth.js");
 	}();
 
 	;
@@ -13942,5 +16458,4 @@ webpackJsonp([0],{
 	 ;(function register() { /* react-hot-loader/webpack */ if ((undefined) !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/liucong/Documents/Github/keepForMac/src/js/RequireAuth.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/liucong/Documents/Github/keepForMac/src/js/RequireAuth.js"); } } })();
 
 /***/ }
-
-});
+]);

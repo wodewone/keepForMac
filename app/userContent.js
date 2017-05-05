@@ -19,15 +19,15 @@ webpackJsonp([3],{
 
 	var _reactRouter = __webpack_require__(298);
 
-	var _reactCssModules = __webpack_require__(354);
+	var _reactCssModules = __webpack_require__(355);
 
 	var _reactCssModules2 = _interopRequireDefault(_reactCssModules);
 
-	var _autobindDecorator = __webpack_require__(513);
+	var _autobindDecorator = __webpack_require__(515);
 
 	var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
 
-	var _moment = __webpack_require__(524);
+	var _moment = __webpack_require__(522);
 
 	var _moment2 = _interopRequireDefault(_moment);
 
@@ -35,13 +35,17 @@ webpackJsonp([3],{
 
 	var _Utils2 = _interopRequireDefault(_Utils);
 
+	var _HttpRequest = __webpack_require__(520);
+
+	var _HttpRequest2 = _interopRequireDefault(_HttpRequest);
+
 	__webpack_require__(114);
 
-	var _userContent = __webpack_require__(663);
+	var _userContent = __webpack_require__(688);
 
 	var _userContent2 = _interopRequireDefault(_userContent);
 
-	var _electron = __webpack_require__(522);
+	var _electron = __webpack_require__(641);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -80,7 +84,7 @@ webpackJsonp([3],{
 	    return desc;
 	}
 
-	var UserContent = (_dec = (0, _reactCssModules2.default)(_userContent2.default), _dec(_class = (_class2 = function (_Component) {
+	var UserContent = (_dec = (0, _reactCssModules2.default)(_userContent2.default, { allowMultiple: true }), _dec(_class = (_class2 = function (_Component) {
 	    _inherits(UserContent, _Component);
 
 	    function UserContent(props) {
@@ -136,20 +140,40 @@ webpackJsonp([3],{
 	            return city ? city : { cityName: '银河,地球' };
 	        }
 	    }, {
+	        key: 'handleFriend',
+	        value: function handleFriend() {
+	            var _this3 = this;
+
+	            var updateState = _HttpRequest2.default.getUserData(this.state.user._id).then(function (res) {
+	                if (res.ok) {
+	                    _this3.setState({
+	                        statistics: res.data.statistics,
+	                        trainings: res.data.trainings,
+	                        user: res.data.user
+	                    });
+	                }
+	            });
+	            if (this.state.user.relation) {
+	                _HttpRequest2.default.removeUserFollow(this.state.user._id).then(updateState());
+	            } else {
+	                _HttpRequest2.default.addUserFollow(this.state.user._id).then(updateState());
+	            }
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var USER = this.state.user;
 	            return _react2.default.createElement(
 	                'div',
 	                { styleName: 'user-container' },
 	                _react2.default.createElement(
 	                    'section',
 	                    { styleName: 'user-back' },
-	                    _react2.default.createElement('div', { hidden: this.state.user.backgroundAvatar, styleName: 'back-cover', style: { backgroundImage: 'url(' + this.state.user.avatar + ')' } }),
-	                    _react2.default.createElement('div', { hidden: !this.state.user.backgroundAvatar, styleName: 'back-avatar', style: { backgroundImage: 'url(' + this.state.user.backgroundAvatar + ')' } }),
+	                    _react2.default.createElement('div', { styleName: USER.backgroundAvatar ? 'back-cover' : 'back-cover blur', style: { backgroundImage: 'url(' + (USER.backgroundAvatar ? USER.backgroundAvatar : USER.avatar) + '?imageMogr2/thumbnail/!300x300r)' } }),
 	                    _react2.default.createElement(
 	                        'div',
 	                        { styleName: 'user-avatar' },
-	                        _react2.default.createElement('img', { src: this.state.user.avatar, alt: '' })
+	                        _react2.default.createElement('img', { src: USER.avatar ? USER.avatar + '?imageMogr2/thumbnail/!200x200r' : '', alt: '' })
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
@@ -160,7 +184,7 @@ webpackJsonp([3],{
 	                            _react2.default.createElement(
 	                                'span',
 	                                null,
-	                                this.state.user.username
+	                                USER.username
 	                            )
 	                        ),
 	                        _react2.default.createElement(
@@ -169,7 +193,7 @@ webpackJsonp([3],{
 	                            _react2.default.createElement(
 	                                'span',
 	                                null,
-	                                this.state.user.bio || '这个人很懒，啥都没写~'
+	                                USER.bio || '这个人很懒，啥都没写~'
 	                            )
 	                        ),
 	                        _react2.default.createElement(
@@ -178,13 +202,13 @@ webpackJsonp([3],{
 	                            _react2.default.createElement(
 	                                'span',
 	                                null,
-	                                (0, _moment2.default)(new Date(this.state.user.birthday)).format('YYYY-MM-DD')
+	                                USER.birthday ? (0, _moment2.default)(new Date(USER.birthday)).format('YYYY-MM-DD') : '宇宙大爆炸时间'
 	                            ),
 	                            ' | ',
 	                            _react2.default.createElement(
 	                                'span',
 	                                null,
-	                                this.getCityAddress(this.state.user.citycode || '').cityName
+	                                this.getCityAddress(USER.citycode || '').cityName
 	                            )
 	                        ),
 	                        _react2.default.createElement(
@@ -239,7 +263,7 @@ webpackJsonp([3],{
 	                    _react2.default.createElement(
 	                        'div',
 	                        { styleName: 'user-training-line' },
-	                        '\u6700\u957F\u5929\u6570 ',
+	                        '\u6700\u957F\u8FDE\u7EED ',
 	                        _react2.default.createElement(
 	                            'div',
 	                            { styleName: 'user-training-data' },
@@ -278,9 +302,18 @@ webpackJsonp([3],{
 	                            '\u53BBTa\u4E3B\u9875(\u6682\u672A\u5F00\u53D1)'
 	                        ),
 	                        _react2.default.createElement(
-	                            _reactRouter.Link,
-	                            { to: '', styleName: 'line-btn' },
-	                            '\u5173\u6CE8Ta(\u6682\u672A\u5F00\u53D1)'
+	                            'button',
+	                            { styleName: USER.relation ? 'follow-btn active' : 'follow-btn', onClick: this.handleFriend },
+	                            _react2.default.createElement(
+	                                'span',
+	                                { styleName: 'sp-default' },
+	                                !USER.relation ? '关注Ta' : USER.relation == 2 ? '已关注' : '相互关注'
+	                            ),
+	                            _react2.default.createElement(
+	                                'span',
+	                                { styleName: 'sp-hover' },
+	                                !USER.relation ? '关注Ta' : '取消关注'
+	                            )
 	                        )
 	                    )
 	                )
@@ -289,7 +322,7 @@ webpackJsonp([3],{
 	    }]);
 
 	    return UserContent;
-	}(_react.Component), (_applyDecoratedDescriptor(_class2.prototype, 'componentWillMount', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentWillMount'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'componentWillUnmount', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentWillUnmount'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getCityAddress', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getCityAddress'), _class2.prototype)), _class2)) || _class);
+	}(_react.Component), (_applyDecoratedDescriptor(_class2.prototype, 'componentWillMount', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentWillMount'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'componentWillUnmount', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'componentWillUnmount'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'getCityAddress', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'getCityAddress'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'handleFriend', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'handleFriend'), _class2.prototype)), _class2)) || _class);
 
 
 	var container = document.createElement('div');
@@ -316,13 +349,13 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 663:
+/***/ 688:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(664);
+	var content = __webpack_require__(689);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(121)(content, {});
@@ -331,8 +364,8 @@ webpackJsonp([3],{
 	if(true) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept(664, function() {
-				var newContent = __webpack_require__(664);
+			module.hot.accept(689, function() {
+				var newContent = __webpack_require__(689);
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -343,7 +376,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 664:
+/***/ 689:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(116)();
@@ -351,7 +384,7 @@ webpackJsonp([3],{
 
 
 	// module
-	exports.push([module.id, "._2iSfP {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column; }\n\n._2fJro {\n  width: 100%;\n  height: 260px;\n  background: #000;\n  padding: 20px 10px 0;\n  text-align: center;\n  position: relative;\n  -webkit-app-region: drag;\n  overflow: hidden; }\n\n._25K5c,\n.xR6HH {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: center/cover no-repeat;\n  transform: scale(1.01);\n  overflow: hidden; }\n\n._25K5c {\n  filter: blur(30px); }\n\n.xR6HH {\n  opacity: .45; }\n\n.a0fr5 {\n  position: relative;\n  margin: auto;\n  width: 78px;\n  height: 78px;\n  border: 1px solid #fff;\n  border-radius: 50%;\n  background: #584f5f;\n  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);\n  transition: all .35s;\n  overflow: hidden; }\n  .a0fr5:hover {\n    transform: scale(1.2);\n    border-color: #00c78c; }\n  .a0fr5 img {\n    width: 100%;\n    height: 100%; }\n\n.Fpgzu {\n  padding: 15px 0;\n  text-align: center;\n  position: relative;\n  color: #fff; }\n  .Fpgzu p span {\n    padding: 0 6px;\n    -webkit-app-region: no-drag;\n    -webkit-user-select: auto; }\n\n._3seF1 {\n  font-size: 18px;\n  margin-bottom: 5px;\n  text-shadow: 0 0 2px rgba(0, 0, 0, 0.6), 0 0 2px rgba(0, 0, 0, 0.6); }\n\n._2iUvc {\n  font-size: 12px;\n  margin-bottom: 10px;\n  max-height: 60px;\n  overflow: hidden;\n  text-shadow: 0 0 2px rgba(0, 0, 0, 0.6), 0 0 2px rgba(0, 0, 0, 0.6); }\n\n._2ES3L {\n  font-size: 12px;\n  margin-bottom: 10px;\n  color: #fff; }\n\n._3QjzQ {\n  font-size: 12px;\n  color: #00c78c;\n  opacity: .6;\n  transition: opacity .35s; }\n  ._3QjzQ:hover {\n    opacity: 1; }\n\n._1oAqh {\n  background: #fff;\n  padding: 15px; }\n\n._1gvj1 {\n  font-size: 14px;\n  color: #584f5f;\n  display: flex;\n  margin-bottom: 12px; }\n\n._10GQ5 {\n  flex: 1;\n  text-align: right; }\n\n._3nixU {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  display: flex;\n  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.8); }\n\n._2ylNR {\n  flex: 1;\n  background: #584f5f;\n  color: #fff;\n  font-size: 14px;\n  text-align: center;\n  padding: 10px 0; }\n  ._2ylNR:hover {\n    color: #fff;\n    transition: background .35s;\n    background: #00c78c; }\n  ._2ylNR:first-child {\n    border-right: 1px solid #eee; }\n", ""]);
+	exports.push([module.id, "._2iSfP {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column; }\n\n._2fJro {\n  width: 100%;\n  height: 260px;\n  background: #000;\n  padding: 20px 10px 0;\n  text-align: center;\n  position: relative;\n  -webkit-app-region: drag;\n  overflow: hidden; }\n\n._25K5c,\n.xR6HH {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: center/cover no-repeat;\n  transform: scale(1.01);\n  overflow: hidden; }\n\n._25K5c._1RPRB {\n  filter: blur(30px); }\n\n.xR6HH {\n  opacity: .45; }\n\n.a0fr5 {\n  position: relative;\n  margin: auto;\n  width: 78px;\n  height: 78px;\n  border: 1px solid #fff;\n  border-radius: 50%;\n  background: #584f5f;\n  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);\n  transition: all .35s;\n  overflow: hidden; }\n  .a0fr5:hover {\n    transform: scale(1.2);\n    border-color: #23A570; }\n  .a0fr5 img {\n    width: 100%;\n    height: 100%; }\n\n.Fpgzu {\n  padding: 15px 0;\n  text-align: center;\n  position: relative;\n  color: #fff; }\n  .Fpgzu p span {\n    padding: 0 6px;\n    -webkit-app-region: no-drag;\n    -webkit-user-select: auto; }\n\n._3seF1 {\n  font-size: 18px;\n  margin-bottom: 5px;\n  text-shadow: 0 0 2px rgba(0, 0, 0, 0.6), 0 0 2px rgba(0, 0, 0, 0.6); }\n\n._2iUvc {\n  font-size: 12px;\n  margin-bottom: 10px;\n  line-height: 15px;\n  max-height: 66px;\n  overflow: hidden;\n  text-shadow: 0 0 2px rgba(0, 0, 0, 0.6), 0 0 2px rgba(0, 0, 0, 0.6); }\n\n._2ES3L {\n  font-size: 12px;\n  margin-bottom: 10px;\n  color: #fff; }\n\n._3QjzQ {\n  font-size: 12px;\n  color: #23A570;\n  opacity: .6;\n  transition: opacity .35s;\n  text-shadow: 0 0 1px rgba(0, 0, 0, 0.8); }\n  ._3QjzQ:hover {\n    opacity: 1; }\n\n._1oAqh {\n  background: #fff;\n  padding: 15px; }\n\n._1gvj1 {\n  font-size: 14px;\n  color: #584f5f;\n  display: flex;\n  margin-bottom: 12px; }\n\n._10GQ5 {\n  flex: 1;\n  text-align: right; }\n\n._3nixU {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  display: flex;\n  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.8); }\n\n._2ylNR\n, ._137HH {\n  flex: 1;\n  background: #584f5f;\n  color: #fff;\n  font-size: 14px;\n  text-align: center;\n  border: none;\n  outline: none;\n  padding: 10px 0; }\n  ._2ylNR:hover\n, ._137HH:hover {\n    color: #23A570;\n    transition: color .25s, background .25s; }\n  ._2ylNR:first-child\n, ._137HH:first-child {\n    border-right: 1px solid #eee; }\n\n._137HH._3T7wZ {\n  color: #fff;\n  background: #23A570; }\n  ._137HH._3T7wZ:hover {\n    background: #ff5065; }\n\n._137HH ._34SIr {\n  display: none; }\n\n._137HH:hover ._2u-3R {\n  display: none; }\n\n._137HH:hover ._34SIr {\n  display: inline; }\n", ""]);
 
 	// exports
 	exports.locals = {
@@ -359,6 +392,7 @@ webpackJsonp([3],{
 		"user-back": "_2fJro",
 		"back-cover": "_25K5c",
 		"back-avatar": "xR6HH",
+		"blur": "_1RPRB",
 		"user-avatar": "a0fr5",
 		"user-info-content": "Fpgzu",
 		"user-info-name": "_3seF1",
@@ -369,7 +403,11 @@ webpackJsonp([3],{
 		"user-training-line": "_1gvj1",
 		"user-training-data": "_10GQ5",
 		"both-line": "_3nixU",
-		"line-btn": "_2ylNR"
+		"line-btn": "_2ylNR",
+		"follow-btn": "_137HH",
+		"active": "_3T7wZ",
+		"sp-hover": "_34SIr",
+		"sp-default": "_2u-3R"
 	};
 
 /***/ }
