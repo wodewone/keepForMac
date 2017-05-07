@@ -12,8 +12,8 @@ require('url-loader')
 module.exports = {
     entry: {
         app: [
-            'webpack-dev-server/client?http://localhost:3000',
-            'webpack/hot/only-dev-server',
+            //'webpack-dev-server/client?http://localhost:3000',
+            //'webpack/hot/only-dev-server',
             './src/main.js'
         ],
         lib: [
@@ -25,8 +25,8 @@ module.exports = {
     },
 	output: {
         path: path.join(__dirname, './app'),
-        publicPath: 'http://localhost:3000/',
-        //publicPath: '',
+        //publicPath: 'http://localhost:3000/',
+        publicPath: '',
         filename: '[name].js',
         chunkFilename: '[name].js'
     },
@@ -77,7 +77,7 @@ module.exports = {
     //},
     plugins: [
         // react 热部署
-        new webpack.HotModuleReplacementPlugin(),
+        //new webpack.HotModuleReplacementPlugin(),
 
         // 开启独立 css 到单独文件
         new ExtractTextPlugin('app.css', {
@@ -114,11 +114,11 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin('lib', 'js/lib.js'),
 
         // 压缩并打包文件
-        //new webpack.optimize.UglifyJsPlugin({
-        //    compress: {
-        //        warnings: false
-        //    }
-        //}),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        }),
 
         // 解决开发时提示React没有切换到产品版本
         // [React doesn't switch to production mode](http://stackoverflow.com/questions/37311972/react-doesnt-switch-to-production-mode)
