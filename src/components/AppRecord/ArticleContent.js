@@ -62,7 +62,7 @@ class ArticleContent extends Component{
     handleText (val) {
         const reg = /(<br>)/g
         let br = React.createElement('br')
-        return val.replace(/\n/g, '<br>').split(reg).map((item, index) => {
+        return val.replace(/(<img.*?)>/g ,"").replace(/\n/g, '<br>').split(reg).map((item, index) => {
             return item.match(reg) ? <br key={index} /> : item
         })
     }
