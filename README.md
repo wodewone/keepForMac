@@ -27,6 +27,19 @@ Mac版keep应用（[最新体验版](https://pan.baidu.com/s/1geS7qVL)因为开�
 ![preview-8](http://wodewone.github.io/app/keep/preview/preview-8.jpg)
 ![preview-9](http://wodewone.github.io/app/keep/preview/preview-9.jpg)
 
+## 安装运行（Build Setup）
+``` bash
+# install dependencies
+npm install
+
+# serve with hot reload
+npm run electron
+
+# generate app
+npm run dist
+```
+
+
 ## Development
 
 开发笔记：[开发进程以及过程中的问题](http://wodewone.github.io/2016/12/03/使用js创建macOS应用/)
@@ -72,7 +85,7 @@ Mac版keep应用（[最新体验版](https://pan.baidu.com/s/1geS7qVL)因为开�
 * [深入理解 react-router 路由系统](https://zhuanlan.zhihu.com/p/20381597?columnSlug=purerender)
 * [webpack中关于样式的处理](https://github.com/zhengweikeng/blog/issues/9)
 * [使用 ES2015 重构 React 组件
-](https://csspod.com/refactoring-react-components-to-es2015-classes/)
+  ](https://csspod.com/refactoring-react-components-to-es2015-classes/)
 * [webpack多页应用架构系列（六）：听说webpack连图片和字体也能打包？](https://segmentfault.com/a/1190000006907701)
 * [加速electron在国内的下载速度](http://blog.tomyail.com/install-electron-slow-in-china/)
 * [深入Electron ](https://github.com/zjzhome/I_want_to_say/issues/3)
