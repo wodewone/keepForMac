@@ -1,3 +1,4 @@
+const { ipcRenderer } = require('electron');
 import './sass/app.scss'
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -18,6 +19,10 @@ import AppWorkout from './components/AppTraining/workouts/AppWorkout.js'
 import WorkoutDescription from './components/AppTraining/workouts/WorkoutDescription.js'
 
 import RequireAuth from './js/RequireAuth'
+
+// 全局搜索处理
+ipcRenderer.on('global-search', () => {
+});
 
 const app = document.createElement('div');
 app.id = 'app';
