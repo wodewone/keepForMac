@@ -22,7 +22,12 @@ import RequireAuth from './js/RequireAuth'
 
 // 全局搜索处理
 ipcRenderer.on('global-search', () => {
+    console.info('global-search')
+    this.setState({
+        focus: true
+    })
 });
+
 
 const app = document.createElement('div');
 app.id = 'app';

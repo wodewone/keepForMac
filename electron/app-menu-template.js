@@ -20,7 +20,7 @@ const appMenuTemplate = [
         role: 'selectall'
       },
       {
-          label: 'find',
+          label: 'search',
           accelerator: 'CmdOrCtrl+F',
           click (item, focusedWindow) {
               if (focusedWindow) focusedWindow.webContents.send('global-search');

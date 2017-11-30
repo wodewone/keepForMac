@@ -14,6 +14,7 @@ class AppSearch extends Component{
 
         this.state = {
             indexTag: null,
+            focus: null,
             content: null
         }
     }
@@ -41,7 +42,7 @@ class AppSearch extends Component{
             return this.state.indexTag.map((item, index) => {
                 if(this.state.content[item.searchType].entites.length)
                 return (
-                    <li key={index}>
+                    <li key={index} onClick={this.handleClick}>
                         <header styleName="list-header">{item.name}</header>
                         {this.state.content[item.searchType].entites.map((single, sinIndex) => {
                             return (
@@ -54,6 +55,13 @@ class AppSearch extends Component{
                 )
             })
         }
+    }
+
+    @autobind
+    handleClick(e){
+        this.setState({
+            content: null
+        })
     }
 
     @autobind
@@ -78,7 +86,7 @@ class AppSearch extends Component{
         return(
             <div styleName="common-search-wrap">
                 <i styleName="icon-search" className={`iconfont icon-search fz18`}></i>
-                <input styleName="common-search" onChange={this.handleSearch} type="search" placeholder="搜索"/>
+                <input styleName="common-search" onChange={this.handleSearch} type="search" onFocus={this.state.focus} placeholder="搜索"/>
                 <section styleName="search-result" hidden={!this.state.content}>
                     <ul styleName="result-list">
                         {this.getResultContent()}
